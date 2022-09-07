@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Bioacoustics &#8212; bioacoustics</title>
+    <title>Direction Finding &#8212; bioacoustics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,9 +50,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Wave equation" href="wave_equation.html" />
+    <link rel="next" title="Ray tracing" href="ray_tracing.html" />
+    <link rel="prev" title="Sound Intensity" href="sound_intensity.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -101,13 +104,13 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Bioacoustics
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wave_equation.html">
    Wave equation
@@ -123,8 +126,8 @@ const thebe_selector_output = ".output, .cell_output"
    Sound Intensity
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="direction_finding.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Direction Finding
   </a>
  </li>
@@ -184,6 +187,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/wmxz-eu/bioacoustics.github.io/master?urlpath=tree/direction_finding.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -223,7 +255,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/wmxz-eu/bioacoustics.github.io/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/wmxz-eu/bioacoustics.github.io/issues/new?title=Issue%20on%20page%20%2Fdirection_finding.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -251,7 +283,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/intro.md"
+        <a href="_sources/direction_finding.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -262,7 +294,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -300,7 +332,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Bioacoustics</h1>
+                <h1>Direction Finding</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -312,11 +344,75 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="bioacoustics">
-<h1>Bioacoustics<a class="headerlink" href="#bioacoustics" title="Permalink to this headline">#</a></h1>
-<p>This book contains a sequence of consideration on bioacoustics, Detection,Classification,Localisation (DCL) algorithms</p>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="direction-finding">
+<h1>Direction Finding<a class="headerlink" href="#direction-finding" title="Permalink to this headline">#</a></h1>
+<p>The direction of the sound source is here estimated by determining for the same signal the relative delays between the different hydrophones and by considering the following relation between measured delays and the direction vector of the sound source.</p>
+<p>Given a vector of arrival delays <span class="math notranslate nohighlight">\(\Delta \bm{\tau} \)</span>  one estimates the sound direction  <span class="math notranslate nohighlight">\(\bm{\hat s}\)</span>   by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4884124f-37b1-42e2-ac72-bf87a6204247">
+<span class="eqno">(26)<a class="headerlink" href="#equation-4884124f-37b1-42e2-ac72-bf87a6204247" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \bm{\hat s} = c\left(\bm D_0^T \bm D_0 \right)^{-1} \bm D_0 \Delta \bm \tau
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is the sound speed between the hydrophones,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7961dbed-3f3a-404d-9d6b-6181b4157832">
+<span class="eqno">(27)<a class="headerlink" href="#equation-7961dbed-3f3a-404d-9d6b-6181b4157832" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \bm{\hat s} = 
+    \left(
+        \begin{array}{c}
+            s_x\\
+            s_y\\
+            s_z
+        \end{array}
+    \right)  
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-2ac156ec-33f9-4c2f-ab8e-1f2a72a9fc45">
+<span class="eqno">(28)<a class="headerlink" href="#equation-2ac156ec-33f9-4c2f-ab8e-1f2a72a9fc45" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \Delta \bm \tau = 
+    \left(
+        \begin{array}{c}
+            \Delta \tau_1\\
+            \Delta \tau_2\\
+            \vdots\\
+            \Delta \tau_n
+        \end{array}
+    \right)  
+    \text{ is the vector of arrival delays, and}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-0756942c-b4b5-442f-84e7-478bd1c3934c">
+<span class="eqno">(29)<a class="headerlink" href="#equation-0756942c-b4b5-442f-84e7-478bd1c3934c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \bm D_0 = 
+    \left(
+        \begin{array}{c c c c}
+            d_{1x} &amp; d_{2x} &amp; ... &amp; d_{nx}\\
+            d_{1y} &amp; d_{2y} &amp; ... &amp; d_{ny}\\
+            d_{1z} &amp; d_{2z} &amp; ... &amp; d_{nz}\\
+        \end{array}
+    \right)  
+\end{equation}\]</div>
+<p>is the hydrophone separation matrix.</p>
+<p>The arrival angles azimuth <span class="math notranslate nohighlight">\(\alpha\)</span> and elevation <span class="math notranslate nohighlight">\(\beta\)</span>  of the sound are finally estimated by solving</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e0f2c64a-6135-46bb-bdeb-e710523010d9">
+<span class="eqno">(30)<a class="headerlink" href="#equation-e0f2c64a-6135-46bb-bdeb-e710523010d9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \tan \alpha = \frac{-s_y}{s_x}
+\end{equation}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6b9073f1-c364-4714-ba1e-7b602fd6f884">
+<span class="eqno">(31)<a class="headerlink" href="#equation-6b9073f1-c364-4714-ba1e-7b602fd6f884" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \sin \beta = s_z
+\end{equation}\]</div>
+<p>or alternatively</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9d49c68d-b86c-4cb4-8aee-3df23cc77fea">
+<span class="eqno">(32)<a class="headerlink" href="#equation-9d49c68d-b86c-4cb4-8aee-3df23cc77fea" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \tan \beta = \frac{s_z}{\sqrt{s_x^2+s_y^2}}
+\end{equation}\]</div>
+<p>As the azimuth angles may vary from -180°  to 180°  the solutions require the usual care for  <span class="math notranslate nohighlight">\(s_x&lt;0\)</span>, i.e. by using the four-quadrant inverse tangent.
+The minus sign in equation is simply due to the convention that positive azimuth is measured towards starboard.</p>
+<p>As the elevation angle <span class="math notranslate nohighlight">\(\beta\)</span> is restricted to ±90°, an ordinary inverse sinus is sufficient but a four-quadrant inverse tangent seems also here preferred because it is insensitive to a common factor (e.g. uncertain sound speed at the array).</p>
+<p>The minimal number of hydrophones to form a volumetric array is 4 allowing to form n = 6 different hydrophone pairs.
+To obtain an optimal volumetric array the hydrophones are located on the tips of an tetrahedron. This way all 6 hydrophone pairs have the same sepatation.
+While direction finding could be done with only 3 hydrophone pairs, the use of all 6 different combinations should improve the performance, as the impact of measurement errors is reduced.
+This is reflected by the Least-Mean-Square notation in equation.
+Also, using all possible hydrophone pairs puts the reference location of the array automatically in the center of the array eliminating the need for a selection of a reference hydrophone.</p>
+<p>A volumetric array with 6 hydrophones allows the formation of n = 15 different pairs of hydrophones.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -346,10 +442,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="wave_equation.html" title="next page">
+    <a class='left-prev' id="prev-link" href="sound_intensity.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Sound Intensity</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ray_tracing.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Wave equation</p>
+        <p class="prev-next-title">Ray tracing</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
