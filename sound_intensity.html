@@ -346,106 +346,106 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="sound-intensity">
 <h1>Sound Intensity<a class="headerlink" href="#sound-intensity" title="Permalink to this headline">#</a></h1>
-<p>The intensity of a soundwave is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7b99fac-97f0-47d9-8acd-736cde4e5160">
-<span class="eqno">(6)<a class="headerlink" href="#equation-a7b99fac-97f0-47d9-8acd-736cde4e5160" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>The intensity of a sound wave is defined as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1dfb0729-1f06-48c9-911d-ff478ab50674">
+<span class="eqno">(6)<a class="headerlink" href="#equation-1dfb0729-1f06-48c9-911d-ff478ab50674" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I=\frac{1}{T}\int_0^Tp(t)u(t)dt
 \end{equation}\]</div>
 <p>the relation between particle velocity <span class="math notranslate nohighlight">\(u(t)\)</span> and pressure gradient is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4b8dd0f7-df30-4993-b8f3-6f7858307aaa">
-<span class="eqno">(7)<a class="headerlink" href="#equation-4b8dd0f7-df30-4993-b8f3-6f7858307aaa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-58d4fd8f-2984-4338-822f-6738e4f54c39">
+<span class="eqno">(7)<a class="headerlink" href="#equation-58d4fd8f-2984-4338-822f-6738e4f54c39" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial p}{\partial x}=-\rho_o\frac{\partial u}{\partial t}
 \end{equation}\]</div>
 <p>which expresses the observation that particle have a mass that will resist a change in speed under the influence of an applied force (inertial reaction).</p>
 <p>The paricle velocity is obtained by integration and using the Euler approximation to the pressure gradient one gets</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4796001b-f259-4172-9e6c-51b53fee8f8c">
-<span class="eqno">(8)<a class="headerlink" href="#equation-4796001b-f259-4172-9e6c-51b53fee8f8c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-560e66ef-efb6-4e36-a00b-fb378f8a4925">
+<span class="eqno">(8)<a class="headerlink" href="#equation-560e66ef-efb6-4e36-a00b-fb378f8a4925" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u(t)=u(0)-\frac{1}{\rho \Delta x}\int_0^t{\Delta p(\tau) d\tau}
 \end{equation}\]</div>
 <p>Usin <span class="math notranslate nohighlight">\(u(0)=0\)</span> one ontains fot the sound intensity</p>
-<div class="amsmath math notranslate nohighlight" id="equation-687975c6-e0f8-4694-b283-85fa8640ffa0">
-<span class="eqno">(9)<a class="headerlink" href="#equation-687975c6-e0f8-4694-b283-85fa8640ffa0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5cf5615e-5080-4ec1-9c8a-7e51bf554bd0">
+<span class="eqno">(9)<a class="headerlink" href="#equation-5cf5615e-5080-4ec1-9c8a-7e51bf554bd0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I=-\frac{1}{T}\frac{1}{\rho \Delta x}\int_0^Tp(t)\Biggl(\int_0^t{\Delta p(\tau) d\tau}\Biggr)dt
 \end{equation}\]</div>
 <p>Using next the spectral equivalent</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c0895652-61d5-4f63-9997-a55520758c4f">
-<span class="eqno">(10)<a class="headerlink" href="#equation-c0895652-61d5-4f63-9997-a55520758c4f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d341209a-41ae-4e3e-9dcb-0289ba9ed785">
+<span class="eqno">(10)<a class="headerlink" href="#equation-d341209a-41ae-4e3e-9dcb-0289ba9ed785" title="Permalink to this equation">#</a></span>\[\begin{equation}
 p(t)=\frac{1}{2\pi}\int_{-\pi}^{\pi}P(\omega)\exp(-i\omega t)d\omega
 \end{equation}\]</div>
 <p>and with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d96e11b8-1441-4195-86a2-d2272c331cf3">
-<span class="eqno">(11)<a class="headerlink" href="#equation-d96e11b8-1441-4195-86a2-d2272c331cf3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2b3799ef-8744-414d-83fa-701a17b8311b">
+<span class="eqno">(11)<a class="headerlink" href="#equation-2b3799ef-8744-414d-83fa-701a17b8311b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_{0}^{t}\exp(-i\omega \tau)d\tau=\frac{i}{\omega}\Biggl(\exp(-i\omega t)-1\Biggr)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-5e090699-d4d8-488c-bf06-e61df28ae500">
-<span class="eqno">(12)<a class="headerlink" href="#equation-5e090699-d4d8-488c-bf06-e61df28ae500" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-54356846-d54b-40af-b6dc-679c669c91da">
+<span class="eqno">(12)<a class="headerlink" href="#equation-54356846-d54b-40af-b6dc-679c669c91da" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^t \Delta p(\tau)d\tau=
       \frac{i}{2\pi}\int_{-\pi}^{\pi}\Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr)\Biggl(\exp(-i\omega t)-1\Biggr)d\omega =
       \frac{i}{2\pi}\int_{-\pi}^{\pi}\Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr)\exp(-i\omega t)d\omega
 \end{equation}\]</div>
 <p>we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3139d28e-7531-4e21-b98e-62e8149f4360">
-<span class="eqno">(13)<a class="headerlink" href="#equation-3139d28e-7531-4e21-b98e-62e8149f4360" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-74b86bfc-39ce-4e60-a17b-797bca81f82b">
+<span class="eqno">(13)<a class="headerlink" href="#equation-74b86bfc-39ce-4e60-a17b-797bca81f82b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I=\frac{1}{T}\int_0^Tp(t)u(t)dt 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-4b776a30-1e45-449a-a0e6-9f8f7becbea4">
-<span class="eqno">(14)<a class="headerlink" href="#equation-4b776a30-1e45-449a-a0e6-9f8f7becbea4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6b481e20-2875-4598-9824-362617be2b0e">
+<span class="eqno">(14)<a class="headerlink" href="#equation-6b481e20-2875-4598-9824-362617be2b0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I=-\frac{1}{T}\frac{1}{\rho \Delta x}\int_0^T p(t)\Biggl(\int_0^t{\Delta p(\tau) d\tau}\Biggr)dt
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-71e67550-66de-49a5-bf3a-3929e777c352">
-<span class="eqno">(15)<a class="headerlink" href="#equation-71e67550-66de-49a5-bf3a-3929e777c352" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6630dde2-db13-4c9c-8d00-8f65146d30a4">
+<span class="eqno">(15)<a class="headerlink" href="#equation-6630dde2-db13-4c9c-8d00-8f65146d30a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I=-\frac{i}{\rho \Delta x}\frac{1}{2\pi}\frac{1}{2\pi} 
 \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} P(\omega') 
 \Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr) \Biggl(\frac{1}{T}\int_0^T  \exp(-i\omega' t)\exp(-i\omega t) dt \Biggr) d\omega d\omega' 
 \end{equation}\]</div>
 <p>Assume the temporal ingration</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eb65631c-1e73-443c-9422-f9e86723cf75">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eb65631c-1e73-443c-9422-f9e86723cf75" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-573c2ee2-5452-4b4f-87d5-c5bf20e317bd">
+<span class="eqno">(16)<a class="headerlink" href="#equation-573c2ee2-5452-4b4f-87d5-c5bf20e317bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{T}\int_0^T  \exp(-i\omega' t)\exp(-i\omega t) dt = \delta (\omega' + \omega = 0)
 \end{equation}\]</div>
 <p>evaluates to one if and only if <span class="math notranslate nohighlight">\(\omega'+\omega=0\)</span> and to zero otherwise, so that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e111da8d-3e41-423c-a925-848fd45f6a49">
-<span class="eqno">(17)<a class="headerlink" href="#equation-e111da8d-3e41-423c-a925-848fd45f6a49" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b0bcbcca-ccb3-43d9-a7fa-e54a55a697a8">
+<span class="eqno">(17)<a class="headerlink" href="#equation-b0bcbcca-ccb3-43d9-a7fa-e54a55a697a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I=-\frac{i}{\rho \Delta x}\frac{1}{2\pi}\frac{1}{2\pi} 
 \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} P(-\omega) 
 \Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr)  d\omega d\omega' 
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f6e36f9c-2077-47ef-a388-01d507e18c10">
-<span class="eqno">(18)<a class="headerlink" href="#equation-f6e36f9c-2077-47ef-a388-01d507e18c10" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-89f2e8c8-a564-440f-a52d-3033c04a5568">
+<span class="eqno">(18)<a class="headerlink" href="#equation-89f2e8c8-a564-440f-a52d-3033c04a5568" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I=-\frac{i}{\rho \Delta x}\frac{1}{2\pi}
 \int_{-\pi}^{\pi} P^*(\omega) \Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr)  d\omega
 \end{equation}\]</div>
 <p>Approximating the sound pressure and pressure gradient by pressure measurements of 2 sensors</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8038603b-5f09-487d-8071-c4e7d1d8d2f5">
-<span class="eqno">(19)<a class="headerlink" href="#equation-8038603b-5f09-487d-8071-c4e7d1d8d2f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-71838743-da3b-4bdb-aae1-4e19436fb24c">
+<span class="eqno">(19)<a class="headerlink" href="#equation-71838743-da3b-4bdb-aae1-4e19436fb24c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P(\omega)=\frac{P_2(\omega)+P_1(\omega)}{2}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-7a68dc08-ad66-4d39-ae22-cebbc6a8c333">
-<span class="eqno">(20)<a class="headerlink" href="#equation-7a68dc08-ad66-4d39-ae22-cebbc6a8c333" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47be37f5-d3c4-41dd-ae0a-c7a6c41a4795">
+<span class="eqno">(20)<a class="headerlink" href="#equation-47be37f5-d3c4-41dd-ae0a-c7a6c41a4795" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta P(\omega)=P_2(\omega)-P_1(\omega)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-8eada379-0f25-4603-a973-d50410e2dd7e">
-<span class="eqno">(21)<a class="headerlink" href="#equation-8eada379-0f25-4603-a973-d50410e2dd7e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-002476a4-855d-4e6a-8790-a86cdbbe99ac">
+<span class="eqno">(21)<a class="headerlink" href="#equation-002476a4-855d-4e6a-8790-a86cdbbe99ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P^*(\omega)\Delta P(\omega) = \frac{1}{2}\{(P_2^*(\omega)+P_1^*(\omega)) (P_2(\omega)-P_1(\omega))\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-e528c413-8a85-4df4-a781-c63451fb7f46">
-<span class="eqno">(22)<a class="headerlink" href="#equation-e528c413-8a85-4df4-a781-c63451fb7f46" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c2482237-eb6f-4601-9834-029b1d30173c">
+<span class="eqno">(22)<a class="headerlink" href="#equation-c2482237-eb6f-4601-9834-029b1d30173c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P^*(\omega)\Delta P(\omega) = \frac{1}{2}\{ |P_2(\omega)|^2 - |P_1(\omega)|^2 +P_2(\omega)P_1^*(\omega)-P_2^*(\omega)P_1(\omega)\}
 \end{equation}\]</div>
 <p>With <span class="math notranslate nohighlight">\(|P_2(\omega)|^2 = |P_1(\omega)|^2\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-d8c5560d-9a43-4784-9c8a-7be1a3a0b46a">
-<span class="eqno">(23)<a class="headerlink" href="#equation-d8c5560d-9a43-4784-9c8a-7be1a3a0b46a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a064f6c-d661-49c2-a0eb-8f51fa61abe1">
+<span class="eqno">(23)<a class="headerlink" href="#equation-9a064f6c-d661-49c2-a0eb-8f51fa61abe1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P^*(\omega)\Delta P(\omega) = \frac{1}{2}\{ P_2(\omega)P_1^*(\omega)-P_2^*(\omega)P_1(\omega)\}
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78848673-0603-4f04-8cb6-4eeddf192ab9">
-<span class="eqno">(24)<a class="headerlink" href="#equation-78848673-0603-4f04-8cb6-4eeddf192ab9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1f616ed8-5caf-4a90-bbc4-c8e90bd9cd86">
+<span class="eqno">(24)<a class="headerlink" href="#equation-1f616ed8-5caf-4a90-bbc4-c8e90bd9cd86" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P^*(\omega)\Delta P(\omega) = i\text{Im}\{ P_2(\omega)P_1^*(\omega)\}
 \end{equation}\]</div>
 <p>and finally the spectral sound intesity is approcimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-57ffdac7-3a5c-412a-b0d2-58bebe468a7e">
-<span class="eqno">(25)<a class="headerlink" href="#equation-57ffdac7-3a5c-412a-b0d2-58bebe468a7e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b0e940ed-7069-4f8b-9dc9-786c04285a15">
+<span class="eqno">(25)<a class="headerlink" href="#equation-b0e940ed-7069-4f8b-9dc9-786c04285a15" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I(f)=-\frac{i}{\rho \Delta x} \frac{ P^*(\omega)\Delta P(\omega)}{\omega}
     =-\frac{1}{\rho \Delta x} \frac{\text{Im}\{P_2(\omega) P_1^* (\omega)\}}{\omega}
 \end{equation}\]</div>
