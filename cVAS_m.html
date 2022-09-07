@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>cVAS processing maths &#8212; bioacoustics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">bioacoustics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    compact Volumetric Acoustic Sensor (cVAS)
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ray_tracing.html">
+   Ray tracing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/wmxz-eu/bioacoustics.github.io/master?urlpath=tree/cVAS_m.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/wmxz-eu/bioacoustics.github.io"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/wmxz-eu/bioacoustics.github.io/issues/new?title=Issue%20on%20page%20%2FcVAS_m.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/cVAS_m.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   cVAS processing maths
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wave-equation">
+     Wave equation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sound-intensity">
+     Sound Intensity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cuvier-s-beaked-whale-click">
+   Cuvier’s beaked whale click
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>cVAS processing maths</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   cVAS processing maths
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wave-equation">
+     Wave equation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sound-intensity">
+     Sound Intensity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cuvier-s-beaked-whale-click">
+   Cuvier’s beaked whale click
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="cvas-processing-maths">
+<h1>cVAS processing maths<a class="headerlink" href="#cvas-processing-maths" title="Permalink to this headline">#</a></h1>
+<section id="wave-equation">
+<h2>Wave equation<a class="headerlink" href="#wave-equation" title="Permalink to this headline">#</a></h2>
+<p>The standard form of the wave equation in spherical coordinates is given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4af75493-e780-4610-88c0-7afcad1c8e0e">
+<span class="eqno">()<a class="headerlink" href="#equation-4af75493-e780-4610-88c0-7afcad1c8e0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{\partial^2 (rP)}{\partial t^2}=c^2\frac{\partial^2(rP)}{\partial^2r}
+\end{equation}\]</div>
+<p>the solution of which is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5746c004-893b-48f8-bf39-2194e14c8744">
+<span class="eqno">()<a class="headerlink" href="#equation-5746c004-893b-48f8-bf39-2194e14c8744" title="Permalink to this equation">#</a></span>\[\begin{equation}
+rP=f(ct\pm r)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f(ct\pm r)\)</span> is any function that depends on <span class="math notranslate nohighlight">\((ct\pm r)\)</span></p>
+<p>The general solution includes both outgoing (minus sign) and incoming waves( plus sign)</p>
+<p>For periodic sound waves one can write</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1db0af67-44f0-42dc-aa50-ed08e1a40817">
+<span class="eqno">()<a class="headerlink" href="#equation-1db0af67-44f0-42dc-aa50-ed08e1a40817" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(ct\pm r) = A(ct\pm r)\cos\Biggl(\frac{2\pi}{\lambda}(ct\pm r)\Biggr)
+= A(ct\pm r)\cos(\omega t\pm kr)
+\end{equation}\]</div>
+</section>
+<section id="sound-intensity">
+<h2>Sound Intensity<a class="headerlink" href="#sound-intensity" title="Permalink to this headline">#</a></h2>
+<p>The intensity of a soundwave is defined as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e9b4ed96-4cfb-430a-988c-a68d2232b079">
+<span class="eqno">()<a class="headerlink" href="#equation-e9b4ed96-4cfb-430a-988c-a68d2232b079" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I=\frac{1}{T}\int_0^Tp(t)u(t)dt
+\end{equation}\]</div>
+<p>the relation between particle velocity <span class="math notranslate nohighlight">\(u(t)\)</span> and pressure gradient is given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-acb69723-8368-4403-808e-8a159d142410">
+<span class="eqno">()<a class="headerlink" href="#equation-acb69723-8368-4403-808e-8a159d142410" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{\partial p}{\partial x}=-\rho_o\frac{\partial u}{\partial t}
+\end{equation}\]</div>
+<p>which expresses the observation that particle have a mass that will resist a change in speed under the influence of an applied force (inertial reaction).</p>
+<p>The paricle velocity is obtained by integration and using the Euler approximation to the pressure gradient one gets</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9485376b-a87a-4c05-90bf-e468ed833380">
+<span class="eqno">()<a class="headerlink" href="#equation-9485376b-a87a-4c05-90bf-e468ed833380" title="Permalink to this equation">#</a></span>\[\begin{equation}
+u(t)=u(0)-\frac{1}{\rho \Delta x}\int_0^t{\Delta p(\tau) d\tau}
+\end{equation}\]</div>
+<p>Usin <span class="math notranslate nohighlight">\(u(0)=0\)</span> one ontains fot the sound intensity</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7b4bc1ea-bd2b-4acb-a298-c3c77c55a70f">
+<span class="eqno">()<a class="headerlink" href="#equation-7b4bc1ea-bd2b-4acb-a298-c3c77c55a70f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I=-\frac{1}{T}\frac{1}{\rho \Delta x}\int_0^Tp(t)\Biggl(\int_0^t{\Delta p(\tau) d\tau}\Biggr)dt
+\end{equation}\]</div>
+<p>Using next the spectral equivalent</p>
+<div class="amsmath math notranslate nohighlight" id="equation-31e55cd1-2610-4fb8-a938-70462c9f6dd4">
+<span class="eqno">()<a class="headerlink" href="#equation-31e55cd1-2610-4fb8-a938-70462c9f6dd4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+p(t)=\frac{1}{2\pi}\int_{-\pi}^{\pi}P(\omega)\exp(-i\omega t)d\omega
+\end{equation}\]</div>
+<p>and with</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b995fdb3-1b2f-4bda-a185-0649765f1c55">
+<span class="eqno">()<a class="headerlink" href="#equation-b995fdb3-1b2f-4bda-a185-0649765f1c55" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_{0}^{t}\exp(-i\omega \tau)d\tau=\frac{i}{\omega}\Biggl(\exp(-i\omega t)-1\Biggr)
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-42a780a4-9d90-4d61-8c93-2f940fc68a34">
+<span class="eqno">()<a class="headerlink" href="#equation-42a780a4-9d90-4d61-8c93-2f940fc68a34" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^t \Delta p(\tau)d\tau=
+      \frac{i}{2\pi}\int_{-\pi}^{\pi}\Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr)\Biggl(\exp(-i\omega t)-1\Biggr)d\omega =
+      \frac{i}{2\pi}\int_{-\pi}^{\pi}\Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr)\exp(-i\omega t)d\omega
+\end{equation}\]</div>
+<p>we obtain</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ee55796d-b45c-4f4d-94de-cc2c469014d2">
+<span class="eqno">()<a class="headerlink" href="#equation-ee55796d-b45c-4f4d-94de-cc2c469014d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I=\frac{1}{T}\int_0^Tp(t)u(t)dt 
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-66b73c95-beec-460f-b7cc-8c6799dff637">
+<span class="eqno">()<a class="headerlink" href="#equation-66b73c95-beec-460f-b7cc-8c6799dff637" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I=-\frac{1}{T}\frac{1}{\rho \Delta x}\int_0^T p(t)\Biggl(\int_0^t{\Delta p(\tau) d\tau}\Biggr)dt
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-27e527e9-684c-48df-8db1-c48bf135a72f">
+<span class="eqno">()<a class="headerlink" href="#equation-27e527e9-684c-48df-8db1-c48bf135a72f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I=-\frac{i}{\rho \Delta x}\frac{1}{2\pi}\frac{1}{2\pi} 
+\int_{-\pi}^{\pi} \int_{-\pi}^{\pi} P(\omega') 
+\Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr) \Biggl(\frac{1}{T}\int_0^T  \exp(-i\omega' t)\exp(-i\omega t) dt \Biggr) d\omega d\omega' 
+\end{equation}\]</div>
+<p>Assume the temporal ingration</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e720b356-ec15-4f3e-814a-8814e58c4ab4">
+<span class="eqno">()<a class="headerlink" href="#equation-e720b356-ec15-4f3e-814a-8814e58c4ab4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{1}{T}\int_0^T  \exp(-i\omega' t)\exp(-i\omega t) dt = \delta (\omega' + \omega = 0)
+\end{equation}\]</div>
+<p>evaluates to one if and only if <span class="math notranslate nohighlight">\(\omega'+\omega=0\)</span> and to zero otherwise, so that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-eb8c4928-9eb5-4af5-84e3-d9c364dd806f">
+<span class="eqno">()<a class="headerlink" href="#equation-eb8c4928-9eb5-4af5-84e3-d9c364dd806f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I=-\frac{i}{\rho \Delta x}\frac{1}{2\pi}\frac{1}{2\pi} 
+\int_{-\pi}^{\pi} \int_{-\pi}^{\pi} P(-\omega) 
+\Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr)  d\omega d\omega' 
+\end{equation}\]</div>
+<p>or</p>
+<div class="amsmath math notranslate nohighlight" id="equation-63beb4d9-1b9f-4dd6-958c-b1d733bf07ff">
+<span class="eqno">()<a class="headerlink" href="#equation-63beb4d9-1b9f-4dd6-958c-b1d733bf07ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I=-\frac{i}{\rho \Delta x}\frac{1}{2\pi}
+\int_{-\pi}^{\pi} P^*(\omega) \Biggl(\frac{\Delta P(\omega)}{\omega}\Biggr)  d\omega
+\end{equation}\]</div>
+<p>Approximating the sound pressure and pressure gradient by pressure measurements of 2 sensors</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a299f481-28c5-4a93-8df6-6e57b2662f50">
+<span class="eqno">()<a class="headerlink" href="#equation-a299f481-28c5-4a93-8df6-6e57b2662f50" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P(\omega)=\frac{P_2(\omega)+P_1(\omega)}{2}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-8feefe55-8f07-4915-a58a-66510f857f7e">
+<span class="eqno">()<a class="headerlink" href="#equation-8feefe55-8f07-4915-a58a-66510f857f7e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta P(\omega)=P_2(\omega)-P_1(\omega)
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-bfd5643b-18f9-44c2-bb30-a157d786fabf">
+<span class="eqno">()<a class="headerlink" href="#equation-bfd5643b-18f9-44c2-bb30-a157d786fabf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P^*(\omega)\Delta P(\omega) = \frac{1}{2}\{(P_2^*(\omega)+P_1^*(\omega)) (P_2(\omega)-P_1(\omega))\}
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-021cc37d-ff62-493b-95fb-ce592f4edd6b">
+<span class="eqno">()<a class="headerlink" href="#equation-021cc37d-ff62-493b-95fb-ce592f4edd6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P^*(\omega)\Delta P(\omega) = \frac{1}{2}\{ |P_2(\omega)|^2 - |P_1(\omega)|^2 +P_2(\omega)P_1^*(\omega)-P_2^*(\omega)P_1(\omega)\}
+\end{equation}\]</div>
+<p>With <span class="math notranslate nohighlight">\(|P_2(\omega)|^2 = |P_1(\omega)|^2\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-171bd471-aa8f-4eeb-9520-62afc047b103">
+<span class="eqno">()<a class="headerlink" href="#equation-171bd471-aa8f-4eeb-9520-62afc047b103" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P^*(\omega)\Delta P(\omega) = \frac{1}{2}\{ P_2(\omega)P_1^*(\omega)-P_2^*(\omega)P_1(\omega)\}
+\end{equation}\]</div>
+<p>or</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0056067b-de6d-4765-bd09-1aada69c5928">
+<span class="eqno">()<a class="headerlink" href="#equation-0056067b-de6d-4765-bd09-1aada69c5928" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P^*(\omega)\Delta P(\omega) = i\text{Im}\{ P_2(\omega)P_1^*(\omega)\}
+\end{equation}\]</div>
+<p>and finally the spectral sound intesity is approcimated by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e85a0a38-7658-40b0-a01a-774c72b55b98">
+<span class="eqno">()<a class="headerlink" href="#equation-e85a0a38-7658-40b0-a01a-774c72b55b98" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I(f)=-\frac{i}{\rho \Delta x} \frac{ P^*(\omega)\Delta P(\omega)}{\omega}
+    =-\frac{1}{\rho \Delta x} \frac{\text{Im}\{P_2(\omega) P_1^* (\omega)\}}{\omega}
+\end{equation}\]</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cuvier-s-beaked-whale-click">
+<h1>Cuvier’s beaked whale click<a class="headerlink" href="#cuvier-s-beaked-whale-click" title="Permalink to this headline">#</a></h1>
+<p>For example, applying the matched filter to Cuvier’s beaked whale clicks, a synthetic beaked whale click could be constructed according to</p>
+<div class="amsmath math notranslate nohighlight" id="equation-edde3cbe-8fd2-4e8d-b581-7cd651d1cb2f">
+<span class="eqno">()<a class="headerlink" href="#equation-edde3cbe-8fd2-4e8d-b581-7cd651d1cb2f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    s(t)=A(t)\exp \{-2\pi i (f_0+f_m t)t\}
+\end{equation}\]</div>
+<p>where A(t) the signal amplitude is modeled according to</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9867460a-5162-4107-8b84-843af653266b">
+<span class="eqno">()<a class="headerlink" href="#equation-9867460a-5162-4107-8b84-843af653266b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
+  \end{equation}\]</div>
+<p>and where f0 = 30 kHz, fm = 55 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span>.</p>
+<p>The formula and parameters for the replica generation were chosen to fit an on-axis Cuvier’s beaked whale click</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Walter MX Zimmer<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
