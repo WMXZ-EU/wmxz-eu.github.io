@@ -349,44 +349,35 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Transient detections
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#signal-genertion-functions">
+   Signal genertion functions
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#signal-genertion-functions">
-     Signal genertion functions
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#generate-signal">
    generate signal
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transient-detector">
-     Transient detector
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transient-detector">
+   Transient detector
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#leaky-peak-tracker">
+   Leaky peak tracker
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#page-test-detector">
+   Page test detector
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-of-page-test">
+     Test of Page-test
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#leaky-peak-detector">
-     Leaky peak detector
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#page-test-detector">
-     Page test detector
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#test-of-page-test">
-       Test of Page-test
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -409,44 +400,35 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Transient detections
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#signal-genertion-functions">
+   Signal genertion functions
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#signal-genertion-functions">
-     Signal genertion functions
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#generate-signal">
    generate signal
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transient-detector">
-     Transient detector
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transient-detector">
+   Transient detector
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#leaky-peak-tracker">
+   Leaky peak tracker
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#page-test-detector">
+   Page test detector
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-of-page-test">
+     Test of Page-test
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#leaky-peak-detector">
-     Leaky peak detector
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#page-test-detector">
-     Page test detector
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#test-of-page-test">
-       Test of Page-test
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -488,9 +470,8 @@ title="Print to PDF"
 </div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="generate-signal">
-<h1>generate signal<a class="headerlink" href="#generate-signal" title="Permalink to this headline">#</a></h1>
+<section id="generate-signal">
+<h2>generate signal<a class="headerlink" href="#generate-signal" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="mi">96</span>
@@ -517,6 +498,7 @@ title="Print to PDF"
 <img alt="_images/transient_detection_5_0.png" src="_images/transient_detection_5_0.png" />
 </div>
 </div>
+</section>
 <section id="transient-detector">
 <h2>Transient detector<a class="headerlink" href="#transient-detector" title="Permalink to this headline">#</a></h2>
 <p>Transients are typically peaky signals and are usually found after searching for extreme values (peaks).
@@ -551,8 +533,9 @@ For this one first considers the signal power (amplitude squared)</p>
 </div>
 </div>
 </section>
-<section id="leaky-peak-detector">
-<h2>Leaky peak detector<a class="headerlink" href="#leaky-peak-detector" title="Permalink to this headline">#</a></h2>
+<section id="leaky-peak-tracker">
+<h2>Leaky peak tracker<a class="headerlink" href="#leaky-peak-tracker" title="Permalink to this headline">#</a></h2>
+<p>This function follows increasing signals immediately, but does decrease only slowly. Tehe relative deceasing factor is determined emperically.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">peak1</span><span class="p">(</span><span class="n">dat2</span><span class="p">,</span><span class="n">leak</span><span class="p">):</span>
