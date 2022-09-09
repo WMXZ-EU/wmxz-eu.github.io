@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -106,7 +108,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Bioacoustics
+                    Bioacoustics by WMXZ
                 </a>
             </li>
         </ul>
@@ -134,6 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="ray_tracing.html">
    Ray tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rt-spectrogram.html">
+   RT Spectrogram
   </a>
  </li>
 </ul>
@@ -347,13 +354,13 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="cuvier-s-beaked-whale-click">
 <h1>Cuvier’s beaked whale click<a class="headerlink" href="#cuvier-s-beaked-whale-click" title="Permalink to this headline">#</a></h1>
 <p>For applying a matched filter to Cuvier’s beaked whale clicks, a synthetic beaked whale click could be constructed according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c257bb0-1159-4c60-a7fa-479520d0e43b">
-<span class="eqno">(4)<a class="headerlink" href="#equation-2c257bb0-1159-4c60-a7fa-479520d0e43b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-57ec46ae-ce8b-4015-8070-90eb575e7b1b">
+<span class="eqno">(4)<a class="headerlink" href="#equation-57ec46ae-ce8b-4015-8070-90eb575e7b1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     s(t)=A(t)\exp \{-2\pi i (f_0+f_m t)t\}
 \end{equation}\]</div>
 <p>where A(t) the signal amplitude is modeled according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-373d7ad6-2cf1-4849-b3ca-a5325d0d1cba">
-<span class="eqno">(5)<a class="headerlink" href="#equation-373d7ad6-2cf1-4849-b3ca-a5325d0d1cba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8a39b7b1-9171-4920-8827-ca78754b2c85">
+<span class="eqno">(5)<a class="headerlink" href="#equation-8a39b7b1-9171-4920-8827-ca78754b2c85" title="Permalink to this equation">#</a></span>\[\begin{equation}
     A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
   \end{equation}\]</div>
 <p>and where f0 = 30 kHz, fm = 55 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span>.</p>

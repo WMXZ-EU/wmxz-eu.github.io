@@ -50,12 +50,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Cuvier’s beaked whale click" href="Zc_click.html" />
-    <link rel="prev" title="Bioacoustics" href="intro.html" />
+    <link rel="prev" title="Bioacoustics by WMXZ" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,7 +108,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Bioacoustics
+                    Bioacoustics by WMXZ
                 </a>
             </li>
         </ul>
@@ -134,6 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="ray_tracing.html">
    Ray tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rt-spectrogram.html">
+   RT Spectrogram
   </a>
  </li>
 </ul>
@@ -347,20 +354,20 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="wave-equation">
 <h1>Wave equation<a class="headerlink" href="#wave-equation" title="Permalink to this headline">#</a></h1>
 <p>The standard form of the wave equation in spherical coordinates is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bfe55f56-4fe0-4cc5-98da-c6442bc87481">
-<span class="eqno">(1)<a class="headerlink" href="#equation-bfe55f56-4fe0-4cc5-98da-c6442bc87481" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-141f8dad-9406-4765-a7bf-47631e92b66f">
+<span class="eqno">(1)<a class="headerlink" href="#equation-141f8dad-9406-4765-a7bf-47631e92b66f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 (rP)}{\partial t^2}=c^2\frac{\partial^2(rP)}{\partial^2r}
 \end{equation}\]</div>
 <p>the solution of which is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e3f68ed-3b9f-4956-864a-368f3ffdc5fa">
-<span class="eqno">(2)<a class="headerlink" href="#equation-3e3f68ed-3b9f-4956-864a-368f3ffdc5fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-28b28313-c6b7-4a78-888a-c630b55ca8e8">
+<span class="eqno">(2)<a class="headerlink" href="#equation-28b28313-c6b7-4a78-888a-c630b55ca8e8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 rP=f(ct\pm r)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(ct\pm r)\)</span> is any function that depends on <span class="math notranslate nohighlight">\((ct\pm r)\)</span></p>
 <p>The general solution includes both outgoing (minus sign) and incoming waves( plus sign)</p>
 <p>For periodic sound waves one can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5fa66dd6-a41d-4d35-b32b-310f32ce3645">
-<span class="eqno">(3)<a class="headerlink" href="#equation-5fa66dd6-a41d-4d35-b32b-310f32ce3645" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1ca7171-10cf-4f7e-b3cc-247409942f4f">
+<span class="eqno">(3)<a class="headerlink" href="#equation-f1ca7171-10cf-4f7e-b3cc-247409942f4f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(ct\pm r) = A(ct\pm r)\cos\Biggl(\frac{2\pi}{\lambda}(ct\pm r)\Biggr)
 = A(ct\pm r)\cos(\omega t\pm kr)
 \end{equation}\]</div>
@@ -397,7 +404,7 @@ f(ct\pm r) = A(ct\pm r)\cos\Biggl(\frac{2\pi}{\lambda}(ct\pm r)\Biggr)
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Bioacoustics</p>
+            <p class="prev-next-title">Bioacoustics by WMXZ</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Zc_click.html" title="next page">

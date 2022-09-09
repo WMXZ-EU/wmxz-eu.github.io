@@ -4,8 +4,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; bioacoustics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>RT Spectrogram &#8212; bioacoustics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -51,8 +52,9 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Ray tracing" href="ray_tracing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -107,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="wave_equation.html">
    Wave equation
@@ -133,8 +135,8 @@ const thebe_selector_output = ".output, .cell_output"
    Ray tracing
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rt-spectrogram.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    RT Spectrogram
   </a>
  </li>
@@ -228,7 +230,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/wmxz-eu/bioacoustics.github.io/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/wmxz-eu/bioacoustics.github.io/issues/new?title=Issue%20on%20page%20%2Frt-spectrogram.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -248,6 +250,52 @@ title="Open an issue"
   </div>
 </div>
 
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/rt-spectrogram.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
@@ -259,7 +307,7 @@ title="Open an issue"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
+                <h1>RT Spectrogram</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -271,13 +319,108 @@ title="Open an issue"
                 
               <div>
                 
+  <section class="tex2jax_ignore mathjax_ignore" id="rt-spectrogram">
+<h1>RT Spectrogram<a class="headerlink" href="#rt-spectrogram" title="Permalink to this headline">#</a></h1>
+<p>The following real-time spectrogram is based in part on
+<a class="reference external" href="https://python-sounddevice.readthedocs.io/en/0.3.14/examples.html#plot-microphone-signal-s-in-real-time">https://python-sounddevice.readthedocs.io/en/0.3.14/examples.html#plot-microphone-signal-s-in-real-time</a></p>
+<p>The code takes the audio from the PC microphone and shows a plain spectrogram.
+The purpose of this code is to demonstrate the cooperation of audio and animation callbacks via a common queue element.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># RT Spectrogram
+import numpy as np
+import scipy.signal as signal
 
-<h1 id="index">Index</h1>
+import sounddevice as sd
+import queue
 
-<div class="genindex-jumpbox">
- 
+import matplotlib.pyplot as plt
+from matplotlib import animation
+
+frame_rate=10
+ndat=512
+nfft=int(2*ndat)
+nf=1+int(nfft/2)
+ww= signal.windows.hann(nfft)
+
+tmp1=np.zeros((ndat,1))
+
+q=queue.Queue()
+def callback(indata, frames, time, status):
+    global tmp1, tmp2
+    if status:
+        print(status)
+    tmp2=np.concatenate((tmp1,indata))*ww
+    tmp1=indata.copy()
+    tmp3=np.abs(np.fft.rfft(tmp2,n=nfft,axis=0))**2
+    tmp3[1:] *=2
+    tmp3 /= nfft
+    q.put(tmp3)
+
+acq = sd.InputStream(channels=1, blocksize=ndat, callback=callback)
+#-------------------------------------------------------------------
+fig=plt.figure(&quot;figure.figsize&quot;,[18.,6.7],facecolor=&quot;white&quot;)
+
+plotdata = np.zeros((nf,1000))
+im = plt.imshow(plotdata, 
+                extent=(0,ndat/44.1,  0,44.1/2), 
+                cmap=&quot;jet&quot;, aspect=&quot;auto&quot;, origin=&quot;lower&quot;, 
+                animated=True)
+im.set_clim(-80,0)
+
+CB=plt.colorbar(im,shrink=0.8, extend=&#39;both&#39;)
+
+ax=plt.gca()
+l, b, w, h = ax.get_position().bounds
+ll, bb, ww, hh = CB.ax.get_position().bounds
+#
+l=0.1; w=0.8
+ll=l+w+0.03; bb=b + 0.1*h; hh=h*0.8
+#
+ax.set_position([l, b, w, h])
+CB.ax.set_position([ll, bb, ww, hh])
+
+def animate(i):
+    global plotdata
+    while True:
+        try:
+            tmp4 = q.get_nowait()
+        except queue.Empty:
+            break
+
+        plotdata = np.roll(plotdata, -1, axis=1)
+        plotdata[:, -1:]=10*np.log10(tmp4+1e-6)
+
+    im.set_array(plotdata)
+    ax=plt.gca()
+    ax.set_title(&#39;Time (s): &#39; + &#39;{:.2f}&#39;.format(i/frame_rate))
+    return im,
+
+anim = animation.FuncAnimation(fig, animate, interval=1000/frame_rate)
+
+with acq:
+    plt.show()
+</pre></div>
 </div>
+</section>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -286,6 +429,13 @@ title="Open an issue"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ray_tracing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Ray tracing</p>
+        </div>
+    </a>
 </div>
             </footer>
         </div>
