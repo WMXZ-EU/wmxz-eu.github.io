@@ -569,23 +569,26 @@ For this one first considers the signal power (amplitude squared)</p>
 <p>The page test detector is a derivation of Wald’s sequential probability ratio test (SPRT), where decisions on presence and absence of signal are not necessarily made for every sample but can be deferred after further sampling.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pageTest1</span><span class="p">(</span><span class="n">zz</span><span class="p">,</span><span class="n">th</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">aa</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pageTest1</span><span class="p">(</span><span class="n">zz</span><span class="p">,</span><span class="n">th</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">nt</span><span class="p">):</span>
     <span class="n">ee</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
     <span class="n">dd</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
     <span class="n">nn</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
+    <span class="n">sn</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
+
     <span class="n">no</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">zz</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">nn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">no</span>
+    <span class="c1">#</span>
+    <span class="n">sn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">zz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1">#</span>
     <span class="n">ndat</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">zz</span><span class="p">)</span>
     
     <span class="n">it</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ndat</span><span class="p">):</span>
-        <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span> <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">zz</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">bb</span><span class="p">)</span>
-        <span class="c1">#</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&gt;</span><span class="n">th</span><span class="p">):</span>
+        <span class="n">sn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">zz</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span> <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">sn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">bb</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&gt;</span><span class="n">th</span><span class="p">)</span> <span class="ow">and</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="n">it</span><span class="o">&lt;</span><span class="n">nt</span><span class="p">):</span>
             <span class="n">ee</span><span class="p">[</span><span class="n">it</span><span class="p">:</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">th</span>
             <span class="n">dd</span><span class="p">[</span><span class="n">it</span><span class="p">:</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-            <span class="n">it</span><span class="o">=</span><span class="n">ii</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">):</span>
             <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
             <span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">aa</span><span class="o">*</span><span class="p">(</span><span class="n">zz</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
@@ -594,6 +597,14 @@ For this one first considers the signal power (amplitude squared)</p>
             <span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
                 
     <span class="k">return</span> <span class="n">dd</span><span class="p">,</span><span class="n">nn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&gt;</span><span class="n">th</span><span class="p">)</span> <span class="ow">and</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="n">it</span><span class="o">&lt;</span><span class="n">nt</span><span class="p">):</span>
+                                 <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
@@ -606,7 +617,8 @@ For this one first considers the signal power (amplitude squared)</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">th</span><span class="o">=</span><span class="mi">20</span>
 <span class="n">bb</span><span class="o">=</span><span class="mi">6</span>
 <span class="n">aa</span><span class="o">=</span><span class="mf">1e-3</span>
-<span class="n">dd</span><span class="p">,</span><span class="n">nn</span> <span class="o">=</span> <span class="n">pageTest1</span><span class="p">(</span><span class="n">zz</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">th</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">aa</span><span class="p">)</span>
+<span class="n">nt</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">dd</span><span class="p">,</span><span class="n">nn</span> <span class="o">=</span> <span class="n">pageTest1</span><span class="p">(</span><span class="n">zz</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">th</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">nt</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ss</span><span class="p">));</span>
@@ -620,7 +632,7 @@ For this one first considers the signal power (amplitude squared)</p>
 <img alt="_images/transient_detection_16_0.png" src="_images/transient_detection_16_0.png" />
 </div>
 </div>
-<p>The overall detection performance is determined by five parameters</p>
+<p>The overall detection performance is determined by six parameters</p>
 <ul class="simple">
 <li><p>peak detector</p>
 <ul>
@@ -630,7 +642,8 @@ For this one first considers the signal power (amplitude squared)</p>
 <li><p>page test</p>
 <ul>
 <li><p>threshold</p></li>
-<li><p>snr bias</p></li>
+<li><p>snr detection on bias</p></li>
+<li><p>snr detection off threshold</p></li>
 <li><p>noise estimation window</p></li>
 </ul>
 </li>
