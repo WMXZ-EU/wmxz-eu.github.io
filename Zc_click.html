@@ -50,8 +50,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -141,6 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="rt-spectrogram.html">
    RT Spectrogram
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transient_detection.html">
+   Transient detections
   </a>
  </li>
 </ul>
@@ -327,12 +330,36 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reduced-sampling-rate">
+   reduced sampling rate
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -344,6 +371,19 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reduced-sampling-rate">
+   reduced sampling rate
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -353,18 +393,77 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="cuvier-s-beaked-whale-click">
 <h1>Cuvier’s beaked whale click<a class="headerlink" href="#cuvier-s-beaked-whale-click" title="Permalink to this headline">#</a></h1>
-<p>For applying a matched filter to Cuvier’s beaked whale clicks, a synthetic beaked whale click could be constructed according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-57ec46ae-ce8b-4015-8070-90eb575e7b1b">
-<span class="eqno">(4)<a class="headerlink" href="#equation-57ec46ae-ce8b-4015-8070-90eb575e7b1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>For applying a matched filter to Cuvier’s beaked whale (Zc) clicks, a synthetic beaked whale click could be constructed according to</p>
+<div class="amsmath math notranslate nohighlight" id="equation-eb4a5490-da76-443f-96f6-835d3a0c43d0">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eb4a5490-da76-443f-96f6-835d3a0c43d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     s(t)=A(t)\exp \{-2\pi i (f_0+f_m t)t\}
 \end{equation}\]</div>
 <p>where A(t) the signal amplitude is modeled according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a39b7b1-9171-4920-8827-ca78754b2c85">
-<span class="eqno">(5)<a class="headerlink" href="#equation-8a39b7b1-9171-4920-8827-ca78754b2c85" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
-  \end{equation}\]</div>
-<p>and where f0 = 30 kHz, fm = 55 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span>.</p>
-<p>The formula and parameters for the replica generation were chosen to fit an on-axis Cuvier’s beaked whale click</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9c6e20f1-0e07-4c86-a059-c50a2d50db57">
+<span class="eqno">(5)<a class="headerlink" href="#equation-9c6e20f1-0e07-4c86-a059-c50a2d50db57" title="Permalink to this equation">#</a></span>\[\begin{equation}
+  A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
+\end{equation}\]</div>
+<p>and where f0 = 30 kHz, fm = 60 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span> and t denotes the time vector.</p>
+<p>The formula and parameters for the replica generation were chosen to fit an on-axis Cuvier’s beaked whale click.</p>
+<p>The following script visualizes a nominal Zc click for suffucient high sampling frequency (say 192 kHz), so that the signal may be simulated directly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">zcSig</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">fm</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">cc</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">aa</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span><span class="o">**</span><span class="n">bb</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">aa</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span><span class="o">**</span><span class="n">cc</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">f0</span><span class="o">+</span><span class="n">fm</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+
+<span class="n">fs</span><span class="o">=</span><span class="mi">192</span> <span class="c1">#kHz</span>
+<span class="n">ts</span><span class="o">=</span><span class="mf">0.3</span> <span class="c1">#ms</span>
+<span class="n">tt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ts</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
+
+<span class="n">f0</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">fm</span><span class="o">=</span><span class="mi">60</span>
+<span class="n">aa</span><span class="o">=</span><span class="mi">13</span>
+<span class="n">bb</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">cc</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">ss</span><span class="o">=</span><span class="n">zcSig</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">fm</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ss</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ss</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Zc_click_1_0.png" src="_images/Zc_click_1_0.png" />
+</div>
+</div>
+<section id="reduced-sampling-rate">
+<h2>reduced sampling rate<a class="headerlink" href="#reduced-sampling-rate" title="Permalink to this headline">#</a></h2>
+<p>In case the sampling rate is less than the required bandwidth (say 96 kHz) the zc signal must also be downsampled (done properly with anti-aliasing filer)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
+
+<span class="n">fs</span><span class="o">=</span><span class="mi">384</span> <span class="c1">#kHz</span>
+<span class="n">ts</span><span class="o">=</span><span class="mf">0.3</span> <span class="c1">#ms</span>
+<span class="n">tt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ts</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
+
+<span class="n">f0</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">fm</span><span class="o">=</span><span class="mi">60</span>
+<span class="n">aa</span><span class="o">=</span><span class="mi">13</span>
+<span class="n">bb</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">cc</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">xx</span><span class="o">=</span><span class="n">zcSig</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">fm</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span>
+
+<span class="n">zz</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">decimate</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">tz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">zz</span><span class="p">))</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="n">fs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">zz</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">zz</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Zc_click_3_0.png" src="_images/Zc_click_3_0.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
