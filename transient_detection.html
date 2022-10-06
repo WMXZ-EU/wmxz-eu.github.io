@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="RT Spectrogram" href="rt-spectrogram.html" />
@@ -363,11 +365,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#transient-detector">
    Transient detector
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#leaky-peak-tracker">
-   Leaky peak tracker
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#leaky-peak-detector">
+     Leaky peak detector
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#page-test-detector">
@@ -414,11 +418,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#transient-detector">
    Transient detector
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#leaky-peak-tracker">
-   Leaky peak tracker
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#leaky-peak-detector">
+     Leaky peak detector
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#page-test-detector">
@@ -532,18 +538,24 @@ For this one first considers the signal power (amplitude squared)</p>
 <img alt="_images/transient_detection_9_0.png" src="_images/transient_detection_9_0.png" />
 </div>
 </div>
-</section>
-<section id="leaky-peak-tracker">
-<h2>Leaky peak tracker<a class="headerlink" href="#leaky-peak-tracker" title="Permalink to this headline">#</a></h2>
-<p>This function follows increasing signals immediately, but does decrease only slowly. Tehe relative deceasing factor is determined emperically.</p>
+<section id="leaky-peak-detector">
+<h3>Leaky peak detector<a class="headerlink" href="#leaky-peak-detector" title="Permalink to this headline">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(y(k)=|x(k)|^2\)</span> be the instantaneous power of a time series <span class="math notranslate nohighlight">\(x(k)\)</span></p>
+<p>the one can estimate a leaky peak detector output $z(k) as</p>
+<p>\begin{equation}
+z(k) = max(y(k),\alpha z(k-1))
+\end {equation}
+where <span class="math notranslate nohighlight">\(\alpha\)</span> is a factor <span class="math notranslate nohighlight">\(0\lt\alpha\lt1\)</span> describing the leak of the peak of the peak detector. For <span class="math notranslate nohighlight">\(\alpha=0\)</span> the peak detector follows the instantaneous power <span class="math notranslate nohighlight">\(y(k)\)</span> and for <span class="math notranslate nohighlight">\(\alpha=0\)</span> the peak detector only inceases for increasing instantaneous power <span class="math notranslate nohighlight">\(y(k)\)</span>.</p>
+<p>This function follows increasing signals immediately, but does decrease only slowly. The relative deceasing factor is determined emperically.</p>
+<p>The porpose of the leaky peak detector is to generate a detection function that is insentitive to short drop-outs of instantaneous power.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">peak1</span><span class="p">(</span><span class="n">dat2</span><span class="p">,</span><span class="n">leak</span><span class="p">):</span>
-    <span class="n">ndat</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dat2</span><span class="p">)</span>
-    <span class="n">dat3</span><span class="o">=</span><span class="mf">1.0</span><span class="o">*</span><span class="n">dat2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">peak1</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">leak</span><span class="p">):</span>
+    <span class="n">ndat</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+    <span class="n">yy</span><span class="o">=</span><span class="n">xx</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ndat</span><span class="p">):</span>
-        <span class="n">dat3</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">dat2</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span><span class="n">dat3</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">leak</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dat3</span>
+        <span class="n">yy</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">xx</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span><span class="n">yy</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">leak</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">yy</span>
 </pre></div>
 </div>
 </div>
@@ -564,37 +576,54 @@ For this one first considers the signal power (amplitude squared)</p>
 </div>
 </div>
 </section>
+</section>
 <section id="page-test-detector">
 <h2>Page test detector<a class="headerlink" href="#page-test-detector" title="Permalink to this headline">#</a></h2>
 <p>The page test detector is a derivation of Wald’s sequential probability ratio test (SPRT), where decisions on presence and absence of signal are not necessarily made for every sample but can be deferred after further sampling.</p>
+<p>Let <span class="math notranslate nohighlight">\(s(k)\)</span> be the test variable then we consider three situations</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s(k) &gt; th\)</span>:   signal detection and limiting <span class="math notranslate nohighlight">\(s(k)=th\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(s(k) &lt; 0\)</span>:   noise detection and limiting <span class="math notranslate nohighlight">\(s(k)=0\)</span></p></li>
+</ul>
+<p>in all other cases the test variable <span class="math notranslate nohighlight">\(s(k)\)</span> will be updated according to</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s(k) = s(k-1) + (y(k)/n(k)-b)\)</span></p></li>
+</ul>
+<p>whereby <span class="math notranslate nohighlight">\(y(k)\)</span> is the signal estimate and <span class="math notranslate nohighlight">\(n(k)\)</span> is the noise estimate. Therefore, <span class="math notranslate nohighlight">\(y(k)/n(k)\)</span> is the signal-to-noise ratio SNR.</p>
+<p>THe noise estimate <span class="math notranslate nohighlight">\(n(k)\)</span> is updated in absence of signal  detection according to an exponential moving average (EMA)</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n(k)= n(k-1) + \gamma(y(k)-n(k-1))\)</span></p></li>
+</ul>
+<p>where <span class="math notranslate nohighlight">\(\gamma\)</span> is the factor controllong the EMA</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pageTest1</span><span class="p">(</span><span class="n">zz</span><span class="p">,</span><span class="n">th</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">nt</span><span class="p">):</span>
-    <span class="n">ee</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
-    <span class="n">dd</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
-    <span class="n">nn</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
-    <span class="n">sn</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pageTest1</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span><span class="n">th</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">gg</span><span class="p">,</span><span class="n">nt</span><span class="p">):</span>
+    <span class="n">ss</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">yy</span>
+    <span class="n">dd</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">yy</span>
+    <span class="n">nn</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">yy</span>
+    <span class="n">sn</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">yy</span>
 
-    <span class="n">no</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">zz</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">no</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yy</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">nn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">no</span>
     <span class="c1">#</span>
-    <span class="n">sn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">zz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">yy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1">#</span>
-    <span class="n">ndat</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">zz</span><span class="p">)</span>
+    <span class="n">ndat</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
     
     <span class="n">it</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ndat</span><span class="p">):</span>
-        <span class="n">sn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">zz</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span> <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">sn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">bb</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&gt;</span><span class="n">th</span><span class="p">):</span>
-            <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">th</span>
+        <span class="n">sn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">yy</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">ss</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span> <span class="n">ss</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">sn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">bb</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">ss</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&gt;</span><span class="n">th</span><span class="p">):</span>
+            <span class="n">ss</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">th</span>
             <span class="n">dd</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-            <span class="k">if</span> <span class="n">ii</span><span class="o">-</span><span class="n">it</span><span class="o">&gt;=</span><span class="n">nt</span><span class="p">:</span>
-                <span class="n">ee</span><span class="p">[</span><span class="n">it</span><span class="p">:</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">th</span>
+            <span class="k">if</span> <span class="n">ii</span><span class="o">&lt;</span><span class="p">(</span><span class="n">it</span><span class="o">+</span><span class="n">nt</span><span class="p">):</span>
+                <span class="n">ss</span><span class="p">[</span><span class="n">it</span><span class="p">:</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">th</span>
                 <span class="n">dd</span><span class="p">[</span><span class="n">it</span><span class="p">:</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">):</span>
-            <span class="n">ee</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
-            <span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">aa</span><span class="o">*</span><span class="p">(</span><span class="n">zz</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">it</span><span class="o">=</span><span class="n">ii</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">ss</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">ss</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+            <span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">gg</span><span class="o">*</span><span class="p">(</span><span class="n">yy</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">it</span><span class="o">=</span><span class="n">ii</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">nn</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -604,6 +633,13 @@ For this one first considers the signal power (amplitude squared)</p>
 </div>
 </div>
 </div>
+<p>Start of detection is anticipated to last noise detection if no noise decision is made for at most <span class="math notranslate nohighlight">\(nt\)</span> samples</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>        if ii&lt;(it+nt):
+            ee[it:ii]=th
+            dd[it:ii]=1
+</pre></div>
+</div>
+<p>wherby <span class="math notranslate nohighlight">\(it\)</span> is indicating the last noise decision</p>
 <section id="test-of-page-test">
 <h3>Test of Page-test<a class="headerlink" href="#test-of-page-test" title="Permalink to this headline">#</a></h3>
 <p>The following snippet applies the page test detector with some ad-hoc parameter settings that for real data have to determined such that the detection performace is adequate.</p>
@@ -612,7 +648,7 @@ For this one first considers the signal power (amplitude squared)</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">th</span><span class="o">=</span><span class="mi">20</span>
 <span class="n">bb</span><span class="o">=</span><span class="mi">6</span>
 <span class="n">aa</span><span class="o">=</span><span class="mf">1e-3</span>
-<span class="n">nt</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">nt</span><span class="o">=</span><span class="mi">100</span>
 <span class="n">dd</span><span class="p">,</span><span class="n">nn</span> <span class="o">=</span> <span class="n">pageTest1</span><span class="p">(</span><span class="n">zz</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">th</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">nt</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
@@ -625,7 +661,7 @@ For this one first considers the signal power (amplitude squared)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/transient_detection_16_0.png" src="_images/transient_detection_16_0.png" />
+<img alt="_images/transient_detection_17_0.png" src="_images/transient_detection_17_0.png" />
 </div>
 </div>
 <p>The overall detection performance is determined by six parameters</p>
