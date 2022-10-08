@@ -141,6 +141,16 @@ const thebe_selector_output = ".output, .cell_output"
    Transient detections
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Click_train_detector.html">
+   Click train detector
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Detections.html">
+   Click detection
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -557,123 +567,123 @@ title="Print to PDF"
 <section id="snell-s-law">
 <h2>Snell’s law<a class="headerlink" href="#snell-s-law" title="Permalink to this headline">#</a></h2>
 <p>When rays transition from one medium to another that are characterized by different sound speeds, the ray propagation angle <span class="math notranslate nohighlight">\(\vartheta\)</span> varies according to Snell’s law</p>
-<div class="amsmath math notranslate nohighlight" id="equation-768eee84-d4d7-4385-8bd9-00b4dd776041">
-<span class="eqno">(38)<a class="headerlink" href="#equation-768eee84-d4d7-4385-8bd9-00b4dd776041" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ab876471-c7f2-4881-96cb-4df8db7829b2">
+<span class="eqno">(38)<a class="headerlink" href="#equation-ab876471-c7f2-4881-96cb-4df8db7829b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\cos \vartheta(z)}{c(z)} =  \alpha_0 =\texttt{const}
 \end{equation}\]</div>
 <p>This law is simply the consequence that at the interface between two layers the horizontal component of the sound propagation must be the same in both layers.</p>
 <p>Snell’s law in other words</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4957404d-ce56-44ae-88db-45dc76e94a5e">
-<span class="eqno">(39)<a class="headerlink" href="#equation-4957404d-ce56-44ae-88db-45dc76e94a5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5277b1b0-887c-480c-81c5-5a2af8cd9cef">
+<span class="eqno">(39)<a class="headerlink" href="#equation-5277b1b0-887c-480c-81c5-5a2af8cd9cef" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos\vartheta(z) = c(z)\alpha_0
 \end{equation}\]</div>
 <p>We note that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0d991ec9-af8b-413a-9b85-21fc0980bef4">
-<span class="eqno">(40)<a class="headerlink" href="#equation-0d991ec9-af8b-413a-9b85-21fc0980bef4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0bcac0c5-a1a9-4e36-9c43-65faf5a92a81">
+<span class="eqno">(40)<a class="headerlink" href="#equation-0bcac0c5-a1a9-4e36-9c43-65faf5a92a81" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta(z)=\sqrt{1-\left( c(z)\alpha_0\right)^2}
 \end{equation}\]</div>
 </section>
 <section id="differential-equations">
 <h2>Differential equations<a class="headerlink" href="#differential-equations" title="Permalink to this headline">#</a></h2>
 <p>From this general geometry we observe</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c74e392a-116a-4e9b-85dd-b3148fd898d5">
-<span class="eqno">(41)<a class="headerlink" href="#equation-c74e392a-116a-4e9b-85dd-b3148fd898d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-745f60af-0661-4640-aa36-13e0c51f7652">
+<span class="eqno">(41)<a class="headerlink" href="#equation-745f60af-0661-4640-aa36-13e0c51f7652" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tan \vartheta(z)=\frac{dz}{dx}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-987e42b6-b452-498d-a43a-2cd4c5098b61">
-<span class="eqno">(42)<a class="headerlink" href="#equation-987e42b6-b452-498d-a43a-2cd4c5098b61" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-651dcd48-778e-40ab-a6e1-328dc8902e8e">
+<span class="eqno">(42)<a class="headerlink" href="#equation-651dcd48-778e-40ab-a6e1-328dc8902e8e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin \vartheta(z)=\frac{dz}{ds}
 \end{equation}\]</div>
 <p>The path length is related to the travel time of sound pulses</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ff408fa0-06b0-48b4-bbb7-63f2569b1994">
-<span class="eqno">(43)<a class="headerlink" href="#equation-ff408fa0-06b0-48b4-bbb7-63f2569b1994" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-76685049-f7bf-4bb2-bfd2-9f897b34487e">
+<span class="eqno">(43)<a class="headerlink" href="#equation-76685049-f7bf-4bb2-bfd2-9f897b34487e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{ds}{dt}=c(z)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-8bbd7102-0e34-431f-b0cc-b41362870819">
-<span class="eqno">(44)<a class="headerlink" href="#equation-8bbd7102-0e34-431f-b0cc-b41362870819" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cf4fa842-8cf0-4430-8017-15322cd93f9f">
+<span class="eqno">(44)<a class="headerlink" href="#equation-cf4fa842-8cf0-4430-8017-15322cd93f9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dz}{dt}=\frac{dz}{ds}\frac{ds}{dt}=c(z)\sin\vartheta(z)
 \end{equation}\]</div>
 <p>Using Snell’s law the different differential equations become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-336cf826-531c-444b-a139-cb1628a46f92">
-<span class="eqno">(45)<a class="headerlink" href="#equation-336cf826-531c-444b-a139-cb1628a46f92" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aa2682a4-eb5b-45da-af54-5566443be9b9">
+<span class="eqno">(45)<a class="headerlink" href="#equation-aa2682a4-eb5b-45da-af54-5566443be9b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dx}{dz} =\frac{c(z)\alpha_0}{\sqrt{1-(c(z)\alpha_0)^2}}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-72fa3187-dec7-4fb4-b1f4-7faf69746acf">
-<span class="eqno">(46)<a class="headerlink" href="#equation-72fa3187-dec7-4fb4-b1f4-7faf69746acf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0bb0bb95-174b-49fb-94f5-e0a4fa528cfb">
+<span class="eqno">(46)<a class="headerlink" href="#equation-0bb0bb95-174b-49fb-94f5-e0a4fa528cfb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dt}{dz} = \frac{1}{c(z)\sqrt{1-(c(z)\alpha_0)^2}}
 \end{equation}\]</div>
 </section>
 <section id="integration">
 <h2>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">#</a></h2>
 <p>The ray advance in space and time is estimated by integration of these differential equations</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4da80636-b458-4f94-9fbb-49283dbb5b9d">
-<span class="eqno">(47)<a class="headerlink" href="#equation-4da80636-b458-4f94-9fbb-49283dbb5b9d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2f8ccb93-11f0-4be0-89f3-21edf8836ad6">
+<span class="eqno">(47)<a class="headerlink" href="#equation-2f8ccb93-11f0-4be0-89f3-21edf8836ad6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x - x_i =\int_{z_i}^{z} \frac{\cos \vartheta(u)}{\sin \vartheta(u)} du
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-084bd5c3-6466-4c91-a1c1-96ba2a4ed379">
-<span class="eqno">(48)<a class="headerlink" href="#equation-084bd5c3-6466-4c91-a1c1-96ba2a4ed379" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f31b056d-c2c0-4ae0-8bff-050c7ab150f5">
+<span class="eqno">(48)<a class="headerlink" href="#equation-f31b056d-c2c0-4ae0-8bff-050c7ab150f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 t - t_i = \int_{z_i}^{z} \frac{du}{c(u)\sin \vartheta(u)} 
 \end{equation}\]</div>
 <p>To carry out the integration, the sound speed profile <span class="math notranslate nohighlight">\(c(z)\)</span> must be specified in more details. In general, these integrals could be integrated numerically, but for some simple special cases a closed form solution of the integral can be given.</p>
 <p>Case 1: piece-wise constant sound speed profile:</p>
 <p>For a piece-wise constant sound speed profile, that is, for <span class="math notranslate nohighlight">\(z\in \left[z_i , z_{i+1}\right[\)</span>  we assume</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0bfa7fdc-f426-4cb4-a9ab-ee64f2951421">
-<span class="eqno">(49)<a class="headerlink" href="#equation-0bfa7fdc-f426-4cb4-a9ab-ee64f2951421" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4c9b2993-deb3-40ce-8947-265a0dc698e1">
+<span class="eqno">(49)<a class="headerlink" href="#equation-4c9b2993-deb3-40ce-8947-265a0dc698e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 c(z)=c(z_i)
 \end{equation}\]</div>
 <p>the integrals are straight forward and result to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01bdbd5f-5506-4308-86d7-73e54aae29cd">
-<span class="eqno">(50)<a class="headerlink" href="#equation-01bdbd5f-5506-4308-86d7-73e54aae29cd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f84eda86-4186-43f0-adf0-d458af5770f0">
+<span class="eqno">(50)<a class="headerlink" href="#equation-f84eda86-4186-43f0-adf0-d458af5770f0" title="Permalink to this equation">#</a></span>\[\begin{align}
 x-x_i =&amp; \int_{z_i}^{z} \frac{\cos \vartheta(u)}{\sin \vartheta(u)} du \\
  =&amp; \frac{\cos \vartheta(z_i)}{\sin \vartheta(z_i)}\left(z-z_i\right)
 \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-db45b489-3230-4221-ae22-2a7d362bdb29">
-<span class="eqno">(51)<a class="headerlink" href="#equation-db45b489-3230-4221-ae22-2a7d362bdb29" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-53d50dec-958c-4b2a-a892-70dbba2930c0">
+<span class="eqno">(51)<a class="headerlink" href="#equation-53d50dec-958c-4b2a-a892-70dbba2930c0" title="Permalink to this equation">#</a></span>\[\begin{align}
  t-t_i =&amp; \int_{z_i}^{z} \frac{du}{c(u)\sin \vartheta(u)} \\
 =&amp;\frac{\left(z-z_i\right)}{c(z_i)\sin \vartheta(z_i)} 
 \end{align}\]</div>
 <p>Case 2: piece-wise linear sound speed profile:</p>
 <p>Very often, however,  it is better to describe the sound-speed by a piece-wise linear profile, that is, for  <span class="math notranslate nohighlight">\(z\in \left[z_i , z_{i+1}\right[\)</span>   we assume</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ccafbf5b-7d27-48fd-8c7c-848de3a5c646">
-<span class="eqno">(52)<a class="headerlink" href="#equation-ccafbf5b-7d27-48fd-8c7c-848de3a5c646" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5fdf8e3a-dd22-41a9-a193-8dca7307db1a">
+<span class="eqno">(52)<a class="headerlink" href="#equation-5fdf8e3a-dd22-41a9-a193-8dca7307db1a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 c(z)=c(z_i)+g_i (z-z_i)
 \end{equation}\]</div>
 <p>where the sound-speed gradient is assumed to be constant and is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e6029d57-91e1-495f-b1e9-aaa1151aa246">
-<span class="eqno">(53)<a class="headerlink" href="#equation-e6029d57-91e1-495f-b1e9-aaa1151aa246" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-03880be2-c39f-4405-99b2-cde7c4d2f0be">
+<span class="eqno">(53)<a class="headerlink" href="#equation-03880be2-c39f-4405-99b2-cde7c4d2f0be" title="Permalink to this equation">#</a></span>\[\begin{equation}
 g_i=\frac{c(z_{i+1})-c(z_i)}{z_{i+1}-z{i}}
 \end{equation}\]</div>
 <p>or, equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-34e716ba-4556-4c3c-8616-d9f967618db4">
-<span class="eqno">(54)<a class="headerlink" href="#equation-34e716ba-4556-4c3c-8616-d9f967618db4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0328050c-613f-4146-82ab-4b399d3ac2e4">
+<span class="eqno">(54)<a class="headerlink" href="#equation-0328050c-613f-4146-82ab-4b399d3ac2e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \alpha_0 g_i=\frac{\cos\vartheta(z_{i+1})-\cos \vartheta(z_i)}{z_{i+1}-z{i}}
 \end{equation}\]</div>
 <p>The integrals are in this case somewhat more complicated, but follow still basic mathematical methods.
 For the integration we define</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83f3f8de-a57a-450f-8082-50b97464b6cd">
-<span class="eqno">(55)<a class="headerlink" href="#equation-83f3f8de-a57a-450f-8082-50b97464b6cd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d7ec159e-eb6f-4967-88c2-b4707b0c1ed6">
+<span class="eqno">(55)<a class="headerlink" href="#equation-d7ec159e-eb6f-4967-88c2-b4707b0c1ed6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u=a_0c(z)
 \end{equation}\]</div>
 <p>so that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04f91e6d-ed33-45f8-a188-81742d369178">
-<span class="eqno">(56)<a class="headerlink" href="#equation-04f91e6d-ed33-45f8-a188-81742d369178" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fb87445a-845d-405f-a224-772ba9dde6fd">
+<span class="eqno">(56)<a class="headerlink" href="#equation-fb87445a-845d-405f-a224-772ba9dde6fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{du}{dz}=\alpha_0 g_i
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d2d8757-30b2-4142-ad88-9abf8047134b">
-<span class="eqno">(57)<a class="headerlink" href="#equation-7d2d8757-30b2-4142-ad88-9abf8047134b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f42c0b54-13c1-4ad0-947a-584898478915">
+<span class="eqno">(57)<a class="headerlink" href="#equation-f42c0b54-13c1-4ad0-947a-584898478915" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dz=\frac{1}{\alpha_0g_i}du
 \end{equation}\]</div>
 <p>and the using tabled integrals
 the integrals become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-846de29a-60fe-4d01-b87f-089a57aa0e45">
-<span class="eqno">(58)<a class="headerlink" href="#equation-846de29a-60fe-4d01-b87f-089a57aa0e45" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-469fda38-ed74-4e78-a6a0-c08b2273042e">
+<span class="eqno">(58)<a class="headerlink" href="#equation-469fda38-ed74-4e78-a6a0-c08b2273042e" title="Permalink to this equation">#</a></span>\[\begin{align}
  x-x_i =&amp; \int_{z_i}^{z} \frac{\cos \vartheta(u)}{\sin \vartheta(u)} du \\
 =&amp; -\frac{1}{\alpha_0 g_i}\left(\sin\vartheta(z)- \sin\vartheta(z_i)\right) 
 \end{align}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e9e9ec1-6728-4c9e-b30b-1741c9647c26">
-<span class="eqno">(59)<a class="headerlink" href="#equation-1e9e9ec1-6728-4c9e-b30b-1741c9647c26" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-081817c3-d22a-462b-a34e-9fc3d450309a">
+<span class="eqno">(59)<a class="headerlink" href="#equation-081817c3-d22a-462b-a34e-9fc3d450309a" title="Permalink to this equation">#</a></span>\[\begin{align}
 t-t_i =&amp; \int_{z_i}^{z} \frac{du}{c(u)\sin \vartheta(u)} \\
 =&amp; -\frac{1}{g_i}\left(\ln\left( \frac{1+\sin\vartheta(z)}{\cos \vartheta(z)}\right) 
                      - \ln\left( \frac{1+\sin\vartheta(z_i)}{\cos\vartheta(z_i)}\right)\right)
@@ -684,23 +694,23 @@ t-t_i =&amp; \int_{z_i}^{z} \frac{du}{c(u)\sin \vartheta(u)} \\
 Also it is more intuitive to consider a constant horizontal step size <span class="math notranslate nohighlight">\(\Delta x\)</span> and estimate the vertical component of each step.
 This approach differs somewhat from standard textbook approaches where the ray equations are integrated over depth and horizontal progress is estimated. As we will propagate rays also with varying bottom depths and the bottom interaction is difficult to be predicted, the approach chosen here seems more appropriate.</p>
 <p>Considering therefore a horizontal step site <span class="math notranslate nohighlight">\(\Delta x = x_{i+1}-x_i\)</span> then above equation may be used to estimate the change of ray angle due to advancing the acoustic ray:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a06bfaf4-5967-4c11-959a-c62b7846b12c">
-<span class="eqno">(60)<a class="headerlink" href="#equation-a06bfaf4-5967-4c11-959a-c62b7846b12c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-58ba896f-c680-4af8-91df-5883bf58bb95">
+<span class="eqno">(60)<a class="headerlink" href="#equation-58ba896f-c680-4af8-91df-5883bf58bb95" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta(z_{i+1})=\sin\vartheta(z_i)-{\alpha_0 g_i}\Delta x
 \end{equation}\]</div>
 <p>With</p>
-<div class="amsmath math notranslate nohighlight" id="equation-be4f9204-a9fa-4352-b428-d69b2e01f344">
-<span class="eqno">(61)<a class="headerlink" href="#equation-be4f9204-a9fa-4352-b428-d69b2e01f344" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7c5462d6-6339-4abf-bd23-dfd124f68fd9">
+<span class="eqno">(61)<a class="headerlink" href="#equation-7c5462d6-6339-4abf-bd23-dfd124f68fd9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos\vartheta(z_{i+1})=\sqrt{1-\sin^2\vartheta(z_{i+1})}
 \end{equation}\]</div>
 <p>and  one estimates the resulting ray depth <span class="math notranslate nohighlight">\(z_{i+1}\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83067434-22c1-467f-8eb7-36ca74f46a59">
-<span class="eqno">(62)<a class="headerlink" href="#equation-83067434-22c1-467f-8eb7-36ca74f46a59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9363b7e7-5992-4b54-84d0-ae8421172b70">
+<span class="eqno">(62)<a class="headerlink" href="#equation-9363b7e7-5992-4b54-84d0-ae8421172b70" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_{i+1}=z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_{i+1})-\cos\vartheta(z_i)\right)
 \end{equation}\]</div>
 <p>and the travel time <span class="math notranslate nohighlight">\(t_{i+1}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e726cf9-a13f-49ab-a866-d9298b17857c">
-<span class="eqno">(63)<a class="headerlink" href="#equation-8e726cf9-a13f-49ab-a866-d9298b17857c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-219b6ef2-5831-4e40-bcf1-c6dfa63d9d77">
+<span class="eqno">(63)<a class="headerlink" href="#equation-219b6ef2-5831-4e40-bcf1-c6dfa63d9d77" title="Permalink to this equation">#</a></span>\[\begin{equation}
 t_{i+1}= t_i -\frac{1}{g_i}\left(\ln\left( \frac{1+\sin\vartheta(z_{i+1})}{\cos \vartheta(z_{i+1})}\right) 
                      - \ln\left( \frac{1+\sin\vartheta(z_i)}{\cos\vartheta(z_i)}\right)\right)
 \end{equation}\]</div>
@@ -712,13 +722,13 @@ t_{i+1}= t_i -\frac{1}{g_i}\left(\ln\left( \frac{1+\sin\vartheta(z_{i+1})}{\cos 
 <section id="surface-reflection">
 <h3>Surface reflection<a class="headerlink" href="#surface-reflection" title="Permalink to this headline">#</a></h3>
 <p>Assume that boundary is flat as it happens with a calm surface then, by virtue of the reflection the ray elevation angle simply changes its sign, or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bac5bdf3-0f97-4eed-8b7e-ff0ce4932d24">
-<span class="eqno">(64)<a class="headerlink" href="#equation-bac5bdf3-0f97-4eed-8b7e-ff0ce4932d24" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3b470054-9703-4225-8832-54bf25955503">
+<span class="eqno">(64)<a class="headerlink" href="#equation-3b470054-9703-4225-8832-54bf25955503" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta_b = -\sin\vartheta_0
 \end{equation}\]</div>
 <p>and the new ray depth becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-321f518c-6fa7-4983-9250-526be33a77b7">
-<span class="eqno">(65)<a class="headerlink" href="#equation-321f518c-6fa7-4983-9250-526be33a77b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5fecb521-2757-4b9e-9924-1d53dfe4fffc">
+<span class="eqno">(65)<a class="headerlink" href="#equation-5fecb521-2757-4b9e-9924-1d53dfe4fffc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_{i+1} = -\left(z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_{i+1})-\cos\vartheta(z_i)\right)\right)
 \end{equation}\]</div>
 </section>
@@ -781,36 +791,36 @@ z_{i+1} = -\left(z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_{i+1})-\cos\va
 <section id="boundary-intercept">
 <h3>Boundary intercept<a class="headerlink" href="#boundary-intercept" title="Permalink to this headline">#</a></h3>
 <p>To determine the intercept point of the ray with the bottom, one considers the two equations that describe the bottom and the ray path. Assuming a piece-wise linear bottom</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a320a3ed-4934-4c63-886f-eab614298fa9">
-<span class="eqno">(66)<a class="headerlink" href="#equation-a320a3ed-4934-4c63-886f-eab614298fa9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-19c59e4a-183e-4bec-bc05-5e1ac2079c05">
+<span class="eqno">(66)<a class="headerlink" href="#equation-19c59e4a-183e-4bec-bc05-5e1ac2079c05" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_b=b_i+(x_b-x_i)\tan\beta_i
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d46afc06-e3ae-452e-96ec-d3d4b787ca1e">
-<span class="eqno">(67)<a class="headerlink" href="#equation-d46afc06-e3ae-452e-96ec-d3d4b787ca1e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a4bbc087-e7ee-4e02-8ac1-490b66fee867">
+<span class="eqno">(67)<a class="headerlink" href="#equation-a4bbc087-e7ee-4e02-8ac1-490b66fee867" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_b=z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_b)-\cos\vartheta(z_i)\right)
 \end{equation}\]</div>
 <p>an ray-bottom intercept location <span class="math notranslate nohighlight">\(x_b\)</span> should satisfy the following equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b52a7338-2eb1-4aa1-b957-dd5ffbbc729f">
-<span class="eqno">(68)<a class="headerlink" href="#equation-b52a7338-2eb1-4aa1-b957-dd5ffbbc729f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b6be1e8a-9ecf-433e-8e5d-cb144b92da4c">
+<span class="eqno">(68)<a class="headerlink" href="#equation-b6be1e8a-9ecf-433e-8e5d-cb144b92da4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_i+(x_b-x_i)\tan\beta_i=
 z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_b)-\cos\vartheta(z_i)\right)
 \end{equation}\]</div>
 <p>that is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c94fb425-98f8-4887-999c-596f24961826">
-<span class="eqno">(69)<a class="headerlink" href="#equation-c94fb425-98f8-4887-999c-596f24961826" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3ab04abf-96a5-41b6-9b7e-054039d3c92d">
+<span class="eqno">(69)<a class="headerlink" href="#equation-3ab04abf-96a5-41b6-9b7e-054039d3c92d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_i-z_i =
 \frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_b)-\cos\vartheta(z_i)\right) 
 -(x_b-x_i)\tan\beta_i
 \end{equation}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-66a8af38-04c2-4c47-a3a1-90fe3a3f4d71">
-<span class="eqno">(70)<a class="headerlink" href="#equation-66a8af38-04c2-4c47-a3a1-90fe3a3f4d71" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-681565bd-fd04-4cdc-9abc-e7814683b0db">
+<span class="eqno">(70)<a class="headerlink" href="#equation-681565bd-fd04-4cdc-9abc-e7814683b0db" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos\vartheta(z_b)=\sqrt{1-\sin^2\vartheta(z_b)}
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29fb42bd-6c4d-4424-bc43-d8553bab106a">
-<span class="eqno">(71)<a class="headerlink" href="#equation-29fb42bd-6c4d-4424-bc43-d8553bab106a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7565d071-07e8-4404-b5bc-52880e4d6b22">
+<span class="eqno">(71)<a class="headerlink" href="#equation-7565d071-07e8-4404-b5bc-52880e4d6b22" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta(z_b)=\sin\vartheta(z_i)-\alpha_0 g_i (x_b-x_i)
 \end{equation}\]</div>
 <p>The solution of this equation  depends only on the variable <span class="math notranslate nohighlight">\(x_v = x_b-x_i\)</span> and is obtained with sufficient accuracy by linear interpolation.</p>
@@ -818,60 +828,60 @@ b_i-z_i =
 <section id="reflected-ray">
 <h3>Reflected ray<a class="headerlink" href="#reflected-ray" title="Permalink to this headline">#</a></h3>
 <p>To estimated the reflected ray, first the incidence angle <span class="math notranslate nohighlight">\(\vartheta_b\)</span> is estimated</p>
-<div class="amsmath math notranslate nohighlight" id="equation-47919af4-fb35-476d-a8db-0265e8f30231">
-<span class="eqno">(72)<a class="headerlink" href="#equation-47919af4-fb35-476d-a8db-0265e8f30231" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c6f2bfd2-002f-499b-aee5-6b464808f80a">
+<span class="eqno">(72)<a class="headerlink" href="#equation-c6f2bfd2-002f-499b-aee5-6b464808f80a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vartheta_b = \sin^{-1}\left(\sin\vartheta(z_b)\right)
 \end{equation}\]</div>
 <p>\noindent Let <span class="math notranslate nohighlight">\(\beta_i\)</span> be the slope angle of the bottom</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3ec9371-c6f9-431c-845f-e30f1be80ef7">
-<span class="eqno">(73)<a class="headerlink" href="#equation-c3ec9371-c6f9-431c-845f-e30f1be80ef7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e7d5d521-8654-42ba-8065-8066d2d16a7d">
+<span class="eqno">(73)<a class="headerlink" href="#equation-e7d5d521-8654-42ba-8065-8066d2d16a7d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \beta_i = \tan^{-1}\left(\frac{db}{dx}\right)
 \end{equation}\]</div>
 <p>\noindent then the reflected ray angle becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9ee4e068-6a5f-4259-95e6-737070e5714a">
-<span class="eqno">(74)<a class="headerlink" href="#equation-9ee4e068-6a5f-4259-95e6-737070e5714a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-57ec132d-95e2-47fb-895f-07470059aaa4">
+<span class="eqno">(74)<a class="headerlink" href="#equation-57ec132d-95e2-47fb-895f-07470059aaa4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vartheta_b \Longrightarrow 2\beta_i -\vartheta_b
 \end{equation}\]</div>
 <p>\noindent and consequently, the new ray constant becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-732582c3-d845-4a38-a41f-61ee31b0d395">
-<span class="eqno">(75)<a class="headerlink" href="#equation-732582c3-d845-4a38-a41f-61ee31b0d395" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f723bd72-55d6-4667-aff6-6b37b142e164">
+<span class="eqno">(75)<a class="headerlink" href="#equation-f723bd72-55d6-4667-aff6-6b37b142e164" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \alpha_b =\frac{\cos \vartheta_b}{c(z_i)}
 \end{equation}\]</div>
 <p>To continue the ray path, ray end location and associated ray elevation angle are estimated according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cff85c11-da7b-4a44-b8ee-f5b0466d5ff3">
-<span class="eqno">(76)<a class="headerlink" href="#equation-cff85c11-da7b-4a44-b8ee-f5b0466d5ff3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-33a30827-c63a-4647-adfb-2c2adb08cf64">
+<span class="eqno">(76)<a class="headerlink" href="#equation-33a30827-c63a-4647-adfb-2c2adb08cf64" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta(z_{i+1}) = \sin\left(2\beta_i-\vartheta(z_b)\right)
 -\alpha_b g_i \left(x_{i+1}-x_b \right)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-da06ed6c-4acd-4da1-82e8-5ee76174b262">
-<span class="eqno">(77)<a class="headerlink" href="#equation-da06ed6c-4acd-4da1-82e8-5ee76174b262" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f2db76a4-850d-436a-909b-dd1efbb9030a">
+<span class="eqno">(77)<a class="headerlink" href="#equation-f2db76a4-850d-436a-909b-dd1efbb9030a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_{i+1} = z_b + \frac{1}{\alpha_b g_i}\left(\cos \vartheta(z_{i+1}) - \cos (2\beta_i-\vartheta(z_b ))\right)
 \end{equation}\]</div>
 </section>
 <section id="refracted-ray-and-critical-angle">
 <h3>Refracted ray and critical angle<a class="headerlink" href="#refracted-ray-and-critical-angle" title="Permalink to this headline">#</a></h3>
 <p>As indicated in above figure not all sound energy is reflected on the boundary but some sound still penetrates the boundary layer. Obviously a new ray angle <span class="math notranslate nohighlight">\(\vartheta_t\)</span> is determined by Snell’s law and therefore</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0eeae53-4776-4bab-805d-c960aaf79fab">
-<span class="eqno">(78)<a class="headerlink" href="#equation-f0eeae53-4776-4bab-805d-c960aaf79fab" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7464a1eb-bc80-4438-a550-d52d8f590777">
+<span class="eqno">(78)<a class="headerlink" href="#equation-7464a1eb-bc80-4438-a550-d52d8f590777" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos(\beta_i-\vartheta_t)=\frac{c_b}{c(z_b)}\cos(\beta_i-\vartheta_b )=c_b\alpha_0
 \end{equation}\]</div>
 <p>However, no sound will penetrate the bottom, if for a given ray parameter <span class="math notranslate nohighlight">\(\alpha_0\)</span> the product <span class="math notranslate nohighlight">\(c_b\alpha_0\)</span> exceeds the value of 1, or in other words if <span class="math notranslate nohighlight">\(\vartheta_b\)</span> is less than a  critical angle <span class="math notranslate nohighlight">\(\vartheta_c\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-31a98e04-5075-4b2e-895c-c58cab80d6a8">
-<span class="eqno">(79)<a class="headerlink" href="#equation-31a98e04-5075-4b2e-895c-c58cab80d6a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53946fd8-f087-4ae0-9e49-c4132d202a31">
+<span class="eqno">(79)<a class="headerlink" href="#equation-53946fd8-f087-4ae0-9e49-c4132d202a31" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos(\beta_i-\vartheta_c )=\frac{c(z_b)}{c_b}
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32808176-925f-428c-8ba6-db67c5e6adce">
-<span class="eqno">(80)<a class="headerlink" href="#equation-32808176-925f-428c-8ba6-db67c5e6adce" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-751330fd-ea98-4839-b619-1aebab5e3cc2">
+<span class="eqno">(80)<a class="headerlink" href="#equation-751330fd-ea98-4839-b619-1aebab5e3cc2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vartheta_c=\beta_i-\cos^{-1}\left(\frac{c(z_b)}{c_b}\right)
 \end{equation}\]</div>
 <p>As one may assume that the sound speed in the bottom layer <span class="math notranslate nohighlight">\(c_b\)</span> is constant, the ray will propagate in the bottom layer according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f859ccae-336b-4468-a4cf-6f588696c679">
-<span class="eqno">(81)<a class="headerlink" href="#equation-f859ccae-336b-4468-a4cf-6f588696c679" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4a886b1d-631c-42ed-867c-5dd3631c8410">
+<span class="eqno">(81)<a class="headerlink" href="#equation-4a886b1d-631c-42ed-867c-5dd3631c8410" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vartheta_t=\beta_i-\cos^{-1}\left(c_b\alpha_0\right)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-69892bdf-1b1f-4bdd-a8f4-4f7ded2366d0">
-<span class="eqno">(82)<a class="headerlink" href="#equation-69892bdf-1b1f-4bdd-a8f4-4f7ded2366d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dc8af05f-c9ab-4e92-83db-6dc14a961e8a">
+<span class="eqno">(82)<a class="headerlink" href="#equation-dc8af05f-c9ab-4e92-83db-6dc14a961e8a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_{i+1}=z_b+\frac{\sin\vartheta_t}{\cos\vartheta_t}\left(x_{i+1}-x_i\right)
 \end{equation}\]</div>
 </section>
