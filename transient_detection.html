@@ -54,7 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="RT Spectrogram" href="rt-spectrogram.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -133,11 +132,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="ray_tracing.html">
    Ray tracing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rt-spectrogram.html">
-   RT Spectrogram
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -639,7 +633,7 @@ where <span class="math notranslate nohighlight">\(\alpha\)</span> is a factor <
             dd[it:ii]=1
 </pre></div>
 </div>
-<p>wherby <span class="math notranslate nohighlight">\(it\)</span> is indicating the last noise decision</p>
+<p>wherby <span class="math notranslate nohighlight">\(it\)</span> is indicating the last noise decision. This allows also to bridge small drop-outs (holes) during the detection.</p>
 <section id="test-of-page-test">
 <h3>Test of Page-test<a class="headerlink" href="#test-of-page-test" title="Permalink to this headline">#</a></h3>
 <p>The following snippet applies the page test detector with some ad-hoc parameter settings that for real data have to determined such that the detection performace is adequate.</p>
@@ -664,7 +658,7 @@ where <span class="math notranslate nohighlight">\(\alpha\)</span> is a factor <
 <img alt="_images/transient_detection_17_0.png" src="_images/transient_detection_17_0.png" />
 </div>
 </div>
-<p>The overall detection performance is determined by six parameters</p>
+<p>The overall detection performance is determined by five parameters</p>
 <ul class="simple">
 <li><p>peak detector</p>
 <ul>
@@ -680,6 +674,7 @@ where <span class="math notranslate nohighlight">\(\alpha\)</span> is a factor <
 </ul>
 </li>
 </ul>
+<p>The values of these parameters are typically selected empirically.</p>
 </section>
 </section>
 </section>
@@ -711,13 +706,6 @@ where <span class="math notranslate nohighlight">\(\alpha\)</span> is a factor <
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="rt-spectrogram.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">RT Spectrogram</p>
-        </div>
-    </a>
 </div>
             </footer>
         </div>

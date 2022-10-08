@@ -4,8 +4,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; bioacoustics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Click train detector &#8212; bioacoustics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -49,7 +50,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -187,6 +190,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/wmxz-eu/bioacoustics.github.io/master?urlpath=tree/Click_train_detector.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -226,7 +258,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/wmxz-eu/bioacoustics.github.io/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/wmxz-eu/bioacoustics.github.io/issues/new?title=Issue%20on%20page%20%2FClick_train_detector.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -246,6 +278,52 @@ title="Open an issue"
   </div>
 </div>
 
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Click_train_detector.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
@@ -257,7 +335,7 @@ title="Open an issue"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
+                <h1>Click train detector</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -269,13 +347,94 @@ title="Open an issue"
                 
               <div>
                 
+  <section class="tex2jax_ignore mathjax_ignore" id="click-train-detector">
+<h1>Click train detector<a class="headerlink" href="#click-train-detector" title="Permalink to this headline">#</a></h1>
+<p>Inter-click-interval (ICI)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a36faa9c-ee33-4dfc-a379-45ae207c7fe8">
+<span class="eqno">()<a class="headerlink" href="#equation-a36faa9c-ee33-4dfc-a379-45ae207c7fe8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+(ICI)_n = t_n - t_{n-1}
+\end{equation}\]</div>
+<p>Assume variation in ICI and the relative change in Power are stochastic processes that vary only randomly</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d3dac6c3-3dd3-4d8f-8b6c-4ec2c1436470">
+<span class="eqno">()<a class="headerlink" href="#equation-d3dac6c3-3dd3-4d8f-8b6c-4ec2c1436470" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta (ICI)_n  = \Delta (ICI)_{n-1} + N(0,\sigma_C) 
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-71ea0a97-8376-4c8e-b8cc-fa73c61e9d22">
+<span class="eqno">()<a class="headerlink" href="#equation-71ea0a97-8376-4c8e-b8cc-fa73c61e9d22" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta^2 P_n  = \Delta^2 P_{n-1} + N(0,\sigma_P) 
+\end{equation}\]</div>
+<p>That is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-697b531b-903d-4f34-b09c-5860a057687a">
+<span class="eqno">()<a class="headerlink" href="#equation-697b531b-903d-4f34-b09c-5860a057687a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+(ICI)_n  = 2 (ICI)_{n-1} - (ICI)_{n-2} + N(0,\sigma_C) 
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-c3e4d7fe-265b-4297-95fc-d7a312c76a23">
+<span class="eqno">()<a class="headerlink" href="#equation-c3e4d7fe-265b-4297-95fc-d7a312c76a23" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P_n-2P_{n-1}+P_{n-2}=P_{n-1}-2P_{n-2}+P_{n-3}+N(0,\sigma_P)
+\end{equation}\]</div>
+<p>Or equivalently</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6c65c822-09ff-48d8-ac7d-cd4ea34f3374">
+<span class="eqno">()<a class="headerlink" href="#equation-6c65c822-09ff-48d8-ac7d-cd4ea34f3374" title="Permalink to this equation">#</a></span>\[\begin{equation}
+t_n=3t_{n-1}-3t_{n-2}+t_{n-3}+N(0,σ_C)
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-aaaa96b4-5f9e-4955-91d9-17422fba2be7">
+<span class="eqno">()<a class="headerlink" href="#equation-aaaa96b4-5f9e-4955-91d9-17422fba2be7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P_n=3P_{n-1}-3P_{n-2}+P_{n-3}+N(0,σ_P)
+\end{equation}\]</div>
+<p>Assume further that boundary reflection (multipath) is is deterimind by the changing geometry</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7e7c375c-72ea-4e48-a442-27f57a54fed2">
+<span class="eqno">()<a class="headerlink" href="#equation-7e7c375c-72ea-4e48-a442-27f57a54fed2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+δτ_n=t_{r,n}-t_n
+\end{equation}\]</div>
+<p>is slowly varying</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1851bad7-8762-4bc3-bcae-6b4cb82519f0">
+<span class="eqno">()<a class="headerlink" href="#equation-1851bad7-8762-4bc3-bcae-6b4cb82519f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Δδτ_n=Δδτ_{n-1}+N(0,σ_τ)
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-b14c90c4-8b37-461c-89b0-b5815b25911b">
+<span class="eqno">()<a class="headerlink" href="#equation-b14c90c4-8b37-461c-89b0-b5815b25911b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+δτ_n = 2 δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
+\end{equation}\]</div>
+<p>or</p>
+<div class="amsmath math notranslate nohighlight" id="equation-72f8d78c-1ded-4449-9244-67fad7f32963">
+<span class="eqno">()<a class="headerlink" href="#equation-72f8d78c-1ded-4449-9244-67fad7f32963" title="Permalink to this equation">#</a></span>\[\begin{equation}
+t_{r,n} = t_n+2δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
+\end{equation}\]</div>
+<p>This would indicate that the click time, received level and surface reflection delay can be considered AR processes.</p>
+<p>In summary:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-051d0f27-0bbb-45da-90f5-825628ea96d3">
+<span class="eqno">()<a class="headerlink" href="#equation-051d0f27-0bbb-45da-90f5-825628ea96d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+(ICI)_n  = 2 (ICI)_{n-1} - (ICI)_{n-2} + N(0,\sigma_C) 
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-f7da44bc-eea9-4819-8bde-abb3ecabd401">
+<span class="eqno">()<a class="headerlink" href="#equation-f7da44bc-eea9-4819-8bde-abb3ecabd401" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P_n=3P_{n-1}-3P_{n-2}+P_{n-3}+N(0,σ_P)
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-155af0cc-b94e-48a9-aeee-4dd99559a215">
+<span class="eqno">()<a class="headerlink" href="#equation-155af0cc-b94e-48a9-aeee-4dd99559a215" title="Permalink to this equation">#</a></span>\[\begin{equation}
+δτ_n = 2 δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
+\end{equation}\]</div>
+</section>
 
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
-</div>
-
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

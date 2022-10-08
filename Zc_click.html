@@ -137,11 +137,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="rt-spectrogram.html">
-   RT Spectrogram
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="transient_detection.html">
    Transient detections
   </a>
@@ -357,6 +352,11 @@ title="Print to PDF"
    reduced sampling rate
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#delayed-signal-generation">
+   delayed signal generation
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -381,6 +381,11 @@ title="Print to PDF"
    reduced sampling rate
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#delayed-signal-generation">
+   delayed signal generation
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -394,13 +399,13 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="cuvier-s-beaked-whale-click">
 <h1>Cuvier’s beaked whale click<a class="headerlink" href="#cuvier-s-beaked-whale-click" title="Permalink to this headline">#</a></h1>
 <p>For applying a matched filter to Cuvier’s beaked whale (Zc) clicks, a synthetic beaked whale click could be constructed according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eb4a5490-da76-443f-96f6-835d3a0c43d0">
-<span class="eqno">(4)<a class="headerlink" href="#equation-eb4a5490-da76-443f-96f6-835d3a0c43d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eb3f06f5-6ea2-4d23-9d2e-cb3e4e234d29">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eb3f06f5-6ea2-4d23-9d2e-cb3e4e234d29" title="Permalink to this equation">#</a></span>\[\begin{equation}
     s(t)=A(t)\exp \{-2\pi i (f_0+f_m t)t\}
 \end{equation}\]</div>
 <p>where A(t) the signal amplitude is modeled according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9c6e20f1-0e07-4c86-a059-c50a2d50db57">
-<span class="eqno">(5)<a class="headerlink" href="#equation-9c6e20f1-0e07-4c86-a059-c50a2d50db57" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3bb6f068-028d-4fdd-a38a-c8cf21bc577d">
+<span class="eqno">(5)<a class="headerlink" href="#equation-3bb6f068-028d-4fdd-a38a-c8cf21bc577d" title="Permalink to this equation">#</a></span>\[\begin{equation}
   A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
 \end{equation}\]</div>
 <p>and where f0 = 30 kHz, fm = 60 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span> and t denotes the time vector.</p>
@@ -431,7 +436,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Zc_click_1_0.png" src="_images/Zc_click_1_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\zimme\AppData\Local\Temp\ipykernel_17384\1507944608.py:5: RuntimeWarning: invalid value encountered in power
+  return (aa*tt)**bb * np.exp(-(aa*tt)**cc + 2*np.pi*1j*(f0+fm*tt)*tt)
+</pre></div>
+</div>
+<img alt="_images/Zc_click_1_1.png" src="_images/Zc_click_1_1.png" />
 </div>
 </div>
 <section id="reduced-sampling-rate">
@@ -461,6 +470,67 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/Zc_click_3_0.png" src="_images/Zc_click_3_0.png" />
+</div>
+</div>
+</section>
+<section id="delayed-signal-generation">
+<h2>delayed signal generation<a class="headerlink" href="#delayed-signal-generation" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
+
+<span class="n">fs</span><span class="o">=</span><span class="mi">192</span> <span class="c1">#kHz</span>
+<span class="n">ts</span><span class="o">=</span><span class="mf">0.5</span> <span class="c1">#ms</span>
+<span class="n">tt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ts</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
+
+<span class="n">f0</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">fm</span><span class="o">=</span><span class="mi">60</span>
+<span class="n">aa</span><span class="o">=</span><span class="mi">13</span>
+<span class="n">bb</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">cc</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">ss</span><span class="o">=</span><span class="n">zcSig</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">fm</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span>
+
+<span class="c1">#see also http://www.labbookpages.co.uk/audio/beamforming/fractionalDelay.html#filter</span>
+<span class="k">def</span> <span class="nf">delay</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">tau</span><span class="p">):</span>
+    <span class="c1">#tau = -4.5 # Fractional delay [samples].</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">21</span>     <span class="c1"># Filter length.</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    
+    <span class="c1"># Compute sinc filter.</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span>
+    
+    <span class="c1"># Multiply sinc filter by window</span>
+    <span class="n">h</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">blackman</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    
+    <span class="c1"># Normalize to get unity gain.</span>
+    <span class="n">h</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+    <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xx</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,)))</span>
+
+    <span class="n">yy</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">uu</span><span class="p">);</span> <span class="n">yy</span><span class="o">=</span><span class="n">yy</span><span class="p">[</span><span class="mi">10</span><span class="p">:,]</span>
+    <span class="k">return</span> <span class="n">yy</span>
+
+<span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ss</span><span class="p">)))</span>
+<span class="n">tu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">uu</span><span class="p">))</span><span class="o">/</span><span class="n">fs</span>
+
+<span class="n">dt</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">x0</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tu</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+
+<span class="n">x1</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="o">+</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tu</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+
+<span class="n">x2</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="o">-</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tu</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 0.2)
+</pre></div>
+</div>
+<img alt="_images/Zc_click_5_1.png" src="_images/Zc_click_5_1.png" />
 </div>
 </div>
 </section>
