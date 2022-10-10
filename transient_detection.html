@@ -117,6 +117,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="power_spectra.html">
+   Spectral estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="Zc_click.html">
    Cuvier’s beaked whale click
   </a>
@@ -459,7 +464,6 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
@@ -674,15 +678,15 @@ where <span class="math notranslate nohighlight">\(\alpha\)</span> is a factor <
 <ul class="simple">
 <li><p>peak detector</p>
 <ul>
-<li><p>leak factor</p></li>
+<li><p>leak factor (gg=0.97)</p></li>
 </ul>
 </li>
 <li><p>page test</p>
 <ul>
-<li><p>detection threshold</p></li>
-<li><p>snr detection bias</p></li>
-<li><p>noise estimation innovation factor</p></li>
-<li><p>minimal separation between detections (samples)</p></li>
+<li><p>detection threshold (th=20)</p></li>
+<li><p>snr detection bias (bb=6)</p></li>
+<li><p>noise estimation innovation factor (aa=1/1000)</p></li>
+<li><p>minimal separation between detections (samples) (nt=100)</p></li>
 </ul>
 </li>
 </ul>
