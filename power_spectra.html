@@ -363,6 +363,26 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hz-density-estimate">
+   1/Hz density estimate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windowed-psd-estimates">
+   Windowed PSD estimates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windowed-power-spectrum-estimates">
+   Windowed power spectrum estimates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transient-spectra-estimates">
+   Transient spectra estimates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#welch-psd">
    Welch PSD
   </a>
@@ -375,6 +395,33 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#transient-noise">
      Transient + noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimmation-of-transient-peak-amplitude">
+     Estimmation of transient peak amplitude
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noise-spectral-density">
+     noise spectral density
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tonals-rms-estimates">
+     tonals RMS estimates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transient-peak-estimates">
+     transient peak estimates
     </a>
    </li>
   </ul>
@@ -399,6 +446,26 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hz-density-estimate">
+   1/Hz density estimate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windowed-psd-estimates">
+   Windowed PSD estimates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windowed-power-spectrum-estimates">
+   Windowed power spectrum estimates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transient-spectra-estimates">
+   Transient spectra estimates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#welch-psd">
    Welch PSD
   </a>
@@ -411,6 +478,33 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#transient-noise">
      Transient + noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimmation-of-transient-peak-amplitude">
+     Estimmation of transient peak amplitude
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noise-spectral-density">
+     noise spectral density
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tonals-rms-estimates">
+     tonals RMS estimates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transient-peak-estimates">
+     transient peak estimates
     </a>
    </li>
   </ul>
@@ -428,56 +522,90 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="spectral-estimation">
 <h1>Spectral estimation<a class="headerlink" href="#spectral-estimation" title="Permalink to this headline">#</a></h1>
 <p>Diven a time series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2570919c-1a60-433d-9082-a3681097f0bc">
-<span class="eqno">(4)<a class="headerlink" href="#equation-2570919c-1a60-433d-9082-a3681097f0bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-29707343-3606-4eeb-bcab-15d3f52ee698">
+<span class="eqno">(4)<a class="headerlink" href="#equation-29707343-3606-4eeb-bcab-15d3f52ee698" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x(n)
 \end{equation}\]</div>
 <p>with fft spectrum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d5687c76-e4ae-462f-9252-4cfbf7187a39">
-<span class="eqno">(5)<a class="headerlink" href="#equation-d5687c76-e4ae-462f-9252-4cfbf7187a39" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c3bcfb22-1133-4625-814e-6473711a9969">
+<span class="eqno">(5)<a class="headerlink" href="#equation-c3bcfb22-1133-4625-814e-6473711a9969" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y(m) = \sum_{n=0}^{N-1}x(n) \exp\{-2\pi i\frac{nm}{N}\}
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78ea4954-5d59-44aa-8838-1ed7b5afea09">
-<span class="eqno">(6)<a class="headerlink" href="#equation-78ea4954-5d59-44aa-8838-1ed7b5afea09" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-05fa8b70-d4b9-4bff-9399-c51379ee5e05">
+<span class="eqno">(6)<a class="headerlink" href="#equation-05fa8b70-d4b9-4bff-9399-c51379ee5e05" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y(m) = FFT(x(n))
 \end{equation}\]</div>
 <p>Power spectrum is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7a22924-1b27-4e89-b413-49c896efba77">
-<span class="eqno">(7)<a class="headerlink" href="#equation-a7a22924-1b27-4e89-b413-49c896efba77" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9c71b841-743b-46ea-b28f-5a40c3022a1e">
+<span class="eqno">(7)<a class="headerlink" href="#equation-9c71b841-743b-46ea-b28f-5a40c3022a1e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(m) = |y(m)|^2
 \end{equation}\]</div>
 <p>Power spectral density (PSD) of a discrete-time noise signal is given by the FFT of its autocorrelation function, R(k)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9519c084-9d57-4d28-91e9-cfa8cf9162e2">
-<span class="eqno">(8)<a class="headerlink" href="#equation-9519c084-9d57-4d28-91e9-cfa8cf9162e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2326088f-fb6a-41f8-b6d7-733abff2d02f">
+<span class="eqno">(8)<a class="headerlink" href="#equation-2326088f-fb6a-41f8-b6d7-733abff2d02f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = FFT(R(k))
 \end{equation}\]</div>
 <p>where the autocorrelation function R(k) is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13817c4b-e833-405a-9739-58b34a7114e9">
-<span class="eqno">(9)<a class="headerlink" href="#equation-13817c4b-e833-405a-9739-58b34a7114e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4e864355-4af5-4fb9-88b7-a18204ff1cd5">
+<span class="eqno">(9)<a class="headerlink" href="#equation-4e864355-4af5-4fb9-88b7-a18204ff1cd5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     R(k)=\frac{1}{N}\sum_{n=0}^{N-1}x(n)x(n-k)
 \end{equation}\]</div>
 <p>that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df539c59-427f-4943-9890-5824bf16a349">
-<span class="eqno">(10)<a class="headerlink" href="#equation-df539c59-427f-4943-9890-5824bf16a349" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9cb53ef4-9131-4e1d-a547-b6ab535107d3">
+<span class="eqno">(10)<a class="headerlink" href="#equation-9cb53ef4-9131-4e1d-a547-b6ab535107d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \sum_{k=0}^{N-1}\frac{1}{N}\sum_{n=0}^{N-1}x(n)x(n-k) \exp\{-2\pi i\frac{km}{N}\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-45d259b8-2cdc-49a6-8687-2926b77bf404">
-<span class="eqno">(11)<a class="headerlink" href="#equation-45d259b8-2cdc-49a6-8687-2926b77bf404" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2dab1045-1bdb-4d7c-a7a0-5746a6abcabc">
+<span class="eqno">(11)<a class="headerlink" href="#equation-2dab1045-1bdb-4d7c-a7a0-5746a6abcabc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N}\sum_{n=0}^{N-1}x(n)\exp\{-2\pi i\frac{nm}{N} \} \sum_{k=0}^{N-1}x(n-k) \exp\{2\pi i\frac{(n-k)m}{N}\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-8ecf2489-2862-4010-b911-06604a6090d7">
-<span class="eqno">(12)<a class="headerlink" href="#equation-8ecf2489-2862-4010-b911-06604a6090d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53c9f7f0-091f-40b5-a1ea-081f73973241">
+<span class="eqno">(12)<a class="headerlink" href="#equation-53c9f7f0-091f-40b5-a1ea-081f73973241" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N}|FFT(x(n))|^2
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e9766bd4-bd0c-4edf-8931-4a4678b29303">
-<span class="eqno">(13)<a class="headerlink" href="#equation-e9766bd4-bd0c-4edf-8931-4a4678b29303" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2e3e25c5-e947-4d41-94a7-50af2bb43e88">
+<span class="eqno">(13)<a class="headerlink" href="#equation-2e3e25c5-e947-4d41-94a7-50af2bb43e88" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N} P(m)
 \end{equation}\]</div>
 <p>While the PSD is related to the Power Spectrum by dividing by length of FFT (i.e. length of signal window), the proper estimation of the Autocorrelation funtion <span class="math notranslate nohighlight">\(R(k)\)</span> requires a signal length that is typically longer than the FFT, which cannot be done for short signals (transients), even if mathematically possible, but estimate is not reliable.</p>
+<section id="hz-density-estimate">
+<h2>1/Hz density estimate<a class="headerlink" href="#hz-density-estimate" title="Permalink to this headline">#</a></h2>
+<p>Above PSD is on a per sample bases. Concerning the 1/Hz density estimate one has to scale the estimate by the number of samples per second.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-35c09130-a0eb-4918-a0c4-dcbbc244a1dd">
+<span class="eqno">(14)<a class="headerlink" href="#equation-35c09130-a0eb-4918-a0c4-dcbbc244a1dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    PSD(m) = \frac{1}{fs N} |FFT(w(n)x(n))|^2
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(fs\)</span> is the sampling frequency</p>
+</section>
+<section id="windowed-psd-estimates">
+<h2>Windowed PSD estimates<a class="headerlink" href="#windowed-psd-estimates" title="Permalink to this headline">#</a></h2>
+<p>When windowing the timeseries before PSD estimates</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d84f2296-4a7d-48c7-9d22-0070aca09e68">
+<span class="eqno">(15)<a class="headerlink" href="#equation-d84f2296-4a7d-48c7-9d22-0070aca09e68" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    PSD(m) = \frac{1}{fs \sum{w(n)^2}} |FFT(w(n)x(n))|^2
+\end{equation}\]</div>
+<p>For a rectangular window we have <span class="math notranslate nohighlight">\(\sum{w(n)^2}=N\)</span></p>
+</section>
+<section id="windowed-power-spectrum-estimates">
+<h2>Windowed power spectrum estimates<a class="headerlink" href="#windowed-power-spectrum-estimates" title="Permalink to this headline">#</a></h2>
+<p>Alternatively to the PSD we have the power spectrum</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f59080c5-cd8c-442c-9906-844aae1c7bcd">
+<span class="eqno">(16)<a class="headerlink" href="#equation-f59080c5-cd8c-442c-9906-844aae1c7bcd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    PSD(m) = \frac{1}{(\sum{w(n)})^2} |FFT(w(n)x(n))|^2
+\end{equation}\]</div>
+<p>that allows the RMS spectral estimates of tonal signals, but provides wrong results for random signals</p>
+</section>
+<section id="transient-spectra-estimates">
+<h2>Transient spectra estimates<a class="headerlink" href="#transient-spectra-estimates" title="Permalink to this headline">#</a></h2>
+<p>Neither PSD nor power spectra are useful to estimate mean quantities like PSD or power spectra.
+The presence of noise only data corrupts any reliable signal spectral estimates.</p>
+<p>For such estimates, noise must be removed (signal adaptive window)</p>
+</section>
 <section id="welch-psd">
 <h2>Welch PSD<a class="headerlink" href="#welch-psd" title="Permalink to this headline">#</a></h2>
+<p>In the following, some Python should demonstrate the different</p>
 <p>Startup and helper functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -570,7 +698,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal RMS :  10.0 9.999999999999996
-&#39;Spect&#39; peak (RMS):  9.976665170162622
+&#39;Spect&#39; peak (RMS):  10.03224927283938
 </pre></div>
 </div>
 <img alt="_images/power_spectra_5_1.png" src="_images/power_spectra_5_1.png" />
@@ -613,7 +741,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal peak and energy :  10.0 708.9815403622064
-&#39;Spect&#39; peak (RMS):  0.3021969872454592
+&#39;Spect&#39; peak (RMS):  0.3526209295223997
 </pre></div>
 </div>
 <img alt="_images/power_spectra_7_1.png" src="_images/power_spectra_7_1.png" />
@@ -651,12 +779,47 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal peak and energy :  10.0 708.9815403622064
-&#39;Spect&#39; peak (RMS):  0.3392319401877296
+&#39;Spect&#39; peak (RMS):  0.29327913948023077
 </pre></div>
 </div>
 <img alt="_images/power_spectra_8_1.png" src="_images/power_spectra_8_1.png" />
 </div>
 </div>
+<p>This examples shows that when window or FFT length is much longer than signal, the contamination of noise is significant and does not allow a reliable spectral description of the the signal.</p>
+</section>
+<section id="estimmation-of-transient-peak-amplitude">
+<h3>Estimmation of transient peak amplitude<a class="headerlink" href="#estimmation-of-transient-peak-amplitude" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">win</span><span class="o">=</span><span class="n">amp</span><span class="o">/</span><span class="n">amp</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">win</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">yy</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*=</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">yy</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.157707190086727
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<p>the above examples show that for different type of signals one uses different characteristic measurements resulting in different algorithms</p>
+<section id="noise-spectral-density">
+<h3>noise spectral density<a class="headerlink" href="#noise-spectral-density" title="Permalink to this headline">#</a></h3>
+<p>Scale FFT power estimate with <span class="math notranslate nohighlight">\(1/(f_s \sum w^2[n])\)</span> to obtain power/Hz</p>
+</section>
+<section id="tonals-rms-estimates">
+<h3>tonals RMS estimates<a class="headerlink" href="#tonals-rms-estimates" title="Permalink to this headline">#</a></h3>
+<p>Scale FFT peak power estimate with <span class="math notranslate nohighlight">\(1/(\sum w[n])^2\)</span> to obtain signal rms estimate</p>
+</section>
+<section id="transient-peak-estimates">
+<h3>transient peak estimates<a class="headerlink" href="#transient-peak-estimates" title="Permalink to this headline">#</a></h3>
+<p>Scale FFT peak power estimate with <span class="math notranslate nohighlight">\(1/N\)</span> to obtain signal peak amplitude</p>
 </section>
 </section>
 </section>
