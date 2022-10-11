@@ -363,24 +363,21 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spectrum-help-functions">
-   Spectrum help functions
+  <a class="reference internal nav-link" href="#welch-psd">
+   Welch PSD
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#noise-estimates">
-   Noise estimates
+  <a class="reference internal nav-link" href="#tonal-noise">
+   Tonal + Noise
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tonal-estimates">
-   Tonal estimates
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#click-estimation">
-   Click estimation
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transient-noise">
+     Transient + noise
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -402,24 +399,21 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spectrum-help-functions">
-   Spectrum help functions
+  <a class="reference internal nav-link" href="#welch-psd">
+   Welch PSD
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#noise-estimates">
-   Noise estimates
+  <a class="reference internal nav-link" href="#tonal-noise">
+   Tonal + Noise
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tonal-estimates">
-   Tonal estimates
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#click-estimation">
-   Click estimation
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transient-noise">
+     Transient + noise
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -434,303 +428,236 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="spectral-estimation">
 <h1>Spectral estimation<a class="headerlink" href="#spectral-estimation" title="Permalink to this headline">#</a></h1>
 <p>Diven a time series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3bc1573-9348-45a0-9dc0-52f739b2652b">
-<span class="eqno">(4)<a class="headerlink" href="#equation-f3bc1573-9348-45a0-9dc0-52f739b2652b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2570919c-1a60-433d-9082-a3681097f0bc">
+<span class="eqno">(4)<a class="headerlink" href="#equation-2570919c-1a60-433d-9082-a3681097f0bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x(n)
 \end{equation}\]</div>
 <p>with fft spectrum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0d840ba-3408-4089-a7b4-4935c33fde58">
-<span class="eqno">(5)<a class="headerlink" href="#equation-f0d840ba-3408-4089-a7b4-4935c33fde58" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d5687c76-e4ae-462f-9252-4cfbf7187a39">
+<span class="eqno">(5)<a class="headerlink" href="#equation-d5687c76-e4ae-462f-9252-4cfbf7187a39" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y(m) = \sum_{n=0}^{N-1}x(n) \exp\{-2\pi i\frac{nm}{N}\}
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2bd43fa8-9a0e-48ff-9093-b34a133dace7">
-<span class="eqno">(6)<a class="headerlink" href="#equation-2bd43fa8-9a0e-48ff-9093-b34a133dace7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-78ea4954-5d59-44aa-8838-1ed7b5afea09">
+<span class="eqno">(6)<a class="headerlink" href="#equation-78ea4954-5d59-44aa-8838-1ed7b5afea09" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y(m) = FFT(x(n))
 \end{equation}\]</div>
 <p>Power spectrum is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec99155f-a25b-45f5-9ab1-44012af89ca1">
-<span class="eqno">(7)<a class="headerlink" href="#equation-ec99155f-a25b-45f5-9ab1-44012af89ca1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a7a22924-1b27-4e89-b413-49c896efba77">
+<span class="eqno">(7)<a class="headerlink" href="#equation-a7a22924-1b27-4e89-b413-49c896efba77" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(m) = |y(m)|^2
 \end{equation}\]</div>
 <p>Power spectral density (PSD) of a discrete-time noise signal is given by the FFT of its autocorrelation function, R(k)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc14b088-7034-4b38-beb1-3266f543fedf">
-<span class="eqno">(8)<a class="headerlink" href="#equation-dc14b088-7034-4b38-beb1-3266f543fedf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9519c084-9d57-4d28-91e9-cfa8cf9162e2">
+<span class="eqno">(8)<a class="headerlink" href="#equation-9519c084-9d57-4d28-91e9-cfa8cf9162e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = FFT(R(k))
 \end{equation}\]</div>
 <p>where the autocorrelation function R(k) is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4262133e-3a82-4ba9-ad6c-8d70a772171f">
-<span class="eqno">(9)<a class="headerlink" href="#equation-4262133e-3a82-4ba9-ad6c-8d70a772171f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-13817c4b-e833-405a-9739-58b34a7114e9">
+<span class="eqno">(9)<a class="headerlink" href="#equation-13817c4b-e833-405a-9739-58b34a7114e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     R(k)=\frac{1}{N}\sum_{n=0}^{N-1}x(n)x(n-k)
 \end{equation}\]</div>
 <p>that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6ae0b9b9-ce62-43ec-a94a-e3e8c4ad8fb5">
-<span class="eqno">(10)<a class="headerlink" href="#equation-6ae0b9b9-ce62-43ec-a94a-e3e8c4ad8fb5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-df539c59-427f-4943-9890-5824bf16a349">
+<span class="eqno">(10)<a class="headerlink" href="#equation-df539c59-427f-4943-9890-5824bf16a349" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \sum_{k=0}^{N-1}\frac{1}{N}\sum_{n=0}^{N-1}x(n)x(n-k) \exp\{-2\pi i\frac{km}{N}\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2b2a1a29-75db-420a-a0a4-17b18977f302">
-<span class="eqno">(11)<a class="headerlink" href="#equation-2b2a1a29-75db-420a-a0a4-17b18977f302" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-45d259b8-2cdc-49a6-8687-2926b77bf404">
+<span class="eqno">(11)<a class="headerlink" href="#equation-45d259b8-2cdc-49a6-8687-2926b77bf404" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N}\sum_{n=0}^{N-1}x(n)\exp\{-2\pi i\frac{nm}{N} \} \sum_{k=0}^{N-1}x(n-k) \exp\{2\pi i\frac{(n-k)m}{N}\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9f9de8f0-a302-4de7-937f-b416027128a0">
-<span class="eqno">(12)<a class="headerlink" href="#equation-9f9de8f0-a302-4de7-937f-b416027128a0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8ecf2489-2862-4010-b911-06604a6090d7">
+<span class="eqno">(12)<a class="headerlink" href="#equation-8ecf2489-2862-4010-b911-06604a6090d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N}|FFT(x(n))|^2
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c473e9e3-b3e1-4d73-b073-7655fada56bc">
-<span class="eqno">(13)<a class="headerlink" href="#equation-c473e9e3-b3e1-4d73-b073-7655fada56bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e9766bd4-bd0c-4edf-8931-4a4678b29303">
+<span class="eqno">(13)<a class="headerlink" href="#equation-e9766bd4-bd0c-4edf-8931-4a4678b29303" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N} P(m)
 \end{equation}\]</div>
 <p>While the PSD is related to the Power Spectrum by dividing by length of FFT (i.e. length of signal window), the proper estimation of the Autocorrelation funtion <span class="math notranslate nohighlight">\(R(k)\)</span> requires a signal length that is typically longer than the FFT, which cannot be done for short signals (transients), even if mathematically possible, but estimate is not reliable.</p>
+<section id="welch-psd">
+<h2>Welch PSD<a class="headerlink" href="#welch-psd" title="Permalink to this headline">#</a></h2>
+<p>Startup and helper functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sig</span>
 
-<span class="n">fs</span><span class="o">=</span><span class="mi">192</span>
-<span class="n">te</span><span class="o">=</span><span class="mi">100</span>
-
-<span class="n">tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">te</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
-<span class="n">ndat</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="spectrum-help-functions">
-<h2>Spectrum help functions<a class="headerlink" href="#spectrum-help-functions" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">):</span>
     <span class="n">nwin</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
     <span class="n">nfft</span><span class="o">=</span><span class="n">nwin</span>
     <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="p">[:</span><span class="n">nwin</span><span class="p">]</span><span class="o">*</span><span class="n">win</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
-    <span class="n">ff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="n">nfft</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">yy</span><span class="p">,</span><span class="n">ff</span><span class="p">,</span><span class="n">win</span>
+    <span class="n">pp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">pp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*=</span><span class="mi">2</span>                  <span class="c1"># compensate for negatice frequencies</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft</span>
+    <span class="n">sc1</span><span class="o">=</span> <span class="n">fs</span> <span class="o">*</span> <span class="p">(</span><span class="n">win</span><span class="o">*</span><span class="n">win</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># for density</span>
+    <span class="n">sc2</span><span class="o">=</span> <span class="n">win</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span>          <span class="c1"># for spectrum</span>
+    <span class="k">return</span> <span class="n">ff</span><span class="p">,</span><span class="n">pp</span><span class="o">/</span><span class="n">sc1</span><span class="p">,</span><span class="n">pp</span><span class="o">/</span><span class="n">sc2</span>
 
-<span class="k">def</span> <span class="nf">mWindow</span><span class="p">(</span><span class="n">nwin</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nwin</span><span class="p">,))</span>
-    <span class="c1">#return np.hanning(nwin)</span>
+<span class="k">def</span> <span class="nf">wSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">):</span>
+    <span class="c1"># estimate power spectral density (PSD)</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">Pxx_dens</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">win</span><span class="p">),</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">win</span><span class="p">)</span>
+    <span class="c1"># estimate power spectrum</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">Pxx_spec</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">win</span><span class="p">),</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="s2">&quot;spectrum&quot;</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">win</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">,</span><span class="n">Pxx_dens</span><span class="p">,</span><span class="n">Pxx_spec</span>
+
+
+<span class="k">def</span> <span class="nf">estSpectrograms</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">amp</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">,</span><span class="n">Pxx_dens</span><span class="p">,</span><span class="n">Pxx_spec</span><span class="o">=</span><span class="n">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;Spect&#39; peak (RMS): &quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Pxx_spec</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+    <span class="c1">#</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">amp</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">time</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">Pxx_dens</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">amp</span><span class="p">)</span><span class="o">*</span><span class="mi">20</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency [kHz]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD [V**2/Hz]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">Pxx_spec</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">amp</span><span class="p">)</span><span class="o">*</span><span class="mi">20</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency [kHz]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Spectrum [V**2]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="noise-estimates">
-<h2>Noise estimates<a class="headerlink" href="#noise-estimates" title="Permalink to this headline">#</a></h2>
+<section id="tonal-noise">
+<h2>Tonal + Noise<a class="headerlink" href="#tonal-noise" title="Permalink to this headline">#</a></h2>
+<p>The sampling frequency, signal and window length are chosen such that the Welch PSD corresponds to a single FFT transform. For longer signals the Welch PSD estimates would only average the spectra.</p>
+<p>From the graphs one notes that the noise level (0.001) is estimated by the PSD (density) method, while the signal RMS (10 units) estimate corresponds to the peak value of the Spectrum (not density) estimate, but the noise density is then wrongly estimated.</p>
+<p>The examples are derived from the Python Welch documentation and are consequently only valid in the python environment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sig</span><span class="o">=</span><span class="mf">0.1</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># only to ensure same noise signal</span>
-<span class="n">xx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">ndat</span><span class="p">)</span>
-<span class="n">rms</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMS = &quot;</span><span class="p">,</span><span class="n">rms</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="mi">1024</span>   <span class="c1">#Hz</span>
+<span class="n">nwin</span><span class="o">=</span><span class="n">fs</span>
+<span class="n">nfft</span><span class="o">=</span><span class="n">nwin</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">xx</span><span class="p">);</span>
+<span class="c1">#    Generate a 1 second test signal, a 2 Vrms sine wave at fs/8, corrupted by</span>
+<span class="c1">#    0.001 V**2/Hz of white noise sampled at  1.024 kHz.</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">fs</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span>
+
+<span class="n">amp</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="n">fs</span><span class="o">/</span><span class="mi">8</span>
+<span class="n">noise_power</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="n">fs</span> <span class="o">/</span> <span class="mi">2</span> 
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+<span class="n">rms</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">xx</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_power</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signal RMS : &quot;</span><span class="p">,</span><span class="n">amp</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">rms</span><span class="p">)</span>
+
+<span class="c1"># obtain window</span>
+<span class="n">win</span><span class="o">=</span><span class="n">sig</span><span class="o">.</span><span class="n">get_window</span><span class="p">(</span><span class="s2">&quot;hanning&quot;</span><span class="p">,</span><span class="n">nwin</span><span class="p">)</span>
+
+<span class="n">estSpectrograms</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">amp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMS =  0.09994394056480846
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal RMS :  10.0 9.999999999999996
+&#39;Spect&#39; peak (RMS):  9.976665170162622
 </pre></div>
 </div>
-<img alt="_images/power_spectra_6_1.png" src="_images/power_spectra_6_1.png" />
+<img alt="_images/power_spectra_5_1.png" src="_images/power_spectra_5_1.png" />
 </div>
 </div>
+<section id="transient-noise">
+<h3>Transient + noise<a class="headerlink" href="#transient-noise" title="Permalink to this headline">#</a></h3>
+<p>Assume short transient (echolocation click) in the middle of the time window</p>
+<p>The transient is sinusoidal with a bell shaped (gaussian) amplitude function.</p>
+<p>We can see from the pictures that the noise density is correctly estimated by the PSD (density) method, but both the density and the spectrum method cannot provide a good description of the transient. The signal is to short for RMS estimation. Signal characteristics can only be estimated after signal detection, when the background noise is elimiated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">w1</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">mWindow</span><span class="p">(</span><span class="mi">1024</span><span class="p">))</span>
-<span class="n">y2</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">w2</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">mWindow</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">1024</span><span class="p">))</span>
-<span class="n">y3</span><span class="p">,</span><span class="n">f3</span><span class="p">,</span><span class="n">w3</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">mWindow</span><span class="p">(</span><span class="mi">16</span><span class="o">*</span><span class="mi">1024</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="mi">1024</span>   <span class="c1">#Hz</span>
+<span class="n">nwin</span><span class="o">=</span><span class="n">fs</span>
+<span class="n">nfft</span><span class="o">=</span><span class="n">nwin</span>
 
-<span class="c1"># RMS scaling</span>
-<span class="n">y1</span> <span class="o">=</span> <span class="n">y1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">w1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">y2</span> <span class="o">=</span> <span class="n">y2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">w2</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">y3</span> <span class="o">=</span> <span class="n">y3</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">w3</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="c1">#    Generate a 1 second test signal, a 10 VPeak Gaussian shaped sine wave at fs/4, corrupted by</span>
+<span class="c1">#    0.001 V**2/Hz of white noise sampled at  1.024 kHz.</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">fs</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">sigma</span><span class="o">=</span><span class="mi">8</span><span class="o">/</span><span class="n">N</span>
+<span class="n">amp</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">((</span><span class="n">time</span><span class="o">-</span><span class="n">time</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y1</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y2</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f3</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y3</span><span class="p">)));</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="n">fs</span><span class="o">/</span><span class="mi">4</span>
+<span class="n">noise_power</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="n">fs</span> <span class="o">/</span> <span class="mi">2</span> 
+<span class="n">xx</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">time</span><span class="p">)</span> 
+<span class="n">energy</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_power</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signal peak and energy : &quot;</span><span class="p">,</span><span class="n">amp</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">energy</span><span class="p">)</span>
+
+<span class="c1"># obtain window</span>
+<span class="n">win</span><span class="o">=</span><span class="n">sig</span><span class="o">.</span><span class="n">get_window</span><span class="p">(</span><span class="s2">&quot;hanning&quot;</span><span class="p">,</span><span class="n">nwin</span><span class="p">)</span>
+
+<span class="n">estSpectrograms</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">amp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09844938830753279 0.09969878122248539 0.09986936714626339
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal peak and energy :  10.0 708.9815403622064
+&#39;Spect&#39; peak (RMS):  0.3021969872454592
 </pre></div>
 </div>
 <img alt="_images/power_spectra_7_1.png" src="_images/power_spectra_7_1.png" />
 </div>
 </div>
-</section>
-<section id="tonal-estimates">
-<h2>Tonal estimates<a class="headerlink" href="#tonal-estimates" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mf">1.0</span>
-<span class="n">ss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">tt</span><span class="o">*</span><span class="mi">192</span><span class="o">/</span><span class="mi">256</span><span class="p">)</span>
-<span class="n">rms</span><span class="o">=</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMS = &quot;</span><span class="p">,</span><span class="n">rms</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peak =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ss</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="mi">1024</span>   <span class="c1">#Hz</span>
+<span class="n">nwin</span><span class="o">=</span><span class="n">fs</span>
+<span class="n">nfft</span><span class="o">=</span><span class="n">nwin</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">ss</span><span class="p">);</span>
+<span class="c1">#    Generate a 1 second test signal, a 10 VPeak Gaussian shaped sine wave at fs/4, corrupted by</span>
+<span class="c1">#    0.001 V**2/Hz of white noise sampled at  1.024 kHz.</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">fs</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span>
+
+<span class="n">sigma</span><span class="o">=</span><span class="mi">8</span><span class="o">/</span><span class="n">N</span>
+<span class="n">amp</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">((</span><span class="n">time</span><span class="o">-</span><span class="n">time</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">freq</span> <span class="o">=</span> <span class="n">fs</span><span class="o">/</span><span class="mi">4</span>
+<span class="n">noise_power</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="n">fs</span> <span class="o">/</span> <span class="mi">2</span> 
+<span class="n">xx</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">time</span><span class="p">)</span> 
+<span class="n">energy</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_power</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signal peak and energy : &quot;</span><span class="p">,</span><span class="n">amp</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">energy</span><span class="p">)</span>
+
+<span class="c1"># obtain window</span>
+<span class="n">win</span><span class="o">=</span><span class="n">sig</span><span class="o">.</span><span class="n">get_window</span><span class="p">(</span><span class="s2">&quot;hanning&quot;</span><span class="p">,</span><span class="n">nwin</span><span class="p">)</span>
+
+<span class="n">estSpectrograms</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">amp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMS =  0.7071067811865476
-Peak = 1.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal peak and energy :  10.0 708.9815403622064
+&#39;Spect&#39; peak (RMS):  0.3392319401877296
 </pre></div>
 </div>
-<img alt="_images/power_spectra_9_1.png" src="_images/power_spectra_9_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">w1</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">mWindow</span><span class="p">(</span><span class="mi">1024</span><span class="p">))</span>
-<span class="n">z2</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">w2</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">mWindow</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">1024</span><span class="p">))</span>
-<span class="n">z3</span><span class="p">,</span><span class="n">f3</span><span class="p">,</span><span class="n">w3</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">mWindow</span><span class="p">(</span><span class="mi">16</span><span class="o">*</span><span class="mi">1024</span><span class="p">))</span>
-
-<span class="c1"># RMS scaling</span>
-<span class="n">u1</span> <span class="o">=</span> <span class="n">z1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">u2</span> <span class="o">=</span> <span class="n">z2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w2</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">u3</span> <span class="o">=</span> <span class="n">z3</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w3</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMS  =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peak =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)))</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f3</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)));</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMS  = 0.7064172571013567 0.7069342108896063 0.7070636267645375
-Peak = 16.0 32.0 64.0
-</pre></div>
-</div>
-<img alt="_images/power_spectra_10_1.png" src="_images/power_spectra_10_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Peak scaling</span>
-
-<span class="n">u1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">z1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>
-<span class="n">u2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">z2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
-<span class="n">u3</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">z3</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w3</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMS  =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peak =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)))</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f3</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)));</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMS  = 0.044151078568834795 0.022091694090300196 0.011047869168195898
-Peak = 1.0 1.0 1.0
-</pre></div>
-</div>
-<img alt="_images/power_spectra_11_1.png" src="_images/power_spectra_11_1.png" />
+<img alt="_images/power_spectra_8_1.png" src="_images/power_spectra_8_1.png" />
 </div>
 </div>
 </section>
-<section id="click-estimation">
-<h2>Click estimation<a class="headerlink" href="#click-estimation" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sig</span><span class="o">=</span><span class="mf">0.5</span>
-<span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">sig</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">((</span><span class="n">tt</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">sig</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">cc</span><span class="o">=</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">tt</span><span class="o">*</span><span class="mi">192</span><span class="o">/</span><span class="mi">64</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RSS = &quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peak =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cc</span><span class="p">))</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">cc</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RSS =  7.359497266837217
-Peak = 0.7868794322038799
-</pre></div>
-</div>
-<img alt="_images/power_spectra_13_1.png" src="_images/power_spectra_13_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">w1</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1024</span><span class="p">,)))</span>
-<span class="n">v2</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">w2</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="o">*</span><span class="mi">1024</span><span class="p">,)))</span>
-<span class="n">v3</span><span class="p">,</span><span class="n">f3</span><span class="p">,</span><span class="n">w3</span> <span class="o">=</span> <span class="n">mSpectrum</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">16</span><span class="o">*</span><span class="mi">1024</span><span class="p">,)))</span>
-
-<span class="c1"># RSS scaling (root-sum-squared)</span>
-<span class="n">u1</span> <span class="o">=</span> <span class="n">v1</span>
-<span class="n">u2</span> <span class="o">=</span> <span class="n">v2</span>
-<span class="n">u3</span> <span class="o">=</span> <span class="n">v3</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMS  =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peak =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)))</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f3</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)));</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMS  = 7.35232076846756 7.3577011722975145 7.359048119891828
-Peak = 95.99986188627999 95.99999991429195 95.99999991429195
-</pre></div>
-</div>
-<img alt="_images/power_spectra_14_1.png" src="_images/power_spectra_14_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># peak scaling</span>
-<span class="n">sc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">sig</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="c1"># using scaling from signal generation</span>
-
-<span class="n">u1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">v1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">sc</span>
-<span class="n">u2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">v2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">sc</span>
-<span class="n">u3</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">v3</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">sc</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RSS  =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peak =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)))</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u1</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u2</span><span class="p">)));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f3</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u3</span><span class="p">)));</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RSS  = 0.06110732534202541 0.061152043479014026 0.061163238361209224
-Peak = 0.797883413660844 0.7978845608527171 0.7978845608527171
-</pre></div>
-</div>
-<img alt="_images/power_spectra_15_1.png" src="_images/power_spectra_15_1.png" />
-</div>
-</div>
 </section>
 </section>
 
