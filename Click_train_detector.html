@@ -367,68 +367,68 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="click-train-detector">
 <h1>Click train detector<a class="headerlink" href="#click-train-detector" title="Permalink to this headline">#</a></h1>
 <p>Inter-click-interval (ICI)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7de876e-dbfc-4ef9-91f7-9611f8cf1dd2">
-<span class="eqno">(96)<a class="headerlink" href="#equation-e7de876e-dbfc-4ef9-91f7-9611f8cf1dd2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-272bcb9b-0642-432e-b75d-ba84eef3780b">
+<span class="eqno">(96)<a class="headerlink" href="#equation-272bcb9b-0642-432e-b75d-ba84eef3780b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n = t_n - t_{n-1}
 \end{equation}\]</div>
 <p>Assume variation in ICI and the relative change in Power are stochastic processes that vary only randomly</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a740b504-e4d9-45db-9d65-aaec3f71f13c">
-<span class="eqno">(97)<a class="headerlink" href="#equation-a740b504-e4d9-45db-9d65-aaec3f71f13c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-57dbc2de-e8e1-4b93-a072-45620b50ccdc">
+<span class="eqno">(97)<a class="headerlink" href="#equation-57dbc2de-e8e1-4b93-a072-45620b50ccdc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta (ICI)_n  = \Delta (ICI)_{n-1} + N(0,\sigma_C) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-12ba4451-cab0-4e57-b61b-35c73e6b301b">
-<span class="eqno">(98)<a class="headerlink" href="#equation-12ba4451-cab0-4e57-b61b-35c73e6b301b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-70450950-e8c2-46c8-94aa-25661ecf7b69">
+<span class="eqno">(98)<a class="headerlink" href="#equation-70450950-e8c2-46c8-94aa-25661ecf7b69" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta^2 P_n  = \Delta^2 P_{n-1} + N(0,\sigma_P) 
 \end{equation}\]</div>
 <p>That is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-192b2a65-07a9-4ee6-904b-3d925320ca21">
-<span class="eqno">(99)<a class="headerlink" href="#equation-192b2a65-07a9-4ee6-904b-3d925320ca21" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-22d63323-424b-4be9-9c6f-8039d6ea572f">
+<span class="eqno">(99)<a class="headerlink" href="#equation-22d63323-424b-4be9-9c6f-8039d6ea572f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n  = 2 (ICI)_{n-1} - (ICI)_{n-2} + N(0,\sigma_C) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-4b361a9a-a4b6-492e-b2e5-f487b0aca0ca">
-<span class="eqno">(100)<a class="headerlink" href="#equation-4b361a9a-a4b6-492e-b2e5-f487b0aca0ca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3bbf42f6-54cd-426b-85a6-c86d6e40de52">
+<span class="eqno">(100)<a class="headerlink" href="#equation-3bbf42f6-54cd-426b-85a6-c86d6e40de52" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_n-2P_{n-1}+P_{n-2}=P_{n-1}-2P_{n-2}+P_{n-3}+N(0,\sigma_P)
 \end{equation}\]</div>
 <p>Or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-52abf67c-c50f-4ff0-80cc-cca9f1743923">
-<span class="eqno">(101)<a class="headerlink" href="#equation-52abf67c-c50f-4ff0-80cc-cca9f1743923" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dee17cae-1c3f-42ee-9301-7a5ad0cc5680">
+<span class="eqno">(101)<a class="headerlink" href="#equation-dee17cae-1c3f-42ee-9301-7a5ad0cc5680" title="Permalink to this equation">#</a></span>\[\begin{equation}
 t_n=3t_{n-1}-3t_{n-2}+t_{n-3}+N(0,σ_C)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-cad5d9e0-8f82-4272-b828-177e4095b3a3">
-<span class="eqno">(102)<a class="headerlink" href="#equation-cad5d9e0-8f82-4272-b828-177e4095b3a3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5406c13a-df75-430a-8201-bc51fa4078d0">
+<span class="eqno">(102)<a class="headerlink" href="#equation-5406c13a-df75-430a-8201-bc51fa4078d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_n=3P_{n-1}-3P_{n-2}+P_{n-3}+N(0,σ_P)
 \end{equation}\]</div>
 <p>Assume further that boundary reflection (multipath) is is deterimind by the changing geometry</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42565912-bd69-4b33-902d-3d8293f3704d">
-<span class="eqno">(103)<a class="headerlink" href="#equation-42565912-bd69-4b33-902d-3d8293f3704d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aab9ed0f-56c5-4cdd-af48-e8b60505c154">
+<span class="eqno">(103)<a class="headerlink" href="#equation-aab9ed0f-56c5-4cdd-af48-e8b60505c154" title="Permalink to this equation">#</a></span>\[\begin{equation}
 δτ_n=t_{r,n}-t_n
 \end{equation}\]</div>
 <p>is slowly varying</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ea34ad5-aad8-41ca-9118-023f8023ddbe">
-<span class="eqno">(104)<a class="headerlink" href="#equation-8ea34ad5-aad8-41ca-9118-023f8023ddbe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d78cb1e5-c7a1-4a9a-b078-658d9376790f">
+<span class="eqno">(104)<a class="headerlink" href="#equation-d78cb1e5-c7a1-4a9a-b078-658d9376790f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Δδτ_n=Δδτ_{n-1}+N(0,σ_τ)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-d24ea8ad-ad90-4bcc-89a8-90957d03b652">
-<span class="eqno">(105)<a class="headerlink" href="#equation-d24ea8ad-ad90-4bcc-89a8-90957d03b652" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e01501bf-b1bc-44fc-8834-85cb697f96dc">
+<span class="eqno">(105)<a class="headerlink" href="#equation-e01501bf-b1bc-44fc-8834-85cb697f96dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 δτ_n = 2 δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f207976-8e63-40e5-afe5-3c52b69e607c">
-<span class="eqno">(106)<a class="headerlink" href="#equation-5f207976-8e63-40e5-afe5-3c52b69e607c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b5039d0a-0704-4605-8d28-96492cce9c07">
+<span class="eqno">(106)<a class="headerlink" href="#equation-b5039d0a-0704-4605-8d28-96492cce9c07" title="Permalink to this equation">#</a></span>\[\begin{equation}
 t_{r,n} = t_n+2δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
 \end{equation}\]</div>
 <p>This would indicate that the click time, received level and surface reflection delay can be considered AR processes.</p>
 <p>In summary:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ff61b4eb-c108-47c8-b017-f16b478995e4">
-<span class="eqno">(107)<a class="headerlink" href="#equation-ff61b4eb-c108-47c8-b017-f16b478995e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-854506f7-1f67-4268-bdfc-5ac635d5b66a">
+<span class="eqno">(107)<a class="headerlink" href="#equation-854506f7-1f67-4268-bdfc-5ac635d5b66a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n  = 2 (ICI)_{n-1} - (ICI)_{n-2} + N(0,\sigma_C) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-c31c2fb6-b920-4609-a5d6-14a320f768ac">
-<span class="eqno">(108)<a class="headerlink" href="#equation-c31c2fb6-b920-4609-a5d6-14a320f768ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-31a6f578-3ba6-490e-ba3b-c53c227e18d3">
+<span class="eqno">(108)<a class="headerlink" href="#equation-31a6f578-3ba6-490e-ba3b-c53c227e18d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_n=3P_{n-1}-3P_{n-2}+P_{n-3}+N(0,σ_P)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-936fe3f9-9858-4630-8e56-1cd60ce1c481">
-<span class="eqno">(109)<a class="headerlink" href="#equation-936fe3f9-9858-4630-8e56-1cd60ce1c481" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e46cb362-90fb-427e-aabd-ee0c4a23922c">
+<span class="eqno">(109)<a class="headerlink" href="#equation-e46cb362-90fb-427e-aabd-ee0c4a23922c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 δτ_n = 2 δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
 \end{equation}\]</div>
 </section>

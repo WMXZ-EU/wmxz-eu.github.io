@@ -477,8 +477,8 @@ Also, using all possible hydrophone pairs puts the reference location of the arr
 <section id="basic-formulation">
 <h2>Basic formulation<a class="headerlink" href="#basic-formulation" title="Permalink to this headline">#</a></h2>
 <p>Let the sound direction  <span class="math notranslate nohighlight">\(\hat s\)</span> be given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8963c139-4553-4621-8770-6ccc69f56dd1">
-<span class="eqno">(39)<a class="headerlink" href="#equation-8963c139-4553-4621-8770-6ccc69f56dd1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a98676c8-3550-4eb1-801b-af361d1d3022">
+<span class="eqno">(39)<a class="headerlink" href="#equation-a98676c8-3550-4eb1-801b-af361d1d3022" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat s = 
     \left(
         \begin{array}{c}
@@ -489,8 +489,8 @@ Also, using all possible hydrophone pairs puts the reference location of the arr
     \right)  
 \end{equation}\]</div>
 <p>and the hydrophone separation matrix <span class="math notranslate nohighlight">\( D_0\)</span> be given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-629e77c0-0442-4d02-bb10-d6ab622d913c">
-<span class="eqno">(40)<a class="headerlink" href="#equation-629e77c0-0442-4d02-bb10-d6ab622d913c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-574b5aa4-fc5f-4095-8ca7-0283ad23c15e">
+<span class="eqno">(40)<a class="headerlink" href="#equation-574b5aa4-fc5f-4095-8ca7-0283ad23c15e" title="Permalink to this equation">#</a></span>\[\begin{equation}
      D_0 = 
     \left(
         \begin{array}{c c c c}
@@ -502,8 +502,8 @@ Also, using all possible hydrophone pairs puts the reference location of the arr
 \end{equation}\]</div>
 <p>where the elements <span class="math notranslate nohighlight">\((d_{ix},d_{iy},d_{iz}) \)</span> are the <span class="math notranslate nohighlight">\(x,y,z\)</span> components of the vector that connects a pair of hydrophones.</p>
 <p>then the vector of measurements <span class="math notranslate nohighlight">\( m\)</span> defined by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02000f01-4b4e-4729-9033-3d0ef9d639c3">
-<span class="eqno">(41)<a class="headerlink" href="#equation-02000f01-4b4e-4729-9033-3d0ef9d639c3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d59df52-3bf2-4409-a97b-cab32dcb3495">
+<span class="eqno">(41)<a class="headerlink" href="#equation-9d59df52-3bf2-4409-a97b-cab32dcb3495" title="Permalink to this equation">#</a></span>\[\begin{equation}
      m = 
     \left(
         \begin{array}{c}
@@ -515,31 +515,31 @@ Also, using all possible hydrophone pairs puts the reference location of the arr
     \right)  
 \end{equation}\]</div>
 <p>is estimated by the projection of the sound source direction onto the different hydrophone pairs.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6983a980-7935-44f3-9950-19a673d7060c">
-<span class="eqno">(42)<a class="headerlink" href="#equation-6983a980-7935-44f3-9950-19a673d7060c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f67a6ab2-7097-4ced-a38b-dc7d25ae515b">
+<span class="eqno">(42)<a class="headerlink" href="#equation-f67a6ab2-7097-4ced-a38b-dc7d25ae515b" title="Permalink to this equation">#</a></span>\[\begin{equation}
      m =  D_0^T  {\hat s}
 \end{equation}\]</div>
 <p>The sound direction is then estimated from the measurement vector by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1dbfa4c4-4743-462d-a85b-cc2745751e5e">
-<span class="eqno">(43)<a class="headerlink" href="#equation-1dbfa4c4-4743-462d-a85b-cc2745751e5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-db3aa136-93c0-48a1-ba93-6ff906e506be">
+<span class="eqno">(43)<a class="headerlink" href="#equation-db3aa136-93c0-48a1-ba93-6ff906e506be" title="Permalink to this equation">#</a></span>\[\begin{equation}
     {\hat s} = \left( D_0^T  D_0 \right)^{-1}  D_0  m
 \end{equation}\]</div>
 </section>
 <section id="angle-estimations">
 <h2>Angle estimations<a class="headerlink" href="#angle-estimations" title="Permalink to this headline">#</a></h2>
 <p>The arrival angles azimuth <span class="math notranslate nohighlight">\(\alpha\)</span> and elevation <span class="math notranslate nohighlight">\(\beta\)</span>  of the sound are finally estimated by solving</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b9fd2d52-fd4c-4802-abd0-058aa252af08">
-<span class="eqno">(44)<a class="headerlink" href="#equation-b9fd2d52-fd4c-4802-abd0-058aa252af08" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-95ed2141-1740-48a3-b826-127e29c7fc99">
+<span class="eqno">(44)<a class="headerlink" href="#equation-95ed2141-1740-48a3-b826-127e29c7fc99" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \tan \alpha = \frac{-s_y}{s_x}
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-63028bda-2026-4858-88bd-eb5829807bd7">
-<span class="eqno">(45)<a class="headerlink" href="#equation-63028bda-2026-4858-88bd-eb5829807bd7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-63774cd8-b664-4988-a832-cd8dd5a43b10">
+<span class="eqno">(45)<a class="headerlink" href="#equation-63774cd8-b664-4988-a832-cd8dd5a43b10" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \sin \beta = s_z
 \end{equation}\]</div>
 <p>or alternatively</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2d4c5ef8-796b-47ed-8b43-c331734877ab">
-<span class="eqno">(46)<a class="headerlink" href="#equation-2d4c5ef8-796b-47ed-8b43-c331734877ab" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a0b6b14e-dfed-42d5-bfa6-8b372e97af90">
+<span class="eqno">(46)<a class="headerlink" href="#equation-a0b6b14e-dfed-42d5-bfa6-8b372e97af90" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \tan \beta = \frac{s_z}{\sqrt{s_x^2+s_y^2}}
 \end{equation}\]</div>
 <p>As the azimuth angles may vary from -180°  to 180°  the solutions require the usual care for  <span class="math notranslate nohighlight">\(s_x&lt;0\)</span>, i.e. by using the four-quadrant inverse tangent.
@@ -599,8 +599,8 @@ The minus sign in equation is simply due to the convention that positive azimuth
 <section id="time-delay-based-direction-finding">
 <h3>Time delay based direction finding<a class="headerlink" href="#time-delay-based-direction-finding" title="Permalink to this headline">#</a></h3>
 <p>For a time delay based direction finding one uses as measurements</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4eb0d3c2-43cf-48a4-9674-55408dd054fe">
-<span class="eqno">(47)<a class="headerlink" href="#equation-4eb0d3c2-43cf-48a4-9674-55408dd054fe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0b3a876e-34e6-4720-a87d-e40a66095cd8">
+<span class="eqno">(47)<a class="headerlink" href="#equation-0b3a876e-34e6-4720-a87d-e40a66095cd8" title="Permalink to this equation">#</a></span>\[\begin{equation}
      m_i = c \Delta \tau_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(c\)</span> is the sound speed between the a pair of hydrophones,</p>
@@ -608,8 +608,8 @@ The minus sign in equation is simply due to the convention that positive azimuth
 <section id="intensity-based-direction-finding">
 <h3>Intensity based direction finding<a class="headerlink" href="#intensity-based-direction-finding" title="Permalink to this headline">#</a></h3>
 <p>Using the estimated (spectral) sound intensity along a pair of hydrophones, say <span class="math notranslate nohighlight">\(I_i(f)\)</span> then suitable measurements are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5dad186d-d53d-40b2-a6b9-5c22c2b49a4a">
-<span class="eqno">(48)<a class="headerlink" href="#equation-5dad186d-d53d-40b2-a6b9-5c22c2b49a4a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a13a70a-b9be-4396-ba03-7a4e7a1203a4">
+<span class="eqno">(48)<a class="headerlink" href="#equation-9a13a70a-b9be-4396-ba03-7a4e7a1203a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 m_i = \Delta x_{12}I_i(f)    =-\frac{1}{\rho} \frac{\text{Im}\{P_{i2}(\omega) P_{i1}^* (\omega)\}}{\omega}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(P_{i1}(\omega)\)</span> and <span class="math notranslate nohighlight">\(P_{i2}(\omega)\)</span> are the (complex valued) power spectra of a pair of hydrophones and <span class="math notranslate nohighlight">\(\Delta x_{12}\)</span> id the distance between the two hydrophones.</p>
@@ -618,13 +618,13 @@ m_i = \Delta x_{12}I_i(f)    =-\frac{1}{\rho} \frac{\text{Im}\{P_{i2}(\omega) P_
 <section id="phase-based-direction-finding">
 <h3>phase based direction finding<a class="headerlink" href="#phase-based-direction-finding" title="Permalink to this headline">#</a></h3>
 <p>For lower frequencies,  <span class="math notranslate nohighlight">\(k\omega &lt; 2/d\)</span>, phase differences between pairs of hydrophones can be used for direction finding.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b8976e79-d12d-4820-be36-a1848f86a34b">
-<span class="eqno">(49)<a class="headerlink" href="#equation-b8976e79-d12d-4820-be36-a1848f86a34b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2db1cb98-1cf5-4338-a2ae-29637d079296">
+<span class="eqno">(49)<a class="headerlink" href="#equation-2db1cb98-1cf5-4338-a2ae-29637d079296" title="Permalink to this equation">#</a></span>\[\begin{equation}
 m_i = \Delta x_{12}\Phi(\omega)
 \end{equation}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f49955d1-d1ad-4fcf-b873-84c60367d538">
-<span class="eqno">(50)<a class="headerlink" href="#equation-f49955d1-d1ad-4fcf-b873-84c60367d538" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-df3a506f-6ee6-4363-a2d7-869b675ae1f1">
+<span class="eqno">(50)<a class="headerlink" href="#equation-df3a506f-6ee6-4363-a2d7-869b675ae1f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Phi(\omega) = -\text{Im}\{\text{log}_e(P_{i2}(\omega) P_{i1}^* (\omega))\}
 \end{equation}\]</div>
 </section>
@@ -1026,7 +1026,7 @@ Time delay:  104.82975112567874
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3.372467985948604 14.835665753204971 14.542720221961739
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3.3420400954254514 14.70276410602192 14.689306589778305
 -3.4336303624505224 14.574216198038739 14.574216198038739
 </pre></div>
 </div>
