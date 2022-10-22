@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Wave propagation &#8212; bioacoustics</title>
+    <title>Equation of motion of disturbed particles &#8212; bioacoustics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="BLM_1: Basic signal spectral analysis" href="blm_1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -108,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../wave_equation.html">
    Wave equation
@@ -161,7 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="blm_1.html">
-   Basic Signal Spectral analysis
+   BLM_1: Basic signal spectral analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Equation of motion of disturbed particles
   </a>
  </li>
 </ul>
@@ -371,36 +377,29 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#equation-of-motion-of-disturbed-particles">
-   Equation of motion of disturbed particles
+  <a class="reference internal nav-link" href="#newton-law-of-motion">
+   Newton’ law of motion:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#restoring-force-of-pressure-gradient">
+   Restoring force of pressure gradient:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#equation-of-continuity">
+   Equation of continuity:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wave-equation">
+   Wave equation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#newton-law-of-motion">
-     Newton’ law of motion:
+    <a class="reference internal nav-link" href="#direction-of-propagation">
+     Direction of propagation
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#restoring-force-of-pressure-gradient">
-     Restoring force of pressure gradient:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#equation-of-continuity">
-     Equation of continuity:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wave-equation">
-     Wave equation
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#direction-of-propagation">
-       Direction of propagation
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -413,7 +412,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Wave propagation</h1>
+                <h1>Equation of motion of disturbed particles</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -424,36 +423,29 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#equation-of-motion-of-disturbed-particles">
-   Equation of motion of disturbed particles
+  <a class="reference internal nav-link" href="#newton-law-of-motion">
+   Newton’ law of motion:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#restoring-force-of-pressure-gradient">
+   Restoring force of pressure gradient:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#equation-of-continuity">
+   Equation of continuity:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wave-equation">
+   Wave equation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#newton-law-of-motion">
-     Newton’ law of motion:
+    <a class="reference internal nav-link" href="#direction-of-propagation">
+     Direction of propagation
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#restoring-force-of-pressure-gradient">
-     Restoring force of pressure gradient:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#equation-of-continuity">
-     Equation of continuity:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wave-equation">
-     Wave equation
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#direction-of-propagation">
-       Direction of propagation
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -467,58 +459,56 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="wave-propagation">
-<h1>Wave propagation<a class="headerlink" href="#wave-propagation" title="Permalink to this headline">#</a></h1>
+  <p>#BLM_2:  wave propagation</p>
 <section id="equation-of-motion-of-disturbed-particles">
-<h2>Equation of motion of disturbed particles<a class="headerlink" href="#equation-of-motion-of-disturbed-particles" title="Permalink to this headline">#</a></h2>
+<h1>Equation of motion of disturbed particles<a class="headerlink" href="#equation-of-motion-of-disturbed-particles" title="Permalink to this headline">#</a></h1>
 <section id="newton-law-of-motion">
-<h3>Newton’ law of motion:<a class="headerlink" href="#newton-law-of-motion" title="Permalink to this headline">#</a></h3>
+<h2>Newton’ law of motion:<a class="headerlink" href="#newton-law-of-motion" title="Permalink to this headline">#</a></h2>
 <p>Newton: “a change in motion is proportional to the motive force impressed and takes place along a stright line in which the force is impressed”</p>
 <p>In mathematical terms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eeeff94b-02b7-4317-961c-c6ede0d8ccf5">
-<span class="eqno">()<a class="headerlink" href="#equation-eeeff94b-02b7-4317-961c-c6ede0d8ccf5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-39b13f6e-7b46-437b-a26b-ada5df5952ac">
+<span class="eqno">(128)<a class="headerlink" href="#equation-39b13f6e-7b46-437b-a26b-ada5df5952ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
 m\frac{d}{dt}(u)=F_u
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is the particle mass that is considered constant and <span class="math notranslate nohighlight">\(u\)</span> is the velocity of the particles</p>
 </section>
 <section id="restoring-force-of-pressure-gradient">
-<h3>Restoring force of pressure gradient:<a class="headerlink" href="#restoring-force-of-pressure-gradient" title="Permalink to this headline">#</a></h3>
+<h2>Restoring force of pressure gradient:<a class="headerlink" href="#restoring-force-of-pressure-gradient" title="Permalink to this headline">#</a></h2>
 <p>If a (spherical) particle volume is forefully changed by external pressure then the restoring force is proportional to the pressure variation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-11942774-5b8d-4e5b-9a7d-5eba81658b33">
-<span class="eqno">()<a class="headerlink" href="#equation-11942774-5b8d-4e5b-9a7d-5eba81658b33" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-68b4c197-0780-4e0e-bc6b-bc7dd5624fdc">
+<span class="eqno">(129)<a class="headerlink" href="#equation-68b4c197-0780-4e0e-bc6b-bc7dd5624fdc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F_p = - \frac{d}{dr} P
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(V=m\rho\)</span> is the (spherical) volume of the particles  and <span class="math notranslate nohighlight">\(r\)</span> is measured along the radial dimension of the spherical volume.</p>
 </section>
 <section id="equation-of-continuity">
-<h3>Equation of continuity:<a class="headerlink" href="#equation-of-continuity" title="Permalink to this headline">#</a></h3>
+<h2>Equation of continuity:<a class="headerlink" href="#equation-of-continuity" title="Permalink to this headline">#</a></h2>
 <p>Relative changes in particle densities is compensated by a velocity gradient</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f84a3bf4-dd6b-4576-9de0-a35fc09911e5">
-<span class="eqno">()<a class="headerlink" href="#equation-f84a3bf4-dd6b-4576-9de0-a35fc09911e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a31c5c48-f5f2-4ac9-a7df-c43dec98a0f2">
+<span class="eqno">(130)<a class="headerlink" href="#equation-a31c5c48-f5f2-4ac9-a7df-c43dec98a0f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{\rho}\frac{d}{dt}\rho + \frac{d}{dr}u = 0
 \end{equation}\]</div>
 </section>
 <section id="wave-equation">
-<h3>Wave equation<a class="headerlink" href="#wave-equation" title="Permalink to this headline">#</a></h3>
+<h2>Wave equation<a class="headerlink" href="#wave-equation" title="Permalink to this headline">#</a></h2>
 <p>Combining all three equations one can obtain the wave equation that is the mathematical desctiption of propagating waves and disturbances</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1edd6c56-bae7-4569-b86c-951cc7329aca">
-<span class="eqno">()<a class="headerlink" href="#equation-1edd6c56-bae7-4569-b86c-951cc7329aca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a4abc798-8df7-4a85-93c8-b6fc2424baa9">
+<span class="eqno">(131)<a class="headerlink" href="#equation-a4abc798-8df7-4a85-93c8-b6fc2424baa9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2(rP)}{dt^2} = c^2\frac{d^2(rP)}{dr^2}
 \end{equation}\]</div>
 <p>The solution of which is any function of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18a64221-854b-4c24-b9c0-11994e96148c">
-<span class="eqno">()<a class="headerlink" href="#equation-18a64221-854b-4c24-b9c0-11994e96148c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-90fc76c5-7a3f-4cfb-9594-784a1714a5d4">
+<span class="eqno">(132)<a class="headerlink" href="#equation-90fc76c5-7a3f-4cfb-9594-784a1714a5d4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 rP = f(ct \pm r)
 \end{equation}\]</div>
 <p>This can easily be verified by the second derivatives with respect to time <span class="math notranslate nohighlight">\(t\)</span> and range <span class="math notranslate nohighlight">\(r\)</span>. The form of the solution <span class="math notranslate nohighlight">\(f(ct \pm r)\)</span> is an indication that the time evolution of waves is directly related with spatial distribution of the wave.</p>
 <section id="direction-of-propagation">
-<h4>Direction of propagation<a class="headerlink" href="#direction-of-propagation" title="Permalink to this headline">#</a></h4>
+<h3>Direction of propagation<a class="headerlink" href="#direction-of-propagation" title="Permalink to this headline">#</a></h3>
 <p>The solution to the spherical wave equation contains as argument <span class="math notranslate nohighlight">\((ct \pm r)\)</span> which means that for any solution we have two cases</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\((ct - r)\)</span> that is, for increasing time <span class="math notranslate nohighlight">\(t\)</span> the range <span class="math notranslate nohighlight">\(r\)</span> is increasing (wave is outgoing, diverging from origin)</p></li>
 <li><p><span class="math notranslate nohighlight">\((ct + r)\)</span> that is, for increasing time <span class="math notranslate nohighlight">\(t\)</span> the range <span class="math notranslate nohighlight">\(r\)</span> is decreasing (wave is incomming, converging to origin)</p></li>
 </ul>
-</section>
 </section>
 </section>
 </section>
@@ -550,6 +540,13 @@ rP = f(ct \pm r)
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="blm_1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">BLM_1: Basic signal spectral analysis</p>
+        </div>
+    </a>
 </div>
             </footer>
         </div>
