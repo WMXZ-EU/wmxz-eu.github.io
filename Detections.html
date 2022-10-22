@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BAR_LA_MARE" href="BLM/blm_0.html" />
     <link rel="prev" title="Click train detector" href="Click_train_detector.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -153,6 +154,16 @@ const thebe_selector_output = ".output, .cell_output"
    Click detection
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BLM/blm_0.html">
+   BAR_LA_MARE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BLM/blm_1.html">
+   Basic Signal Spectral analysis
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -212,7 +223,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/wmxz-eu/bioacoustics.github.io/master?urlpath=tree/Detections.ipynb"
+        <a href="https://mybinder.org/v2/gh/wmxz-eu/wmxz-eu.github.io/master?urlpath=tree/Detections.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -255,7 +266,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/wmxz-eu/bioacoustics.github.io"
+        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -272,7 +283,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/wmxz-eu/bioacoustics.github.io/issues/new?title=Issue%20on%20page%20%2FDetections.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2FDetections.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -361,7 +372,29 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-data">
-   load data
+   Load data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Click detection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supporting-functions">
+     Supporting functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-process-beaked-whale-data">
+   Load and process beaked whale data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extract-clicks-and-click-features">
+   Extract clicks and click features
   </a>
  </li>
 </ul>
@@ -385,7 +418,29 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-data">
-   load data
+   Load data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Click detection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supporting-functions">
+     Supporting functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-process-beaked-whale-data">
+   Load and process beaked whale data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extract-clicks-and-click-features">
+   Extract clicks and click features
   </a>
  </li>
 </ul>
@@ -400,8 +455,10 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="click-detection">
 <h1>Click detection<a class="headerlink" href="#click-detection" title="Permalink to this headline">#</a></h1>
+<p>In the following echolocation clicks should be extracted from recorded time series. The particular dataset contains Cuvier’s beaked whale data recorded in the Mediterranean Sea using a passive acoustic recorder. The data are available from “Mobysound”</p>
 <section id="load-data">
-<h2>load data<a class="headerlink" href="#load-data" title="Permalink to this headline">#</a></h2>
+<h2>Load data<a class="headerlink" href="#load-data" title="Permalink to this headline">#</a></h2>
+<p>A selected time window of 10 s is loaded for inspection.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -438,6 +495,13 @@ title="Print to PDF"
 <img alt="_images/Detections_2_0.png" src="_images/Detections_2_0.png" />
 </div>
 </div>
+<p>The timeseries shows a typical echolocation click train of odontocetes. Clicks are emitted in a more or less regular fashion. The click amplitude as received by an acoustic recorder are mostly moderate but for short periods of time can become much stronger as evident in above figure.</p>
+<p>This phenomenon is typical for echolocation clicks where the animal emits highly focused clicks in forward directions scanning the environment in all possible directions. Whenever the animal is pointing the echolcation sound beam towards the acoustic recorder, the received click amplitude can become strong, but most of the time the animal is searching in other directions and the received click amplitude is much weaker.</p>
+</section>
+<section id="id1">
+<h2>Click detection<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<section id="supporting-functions">
+<h3>Supporting functions<a class="headerlink" href="#supporting-functions" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
@@ -486,6 +550,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>Click detections are obtained using first a leaky peak filter followed by a page-test transient detector</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yy</span><span class="o">=</span><span class="n">peak1</span><span class="p">(</span><span class="n">data</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.97</span><span class="p">)</span>
@@ -497,13 +562,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">yy</span><span class="p">),</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nn</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">yy</span><span class="p">),</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nn</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [s]&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Detections_5_0.png" src="_images/Detections_5_0.png" />
+<img alt="_images/Detections_8_0.png" src="_images/Detections_8_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -512,13 +577,18 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">yy</span><span class="o">/</span><span class="n">nn</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">dd</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [s]&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;SNR [dB&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Detections_6_0.png" src="_images/Detections_6_0.png" />
+<img alt="_images/Detections_9_0.png" src="_images/Detections_9_0.png" />
 </div>
 </div>
+</section>
+</section>
+<section id="load-and-process-beaked-whale-data">
+<h2>Load and process beaked whale data<a class="headerlink" href="#load-and-process-beaked-whale-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nch</span><span class="o">=</span><span class="n">wavLoad</span><span class="p">(</span><span class="s2">&quot;./Data/zc06_204a22410-24210.wav&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
@@ -535,9 +605,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Detections_7_0.png" src="_images/Detections_7_0.png" />
+<img alt="_images/Detections_11_0.png" src="_images/Detections_11_0.png" />
 </div>
 </div>
+<p>Echolocation click trains are sequences if clicks emitted in a highly correlated fashion, that is, the interval between two consecutive clicks (the Inter-Click_Interval, or ICI) is nearly constant or slowly vaying and to some extend characteristic for the odontocete species.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">prepend</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -545,13 +616,279 @@ title="Print to PDF"
 <span class="n">ici</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tcl</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tcl</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ici</span><span class="p">),</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">tcl</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span><span class="n">ici</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [s]&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Detections_8_0.png" src="_images/Detections_8_0.png" />
+<img alt="_images/Detections_13_0.png" src="_images/Detections_13_0.png" />
+</div>
+</div>
+<p>The above plot is an Inter-Detection-Interval (IDI) plot, where all detection are used unlabeled. To obtain the desired ICI, one needs to label these detections properly.</p>
+<p>There are three categories of labels</p>
+<ul class="simple">
+<li><p>click</p></li>
+<li><p>boundary reflection of clicks</p></li>
+<li><p>interfering detections</p></li>
+</ul>
+<p>In case that multiple animals, the interfering detections may be associated with echolocation clicks of another animal.</p>
+<p>This is a classical data association problem that can be solved with statistical methods.</p>
+</section>
+<section id="extract-clicks-and-click-features">
+<h2>Extract clicks and click features<a class="headerlink" href="#extract-clicks-and-click-features" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># search for start and stop of detections</span>
+<span class="c1"># force start and stop at beginning and end of detections</span>
+<span class="n">dd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">dd</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="c1">#</span>
+<span class="nb">id</span><span class="o">=</span><span class="n">dd</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">dd</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ip</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="nb">id</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># start of detection</span>
+<span class="n">im</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="nb">id</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># stop of detection</span>
+
+<span class="n">det</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">ip</span><span class="p">,</span><span class="n">im</span><span class="p">))</span>
+
+<span class="n">ndets</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">det</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">nc</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">Labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TCL&quot;</span><span class="p">,</span><span class="s2">&quot;ICI&quot;</span><span class="p">,</span><span class="s2">&quot;SNR&quot;</span><span class="p">]</span>
+<span class="n">E</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nc</span><span class="p">,</span><span class="n">ndets</span><span class="p">))</span>
+<span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">tt</span><span class="p">[</span><span class="n">ip</span><span class="p">]</span>
+<span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># ICI</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndets</span><span class="p">):</span>
+    <span class="n">ix</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">det</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">ii</span><span class="p">],</span><span class="n">det</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">ii</span><span class="p">])</span>
+    <span class="n">E</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yy</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="n">ix</span><span class="p">]))</span> <span class="c1"># SNR</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Detections_16_0.png" src="_images/Detections_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Detections_17_0.png" src="_images/Detections_17_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nd</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">E</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n2</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nd</span><span class="p">,</span><span class="n">n2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nd</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">nd</span><span class="p">):</span>
+        <span class="n">dt</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">jj</span><span class="p">]</span><span class="o">-</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">ii</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">dt</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">kk</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">n2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">kk</span><span class="o">&lt;</span><span class="n">n2</span><span class="p">:</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="n">kk</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+
+<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">im1</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Detections_18_0.png" src="_images/Detections_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modified after https://www.askpython.com/python/examples/k-means-clustering-from-scratch</span>
+
+<span class="c1">#Importing required modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span> 
+
+<span class="n">n1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">t</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">n1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">x</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="n">n1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">nit</span><span class="o">=</span><span class="mi">10</span>
+
+
+<span class="c1"># initialize labels</span>
+<span class="n">nd</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nd</span><span class="p">),</span><span class="n">k</span><span class="p">)</span>
+<span class="n">centroids</span> <span class="o">=</span> <span class="n">x</span><span class="p">[[</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)][</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span> 
+<span class="n">variances</span> <span class="o">=</span> <span class="mi">0</span><span class="o">*</span><span class="n">centroids</span>
+
+<span class="k">def</span> <span class="nf">mCluster</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">ni</span><span class="o">=</span><span class="n">labels</span><span class="o">==</span><span class="n">ii</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ni</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">tmp</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="n">ni</span><span class="p">]</span>
+            <span class="n">m1</span><span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+            <span class="n">m2</span><span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="o">*</span><span class="n">tmp</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">m1</span><span class="o">=</span><span class="mi">0</span>
+            <span class="n">m2</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">centroids</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span><span class="o">=</span><span class="n">m1</span>           <span class="c1"># centroid</span>
+        <span class="n">variances</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span><span class="o">=</span><span class="n">m2</span><span class="o">-</span><span class="n">m1</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># variance</span>
+    <span class="k">return</span> <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span>
+
+<span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="o">=</span><span class="n">mCluster</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="n">variances</span><span class="o">.</span><span class="n">trace</span><span class="p">())</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#Repeating the above steps for a defined number of iterations</span>
+<span class="n">best</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">Inf</span>	
+<span class="k">for</span> <span class="n">ni</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nit</span><span class="p">):</span> 
+    <span class="c1">#Updating Centroids by taking mean of Cluster it belongs to</span>
+    <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="o">=</span><span class="n">mCluster</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">)</span>
+    <span class="c1">##</span>
+    <span class="c1"># if variance get worth break loop</span>
+    <span class="n">inert</span><span class="o">=</span><span class="n">variances</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">inert</span> <span class="o">&gt;=</span> <span class="n">best</span><span class="p">:</span> <span class="k">break</span>
+    <span class="n">best</span><span class="o">=</span><span class="n">inert</span>
+    <span class="c1">#</span>
+    <span class="n">distances</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centroids</span> <span class="p">,</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">distances</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">ni</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span><span class="o">==</span><span class="n">ii</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">tcl</span><span class="o">=</span><span class="n">tt</span><span class="p">[</span><span class="n">ni</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">len</span><span class="p">(</span><span class="n">ni</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">ici</span><span class="o">=</span><span class="n">tcl</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">best</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">centroids</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">idat</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">u_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">u_labels</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">label</span><span class="p">]</span> <span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">label</span><span class="p">,</span><span class="n">idat</span><span class="p">],</span><span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [11],</span> in <span class="ni">&lt;cell line: 36&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span>         <span class="n">variances</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span><span class="o">=</span><span class="n">m2</span><span class="o">-</span><span class="n">m1</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># variance</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="k">return</span> <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span>
+<span class="ne">---&gt; </span><span class="mi">36</span> <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="o">=</span><span class="n">mCluster</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="n">variances</span><span class="o">.</span><span class="n">trace</span><span class="p">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="ne">TypeError</span>: mCluster() takes 5 positional arguments but 6 were given
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variances</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.07605365533087757
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">doClickTrain</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span><span class="n">tcl</span><span class="p">,</span><span class="n">pcl</span><span class="p">,</span><span class="n">icm</span><span class="p">,</span><span class="n">cmin</span><span class="p">):</span>
+    <span class="c1"># inp:</span>
+    <span class="c1"># tcl: click time</span>
+    <span class="c1"># pcl: click power</span>
+    <span class="c1"># icm:</span>
+    <span class="c1"># cmin: min clik interval (e.g. 0.15)</span>
+    <span class="n">K</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">icm</span><span class="p">);</span>
+    <span class="c1">#</span>
+    <span class="n">in0</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">icm</span><span class="p">;</span>
+    <span class="n">in1</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">icm</span><span class="p">;</span>
+    <span class="n">in2</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">icm</span><span class="p">;</span>
+    <span class="c1">#=============================================================</span>
+    <span class="k">for</span> <span class="n">nn</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="c1">#</span>
+        <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tcl</span><span class="p">)):</span>
+            <span class="c1"># if we have a free click</span>
+            <span class="k">if</span> <span class="n">inp</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">dd1k</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">icm</span><span class="p">;</span>
+                <span class="n">dd2k</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">icm</span><span class="p">;</span>
+                <span class="n">ij</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">tcl</span><span class="p">);</span>
+                <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+                    <span class="c1"># find next click</span>
+                    <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tcl</span><span class="p">)):</span>
+                        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">inp</span><span class="p">(</span><span class="n">jj</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">==</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">kk</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                            <span class="n">ij</span><span class="o">=</span><span class="n">jj</span><span class="p">;</span> 
+                            <span class="k">break</span>
+                <span class="c1"># check if still space for new click in kk</span>
+                <span class="k">if</span> <span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">tcl</span><span class="p">[</span><span class="n">ij</span><span class="p">]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[</span><span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]]</span><span class="o">&lt;</span><span class="mf">1.5</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                <span class="c1">#</span>
+                <span class="k">if</span> <span class="n">in2</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">icin</span><span class="o">=</span><span class="n">tcl</span><span class="p">[</span><span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[</span><span class="n">in1</span><span class="p">[</span><span class="n">kk</span><span class="p">]];</span>
+                    <span class="k">if</span> <span class="n">icin</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">icin</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span>
+                    <span class="n">ddkx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tcl</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[</span><span class="n">in2</span><span class="p">[</span><span class="n">kk</span><span class="p">]]</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">icin</span><span class="p">));</span>
+                    <span class="k">if</span> <span class="n">ddkx</span><span class="o">&lt;</span><span class="n">dd1k</span><span class="p">[</span><span class="n">kk</span><span class="p">]:</span> <span class="n">dd1k</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">=</span><span class="n">ddkx</span><span class="p">;</span>
+                
+                <span class="k">if</span> <span class="n">dd1k</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">&gt;</span><span class="n">cmin</span> <span class="ow">and</span> <span class="n">in1</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">icin</span><span class="o">=</span><span class="n">tcl</span><span class="p">[</span><span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[</span><span class="n">in1</span><span class="p">[</span><span class="n">kk</span><span class="p">]];</span>
+                    <span class="k">if</span> <span class="n">icin</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">icin</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> 
+                    <span class="n">ddkx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tcl</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[</span><span class="n">in1</span><span class="p">[</span><span class="n">kk</span><span class="p">]]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">icin</span><span class="p">));</span>
+                    <span class="k">if</span> <span class="n">ddkx</span><span class="o">&lt;</span><span class="n">dd1k</span><span class="p">[</span><span class="n">kk</span><span class="p">]:</span> <span class="n">dd1k</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">=</span><span class="n">ddkx</span><span class="p">;</span> 
+                
+                <span class="k">if</span> <span class="n">dd1k</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">&gt;</span><span class="n">cmin</span> <span class="ow">and</span> <span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">icin</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+                    <span class="n">ddkx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tcl</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[</span><span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]]</span><span class="o">-</span><span class="n">icin</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="n">ddkx</span><span class="o">&lt;</span><span class="n">dd1k</span><span class="p">(</span><span class="n">kk</span><span class="p">):</span> <span class="n">dd1k</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">=</span><span class="n">ddkx</span><span class="p">;</span>
+                
+                <span class="k">if</span> <span class="n">in1</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dpcl</span><span class="o">=</span><span class="n">pcl</span><span class="p">[</span><span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]]</span><span class="o">-</span><span class="n">pcl</span><span class="p">[</span><span class="n">in1</span><span class="p">[</span><span class="n">kk</span><span class="p">]];</span>
+                    <span class="n">dd2k</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pcl</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">pcl</span><span class="p">[</span><span class="n">in1</span><span class="p">[</span><span class="n">kk</span><span class="p">]]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">dpcl</span><span class="p">);</span>
+                <span class="k">elif</span> <span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dd2k</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">pcl</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">pcl</span><span class="p">[</span><span class="n">in0</span><span class="p">[</span><span class="n">kk</span><span class="p">]]);</span>
+
+            <span class="c1"># do we have a best allocation?</span>
+            <span class="p">[</span><span class="n">d1x</span><span class="p">,</span><span class="n">k1x</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dd1k</span><span class="p">);</span>
+            <span class="p">[</span><span class="n">d2x</span><span class="p">,</span><span class="n">k2x</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dd2k</span><span class="p">);</span>
+            <span class="k">if</span> <span class="n">k1x</span><span class="o">==</span><span class="n">k2x</span><span class="p">:</span> <span class="c1">#have same best allocation</span>
+                <span class="n">kx</span><span class="o">=</span><span class="n">k1x</span><span class="p">;</span>
+                <span class="k">if</span> <span class="n">d1x</span><span class="o">&lt;</span><span class="n">cmin</span><span class="p">:</span> <span class="c1">#have a good click</span>
+                    <span class="n">inp</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">kx</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">ii</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+                    <span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+                
+<span class="c1">#            else: # have conflicting allocations</span>
+                <span class="c1"># for the moment skip</span>
+ <span class="c1">#               [d1x k1x,d2x,k2x pcl(ii) pcl(in0(kk))]</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">inp</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># have marked click</span>
+            <span class="n">kx</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">inp</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+            <span class="n">in2</span><span class="p">[</span><span class="n">kx</span><span class="p">]</span><span class="o">=</span><span class="n">in1</span><span class="p">[</span><span class="n">kx</span><span class="p">];</span> <span class="c1"># so shift all back</span>
+            <span class="n">in1</span><span class="p">[</span><span class="n">kx</span><span class="p">]</span><span class="o">=</span><span class="n">in0</span><span class="p">[</span><span class="n">kx</span><span class="p">];</span>
+            <span class="n">in0</span><span class="p">[</span><span class="n">kx</span><span class="p">]</span><span class="o">=</span><span class="n">ii</span><span class="p">;</span>
+        
+        
+        <span class="k">if</span> <span class="n">count</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> 
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">inp</span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -590,6 +927,13 @@ title="Print to PDF"
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Click train detector</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="BLM/blm_0.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">BAR_LA_MARE</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

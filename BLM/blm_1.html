@@ -1,0 +1,1656 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Basic Signal Spectral analysis &#8212; bioacoustics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="BAR_LA_MARE" href="blm_0.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">bioacoustics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bioacoustics by WMXZ
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../wave_equation.html">
+   Wave equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../power_spectra.html">
+   Spectral estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Zc_click.html">
+   Cuvier’s beaked whale click
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../sound_intensity.html">
+   Sound Intensity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../direction_finding.html">
+   Direction Finding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ray_tracing.html">
+   Ray tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transient_detection.html">
+   Transient detections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Click_train_detector.html">
+   Click train detector
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Detections.html">
+   Click detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="blm_0.html">
+   BAR_LA_MARE
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Basic Signal Spectral analysis
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/wmxz-eu/wmxz-eu.github.io/master?urlpath=tree/BLM/blm_1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2FBLM/blm_1.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/BLM/blm_1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#observations">
+   Observations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complex-numbers">
+   Complex numbers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-frequencies">
+   General frequencies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequency-analysis">
+   Frequency analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discrete-fourier-transform-dft">
+     Discrete Fourier transform (DFT)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observation">
+     Observation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fast-fourier-transform">
+   Fast Fourier Transform
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comments">
+     Comments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fft-implementation">
+     FFT implementation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Observation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-signal-frequency">
+     General signal frequency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Observations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusions">
+     Conclusions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectral-leakeage">
+     Spectral leakeage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Observation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#noise-processing">
+   Noise processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Observation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spectrum-implementation">
+   Spectrum implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windowing">
+   Windowing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Observations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Conclusions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Observation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Observations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power-spectral-density-psd">
+   Power spectral density (PSD)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zero-padding">
+   Zero padding
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Observations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd">
+       Open question: does zero padding change the estimate of the PSD?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comment">
+     Comment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#custom-spectrum-implementation">
+     Custom Spectrum implementation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Basic Signal Spectral analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#observations">
+   Observations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complex-numbers">
+   Complex numbers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-frequencies">
+   General frequencies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequency-analysis">
+   Frequency analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discrete-fourier-transform-dft">
+     Discrete Fourier transform (DFT)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observation">
+     Observation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fast-fourier-transform">
+   Fast Fourier Transform
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comments">
+     Comments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fft-implementation">
+     FFT implementation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Observation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-signal-frequency">
+     General signal frequency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Observations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusions">
+     Conclusions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectral-leakeage">
+     Spectral leakeage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Observation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#noise-processing">
+   Noise processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Observation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spectrum-implementation">
+   Spectrum implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windowing">
+   Windowing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Observations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Conclusions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Observation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Observations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power-spectral-density-psd">
+   Power spectral density (PSD)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zero-padding">
+   Zero padding
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Observations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd">
+       Open question: does zero padding change the estimate of the PSD?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comment">
+     Comment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#custom-spectrum-implementation">
+     Custom Spectrum implementation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-signal-spectral-analysis">
+<h1>Basic Signal Spectral analysis<a class="headerlink" href="#basic-signal-spectral-analysis" title="Permalink to this headline">#</a></h1>
+<p>The following shows some basic steps that one undertakes for signal processing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loading basic modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Simulation of sound wave</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creation of time vector</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">nd</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">fs</span><span class="p">)</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nd</span><span class="p">)</span><span class="o">/</span><span class="n">fs</span>
+
+<span class="c1"># creation of cosine signal</span>
+<span class="n">amp</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+
+<span class="c1"># plot signal</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">xx</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+
+<span class="c1">#creation of sine signal</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">xx</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">yy</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+
+<span class="c1">#estimation of mangnitude</span>
+<span class="n">zz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">yy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">xx</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">yy</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">zz</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_3_0.png" src="../_images/blm_1_3_0.png" />
+<img alt="../_images/blm_1_3_1.png" src="../_images/blm_1_3_1.png" />
+<img alt="../_images/blm_1_3_2.png" src="../_images/blm_1_3_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xx</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yy</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-8.326672684688674e-17 -1.1102230246251566e-17
+1.9999999999999996 2.0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="observations">
+<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>the mean of a sinosoidal wave is zero</p></li>
+<li><p>the mean of the signals squared is equal to the amplitude.</p></li>
+</ul>
+</section>
+<section id="complex-numbers">
+<h2>Complex numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this headline">#</a></h2>
+<p>The following mathematical excurse is helpful for further spectral analysis</p>
+<p>Let</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1ca9da33-ca50-4432-b69b-ffcbc571cc19">
+<span class="eqno">(110)<a class="headerlink" href="#equation-1ca9da33-ca50-4432-b69b-ffcbc571cc19" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    x=\cos(\phi)
+\end{equation}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-82ae107c-ce63-4f3c-abe2-976e063c6084">
+<span class="eqno">(111)<a class="headerlink" href="#equation-82ae107c-ce63-4f3c-abe2-976e063c6084" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    y=\sin(\phi)
+\end{equation}\]</div>
+<p>Define a complex signal (real plus imaginary)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-10563040-6720-4f0f-aa15-ace4f3fb22c9">
+<span class="eqno">(112)<a class="headerlink" href="#equation-10563040-6720-4f0f-aa15-ace4f3fb22c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+z=(\cos(\phi)+i\sin(\phi)) = \exp(i\phi)= e^{-i\phi}
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(i\)</span> is defined such that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c05ddf74-5ab2-48a1-9bf0-27b0960bd878">
+<span class="eqno">(113)<a class="headerlink" href="#equation-c05ddf74-5ab2-48a1-9bf0-27b0960bd878" title="Permalink to this equation">#</a></span>\[\begin{equation}
+i^2 = -1
+\end{equation}\]</div>
+<p>Define the conjugate of a complex signal</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8b344ace-9a18-4574-a0b4-1e2132fd1e2a">
+<span class="eqno">(114)<a class="headerlink" href="#equation-8b344ace-9a18-4574-a0b4-1e2132fd1e2a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+z^*=(\cos(\phi)-i\sin(\phi)) = \exp(-i\phi) = e^{-i\phi}
+\end{equation}\]</div>
+<p>Define absolute squared complex value by signal multiplied with its conjugate</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a6d728d9-e989-4650-8bd3-9d03cd0f6965">
+<span class="eqno">(115)<a class="headerlink" href="#equation-a6d728d9-e989-4650-8bd3-9d03cd0f6965" title="Permalink to this equation">#</a></span>\[\begin{equation}
+|z|^2 = z z^* = (\cos(\phi)+i\sin(\phi))(\cos(\phi)-i\sin(\phi))
+\end{equation}\]</div>
+<p>then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c07bea3c-aeb1-4d99-8a6e-72ced889e167">
+<span class="eqno">(116)<a class="headerlink" href="#equation-c07bea3c-aeb1-4d99-8a6e-72ced889e167" title="Permalink to this equation">#</a></span>\[\begin{equation}
+|z|^2 =  \cos^2(\phi)+i\sin(\phi)\cos(\phi)-i\cos(\phi)\sin(\phi)-i^2\sin^2(\phi)
+\end{equation}\]</div>
+<p>or</p>
+<div class="amsmath math notranslate nohighlight" id="equation-60038fcf-f1d3-4640-9a49-721fc67d980d">
+<span class="eqno">(117)<a class="headerlink" href="#equation-60038fcf-f1d3-4640-9a49-721fc67d980d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+|z|^2 =  \cos^2(\phi)+\sin^2(\phi) =1
+\end{equation}\]</div>
+<p>Alternative method</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d2af0bcb-e54d-4630-a72c-985908d60384">
+<span class="eqno">(118)<a class="headerlink" href="#equation-d2af0bcb-e54d-4630-a72c-985908d60384" title="Permalink to this equation">#</a></span>\[\begin{equation}
+|z|^2 =  e^{i\phi}e^{-i\phi} = e^{i\phi-i\phi} =e^0= 1
+\end{equation}\]</div>
+<p>Complex notation simplifies mathematics, but for physical phenomena only the real part is of relevance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creation of complex signal (note 1j )</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+
+<span class="c1"># plot signal</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xx</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">xx</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">xx</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_7_0.png" src="../_images/blm_1_7_0.png" />
+</div>
+</div>
+</section>
+<section id="general-frequencies">
+<h2>General frequencies<a class="headerlink" href="#general-frequencies" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creation of a 1 second time vector </span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1024</span> <span class="c1"># sampling per second</span>
+<span class="n">nd</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">fs</span><span class="p">)</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nd</span><span class="p">)</span><span class="o">/</span><span class="n">fs</span>
+
+<span class="c1"># signal frequency</span>
+<span class="n">fo</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">xx</span><span class="o">=</span><span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span><span class="n">fo</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+
+<span class="c1"># plot signal</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xx</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_9_0.png" src="../_images/blm_1_9_0.png" />
+</div>
+</div>
+</section>
+<section id="frequency-analysis">
+<h2>Frequency analysis<a class="headerlink" href="#frequency-analysis" title="Permalink to this headline">#</a></h2>
+<section id="discrete-fourier-transform-dft">
+<h3>Discrete Fourier transform (DFT)<a class="headerlink" href="#discrete-fourier-transform-dft" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w4</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+<span class="n">w5</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+<span class="n">w6</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span><span class="mi">6</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+
+<span class="n">y4</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">w4</span><span class="p">)</span>
+<span class="n">y5</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">w5</span><span class="p">)</span>
+<span class="n">y6</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">w6</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">y4</span><span class="p">,</span><span class="n">y5</span><span class="p">,</span><span class="n">y6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.684341886080802e-14+0j) (2048+0j) (-1.1368683772161603e-13+1.1368683772161603e-13j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># matrix of spectral analysis vectors</span>
+<span class="n">W</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">fs</span><span class="p">),</span><span class="n">tt</span><span class="p">))</span>
+
+<span class="n">yy1</span><span class="o">=</span><span class="n">W</span> <span class="o">@</span> <span class="n">xx</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy1</span><span class="p">),</span><span class="s1">&#39;.-&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">yy2</span><span class="o">=</span><span class="n">W</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy2</span><span class="p">),</span><span class="s1">&#39;.-&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_12_0.png" src="../_images/blm_1_12_0.png" />
+<img alt="../_images/blm_1_12_1.png" src="../_images/blm_1_12_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy1</span><span class="p">)</span><span class="o">&gt;</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy1</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy2</span><span class="p">)</span><span class="o">&gt;</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy2</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([5], dtype=int64),)
+(array([   5, 1019], dtype=int64),)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="observation">
+<h3>Observation<a class="headerlink" href="#observation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>complex signal (cos and sin) peak is at correct frequency (5) with peak amplitude that correspond to the length of the DFT</p></li>
+<li><p>for real signals there are two peaks with half the amplitude at frequencies 5 and 1019 = (1024-5). The second peak is allso called negative frequency</p></li>
+<li><p>the peak amplitude value of the spectrum of the complex signal is amp*length(fft)</p></li>
+<li><p>the peak amplitude values of the spectrum of the real signal is (amp/2)*length(fft)</p></li>
+</ul>
+</section>
+</section>
+<section id="fast-fourier-transform">
+<h2>Fast Fourier Transform<a class="headerlink" href="#fast-fourier-transform" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generic complex to complex fft</span>
+<span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy</span><span class="p">),</span><span class="s1">&#39;.-&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># special real to complex fft</span>
+<span class="n">yy0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy0</span><span class="p">),</span><span class="s1">&#39;.-&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_16_0.png" src="../_images/blm_1_16_0.png" />
+<img alt="../_images/blm_1_16_1.png" src="../_images/blm_1_16_1.png" />
+</div>
+</div>
+<section id="comments">
+<h3>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>For a complex sinusoidal signal the Python FFT gives a negative frequency (fs-5 = 1019)</p></li>
+<li><p>a special version of the FFT call rfft gives only the positive frequencies (x-axis only up to fs/2 and not fs)</p></li>
+</ul>
+</section>
+<section id="fft-implementation">
+<h3>FFT implementation<a class="headerlink" href="#fft-implementation" title="Permalink to this headline">#</a></h3>
+<p>To see how FFT is implemented (<span class="math notranslate nohighlight">\(\exp(2\pi i nm/N)\)</span> or <span class="math notranslate nohighlight">\(\exp(-2\pi i nm/N)\)</span>) we fourier transform a time series where only a single sample is set to a non-zero value (say sample 1 set to one)</p>
+<p>In the case of a DFT we note that for a single sample</p>
+<div class="amsmath math notranslate nohighlight" id="equation-99c7de8f-6655-4410-82c3-598bd79aae5d">
+<span class="eqno">(119)<a class="headerlink" href="#equation-99c7de8f-6655-4410-82c3-598bd79aae5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(m)= \sum_{n=0}^{N-1}x(n)\exp(2\pi i nm/N)
+\end{equation}\]</div>
+<p>would become</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f5b61a67-d556-46b5-ac5d-426cd7954fe8">
+<span class="eqno">(120)<a class="headerlink" href="#equation-f5b61a67-d556-46b5-ac5d-426cd7954fe8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(m)= \exp(2\pi i m/N)= \cos(2\pi m/N)+1i\sin(2\pi m/N)
+\end{equation}\]</div>
+<p>taking the inverse DFT</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ad465dd9-6e8f-4a58-8343-4cbb285e66d3">
+<span class="eqno">(121)<a class="headerlink" href="#equation-ad465dd9-6e8f-4a58-8343-4cbb285e66d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x(n)= \sum_{m=0}^{M-1}\exp(2\pi i m/N)\exp(-2\pi i nm/N)=\sum_{m=0}^{M-1}\exp(2\pi i (1-n)m/N)
+\end{equation}\]</div>
+<p>which results to</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f8112ff0-b7a5-446a-9574-a4af112c0a86">
+<span class="eqno">(122)<a class="headerlink" href="#equation-f8112ff0-b7a5-446a-9574-a4af112c0a86" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x(n) = M\delta_{n,1}
+\end{equation}\]</div>
+<p>or <span class="math notranslate nohighlight">\(x(1)=M\)</span> and <span class="math notranslate nohighlight">\(x(n)=0\)</span> for <span class="math notranslate nohighlight">\(n \ne 1\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">v1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">v1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">u1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">v1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;DFT&#39; peak: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">u1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_19_0.png" src="../_images/blm_1_19_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DFT&#39; peak:  1024.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span><span class="nb">complex</span><span class="p">)</span>
+<span class="n">uu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">vv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">vv</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">vv</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">ww</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FFT peak: &quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">uu</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ww</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_20_0.png" src="../_images/blm_1_20_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FFT peak:  1.0 1.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Observation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>The FFT spectrum of a signle sample is  <span class="math notranslate nohighlight">\(\cos(2\pi m/N) -i  \sin(2\pi m/N)\)</span>  contrary to the DFT used above that was using  <span class="math notranslate nohighlight">\(\cos(2\pi m/N) +i  \sin(2\pi m/N)\)</span> . This selection <span class="math notranslate nohighlight">\(+i\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> is purely a matter of cenvention. In practical terms it means that a decision has to be made if the ‘non-real’ imaginary signal is trailing (<span class="math notranslate nohighlight">\(+i\)</span>) or leading <span class="math notranslate nohighlight">\(-i\)</span> the real signal.</p>
+<p>As we are dealing mostly real signals and use the special rfft that only results in positive frequencies, we have not to worry about this ambiguity.</p>
+<p>While the spectra of the FFT and DFT are equivalent (equal when ignoring the different sign of the imaginary part), the inverse FFT produces the correct original time series, while the DFT</p>
+</section>
+<section id="general-signal-frequency">
+<h3>General signal frequency<a class="headerlink" href="#general-signal-frequency" title="Permalink to this headline">#</a></h3>
+<p>So far, the frequency was chosen to be an integer. In the following we relax this and use a nom-inter freqiency <span class="math notranslate nohighlight">\(f_o = 5.5\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># signal frequency </span>
+<span class="n">fo</span> <span class="o">=</span> <span class="mf">5.5</span>
+<span class="n">xx</span><span class="o">=</span><span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span><span class="n">fo</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+
+<span class="n">yy3</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy3</span><span class="p">),</span><span class="s1">&#39;.-&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_23_0.png" src="../_images/blm_1_23_0.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Observations<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Using a fractional frequency (5.5 instead of 5) different effects occur</p>
+<ul class="simple">
+<li><p>peak is reduced to less than 700</p></li>
+<li><p>peak is wider</p></li>
+<li><p>most frequencies are not zero</p></li>
+</ul>
+</section>
+<section id="conclusions">
+<h3>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h3>
+<p>When using fractional frequencies the energy (power) of the signal is leaked to other frequencies.</p>
+</section>
+<section id="spectral-leakeage">
+<h3>Spectral leakeage<a class="headerlink" href="#spectral-leakeage" title="Permalink to this headline">#</a></h3>
+<p>The widening of the spectral peek occurs together with reduction in peak power and an increase for off-signal frequencies. A condition that is called spectral leakage.</p>
+<p>One notes that the integral value of the spectral energy remains constant at <code class="docutils literal notranslate"><span class="pre">(amp/2)*length(FFT)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1024.0 1024.0019531231374
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yy3</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+<span class="n">xx3</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">yy3</span><span class="p">)</span>
+
+<span class="c1"># plot signal</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xx3</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_27_0.png" src="../_images/blm_1_27_0.png" />
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>Observation<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>The inverse FFT of the complex spectrum generates the original time series, even if the spectrum is spead out over a wider frequency range.</p>
+</section>
+</section>
+<section id="noise-processing">
+<h2>Noise processing<a class="headerlink" href="#noise-processing" title="Permalink to this headline">#</a></h2>
+<p>We now add noise to the sinusoidal signal</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">})</span> <span class="c1"># increase fontsize in figures</span>
+
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1024</span>   <span class="c1">#Hz</span>
+<span class="n">nfft</span><span class="o">=</span><span class="mi">1024</span>
+<span class="n">nwin</span><span class="o">=</span><span class="n">nfft</span>
+
+<span class="c1">#    Generate a 1 second test signal, a 2 Vrms sine wave at fs/8, corrupted by</span>
+<span class="c1">#    0.001 V**2/Hz of white noise sampled at  1.024 kHz.</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">fs</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">fs</span>
+
+<span class="c1"># signal description</span>
+<span class="n">arms</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">amp</span> <span class="o">=</span> <span class="n">arms</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="n">var</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">noise_power</span> <span class="o">=</span> <span class="n">var</span> <span class="o">*</span> <span class="n">fs</span> <span class="o">/</span> <span class="mi">2</span> 
+<span class="c1"># The factor of fs/2 converts the per sample noise power (variance) to a noise bandwith of -1/T to 1/T (negative and positive frequencies) </span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+<span class="n">rms</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># add noise to signal</span>
+<span class="n">xx</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_power</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signal RMS : &quot;</span><span class="p">,</span><span class="n">amp</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">rms</span><span class="p">)</span>
+
+<span class="c1">#</span>
+<span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
+<span class="n">pp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">ff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft</span>
+
+<span class="n">ppmn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pp</span><span class="p">[</span><span class="n">ff</span><span class="o">&gt;</span><span class="mi">50</span><span class="p">])</span>
+<span class="n">ppmx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Noise &quot;</span><span class="p">,</span><span class="n">ppmn</span><span class="p">,</span> <span class="s2">&quot;Peak &quot;</span><span class="p">,</span><span class="n">ppmx</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">amp</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">time</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span> <span class="n">pp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">ppmn</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">ff</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency [Hz]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Spectrum [V**2]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal RMS :  2.0 2.0
+Noise  538.8707864401922 Peak  2124752.8116802927
+</pre></div>
+</div>
+<img alt="../_images/blm_1_30_1.png" src="../_images/blm_1_30_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">ppmn</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arms</span><span class="p">,</span> <span class="n">ppmx</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001 0.0010278144577792973
+2 2.026322185211461
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id4">
+<h3>Observation<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>To obtain noise spectrum (variance per sample), the mean value of the rfft power spectrum must be scaled by <span class="math notranslate nohighlight">\(2/N^2\)</span>
+To obtain the RMS of the signal, the peak value of the rfft power spectrum must be scaled by <span class="math notranslate nohighlight">\(1/N^2\)</span></p>
+<p>The extimates are not exactly equal as the noise is random and consequently also all extimates of noisy data are randomvariables.</p>
+</section>
+</section>
+<section id="spectrum-implementation">
+<h2>Spectrum implementation<a class="headerlink" href="#spectrum-implementation" title="Permalink to this headline">#</a></h2>
+<p>For future spectral analysis we can define the following support function that scales the power spectrum accordingly</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial custom spectrum estimation</span>
+<span class="k">def</span> <span class="nf">mSpectrum0</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># xx: real valued time series if at least nfft samples</span>
+    <span class="c1"># nfft: length of fft in samples</span>
+    <span class="c1"># fs: sampling frequency</span>
+    <span class="c1"># mode: RMS for scaling of spectral peakes to signal RMS</span>
+    <span class="c1">#       VAR for scaling of spectral mean values to per sample variance</span>
+    <span class="c1">#       None for power spectrum (FFT output) (Default)</span>
+    <span class="c1"># output: P power estimates according to mode</span>
+    <span class="c1">#         ff frequency vector</span>
+    <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="p">[:</span><span class="n">nfft</span><span class="p">],</span><span class="n">nfft</span><span class="p">)</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft</span>
+
+    <span class="n">pp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;RMS&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="o">/</span><span class="p">(</span><span class="n">nfft</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">ff</span>
+    <span class="k">elif</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;VAR&quot;</span><span class="p">:</span>
+        <span class="n">pp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*=</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="o">/</span><span class="p">(</span><span class="n">nfft</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">ff</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="p">,</span> <span class="n">ff</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum0</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
+<span class="n">P2</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum0</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="s2">&quot;RMS&quot;</span><span class="p">)</span>
+<span class="n">P3</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum0</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="s2">&quot;VAR&quot;</span><span class="p">)</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P1</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P2</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P3</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_35_0.png" src="../_images/blm_1_35_0.png" />
+</div>
+</div>
+</section>
+<section id="windowing">
+<h2>Windowing<a class="headerlink" href="#windowing" title="Permalink to this headline">#</a></h2>
+<p>The implementation of the FFT assumes that signal is periodic. Most interesting signals are aperiodic, resulting in what is called spectral leakage. The above signal with a frequency of 5.5 is such a case.</p>
+<p>Standard remedy is to taper the signal such that both ends of the time series are equal and very often close to zero. A typical window is the Hann window,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c2149596-c913-48e6-a0cd-07380045416f">
+<span class="eqno">(123)<a class="headerlink" href="#equation-c2149596-c913-48e6-a0cd-07380045416f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+hann(n)=\frac{1}{2}\big(1-\cos(2\pi \frac{n}{N-1})\big)
+\end{equation}\]</div>
+<p>In the following we assume that the window length is equal to FFT length, that is we assume first NO zero padding and analyse later the case of zero padding</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">win</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hanning</span><span class="p">(</span><span class="n">nwin</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">win</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">win</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_37_0.png" src="../_images/blm_1_37_0.png" />
+<img alt="../_images/blm_1_37_1.png" src="../_images/blm_1_37_1.png" />
+</div>
+</div>
+<section id="id5">
+<h3>Observations<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>Windowing reduces</p>
+<ul class="simple">
+<li><p>the influences of initial and final data</p></li>
+<li><p>the effective length of the data</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Conclusions<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>one should expect that</p>
+<ul class="simple">
+<li><p>the RMS value of the signal is modified</p></li>
+<li><p>the noise variance is modified</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P11</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum0</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">win</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
+<span class="n">P12</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum0</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">win</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="s2">&quot;VAR&quot;</span><span class="p">)</span> <span class="c1"># for noise</span>
+<span class="n">P13</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum0</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">win</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="s2">&quot;RMS&quot;</span><span class="p">)</span> <span class="c1"># for signal</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P11</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P12</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P13</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">P12</span><span class="p">[</span><span class="mi">50</span><span class="p">:]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arms</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">P13</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001 0.00040293342015103794
+2 0.5076435270833917
+</pre></div>
+</div>
+<img alt="../_images/blm_1_39_1.png" src="../_images/blm_1_39_1.png" />
+</div>
+</div>
+</section>
+<section id="id7">
+<h3>Observation<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p>Both, the RMS estimate (peak value) and the per sample Var value (noise) are not correct. The obtained values are too low due to the windowing influence.
+This can be corrected by considering the window shape.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">win</span><span class="o">*</span><span class="n">win</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">win</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">P12</span><span class="p">[</span><span class="mi">50</span><span class="p">:])</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">win</span><span class="o">*</span><span class="n">win</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arms</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">P13</span><span class="p">)</span><span class="o">/</span><span class="n">win</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3746337890625
+0.49951171875
+0.001 0.0010755394518987627
+2 2.0345458904817524
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># updated custom spectrum estimation</span>
+<span class="k">def</span> <span class="nf">mSpectrum1</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># xx: real valued time series if at least nfft samples</span>
+    <span class="c1"># nfft: length of fft in samples</span>
+    <span class="c1"># fs: sampling frequency</span>
+    <span class="c1"># mode: RMS for scaling of spectral peakes to signal RMS</span>
+    <span class="c1">#       VAR for scaling of spectral mean values to per sample variance</span>
+    <span class="c1">#       None for power spectrum (FFT output) (Default)</span>
+    <span class="c1"># output: P power estimates according to mode</span>
+    <span class="c1">#         ff frequency vector</span>
+    <span class="n">nwin</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
+    <span class="n">nfft</span><span class="o">=</span><span class="n">nwin</span>
+    <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="p">[:</span><span class="n">nwin</span><span class="p">]</span><span class="o">*</span><span class="n">win</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft</span>
+
+    <span class="n">pp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;RMS&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="o">/</span><span class="n">win</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">ff</span>
+    <span class="k">elif</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;VAR&quot;</span><span class="p">:</span>
+        <span class="n">pp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*=</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="o">/</span><span class="p">(</span><span class="n">nwin</span><span class="o">*</span><span class="p">(</span><span class="n">win</span><span class="o">*</span><span class="n">win</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="n">ff</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="p">,</span> <span class="n">ff</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P21</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum1</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
+<span class="n">P22</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum1</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="s2">&quot;VAR&quot;</span><span class="p">)</span>
+<span class="n">P23</span><span class="p">,</span><span class="n">ff</span> <span class="o">=</span> <span class="n">mSpectrum1</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="s2">&quot;RMS&quot;</span><span class="p">)</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P21</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P22</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span><span class="n">P23</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># test estimates</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">P22</span><span class="p">[</span><span class="mi">50</span><span class="p">:]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arms</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">P23</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001 0.0010755394518987625
+2 2.0345458904817524
+</pre></div>
+</div>
+<img alt="../_images/blm_1_43_1.png" src="../_images/blm_1_43_1.png" />
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>Observations<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<p>The general scaling functions of spectras are</p>
+<ul class="simple">
+<li><p>RMS estimation: <code class="docutils literal notranslate"><span class="pre">1/win.sum()**2</span></code></p></li>
+<li><p>VAR estimation: <code class="docutils literal notranslate"><span class="pre">2/(nwin*(win*win).sum())</span></code>, whereby the factor 2 is only for nonzero frequencies</p></li>
+</ul>
+<p>For rectangular windows (that is no windows) we have <code class="docutils literal notranslate"><span class="pre">win.sum()=nwin</span></code> and <code class="docutils literal notranslate"><span class="pre">(win*win).sum()=nwin</span></code></p>
+</section>
+</section>
+<section id="power-spectral-density-psd">
+<h2>Power spectral density (PSD)<a class="headerlink" href="#power-spectral-density-psd" title="Permalink to this headline">#</a></h2>
+<p>The VAR estimation provides the per sample noise variance  expressed in V^2/sample . To obtain the PSD that typically is expressed in V^2/Hz one needs to consider the spectral binwidth in terms of the sampling frequency <span class="math notranslate nohighlight">\(f_s\)</span>.</p>
+<p>Binwidth in Hz is for <span class="math notranslate nohighlight">\(N_{fft}= N_{win}\)</span> given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-69d65825-5645-4132-8792-63aa0777387b">
+<span class="eqno">(124)<a class="headerlink" href="#equation-69d65825-5645-4132-8792-63aa0777387b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta f = \frac{f_s}{N_{win}}
+\end{equation}\]</div>
+<p>and therfore the PSD related scaling of the spectra</p>
+<ul class="simple">
+<li><p>PSD estimation: <code class="docutils literal notranslate"><span class="pre">2/(nwin*(win*win).sum())*nwin/fs</span></code> or <code class="docutils literal notranslate"><span class="pre">2/(fs*(win*win).sum())</span></code></p></li>
+</ul>
+</section>
+<section id="zero-padding">
+<h2>Zero padding<a class="headerlink" href="#zero-padding" title="Permalink to this headline">#</a></h2>
+<p>So far, we assumed that the length of the fft is equal to the length of the window. In the following we allow the fft length to be longer than the window length, wherby the added samples are kept at zero (zero padding).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case 1</span>
+<span class="n">nfft1</span><span class="o">=</span><span class="n">nwin</span>
+<span class="n">uu</span><span class="o">=</span><span class="n">xx</span><span class="p">[:</span><span class="n">nwin</span><span class="p">]</span><span class="o">*</span><span class="n">win</span>
+<span class="n">yy1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">nfft1</span><span class="p">)</span>
+<span class="n">ff1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nfft1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft1</span>
+
+<span class="n">pp1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># case 2</span>
+<span class="n">nfft2</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">nwin</span>
+<span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nfft2</span><span class="p">)</span>
+<span class="n">uu</span><span class="p">[:</span><span class="n">nwin</span><span class="p">]</span> <span class="o">=</span> <span class="n">xx</span><span class="p">[:</span><span class="n">nwin</span><span class="p">]</span><span class="o">*</span><span class="n">win</span>
+<span class="n">yy2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">nfft2</span><span class="p">)</span>
+<span class="n">ff2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nfft2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft2</span>
+
+<span class="n">pp2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff1</span><span class="p">,</span><span class="n">pp1</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff2</span><span class="p">,</span><span class="n">pp2</span><span class="p">);</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pp1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pp2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pp1</span><span class="p">[</span><span class="n">ff1</span><span class="o">&gt;</span><span class="mi">40</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pp2</span><span class="p">[</span><span class="n">ff2</span><span class="o">&gt;</span><span class="mi">40</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>532302.8190549945 532302.8190549945
+210.49090698340174 210.87174605081816
+</pre></div>
+</div>
+<img alt="../_images/blm_1_47_1.png" src="../_images/blm_1_47_1.png" />
+</div>
+</div>
+<section id="id9">
+<h3>Observations<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<p>We note that the unscaled spectra estimates do not vary when adding zeros to the data before FFT (zero padding). All what is changing is the number of frequency bins to cover the whole spectrum and consequently, zero padded FFTs are also called interpolationg FFT.</p>
+<p>One should expect that scaling for the RMS estimate (peak of spectrogram) does not depend on length of zero padded FFT but only on length of window</p>
+<section id="open-question-does-zero-padding-change-the-estimate-of-the-psd">
+<h4>Open question: does zero padding change the estimate of the PSD?<a class="headerlink" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd" title="Permalink to this headline">#</a></h4>
+<p>The PSD is given as the time averaged spectral energy</p>
+<div class="amsmath math notranslate nohighlight" id="equation-345a6804-8f51-4c7f-bfc5-315c963c3dc4">
+<span class="eqno">(125)<a class="headerlink" href="#equation-345a6804-8f51-4c7f-bfc5-315c963c3dc4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P(f) = \frac{1}{T}\Big|\int_{0}^{T}x(t)\exp{(-2\pi i f t)} dt\Big|^2
+\end{equation}\]</div>
+<p>or for discrete sampling</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9bbdd104-f396-4797-8ba5-8f0ebca53a9b">
+<span class="eqno">(126)<a class="headerlink" href="#equation-9bbdd104-f396-4797-8ba5-8f0ebca53a9b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P(f) = \frac{1}{N\Delta t}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i f n\Delta t)} \Delta t\Big|^2
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of samples of the signal and <span class="math notranslate nohighlight">\(\Delta t\)</span> is the sampling interval, i.e. <span class="math notranslate nohighlight">\(N\Delta t=T\)</span> is the length of the signal in seconds and <span class="math notranslate nohighlight">\(n\Delta t\)</span> is the time when the n-th samples was measured.</p>
+<p>The quantity <span class="math notranslate nohighlight">\(P(f)\)</span> is really a time averaged signal energy</p>
+<p>Assume zero padding from <span class="math notranslate nohighlight">\(N\)</span> to <span class="math notranslate nohighlight">\(K&gt;N\)</span>, the sum does not change as <span class="math notranslate nohighlight">\(x(n)=0\)</span> for all <span class="math notranslate nohighlight">\(n&gt;N\)</span>, but the frequency interpretation does:</p>
+<p>Assume <span class="math notranslate nohighlight">\(f_k =k(f_s/K)\)</span> for <span class="math notranslate nohighlight">\(k=0,1, ...,K-1\)</span> with <span class="math notranslate nohighlight">\(f_s = 1/\Delta t\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-7fd6955e-3862-48d2-b219-55b4921a657d">
+<span class="eqno">(127)<a class="headerlink" href="#equation-7fd6955e-3862-48d2-b219-55b4921a657d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P(k) = P(\frac{kf_s}{K}) = \frac{1}{f_sN}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i kn/K)}\Big|^2
+\end{equation}\]</div>
+<p>The PSD is independent of the DFT size K, but it only depends on the number of time domain samples N</p>
+</section>
+</section>
+<section id="comment">
+<h3>Comment<a class="headerlink" href="#comment" title="Permalink to this headline">#</a></h3>
+<p>Zero padding is only useful if one is interested in the interpolating aspect of the zero-padded FFT, e.g. for RMS estimates of tonal signals. For broadband PSD estimation zero-padded FFT seems of little advantage.</p>
+</section>
+<section id="custom-spectrum-implementation">
+<h3>Custom Spectrum implementation<a class="headerlink" href="#custom-spectrum-implementation" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># custom spectrum estimation</span>
+<span class="k">def</span> <span class="nf">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># xx: real valued time series if at least nfft samples</span>
+    <span class="c1"># nfft: length of fft in samples</span>
+    <span class="c1"># fs: sampling frequency</span>
+    <span class="c1"># mode: RMS for scaling of spectral peakes to signal RMS</span>
+    <span class="c1">#       VAR for scaling of spectral mean values to per sample variance</span>
+    <span class="c1">#       PSD for scaling of power spectral density to (v^2/Hz)</span>
+    <span class="c1">#       None for power spectrum (FFT output) (Default)</span>
+    <span class="c1"># output: P power estimates according to mode</span>
+    <span class="c1">#         ff frequency vector</span>
+    <span class="n">nwin</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nfft</span><span class="o">&lt;</span><span class="n">nwin</span><span class="p">:</span> <span class="n">nfft</span><span class="o">=</span><span class="n">nwin</span> <span class="c1"># force nfft to be at least window length</span>
+    <span class="n">nfft</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nfft</span><span class="p">)))</span> <span class="c1"># increase nfft to next power of 2</span>
+    <span class="c1">#</span>
+    <span class="c1"># copy data to working buffer zero-pad if required</span>
+    <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nfft</span><span class="p">)</span>
+    <span class="n">uu</span><span class="p">[:</span><span class="n">nwin</span><span class="p">]</span><span class="o">=</span><span class="n">xx</span><span class="p">[:</span><span class="n">nwin</span><span class="p">]</span><span class="o">*</span><span class="n">win</span>
+    
+    <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
+    <span class="n">ff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft</span>
+
+    <span class="n">pp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;RMS&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="o">/</span><span class="n">win</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">ff</span>
+    <span class="k">elif</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;VAR&quot;</span><span class="p">:</span>
+        <span class="n">pp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*=</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="o">/</span><span class="p">(</span><span class="n">nwin</span><span class="o">*</span><span class="p">(</span><span class="n">win</span><span class="o">*</span><span class="n">win</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="n">ff</span>
+    <span class="k">elif</span> <span class="n">mode</span><span class="o">==</span><span class="s2">&quot;PSD&quot;</span><span class="p">:</span>
+        <span class="n">pp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*=</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="o">/</span><span class="p">(</span><span class="n">fs</span><span class="o">*</span><span class="p">(</span><span class="n">win</span><span class="o">*</span><span class="n">win</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="n">ff</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pp</span><span class="p">,</span> <span class="n">ff</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case 1</span>
+<span class="n">nfft1</span><span class="o">=</span><span class="n">nwin</span>
+<span class="c1"># case 2</span>
+<span class="n">nfft2</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">nwin</span>
+
+<span class="c1">#----------------------------------------------</span>
+<span class="n">pp1</span><span class="p">,</span><span class="n">ff1</span><span class="o">=</span><span class="n">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nfft1</span><span class="p">,</span><span class="s2">&quot;RMS&quot;</span><span class="p">)</span>
+<span class="n">pp2</span><span class="p">,</span><span class="n">ff2</span><span class="o">=</span><span class="n">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nfft2</span><span class="p">,</span><span class="s2">&quot;RMS&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff1</span><span class="p">,</span><span class="n">pp1</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff2</span><span class="p">,</span><span class="n">pp2</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMS: &quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pp1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pp2</span><span class="p">))</span>
+
+<span class="c1">#----------------------------------------------</span>
+<span class="n">pp1</span><span class="p">,</span><span class="n">ff1</span><span class="o">=</span><span class="n">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nfft1</span><span class="p">,</span><span class="s2">&quot;PSD&quot;</span><span class="p">)</span>
+<span class="n">pp2</span><span class="p">,</span><span class="n">ff2</span><span class="o">=</span><span class="n">mSpectrum</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nfft2</span><span class="p">,</span><span class="s2">&quot;PSD&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff1</span><span class="p">,</span><span class="n">pp1</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ff2</span><span class="p">,</span><span class="n">pp2</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PSD: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pp1</span><span class="p">[</span><span class="n">ff1</span><span class="o">&gt;</span><span class="mi">40</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pp2</span><span class="p">[</span><span class="n">ff2</span><span class="o">&gt;</span><span class="mi">40</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_1_52_0.png" src="../_images/blm_1_52_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMS:  2.0345458904817524 2.0345458904817524
+</pre></div>
+</div>
+<img alt="../_images/blm_1_52_2.png" src="../_images/blm_1_52_2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PSD:  0.0010716586580696162 0.0010735975992323342
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./BLM"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="blm_0.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">BAR_LA_MARE</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Walter MX Zimmer<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
