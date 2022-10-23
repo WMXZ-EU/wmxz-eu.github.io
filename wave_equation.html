@@ -110,7 +110,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  General Bioacoustics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Wave equation
@@ -146,6 +151,13 @@ const thebe_selector_output = ".output, .cell_output"
    Transient detections
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Work in Progress
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Click_train_detector.html">
    Click train detector
@@ -156,9 +168,16 @@ const thebe_selector_output = ".output, .cell_output"
    Click detection
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bar La Mare
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="BLM/blm_0.html">
-   BAR_LA_MARE
+   BML_0: BAR_LA_MARE
   </a>
  </li>
  <li class="toctree-l1">
@@ -382,20 +401,20 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="wave-equation">
 <h1>Wave equation<a class="headerlink" href="#wave-equation" title="Permalink to this headline">#</a></h1>
 <p>The standard form of the wave equation in spherical coordinates is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9818e903-aa73-4ca2-afc7-b2cbc607300b">
-<span class="eqno">(1)<a class="headerlink" href="#equation-9818e903-aa73-4ca2-afc7-b2cbc607300b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12bb4906-1405-42c7-9bfe-ff9b7ad0f45f">
+<span class="eqno">(1)<a class="headerlink" href="#equation-12bb4906-1405-42c7-9bfe-ff9b7ad0f45f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 (rP)}{\partial t^2}=c^2\frac{\partial^2(rP)}{\partial^2r}
 \end{equation}\]</div>
 <p>the solution of which is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4845b394-5d5f-4168-b54e-e8385bf755e2">
-<span class="eqno">(2)<a class="headerlink" href="#equation-4845b394-5d5f-4168-b54e-e8385bf755e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e40cfaa1-b8b2-42eb-9da2-a7ff26f0c175">
+<span class="eqno">(2)<a class="headerlink" href="#equation-e40cfaa1-b8b2-42eb-9da2-a7ff26f0c175" title="Permalink to this equation">#</a></span>\[\begin{equation}
 rP=f(ct\pm r)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(ct\pm r)\)</span> is any function that depends on <span class="math notranslate nohighlight">\((ct\pm r)\)</span></p>
 <p>The general solution includes both outgoing (minus sign) and incoming waves( plus sign)</p>
 <p>For periodic sound waves one can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fede73ba-1232-4235-9046-3312e1818def">
-<span class="eqno">(3)<a class="headerlink" href="#equation-fede73ba-1232-4235-9046-3312e1818def" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a3d4aac9-b409-47f7-9b8a-98236ff6861a">
+<span class="eqno">(3)<a class="headerlink" href="#equation-a3d4aac9-b409-47f7-9b8a-98236ff6861a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(ct\pm r) = A(ct\pm r)\cos\Biggl(\frac{2\pi}{\lambda}(ct\pm r)\Biggr)
 = A(ct\pm r)\cos(\omega t\pm kr)
 \end{equation}\]</div>

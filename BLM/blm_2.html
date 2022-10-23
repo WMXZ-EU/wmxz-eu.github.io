@@ -109,7 +109,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  General Bioacoustics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../wave_equation.html">
    Wave equation
@@ -145,6 +150,13 @@ const thebe_selector_output = ".output, .cell_output"
    Transient detections
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Work in Progress
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../Click_train_detector.html">
    Click train detector
@@ -155,9 +167,16 @@ const thebe_selector_output = ".output, .cell_output"
    Click detection
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bar La Mare
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="blm_0.html">
-   BAR_LA_MARE
+   BML_0: BAR_LA_MARE
   </a>
  </li>
  <li class="toctree-l1">
@@ -505,8 +524,8 @@ title="Print to PDF"
 <h3>Newton’ law of motion:<a class="headerlink" href="#newton-law-of-motion" title="Permalink to this headline">#</a></h3>
 <p>Newton: “a change in motion is proportional to the motive force impressed and takes place along a stright line in which the force is impressed”</p>
 <p>In mathematical terms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e70945be-90f6-42af-b9c5-a05f5c5aa3fe">
-<span class="eqno">(128)<a class="headerlink" href="#equation-e70945be-90f6-42af-b9c5-a05f5c5aa3fe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-32451e2c-1d89-4c8c-8c96-1cd637f6560e">
+<span class="eqno">(128)<a class="headerlink" href="#equation-32451e2c-1d89-4c8c-8c96-1cd637f6560e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 m\frac{d}{dt}(u)=F_u
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is the particle mass that is considered constant and <span class="math notranslate nohighlight">\(u\)</span> is the velocity of the particles</p>
@@ -514,8 +533,8 @@ m\frac{d}{dt}(u)=F_u
 <section id="restoring-force-of-pressure-gradient">
 <h3>Restoring force of pressure gradient:<a class="headerlink" href="#restoring-force-of-pressure-gradient" title="Permalink to this headline">#</a></h3>
 <p>If a (spherical) particle volume is forefully changed by external pressure then the restoring force is proportional to the pressure variation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd580459-3b3d-4570-871e-0473d1c5d8db">
-<span class="eqno">(129)<a class="headerlink" href="#equation-bd580459-3b3d-4570-871e-0473d1c5d8db" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b69570aa-b911-409b-ad5b-48e1e16f8ef6">
+<span class="eqno">(129)<a class="headerlink" href="#equation-b69570aa-b911-409b-ad5b-48e1e16f8ef6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F_p = - \frac{d}{dr} P
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(V=m\rho\)</span> is the (spherical) volume of the particles  and <span class="math notranslate nohighlight">\(r\)</span> is measured along the radial dimension of the spherical volume.</p>
@@ -523,21 +542,21 @@ F_p = - \frac{d}{dr} P
 <section id="equation-of-continuity">
 <h3>Equation of continuity:<a class="headerlink" href="#equation-of-continuity" title="Permalink to this headline">#</a></h3>
 <p>Relative changes in particle densities is compensated by a velocity gradient</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93bfcca6-e0cc-4fd9-9c2b-ac9a0d814920">
-<span class="eqno">(130)<a class="headerlink" href="#equation-93bfcca6-e0cc-4fd9-9c2b-ac9a0d814920" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d30296cf-2f31-416e-b0fe-316a93195613">
+<span class="eqno">(130)<a class="headerlink" href="#equation-d30296cf-2f31-416e-b0fe-316a93195613" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{\rho}\frac{d}{dt}\rho + \frac{d}{dr}u = 0
 \end{equation}\]</div>
 </section>
 <section id="wave-equation">
 <h3>Wave equation<a class="headerlink" href="#wave-equation" title="Permalink to this headline">#</a></h3>
 <p>Combining all three equations one can obtain the wave equation that is the mathematical desctiption of propagating waves and disturbances</p>
-<div class="amsmath math notranslate nohighlight" id="equation-61929bae-e011-4e7f-b074-820b56bc485b">
-<span class="eqno">(131)<a class="headerlink" href="#equation-61929bae-e011-4e7f-b074-820b56bc485b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-23e40aac-8c8f-4ade-bb16-c4449f7bbf5b">
+<span class="eqno">(131)<a class="headerlink" href="#equation-23e40aac-8c8f-4ade-bb16-c4449f7bbf5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2(rP)}{dt^2} = c^2\frac{d^2(rP)}{dr^2}
 \end{equation}\]</div>
 <p>The solution of which is any function of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21d50b26-1cd4-4b43-a7d6-4b9c92151252">
-<span class="eqno">(132)<a class="headerlink" href="#equation-21d50b26-1cd4-4b43-a7d6-4b9c92151252" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2a094af-cdf7-4c39-9453-86340cf1f199">
+<span class="eqno">(132)<a class="headerlink" href="#equation-d2a094af-cdf7-4c39-9453-86340cf1f199" title="Permalink to this equation">#</a></span>\[\begin{equation}
 rP = f(ct \pm r)
 \end{equation}\]</div>
 <p>This can easily be verified by the second derivatives with respect to time <span class="math notranslate nohighlight">\(t\)</span> and range <span class="math notranslate nohighlight">\(r\)</span>. The form of the solution <span class="math notranslate nohighlight">\(f(ct \pm r)\)</span> is an indication that the time evolution of waves is directly related with spatial distribution of the wave.</p>
@@ -554,23 +573,23 @@ rP = f(ct \pm r)
 <section id="gaussian-pulse">
 <h2>Gaussian pulse<a class="headerlink" href="#gaussian-pulse" title="Permalink to this headline">#</a></h2>
 <p>Define a Pulse</p>
-<div class="amsmath math notranslate nohighlight" id="equation-28b4c69c-66bd-443f-ad7a-df192d9ab400">
-<span class="eqno">(133)<a class="headerlink" href="#equation-28b4c69c-66bd-443f-ad7a-df192d9ab400" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0e2c8561-595b-4311-a3ad-8f0ff3bcab70">
+<span class="eqno">(133)<a class="headerlink" href="#equation-0e2c8561-595b-4311-a3ad-8f0ff3bcab70" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(ct-r)=A(ct-r)\cos(k(ct-r))
 \end{equation}\]</div>
 <p>where the amplitude function <span class="math notranslate nohighlight">\(A(ct-k)\)</span> is given by a Gaussian shape</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae5d8c97-5116-43b6-a3c3-405276358745">
-<span class="eqno">(134)<a class="headerlink" href="#equation-ae5d8c97-5116-43b6-a3c3-405276358745" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8f1b074c-0a0a-4e8f-8210-7b3910ef8112">
+<span class="eqno">(134)<a class="headerlink" href="#equation-8f1b074c-0a0a-4e8f-8210-7b3910ef8112" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A(ct-r)=P_0\exp{\Big(-\frac{1}{2}\big(\frac{ct-r}{\sigma}\big)^2\Big)}
 \end{equation}\]</div>
 <p>and the “wavenumber” <span class="math notranslate nohighlight">\(k\)</span> is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e83882b3-3053-48ab-b546-606c9b5e206e">
-<span class="eqno">(135)<a class="headerlink" href="#equation-e83882b3-3053-48ab-b546-606c9b5e206e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-97103416-c015-474f-a019-102f0c901e5b">
+<span class="eqno">(135)<a class="headerlink" href="#equation-97103416-c015-474f-a019-102f0c901e5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 k=\frac{2\pi}{\lambda}
 \end{equation}\]</div>
 <p>and therefore</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d95c4a49-2b85-4f80-aa06-9f0a36e47724">
-<span class="eqno">(136)<a class="headerlink" href="#equation-d95c4a49-2b85-4f80-aa06-9f0a36e47724" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9bfa85ce-f3e8-4faf-882c-356bd7dd4b6b">
+<span class="eqno">(136)<a class="headerlink" href="#equation-9bfa85ce-f3e8-4faf-882c-356bd7dd4b6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P(ct-r)=\frac{P_0}{r}\exp{\Big(-\frac{1}{2}\big(\frac{ct-r}{\sigma}\big)^2\Big)}\cos\big(\frac{2\pi}{\lambda}(ct-r)\big)
 \end{equation}\]</div>
 <p>In the following examples we consider two cases observing a acoustic wave</p>
