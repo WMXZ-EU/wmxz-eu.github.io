@@ -187,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="BLM/blm_2.html">
-   BLM_2:  wave propagation
+   BLM_2:  Wave propagation
   </a>
  </li>
 </ul>
@@ -570,59 +570,59 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="spectral-estimation">
 <h1>Spectral estimation<a class="headerlink" href="#spectral-estimation" title="Permalink to this headline">#</a></h1>
 <p>Diven a time series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9b1edc3b-014e-4b43-8b97-905d23d3d0d1">
-<span class="eqno">(4)<a class="headerlink" href="#equation-9b1edc3b-014e-4b43-8b97-905d23d3d0d1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1d6abfec-2922-44c2-9eea-7ed8f8329d76">
+<span class="eqno">(4)<a class="headerlink" href="#equation-1d6abfec-2922-44c2-9eea-7ed8f8329d76" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x(n)
 \end{equation}\]</div>
 <p>with fft spectrum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d6356b7d-9c5d-4a01-87d8-50c2f305b1ab">
-<span class="eqno">(5)<a class="headerlink" href="#equation-d6356b7d-9c5d-4a01-87d8-50c2f305b1ab" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-01d2bd73-6ddb-4faa-ada0-e94db5aa1d4f">
+<span class="eqno">(5)<a class="headerlink" href="#equation-01d2bd73-6ddb-4faa-ada0-e94db5aa1d4f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y(m) = \sum_{n=0}^{N-1}x(n) \exp\{-2\pi i\frac{nm}{N}\}
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3de9e8ad-0b62-4c71-a941-2e63f34a3473">
-<span class="eqno">(6)<a class="headerlink" href="#equation-3de9e8ad-0b62-4c71-a941-2e63f34a3473" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ff3a3062-8851-46a7-8e4f-e60eb2f86310">
+<span class="eqno">(6)<a class="headerlink" href="#equation-ff3a3062-8851-46a7-8e4f-e60eb2f86310" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y(m) = FFT(x(n))
 \end{equation}\]</div>
 <p>Power spectrum is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5d8dc71-b08b-45f6-8604-e04ef35b9fae">
-<span class="eqno">(7)<a class="headerlink" href="#equation-c5d8dc71-b08b-45f6-8604-e04ef35b9fae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5fc03fd9-2334-411a-a354-fa2369fbb078">
+<span class="eqno">(7)<a class="headerlink" href="#equation-5fc03fd9-2334-411a-a354-fa2369fbb078" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(m) = |y(m)|^2
 \end{equation}\]</div>
 <p>Power spectral density (PSD) of a discrete-time noise signal is given by the FFT of its autocorrelation function, R(k)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32de1776-9b38-4aa6-acb5-83b2e4645eca">
-<span class="eqno">(8)<a class="headerlink" href="#equation-32de1776-9b38-4aa6-acb5-83b2e4645eca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1b67cd82-fdee-4ba0-9c70-6c33cd4e98fd">
+<span class="eqno">(8)<a class="headerlink" href="#equation-1b67cd82-fdee-4ba0-9c70-6c33cd4e98fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = FFT(R(k))
 \end{equation}\]</div>
 <p>where the autocorrelation function R(k) is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d8a690c-db58-4f5d-839e-dbde64a45a95">
-<span class="eqno">(9)<a class="headerlink" href="#equation-4d8a690c-db58-4f5d-839e-dbde64a45a95" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b5e69e25-c37f-464d-8bd0-d75e3ea11ed2">
+<span class="eqno">(9)<a class="headerlink" href="#equation-b5e69e25-c37f-464d-8bd0-d75e3ea11ed2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     R(k)=\frac{1}{N}\sum_{n=0}^{N-1}x(n)x(n-k)
 \end{equation}\]</div>
 <p>that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b018cecf-3373-4b36-9e43-93ad93a05dcc">
-<span class="eqno">(10)<a class="headerlink" href="#equation-b018cecf-3373-4b36-9e43-93ad93a05dcc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0fe4a0f6-60ca-4ebb-afc7-2c0e6be783af">
+<span class="eqno">(10)<a class="headerlink" href="#equation-0fe4a0f6-60ca-4ebb-afc7-2c0e6be783af" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \sum_{k=0}^{N-1}\frac{1}{N}\sum_{n=0}^{N-1}x(n)x(n-k) \exp\{-2\pi i\frac{km}{N}\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-7e6c04f2-f08f-41bf-9928-8005a7109b59">
-<span class="eqno">(11)<a class="headerlink" href="#equation-7e6c04f2-f08f-41bf-9928-8005a7109b59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1549ba5e-c897-469c-933c-639c0f7338fd">
+<span class="eqno">(11)<a class="headerlink" href="#equation-1549ba5e-c897-469c-933c-639c0f7338fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N}\sum_{n=0}^{N-1}x(n)\exp\{-2\pi i\frac{nm}{N} \} \sum_{k=0}^{N-1}x(n-k) \exp\{2\pi i\frac{(n-k)m}{N}\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-0879ee18-bf8d-4df2-81b4-e0491a80553c">
-<span class="eqno">(12)<a class="headerlink" href="#equation-0879ee18-bf8d-4df2-81b4-e0491a80553c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dae47c78-4ddc-4787-a2a6-87356908b949">
+<span class="eqno">(12)<a class="headerlink" href="#equation-dae47c78-4ddc-4787-a2a6-87356908b949" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N}|FFT(x(n))|^2
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fa9851a3-2a34-4a07-bbc5-4302fc7c1a8c">
-<span class="eqno">(13)<a class="headerlink" href="#equation-fa9851a3-2a34-4a07-bbc5-4302fc7c1a8c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b65aef54-b39f-4828-8265-ed3f26e83573">
+<span class="eqno">(13)<a class="headerlink" href="#equation-b65aef54-b39f-4828-8265-ed3f26e83573" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N} P(m)
 \end{equation}\]</div>
 <p>While the PSD is related to the Power Spectrum by dividing by length of FFT (i.e. length of signal window), the proper estimation of the Autocorrelation funtion <span class="math notranslate nohighlight">\(R(k)\)</span> requires a signal length that is typically longer than the FFT, which cannot be done for short signals (transients), even if mathematically possible, but estimate is not reliable.</p>
 <section id="hz-density-estimate">
 <h2>1/Hz density estimate<a class="headerlink" href="#hz-density-estimate" title="Permalink to this headline">#</a></h2>
 <p>Above PSD is on a per sample bases. Concerning the 1/Hz density estimate one has to scale the estimate by the number of samples per second.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-034783f4-a55e-4335-a272-6cab3e93bd19">
-<span class="eqno">(14)<a class="headerlink" href="#equation-034783f4-a55e-4335-a272-6cab3e93bd19" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-378f119f-743f-44b9-83b4-f6440f5788a9">
+<span class="eqno">(14)<a class="headerlink" href="#equation-378f119f-743f-44b9-83b4-f6440f5788a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{fs N} |FFT(w(n)x(n))|^2
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(fs\)</span> is the sampling frequency</p>
@@ -630,8 +630,8 @@ title="Print to PDF"
 <section id="windowed-psd-estimates">
 <h2>Windowed PSD estimates<a class="headerlink" href="#windowed-psd-estimates" title="Permalink to this headline">#</a></h2>
 <p>When windowing the timeseries before PSD estimates</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d625e0fd-8ee5-4e84-937d-c6a82e506fc7">
-<span class="eqno">(15)<a class="headerlink" href="#equation-d625e0fd-8ee5-4e84-937d-c6a82e506fc7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8e4fda4c-0e5d-4efa-a144-e88f04123633">
+<span class="eqno">(15)<a class="headerlink" href="#equation-8e4fda4c-0e5d-4efa-a144-e88f04123633" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{fs \sum{w(n)^2}} |FFT(w(n)x(n))|^2
 \end{equation}\]</div>
 <p>For a rectangular window we have <span class="math notranslate nohighlight">\(\sum{w(n)^2}=N\)</span></p>
@@ -639,8 +639,8 @@ title="Print to PDF"
 <section id="windowed-power-spectrum-estimates">
 <h2>Windowed power spectrum estimates<a class="headerlink" href="#windowed-power-spectrum-estimates" title="Permalink to this headline">#</a></h2>
 <p>Alternatively to the PSD we have the power spectrum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d6331eef-a661-433f-b0ec-c289b4d2d4ff">
-<span class="eqno">(16)<a class="headerlink" href="#equation-d6331eef-a661-433f-b0ec-c289b4d2d4ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3c87f89e-0f5b-4a48-88d6-f245dbb58a08">
+<span class="eqno">(16)<a class="headerlink" href="#equation-3c87f89e-0f5b-4a48-88d6-f245dbb58a08" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{(\sum{w(n)})^2} |FFT(w(n)x(n))|^2
 \end{equation}\]</div>
 <p>that allows the RMS spectral estimates of tonal signals, but provides wrong results for random signals</p>
@@ -756,7 +756,7 @@ The presence of noise only data corrupts any reliable signal spectral estimates.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal RMS :  10.0 9.999999999999996
-&#39;Spect&#39; peak (RMS):  10.036248942373728
+&#39;Spect&#39; peak (RMS):  9.985961423033814
 </pre></div>
 </div>
 <img alt="_images/power_spectra_5_1.png" src="_images/power_spectra_5_1.png" />
@@ -799,7 +799,7 @@ The presence of noise only data corrupts any reliable signal spectral estimates.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal peak and energy :  10.0 708.9815403622064
-&#39;Spect&#39; peak (RMS):  0.3385181234009315
+&#39;Spect&#39; peak (RMS):  0.3134527611995592
 </pre></div>
 </div>
 <img alt="_images/power_spectra_7_1.png" src="_images/power_spectra_7_1.png" />
@@ -837,7 +837,7 @@ The presence of noise only data corrupts any reliable signal spectral estimates.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal peak and energy :  10.0 708.9815403622064
-&#39;Spect&#39; peak (RMS):  0.31618556520415414
+&#39;Spect&#39; peak (RMS):  0.33448892503580163
 </pre></div>
 </div>
 <img alt="_images/power_spectra_8_1.png" src="_images/power_spectra_8_1.png" />
@@ -859,7 +859,7 @@ The presence of noise only data corrupts any reliable signal spectral estimates.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.86474674134137
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.907665920719527
 </pre></div>
 </div>
 </div>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>BLM_2: wave propagation &#8212; bioacoustics</title>
+    <title>BLM_2: Wave propagation &#8212; bioacoustics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   BLM_2:  wave propagation
+   BLM_2:  Wave propagation
   </a>
  </li>
 </ul>
@@ -396,8 +396,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#equation-of-motion-of-disturbed-particles">
-   Equation of motion of disturbed particles
+  <a class="reference internal nav-link" href="#equation-of-motion-of-forcefully-displaced-particles">
+   Equation of motion of forcefully displaced particles
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -430,8 +430,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gaussian-pulse">
-   Gaussian pulse
+  <a class="reference internal nav-link" href="#example-gaussian-pulse">
+   Example: Gaussian pulse
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -450,7 +450,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>BLM_2:  wave propagation</h1>
+                <h1>BLM_2:  Wave propagation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -461,8 +461,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#equation-of-motion-of-disturbed-particles">
-   Equation of motion of disturbed particles
+  <a class="reference internal nav-link" href="#equation-of-motion-of-forcefully-displaced-particles">
+   Equation of motion of forcefully displaced particles
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -495,8 +495,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gaussian-pulse">
-   Gaussian pulse
+  <a class="reference internal nav-link" href="#example-gaussian-pulse">
+   Example: Gaussian pulse
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -517,49 +517,51 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="blm-2-wave-propagation">
-<h1>BLM_2:  wave propagation<a class="headerlink" href="#blm-2-wave-propagation" title="Permalink to this headline">#</a></h1>
-<section id="equation-of-motion-of-disturbed-particles">
-<h2>Equation of motion of disturbed particles<a class="headerlink" href="#equation-of-motion-of-disturbed-particles" title="Permalink to this headline">#</a></h2>
+<h1>BLM_2:  Wave propagation<a class="headerlink" href="#blm-2-wave-propagation" title="Permalink to this headline">#</a></h1>
+<p>Waves are the consequence of forcefully displacing some particles (gas/water/atoms) from the equilibrium state. the resulting propagating wave is mathematically described by the wave equation.</p>
+<section id="equation-of-motion-of-forcefully-displaced-particles">
+<h2>Equation of motion of forcefully displaced particles<a class="headerlink" href="#equation-of-motion-of-forcefully-displaced-particles" title="Permalink to this headline">#</a></h2>
+<p>To derive the wave equation one needs three different physical laws and equations.</p>
 <section id="newton-law-of-motion">
 <h3>Newton’ law of motion:<a class="headerlink" href="#newton-law-of-motion" title="Permalink to this headline">#</a></h3>
 <p>Newton: “a change in motion is proportional to the motive force impressed and takes place along a stright line in which the force is impressed”</p>
 <p>In mathematical terms</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32451e2c-1d89-4c8c-8c96-1cd637f6560e">
-<span class="eqno">(128)<a class="headerlink" href="#equation-32451e2c-1d89-4c8c-8c96-1cd637f6560e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-00179930-b31d-4d1b-9d50-3e4f9e0f635f">
+<span class="eqno">(128)<a class="headerlink" href="#equation-00179930-b31d-4d1b-9d50-3e4f9e0f635f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 m\frac{d}{dt}(u)=F_u
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is the particle mass that is considered constant and <span class="math notranslate nohighlight">\(u\)</span> is the velocity of the particles</p>
 </section>
 <section id="restoring-force-of-pressure-gradient">
 <h3>Restoring force of pressure gradient:<a class="headerlink" href="#restoring-force-of-pressure-gradient" title="Permalink to this headline">#</a></h3>
-<p>If a (spherical) particle volume is forefully changed by external pressure then the restoring force is proportional to the pressure variation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b69570aa-b911-409b-ad5b-48e1e16f8ef6">
-<span class="eqno">(129)<a class="headerlink" href="#equation-b69570aa-b911-409b-ad5b-48e1e16f8ef6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>If a (spherical) particle volume is forefully changed by external pressure then the restoring force is proportional to the radial pressure variation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f9942c78-ad2f-44cb-9d70-4525919d2348">
+<span class="eqno">(129)<a class="headerlink" href="#equation-f9942c78-ad2f-44cb-9d70-4525919d2348" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F_p = - \frac{d}{dr} P
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(V=m\rho\)</span> is the (spherical) volume of the particles  and <span class="math notranslate nohighlight">\(r\)</span> is measured along the radial dimension of the spherical volume.</p>
 </section>
 <section id="equation-of-continuity">
 <h3>Equation of continuity:<a class="headerlink" href="#equation-of-continuity" title="Permalink to this headline">#</a></h3>
-<p>Relative changes in particle densities is compensated by a velocity gradient</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d30296cf-2f31-416e-b0fe-316a93195613">
-<span class="eqno">(130)<a class="headerlink" href="#equation-d30296cf-2f31-416e-b0fe-316a93195613" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Relative changes in particle densities is compensated by a velocity gradient and for spherical symetric motion (pulsing sphere) we get</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f9df3983-369f-430f-ae95-61203e7595bd">
+<span class="eqno">(130)<a class="headerlink" href="#equation-f9df3983-369f-430f-ae95-61203e7595bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{\rho}\frac{d}{dt}\rho + \frac{d}{dr}u = 0
 \end{equation}\]</div>
 </section>
 <section id="wave-equation">
 <h3>Wave equation<a class="headerlink" href="#wave-equation" title="Permalink to this headline">#</a></h3>
-<p>Combining all three equations one can obtain the wave equation that is the mathematical desctiption of propagating waves and disturbances</p>
-<div class="amsmath math notranslate nohighlight" id="equation-23e40aac-8c8f-4ade-bb16-c4449f7bbf5b">
-<span class="eqno">(131)<a class="headerlink" href="#equation-23e40aac-8c8f-4ade-bb16-c4449f7bbf5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Combining all three equations one can obtain the wave equation that is the mathematical description of propagating waves and disturbances</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2875df01-5339-46af-a317-5d3d808107c2">
+<span class="eqno">(131)<a class="headerlink" href="#equation-2875df01-5339-46af-a317-5d3d808107c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2(rP)}{dt^2} = c^2\frac{d^2(rP)}{dr^2}
 \end{equation}\]</div>
-<p>The solution of which is any function of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d2a094af-cdf7-4c39-9453-86340cf1f199">
-<span class="eqno">(132)<a class="headerlink" href="#equation-d2a094af-cdf7-4c39-9453-86340cf1f199" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>The solution of this equation is any function of the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4e7fb489-3af9-4a07-982f-21b530bf4b37">
+<span class="eqno">(132)<a class="headerlink" href="#equation-4e7fb489-3af9-4a07-982f-21b530bf4b37" title="Permalink to this equation">#</a></span>\[\begin{equation}
 rP = f(ct \pm r)
 \end{equation}\]</div>
-<p>This can easily be verified by the second derivatives with respect to time <span class="math notranslate nohighlight">\(t\)</span> and range <span class="math notranslate nohighlight">\(r\)</span>. The form of the solution <span class="math notranslate nohighlight">\(f(ct \pm r)\)</span> is an indication that the time evolution of waves is directly related with spatial distribution of the wave.</p>
+<p>This can easily be verified by the second derivatives with respect to time <span class="math notranslate nohighlight">\(t\)</span> and range <span class="math notranslate nohighlight">\(r\)</span>. The form of the solution <span class="math notranslate nohighlight">\(f(ct \pm r)\)</span> is an indication that the time evolution of waves is directly related with spatial distribution of the waves.</p>
 <section id="direction-of-propagation">
 <h4>Direction of propagation<a class="headerlink" href="#direction-of-propagation" title="Permalink to this headline">#</a></h4>
 <p>The solution to the spherical wave equation contains as argument <span class="math notranslate nohighlight">\((ct \pm r)\)</span> which means that for any solution we have two cases</p>
@@ -570,64 +572,64 @@ rP = f(ct \pm r)
 </section>
 </section>
 </section>
-<section id="gaussian-pulse">
-<h2>Gaussian pulse<a class="headerlink" href="#gaussian-pulse" title="Permalink to this headline">#</a></h2>
+<section id="example-gaussian-pulse">
+<h2>Example: Gaussian pulse<a class="headerlink" href="#example-gaussian-pulse" title="Permalink to this headline">#</a></h2>
 <p>Define a Pulse</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e2c8561-595b-4311-a3ad-8f0ff3bcab70">
-<span class="eqno">(133)<a class="headerlink" href="#equation-0e2c8561-595b-4311-a3ad-8f0ff3bcab70" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7aafc6eb-a358-4fa4-980a-a728f39e52b1">
+<span class="eqno">(133)<a class="headerlink" href="#equation-7aafc6eb-a358-4fa4-980a-a728f39e52b1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(ct-r)=A(ct-r)\cos(k(ct-r))
 \end{equation}\]</div>
 <p>where the amplitude function <span class="math notranslate nohighlight">\(A(ct-k)\)</span> is given by a Gaussian shape</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f1b074c-0a0a-4e8f-8210-7b3910ef8112">
-<span class="eqno">(134)<a class="headerlink" href="#equation-8f1b074c-0a0a-4e8f-8210-7b3910ef8112" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb29daef-ed9b-4dfe-a247-616ef08562b9">
+<span class="eqno">(134)<a class="headerlink" href="#equation-bb29daef-ed9b-4dfe-a247-616ef08562b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A(ct-r)=P_0\exp{\Big(-\frac{1}{2}\big(\frac{ct-r}{\sigma}\big)^2\Big)}
 \end{equation}\]</div>
 <p>and the “wavenumber” <span class="math notranslate nohighlight">\(k\)</span> is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-97103416-c015-474f-a019-102f0c901e5b">
-<span class="eqno">(135)<a class="headerlink" href="#equation-97103416-c015-474f-a019-102f0c901e5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6c75ad58-3451-48fa-a8ab-d82cb6a6c246">
+<span class="eqno">(135)<a class="headerlink" href="#equation-6c75ad58-3451-48fa-a8ab-d82cb6a6c246" title="Permalink to this equation">#</a></span>\[\begin{equation}
 k=\frac{2\pi}{\lambda}
 \end{equation}\]</div>
 <p>and therefore</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9bfa85ce-f3e8-4faf-882c-356bd7dd4b6b">
-<span class="eqno">(136)<a class="headerlink" href="#equation-9bfa85ce-f3e8-4faf-882c-356bd7dd4b6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
-P(ct-r)=\frac{P_0}{r}\exp{\Big(-\frac{1}{2}\big(\frac{ct-r}{\sigma}\big)^2\Big)}\cos\big(\frac{2\pi}{\lambda}(ct-r)\big)
+<div class="amsmath math notranslate nohighlight" id="equation-18ffca85-0ca5-4137-8daf-e6eb1b2bba46">
+<span class="eqno">(136)<a class="headerlink" href="#equation-18ffca85-0ca5-4137-8daf-e6eb1b2bba46" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P(t,r)=\frac{P_0}{r}\exp{\Big(-\frac{1}{2}\big(\frac{ct-r}{\sigma}\big)^2\Big)}\cos\big(\frac{2\pi}{\lambda}(ct-r)\big)
 \end{equation}\]</div>
 <p>In the following examples we consider two cases observing a acoustic wave</p>
 <ul class="simple">
-<li><p>time snap shot after 10 seconds</p></li>
-<li><p>time series at 15 km distance from origin</p></li>
+<li><p>time snap shot after 10 ms</p></li>
+<li><p>time series at 15 m distance from origin</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1">#</span>
-<span class="n">c</span><span class="o">=</span><span class="mf">1.5</span>   <span class="c1"># km/s</span>
+<span class="n">c</span><span class="o">=</span><span class="mi">1500</span>   <span class="c1"># m/s</span>
 <span class="n">Po</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">sigma</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># km</span>
-<span class="n">lam</span><span class="o">=</span><span class="mi">3</span>  <span class="c1"># km</span>
+<span class="n">sigma</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># m</span>
+<span class="n">lam</span><span class="o">=</span><span class="mi">3</span>  <span class="c1"># m</span>
 
-<span class="k">def</span> <span class="nf">Signal</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">lam</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">Pulse</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">lam</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">((</span><span class="n">c</span><span class="o">*</span><span class="n">t</span><span class="o">-</span><span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lam</span><span class="o">*</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">t</span><span class="o">-</span><span class="n">r</span><span class="p">))</span>
 
-<span class="c1">#case 1</span>
-<span class="n">r</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">t</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># time of snaphot</span>
-<span class="n">x1</span><span class="o">=</span><span class="n">Po</span><span class="o">*</span><span class="n">Signal</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">lam</span><span class="p">)</span>
+<span class="c1">#=== case 1 ===  </span>
+<span class="n">r</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>   <span class="c1"># m</span>
+<span class="n">t</span><span class="o">=</span><span class="mf">0.01</span>                    <span class="c1"># s time of snaphot</span>
+<span class="n">x1</span><span class="o">=</span><span class="n">Po</span><span class="o">*</span><span class="n">Pulse</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">lam</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
 <span class="c1">#</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">x1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Range [km]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Range [m]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="c1">#case 2</span>
-<span class="n">r</span><span class="o">=</span><span class="mi">15</span> <span class="c1"># fixed distance</span>
-<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mf">0.1</span><span class="p">);</span>
-<span class="n">x2</span><span class="o">=</span><span class="n">Po</span><span class="o">*</span><span class="n">Signal</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">lam</span><span class="p">)</span>
+<span class="c1">#=== case 2 ===</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">15</span>                        <span class="c1"># m fixed distance</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.1e-3</span><span class="p">);</span> <span class="c1"># s</span>
+<span class="n">x2</span><span class="o">=</span><span class="n">Po</span><span class="o">*</span><span class="n">Pulse</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">lam</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
 <span class="c1">#</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [s]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [ms]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -645,7 +647,7 @@ P(ct-r)=\frac{P_0}{r}\exp{\Big(-\frac{1}{2}\big(\frac{ct-r}{\sigma}\big)^2\Big)}
 </div>
 <section id="observations">
 <h3>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">#</a></h3>
-<p>The resulting measurements (case 1) and (case 2) show more or less the same wave form. Only difference is that the time snap shot, which measures the wave at different ranges is effected by the attenutation due to geometric speading.</p>
+<p>The resulting measurements (case 1) and (case 2) show more or less the same wave form. Only difference is that the time snap shot, which measures the wave at different ranges is effected by the attenutation due to geometric speading, while measurements at a fixed range will experience always the same attenuation.</p>
 </section>
 </section>
 </section>
