@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>BML_0: BAR_LA_MARE &#8212; bioacoustics</title>
+    <title>BLM_3: Underwater Sound Propagation &#8212; bioacoustics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,10 +50,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="BLM_1: Basic signal spectral analysis" href="blm_1.html" />
-    <link rel="prev" title="Click detection" href="../Detections.html" />
+    <link rel="prev" title="BLM_2: Wave propagation" href="blm_2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -173,8 +174,8 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="blm_0.html">
    BML_0: BAR_LA_MARE
   </a>
  </li>
@@ -188,8 +189,8 @@ const thebe_selector_output = ".output, .cell_output"
    BLM_2:  Wave propagation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="blm_3.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    BLM_3: Underwater Sound Propagation
   </a>
  </li>
@@ -252,7 +253,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/wmxz-eu/wmxz-eu.github.io/master?urlpath=tree/BLM/blm_0.ipynb"
+        <a href="https://mybinder.org/v2/gh/wmxz-eu/wmxz-eu.github.io/master?urlpath=tree/BLM/blm_3.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -312,7 +313,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2FBLM/blm_0.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2FBLM/blm_3.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -340,7 +341,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/BLM/blm_0.ipynb"
+        <a href="../_sources/BLM/blm_3.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -400,13 +401,30 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preparation-python-jupyter-lab">
-   Preparation: Python Jupyter Lab
+  <a class="reference internal nav-link" href="#sound-speed">
+   Sound speed
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-steps-in-python">
-   First steps in python
+  <a class="reference internal nav-link" href="#absorption">
+   Absorption
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sound-speed-simulation">
+   Sound speed simulation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observation">
+     Observation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#absorption-plot">
+   Absorption plot
   </a>
  </li>
 </ul>
@@ -418,7 +436,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>BML_0: BAR_LA_MARE</h1>
+                <h1>BLM_3: Underwater Sound Propagation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -429,13 +447,30 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preparation-python-jupyter-lab">
-   Preparation: Python Jupyter Lab
+  <a class="reference internal nav-link" href="#sound-speed">
+   Sound speed
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-steps-in-python">
-   First steps in python
+  <a class="reference internal nav-link" href="#absorption">
+   Absorption
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sound-speed-simulation">
+   Sound speed simulation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observation">
+     Observation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#absorption-plot">
+   Absorption plot
   </a>
  </li>
 </ul>
@@ -448,76 +483,99 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="bml-0-bar-la-mare">
-<h1>BML_0: BAR_LA_MARE<a class="headerlink" href="#bml-0-bar-la-mare" title="Permalink to this headline">#</a></h1>
-<p>Bio Acoustic Research to Learn About the MARine Environment</p>
-<section id="preparation-python-jupyter-lab">
-<h2>Preparation: Python Jupyter Lab<a class="headerlink" href="#preparation-python-jupyter-lab" title="Permalink to this headline">#</a></h2>
-<p>Installation</p>
-<ul class="simple">
-<li><p>miniconda</p></li>
-</ul>
-<p>Launch minconda terminal and check conda</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--help</span></code></p></li>
-</ul>
-<p>create and change to working directory</p>
-<ul class="simple">
-<li><p>(e.g. <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">$home/documents/blm</span></code> followed by <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$home/documents/blm</span></code>)</p></li>
-</ul>
-<p>Creation of environment</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">blm</span></code></p></li>
-</ul>
-<p>Activate conda environment</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">blm</span></code></p></li>
-</ul>
-<p>Download basic python moduls</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">jupyterLab</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">numpy</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">matplotlib</span></code></p></li>
-</ul>
-<p>Start jupyterLab
-In miniconda terminal:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code></p></li>
-</ul>
-<p>Web browser opens in working directory</p>
-<p>Open new notebook: New -&gt; Python 3</p>
-<p>A new notebook will open “untitled.ipynb” ready to work with.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="blm-3-underwater-sound-propagation">
+<h1>BLM_3: Underwater Sound Propagation<a class="headerlink" href="#blm-3-underwater-sound-propagation" title="Permalink to this headline">#</a></h1>
+<p>Key characteristics of underwater sound propagation are the sound speed and the absorption of sound in sea water</p>
+<section id="sound-speed">
+<h2>Sound speed<a class="headerlink" href="#sound-speed" title="Permalink to this headline">#</a></h2>
+<p>The speed of sound in sea water is a complicated function of temperature T, depth z, and salinity S.</p>
+<p>A simplified formula is given by Medwin (1975)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b74d7c51-ebd3-4eff-98f9-7ee6f6640eb1">
+<span class="eqno">(137)<a class="headerlink" href="#equation-b74d7c51-ebd3-4eff-98f9-7ee6f6640eb1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+c(T,z,S) = 1449.2 +4.6T -\Big(\frac{T}{4.26}\Big)^2 + \Big(\frac{T}{15.1}\Big)^3
++\frac{z}{62.5} 
++\Big(1.34 - \frac{T}{100}\Big)(S-35) 
+\end{equation}\]</div>
 </section>
-<section id="first-steps-in-python">
-<h2>First steps in python<a class="headerlink" href="#first-steps-in-python" title="Permalink to this headline">#</a></h2>
+<section id="absorption">
+<h2>Absorption<a class="headerlink" href="#absorption" title="Permalink to this headline">#</a></h2>
+<p>Sound energy is absorbed when propagating in sea water.</p>
+<p>A simple widspread formula is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f24f5a19-d48a-41b5-b985-1c85df1bc9f2">
+<span class="eqno">(138)<a class="headerlink" href="#equation-f24f5a19-d48a-41b5-b985-1c85df1bc9f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+a=\Big(\frac{0.12F^2}{1.32+F^2}\Big)_{B(OH)_3} + \Big(\frac{48.5F^2}{5715.4+F^2}\Big)_{MgSO_4} +(3.4\times10^{-4}F^2)_{H_2O}
+\end{equation}\]</div>
+</section>
+<section id="sound-speed-simulation">
+<h2>Sound speed simulation<a class="headerlink" href="#sound-speed-simulation" title="Permalink to this headline">#</a></h2>
+<p>A sound speed is simulated for the Mediterranean Sea, where a exponential temperature decrease is assumed on top of a 13.5°C deep water temperature and a top mixed layer with constant 20°C temperture.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># simple mathematic</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="mi">3</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="mi">4</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">d1</span> <span class="o">=</span> <span class="n">a</span><span class="o">==</span><span class="n">b</span>
-<span class="n">d2</span> <span class="o">=</span> <span class="n">a</span><span class="o">==</span><span class="n">c</span>
-<span class="c1">#</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
-<span class="c1">#</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">cv</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">S</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1449.2</span> <span class="o">+</span><span class="mf">4.6</span><span class="o">*</span><span class="n">T</span> <span class="o">-</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mf">4.26</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mf">15.1</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="mf">62.5</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mf">1.34</span> <span class="o">-</span> <span class="n">T</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">S</span><span class="o">-</span><span class="mi">35</span><span class="p">)</span> 
+
+<span class="n">S</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">13.5</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">z</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">T</span> <span class="o">+=</span> <span class="p">(</span><span class="n">T0</span><span class="o">-</span><span class="mf">13.5</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">z</span><span class="o">/</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cv</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">S</span><span class="p">),</span><span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span><span class="mi">1530</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
-12
-9
-False
-True
-9 12 9 False True
+<img alt="../_images/blm_3_2_0.png" src="../_images/blm_3_2_0.png" />
+</div>
+</div>
+<section id="observation">
+<h3>Observation<a class="headerlink" href="#observation" title="Permalink to this headline">#</a></h3>
+<p>The sound speed profile shows two typical features</p>
+<ul class="simple">
+<li><p>a surface duct of about 25 m</p></li>
+<li><p>a sound channel with mimimum sound speed at about 140 m</p></li>
+</ul>
+</section>
+</section>
+<section id="absorption-plot">
+<h2>Absorption plot<a class="headerlink" href="#absorption-plot" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">F2</span><span class="o">=</span><span class="n">F</span><span class="o">*</span><span class="n">F</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="mf">3.4e-4</span><span class="o">*</span><span class="n">F2</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.12</span><span class="o">*</span><span class="n">F2</span><span class="o">/</span><span class="p">(</span><span class="mf">1.32</span><span class="o">+</span><span class="n">F2</span><span class="p">))</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">48.5</span><span class="o">*</span><span class="n">F2</span><span class="o">/</span><span class="p">(</span><span class="mf">5715.4</span><span class="o">+</span><span class="n">F2</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">a0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">a0</span><span class="o">+</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">a0</span><span class="o">+</span><span class="n">a1</span><span class="o">+</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency (kHz)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Absorption (dB/km)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/blm_3_5_0.png" src="../_images/blm_3_5_0.png" />
 </div>
 </div>
 </section>
@@ -550,19 +608,12 @@ True
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../Detections.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="blm_2.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Click detection</p>
+            <p class="prev-next-title">BLM_2:  Wave propagation</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="blm_1.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">BLM_1: Basic signal spectral analysis</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

@@ -190,6 +190,11 @@ const thebe_selector_output = ".output, .cell_output"
    BLM_2:  Wave propagation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="blm_3.html">
+   BLM_3: Underwater Sound Propagation
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -818,48 +823,48 @@ title="Print to PDF"
 <h2>Complex numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this headline">#</a></h2>
 <p>The following mathematical excurse is helpful for further spectral analysis</p>
 <p>Let</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d257821d-4c04-4fb8-9172-638af384d18e">
-<span class="eqno">(110)<a class="headerlink" href="#equation-d257821d-4c04-4fb8-9172-638af384d18e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-20155211-0d88-4758-a237-899de83368f0">
+<span class="eqno">(110)<a class="headerlink" href="#equation-20155211-0d88-4758-a237-899de83368f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x=\cos(\phi)
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a15bef14-5fd4-4ced-9e57-77eb2a0635d0">
-<span class="eqno">(111)<a class="headerlink" href="#equation-a15bef14-5fd4-4ced-9e57-77eb2a0635d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b2551366-0f5a-4ad8-9581-2690c6301a54">
+<span class="eqno">(111)<a class="headerlink" href="#equation-b2551366-0f5a-4ad8-9581-2690c6301a54" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y=\sin(\phi)
 \end{equation}\]</div>
 <p>Define a complex signal (real plus imaginary)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6e57df28-025c-49f0-b810-40069a8a0e45">
-<span class="eqno">(112)<a class="headerlink" href="#equation-6e57df28-025c-49f0-b810-40069a8a0e45" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f16ac3a7-2aa1-42d6-af76-762f0a1f6a66">
+<span class="eqno">(112)<a class="headerlink" href="#equation-f16ac3a7-2aa1-42d6-af76-762f0a1f6a66" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z=(\cos(\phi)+i\sin(\phi)) = \exp(i\phi)= e^{-i\phi}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(i\)</span> is defined such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-676d9880-248e-41e7-bdbc-e6a47cb8aba2">
-<span class="eqno">(113)<a class="headerlink" href="#equation-676d9880-248e-41e7-bdbc-e6a47cb8aba2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6672e5de-df5e-41d4-82fc-ec12007d22ec">
+<span class="eqno">(113)<a class="headerlink" href="#equation-6672e5de-df5e-41d4-82fc-ec12007d22ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
 i^2 = -1
 \end{equation}\]</div>
 <p>Define the conjugate of a complex signal</p>
-<div class="amsmath math notranslate nohighlight" id="equation-260c7eb3-5dfc-4f45-96d9-e81fdd3fbd59">
-<span class="eqno">(114)<a class="headerlink" href="#equation-260c7eb3-5dfc-4f45-96d9-e81fdd3fbd59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fb392e38-2132-4e7c-b7d7-d2e5cf8dcb99">
+<span class="eqno">(114)<a class="headerlink" href="#equation-fb392e38-2132-4e7c-b7d7-d2e5cf8dcb99" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z^*=(\cos(\phi)-i\sin(\phi)) = \exp(-i\phi) = e^{-i\phi}
 \end{equation}\]</div>
 <p>Define absolute squared complex value by signal multiplied with its conjugate</p>
-<div class="amsmath math notranslate nohighlight" id="equation-047f707c-cc2b-45c1-aef6-86fa313fb26d">
-<span class="eqno">(115)<a class="headerlink" href="#equation-047f707c-cc2b-45c1-aef6-86fa313fb26d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-46cc92fd-d62d-4224-a69b-fcd85345b2b9">
+<span class="eqno">(115)<a class="headerlink" href="#equation-46cc92fd-d62d-4224-a69b-fcd85345b2b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |z|^2 = z z^* = (\cos(\phi)+i\sin(\phi))(\cos(\phi)-i\sin(\phi))
 \end{equation}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c35073f-f51b-466f-92ca-86115328a8c6">
-<span class="eqno">(116)<a class="headerlink" href="#equation-0c35073f-f51b-466f-92ca-86115328a8c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d27dae42-ec1b-4ce0-b3f3-85b9e4876635">
+<span class="eqno">(116)<a class="headerlink" href="#equation-d27dae42-ec1b-4ce0-b3f3-85b9e4876635" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |z|^2 =  \cos^2(\phi)+i\sin(\phi)\cos(\phi)-i\cos(\phi)\sin(\phi)-i^2\sin^2(\phi)
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-106cf0bd-8581-4910-aa22-c715edcb244b">
-<span class="eqno">(117)<a class="headerlink" href="#equation-106cf0bd-8581-4910-aa22-c715edcb244b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6750a37d-7a63-43e9-b4a4-feaad55531f4">
+<span class="eqno">(117)<a class="headerlink" href="#equation-6750a37d-7a63-43e9-b4a4-feaad55531f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |z|^2 =  \cos^2(\phi)+\sin^2(\phi) =1
 \end{equation}\]</div>
 <p>Alternative method</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1c75cac8-b5bb-47f2-bcd7-a69df80a7870">
-<span class="eqno">(118)<a class="headerlink" href="#equation-1c75cac8-b5bb-47f2-bcd7-a69df80a7870" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e9afaaf-209e-4a2b-9659-acf4acaf742b">
+<span class="eqno">(118)<a class="headerlink" href="#equation-3e9afaaf-209e-4a2b-9659-acf4acaf742b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |z|^2 =  e^{i\phi}e^{-i\phi} = e^{i\phi-i\phi} =e^0= 1
 \end{equation}\]</div>
 <p>Complex notation simplifies mathematics, but for physical phenomena only the real part is of relevance</p>
@@ -1011,23 +1016,23 @@ z^*=(\cos(\phi)-i\sin(\phi)) = \exp(-i\phi) = e^{-i\phi}
 <h3>FFT implementation<a class="headerlink" href="#fft-implementation" title="Permalink to this headline">#</a></h3>
 <p>To see how FFT is implemented (<span class="math notranslate nohighlight">\(\exp(2\pi i nm/N)\)</span> or <span class="math notranslate nohighlight">\(\exp(-2\pi i nm/N)\)</span>) we fourier transform a time series where only a single sample is set to a non-zero value (say sample 1 set to one)</p>
 <p>In the case of a DFT we note that for a single sample</p>
-<div class="amsmath math notranslate nohighlight" id="equation-58185591-4c7c-424e-b8f4-f5a89741e419">
-<span class="eqno">(119)<a class="headerlink" href="#equation-58185591-4c7c-424e-b8f4-f5a89741e419" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3499d6b0-1a50-4851-9fcd-515d96c38efb">
+<span class="eqno">(119)<a class="headerlink" href="#equation-3499d6b0-1a50-4851-9fcd-515d96c38efb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(m)= \sum_{n=0}^{N-1}x(n)\exp(2\pi i nm/N)
 \end{equation}\]</div>
 <p>would become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e5b66d9-c9a1-493a-9bfb-b657ae10391b">
-<span class="eqno">(120)<a class="headerlink" href="#equation-1e5b66d9-c9a1-493a-9bfb-b657ae10391b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5aa6da99-2d42-4c61-ad60-f4bd4e901033">
+<span class="eqno">(120)<a class="headerlink" href="#equation-5aa6da99-2d42-4c61-ad60-f4bd4e901033" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(m)= \exp(2\pi i m/N)= \cos(2\pi m/N)+1i\sin(2\pi m/N)
 \end{equation}\]</div>
 <p>taking the inverse DFT</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8db2af15-d950-47f6-9ad8-a78f7699a45f">
-<span class="eqno">(121)<a class="headerlink" href="#equation-8db2af15-d950-47f6-9ad8-a78f7699a45f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d28fe6df-6875-4424-8566-26c8ef102732">
+<span class="eqno">(121)<a class="headerlink" href="#equation-d28fe6df-6875-4424-8566-26c8ef102732" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(n)= \sum_{m=0}^{M-1}\exp(2\pi i m/N)\exp(-2\pi i nm/N)=\sum_{m=0}^{M-1}\exp(2\pi i (1-n)m/N)
 \end{equation}\]</div>
 <p>which results to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9b7af5ec-8317-4571-905b-cd04d7b0ea8e">
-<span class="eqno">(122)<a class="headerlink" href="#equation-9b7af5ec-8317-4571-905b-cd04d7b0ea8e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-086b265e-66b2-4905-a957-fd54f34b8996">
+<span class="eqno">(122)<a class="headerlink" href="#equation-086b265e-66b2-4905-a957-fd54f34b8996" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(n) = M\delta_{n,1}
 \end{equation}\]</div>
 <p>or <span class="math notranslate nohighlight">\(x(1)=M\)</span> and <span class="math notranslate nohighlight">\(x(n)=0\)</span> for <span class="math notranslate nohighlight">\(n \ne 1\)</span></p>
@@ -1178,7 +1183,8 @@ x(n) = M\delta_{n,1}
 
 <span class="n">var</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="n">noise_power</span> <span class="o">=</span> <span class="n">var</span> <span class="o">*</span> <span class="n">fs</span> <span class="o">/</span> <span class="mi">2</span> 
-<span class="c1"># The factor of fs/2 converts the per sample noise power (variance) to a noise bandwith of -1/T to 1/T (negative and positive frequencies) </span>
+<span class="c1"># The factor of fs/2 converts the per sample noise power (variance) </span>
+<span class="c1"># to a noise bandwith of -1/T to 1/T (negative and positive frequencies) </span>
 
 <span class="n">xx</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
 <span class="n">rms</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
@@ -1297,8 +1303,8 @@ To obtain the RMS of the signal, the peak value of the rfft power spectrum must 
 <h2>Windowing<a class="headerlink" href="#windowing" title="Permalink to this headline">#</a></h2>
 <p>The implementation of the FFT assumes that signal is periodic. Most interesting signals are aperiodic, resulting in what is called spectral leakage. The above signal with a frequency of 5.5 is such a case.</p>
 <p>Standard remedy is to taper the signal such that both ends of the time series are equal and very often close to zero. A typical window is the Hann window,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f1f227d-417e-4d28-95b8-1992795812bb">
-<span class="eqno">(123)<a class="headerlink" href="#equation-8f1f227d-417e-4d28-95b8-1992795812bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-99470fc1-52d6-4189-8f08-74d9c6cc0562">
+<span class="eqno">(123)<a class="headerlink" href="#equation-99470fc1-52d6-4189-8f08-74d9c6cc0562" title="Permalink to this equation">#</a></span>\[\begin{equation}
 hann(n)=\frac{1}{2}\big(1-\cos(2\pi \frac{n}{N-1})\big)
 \end{equation}\]</div>
 <p>In the following we assume that the window length is equal to FFT length, that is we assume first NO zero padding and analyse later the case of zero padding</p>
@@ -1454,8 +1460,8 @@ This can be corrected by considering the window shape.</p>
 <h2>Power spectral density (PSD)<a class="headerlink" href="#power-spectral-density-psd" title="Permalink to this headline">#</a></h2>
 <p>The VAR estimation provides the per sample noise variance  expressed in V^2/sample . To obtain the PSD that typically is expressed in V^2/Hz one needs to consider the spectral binwidth in terms of the sampling frequency <span class="math notranslate nohighlight">\(f_s\)</span>.</p>
 <p>Binwidth in Hz is for <span class="math notranslate nohighlight">\(N_{fft}= N_{win}\)</span> given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca36cb4c-1c32-4b52-af14-34032b199174">
-<span class="eqno">(124)<a class="headerlink" href="#equation-ca36cb4c-1c32-4b52-af14-34032b199174" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cfe472ca-dbbd-428e-b3b3-824faabc2c1d">
+<span class="eqno">(124)<a class="headerlink" href="#equation-cfe472ca-dbbd-428e-b3b3-824faabc2c1d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta f = \frac{f_s}{N_{win}}
 \end{equation}\]</div>
 <p>and therfore the PSD related scaling of the spectra</p>
@@ -1509,21 +1515,21 @@ This can be corrected by considering the window shape.</p>
 <section id="open-question-does-zero-padding-change-the-estimate-of-the-psd">
 <h4>Open question: does zero padding change the estimate of the PSD?<a class="headerlink" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd" title="Permalink to this headline">#</a></h4>
 <p>The PSD is given as the time averaged spectral energy</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2119e315-e0e5-497f-b439-00906aa15b1d">
-<span class="eqno">(125)<a class="headerlink" href="#equation-2119e315-e0e5-497f-b439-00906aa15b1d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-54ab6900-9293-47be-8f83-d416fbbfc6b7">
+<span class="eqno">(125)<a class="headerlink" href="#equation-54ab6900-9293-47be-8f83-d416fbbfc6b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P(f) = \frac{1}{T}\Big|\int_{0}^{T}x(t)\exp{(-2\pi i f t)} dt\Big|^2
 \end{equation}\]</div>
 <p>or for discrete sampling</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6573da80-58c8-4f74-b59a-458904a4aadc">
-<span class="eqno">(126)<a class="headerlink" href="#equation-6573da80-58c8-4f74-b59a-458904a4aadc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e1e5a1e6-52d4-4105-bc53-b24b4e051940">
+<span class="eqno">(126)<a class="headerlink" href="#equation-e1e5a1e6-52d4-4105-bc53-b24b4e051940" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P(f) = \frac{1}{N\Delta t}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i f n\Delta t)} \Delta t\Big|^2
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of samples of the signal and <span class="math notranslate nohighlight">\(\Delta t\)</span> is the sampling interval, i.e. <span class="math notranslate nohighlight">\(N\Delta t=T\)</span> is the length of the signal in seconds and <span class="math notranslate nohighlight">\(n\Delta t\)</span> is the time when the n-th samples was measured.</p>
 <p>The quantity <span class="math notranslate nohighlight">\(P(f)\)</span> is really a time averaged signal energy</p>
 <p>Assume zero padding from <span class="math notranslate nohighlight">\(N\)</span> to <span class="math notranslate nohighlight">\(K&gt;N\)</span>, the sum does not change as <span class="math notranslate nohighlight">\(x(n)=0\)</span> for all <span class="math notranslate nohighlight">\(n&gt;N\)</span>, but the frequency interpretation does:</p>
 <p>Assume <span class="math notranslate nohighlight">\(f_k =k(f_s/K)\)</span> for <span class="math notranslate nohighlight">\(k=0,1, ...,K-1\)</span> with <span class="math notranslate nohighlight">\(f_s = 1/\Delta t\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-0cab8389-6cc5-4b47-b5ac-fb875a73e888">
-<span class="eqno">(127)<a class="headerlink" href="#equation-0cab8389-6cc5-4b47-b5ac-fb875a73e888" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dda19d09-2b86-4e52-adef-4ea1a8641e15">
+<span class="eqno">(127)<a class="headerlink" href="#equation-dda19d09-2b86-4e52-adef-4ea1a8641e15" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P(k) = P(\frac{kf_s}{K}) = \frac{1}{f_sN}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i kn/K)}\Big|^2
 \end{equation}\]</div>
 <p>The PSD is independent of the DFT size K, but it only depends on the number of time domain samples N</p>
