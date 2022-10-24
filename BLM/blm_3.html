@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BLM_4: Spectrogram" href="blm_4.html" />
     <link rel="prev" title="BLM_2: Wave propagation" href="blm_2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -192,6 +193,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    BLM_3: Underwater Sound Propagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="blm_4.html">
+   BLM_4: Spectrogram
   </a>
  </li>
 </ul>
@@ -490,8 +496,8 @@ title="Print to PDF"
 <h2>Sound speed<a class="headerlink" href="#sound-speed" title="Permalink to this headline">#</a></h2>
 <p>The speed of sound in sea water is a complicated function of temperature T, depth z, and salinity S.</p>
 <p>A simplified formula is given by Medwin (1975)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b74d7c51-ebd3-4eff-98f9-7ee6f6640eb1">
-<span class="eqno">(137)<a class="headerlink" href="#equation-b74d7c51-ebd3-4eff-98f9-7ee6f6640eb1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-05cf6a15-7e26-4da9-b73b-e04e68135f80">
+<span class="eqno">(137)<a class="headerlink" href="#equation-05cf6a15-7e26-4da9-b73b-e04e68135f80" title="Permalink to this equation">#</a></span>\[\begin{equation}
 c(T,z,S) = 1449.2 +4.6T -\Big(\frac{T}{4.26}\Big)^2 + \Big(\frac{T}{15.1}\Big)^3
 +\frac{z}{62.5} 
 +\Big(1.34 - \frac{T}{100}\Big)(S-35) 
@@ -501,14 +507,14 @@ c(T,z,S) = 1449.2 +4.6T -\Big(\frac{T}{4.26}\Big)^2 + \Big(\frac{T}{15.1}\Big)^3
 <h2>Absorption<a class="headerlink" href="#absorption" title="Permalink to this headline">#</a></h2>
 <p>Sound energy is absorbed when propagating in sea water.</p>
 <p>A simple widspread formula is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f24f5a19-d48a-41b5-b985-1c85df1bc9f2">
-<span class="eqno">(138)<a class="headerlink" href="#equation-f24f5a19-d48a-41b5-b985-1c85df1bc9f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-da1f4460-30ac-4057-b2ad-812ff4202558">
+<span class="eqno">(138)<a class="headerlink" href="#equation-da1f4460-30ac-4057-b2ad-812ff4202558" title="Permalink to this equation">#</a></span>\[\begin{equation}
 a=\Big(\frac{0.12F^2}{1.32+F^2}\Big)_{B(OH)_3} + \Big(\frac{48.5F^2}{5715.4+F^2}\Big)_{MgSO_4} +(3.4\times10^{-4}F^2)_{H_2O}
 \end{equation}\]</div>
 </section>
 <section id="sound-speed-simulation">
 <h2>Sound speed simulation<a class="headerlink" href="#sound-speed-simulation" title="Permalink to this headline">#</a></h2>
-<p>A sound speed is simulated for the Mediterranean Sea, where a exponential temperature decrease is assumed on top of a 13.5°C deep water temperature and a top mixed layer with constant 20°C temperture.</p>
+<p>A sound speed is simulated for the Mediterranean Sea, whereby an exponential temperature decrease is assumed on top of a 13.5°C deep water temperature and a top mixed layer with constant 20°C temperture.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -529,12 +535,15 @@ a=\Big(\frac{0.12F^2}{1.32+F^2}\Big)_{B(OH)_3} + \Big(\frac{48.5F^2}{5715.4+F^2}
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Depth [m]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Temperature [°C]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cv</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">S</span><span class="p">),</span><span class="n">z</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span><span class="mi">1530</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sound Speed [m/s]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -614,6 +623,13 @@ a=\Big(\frac{0.12F^2}{1.32+F^2}\Big)_{B(OH)_3} + \Big(\frac{48.5F^2}{5715.4+F^2}
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">BLM_2:  Wave propagation</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="blm_4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">BLM_4: Spectrogram</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
