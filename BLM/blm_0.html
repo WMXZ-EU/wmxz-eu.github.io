@@ -414,6 +414,11 @@ title="Print to PDF"
    First steps in python
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-commands">
+   Additional commands
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -443,6 +448,11 @@ title="Print to PDF"
    First steps in python
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-commands">
+   Additional commands
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -455,24 +465,30 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="bml-0-bar-la-mare">
 <h1>BML_0: BAR_LA_MARE<a class="headerlink" href="#bml-0-bar-la-mare" title="Permalink to this headline">#</a></h1>
-<p>Bio Acoustic Research to Learn About the MARine Environment</p>
+<p><strong>B</strong>io <strong>A</strong>coustic <strong>R</strong>esearch to <strong>L</strong>earn <strong>A</strong>bout the <strong>MAR</strong>ine <strong>E</strong>nvironment</p>
 <section id="preparation-python-jupyter-lab">
 <h2>Preparation: Python Jupyter Lab<a class="headerlink" href="#preparation-python-jupyter-lab" title="Permalink to this headline">#</a></h2>
-<p>Installation</p>
+<p>Following worked for windows 11</p>
+<p>Installation (e.g. from <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">https://docs.conda.io/en/latest/miniconda.html</a>)</p>
 <ul class="simple">
 <li><p>miniconda</p></li>
 </ul>
+<p>Link gives also instructions for other OS (Mac, Linux)</p>
 <p>Launch minconda terminal and check conda</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--help</span></code></p></li>
 </ul>
-<p>create and change to working directory</p>
+<p>create and change to working directory (Windows 11)</p>
 <ul class="simple">
 <li><p>(e.g. <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">$home/documents/blm</span></code> followed by <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$home/documents/blm</span></code>)</p></li>
 </ul>
+<p>or if <code class="docutils literal notranslate"><span class="pre">$home</span></code> is nod defined (e.g. Windows 10)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">documents/blm</span></code> followed by <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">documents/blm</span></code></p></li>
+</ul>
 <p>Creation of environment</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">blm</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">blm</span> <span class="pre">python=3</span></code></p></li>
 </ul>
 <p>Activate conda environment</p>
 <ul class="simple">
@@ -525,6 +541,16 @@ True
 </div>
 </div>
 </div>
+</section>
+<section id="additional-commands">
+<h2>Additional commands<a class="headerlink" href="#additional-commands" title="Permalink to this headline">#</a></h2>
+<p>as of 2022 Windows 11 uses Windows Terminal and CMD does not work
+To ensure Windows Terminal in VSCode</p>
+<p>open Preferences &gt; Settings (CTRL+,)</p>
+<ul class="simple">
+<li><p>search for terminal.integrated.defaultProfile.windows and</p></li>
+<li><p>set a Windows Powershell</p></li>
+</ul>
 </section>
 </section>
 

@@ -548,7 +548,7 @@ title="Print to PDF"
         <span class="n">yy</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">xx</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span><span class="n">yy</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">leak</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">yy</span>
 
-<span class="c1">#@jit(nopython=True,cache=True)</span>
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">pageTest1</span><span class="p">(</span><span class="n">zz</span><span class="p">,</span><span class="n">th</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">nt</span><span class="p">):</span>
     <span class="n">ee</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
     <span class="n">dd</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">zz</span>
@@ -687,13 +687,13 @@ title="Print to PDF"
 <span class="n">ndets</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">det</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="n">nc</span><span class="o">=</span><span class="mi">3</span>
-<span class="n">Labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TCL&quot;</span><span class="p">,</span><span class="s2">&quot;ICI&quot;</span><span class="p">,</span><span class="s2">&quot;SNR&quot;</span><span class="p">]</span>
+<span class="n">Labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TCL&quot;</span><span class="p">,</span><span class="s2">&quot;LEN&quot;</span><span class="p">,</span><span class="s2">&quot;SNR&quot;</span><span class="p">]</span>
 <span class="n">E</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nc</span><span class="p">,</span><span class="n">ndets</span><span class="p">))</span>
 <span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">tt</span><span class="p">[</span><span class="n">ip</span><span class="p">]</span>
-<span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># ICI</span>
+<span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">det</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">-</span><span class="n">det</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>  <span class="c1"># LEN</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndets</span><span class="p">):</span>
     <span class="n">ix</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">det</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">ii</span><span class="p">],</span><span class="n">det</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">ii</span><span class="p">])</span>
-    <span class="n">E</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yy</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="n">ix</span><span class="p">]))</span> <span class="c1"># SNR</span>
+    <span class="n">E</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">yy</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span><span class="o">/</span><span class="n">nn</span><span class="p">[</span><span class="n">ix</span><span class="p">]))</span> <span class="c1"># SNR</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
@@ -737,6 +737,141 @@ title="Print to PDF"
 <img alt="_images/Detections_18_0.png" src="_images/Detections_18_0.png" />
 </div>
 </div>
+<p>In the following we try to track the strongest SNR peaks assuming that they are a good proxy for clicks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tcl</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">snr</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">snx</span><span class="o">=</span><span class="n">snr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tcx</span><span class="o">=</span><span class="n">tcl</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">snx</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">snx</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">&lt;</span><span class="n">snx</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">tcx</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">tcx</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.3</span><span class="p">):</span>
+            <span class="n">tcx</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">tcx</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">snx</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">snx</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tcl</span><span class="p">,</span><span class="n">snr</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tcl</span><span class="p">,</span><span class="n">snx</span><span class="p">)</span>
+<span class="n">io</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">snx</span><span class="o">==</span><span class="n">snr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tcl</span><span class="p">[</span><span class="n">io</span><span class="p">],</span><span class="n">snr</span><span class="p">[</span><span class="n">io</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Detections_20_0.png" src="_images/Detections_20_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tcl</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">clx</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">snr</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+<span class="n">F</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">190</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">F</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">tcl</span>
+<span class="n">F</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">clx</span>
+<span class="n">F</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">snr</span>
+<span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">tcl</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ncl</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">F</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">idet</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="c1">#idet = np.array(np.where((snr&gt;2) &amp; (clx&gt;500))).T</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">idet</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ncl</span><span class="p">)</span>
+<span class="c1">#idet=(0,3,9,11,13,15,19)</span>
+<span class="n">F</span><span class="p">[</span><span class="n">idet</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ncl</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span><span class="o">+</span><span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ncl</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span><span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">idet</span><span class="p">,:]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">idet</span><span class="p">,:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress_small</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">F</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">idet</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">F</span><span class="p">[</span><span class="n">idet</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="c1">#plt.xlim(0,2)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">F</span><span class="p">[:,</span><span class="mi">5</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">idet</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">F</span><span class="p">[</span><span class="n">idet</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<span class="c1">#plt.ylim(0,0.5);</span>
+<span class="c1">#plt.xlim(0,2);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(55, 1)
+190
+(55, 1, 10)
+[[   0.0063  389.        3.3482    0.        1.        0.    ]
+ [   0.0974  429.        3.4317    0.0664    1.        0.0911]
+ [   0.2048  435.        3.4353    0.015     1.        0.1074]
+ [   0.5062  516.        2.8786    0.0374    1.        0.3014]
+ [   0.5848  430.        3.4163    0.0368    1.        0.0786]
+ [   0.688   420.        3.4984    0.0853    1.        0.1032]
+ [   0.8736  423.        4.0005    0.0061    1.        0.1857]
+ [   1.026   384.        4.0226    0.0581    1.        0.1524]
+ [   1.4472  434.        3.9339    0.2124    1.        0.4212]
+ [   1.752   213.        2.4612    0.0077    1.        0.3048]
+ [   1.9296  414.        3.0561    0.1776    1.        0.1776]
+ [   2.0183  512.        4.2049    0.0625    1.        0.0887]
+ [   2.3331  350.        2.4923    0.0242    1.        0.3148]
+ [   2.363   631.        4.5123    0.0299    1.        0.0299]
+ [   2.6165  451.        4.7759    0.1184    1.        0.2535]
+ [   2.6881  415.        5.0102    0.0489    1.        0.0717]
+ [   2.7924  520.        5.4576    0.0617    1.        0.1043]
+ [   2.8821  632.        6.1829    0.0868    1.        0.0897]
+ [   3.0074  747.        6.3264    0.0691    1.        0.1254]
+ [   3.1905  855.        7.0151    0.066     1.        0.183 ]
+ [   3.5562   18.        1.0011    0.1099    1.        0.3657]
+ [   3.6331  901.        7.0676    0.0769    1.        0.0769]
+ [   3.9781  489.        3.7122    0.0864    1.        0.345 ]
+ [   4.2159  533.        3.8015    0.2268    1.        0.2378]
+ [   4.2215  465.        3.9447    0.0055    1.        0.0055]
+ [   4.5501 1051.        4.4507    0.3286    1.        0.3286]
+ [   4.8837  776.        5.2476    0.3336    1.        0.3336]
+ [   5.2328  775.        5.2481    0.3491    1.        0.3491]
+ [   5.5596  730.        5.6525    0.3268    1.        0.3268]
+ [   5.9171  830.        5.1444    0.3535    1.        0.3576]
+ [   6.2721  872.        6.3701    0.355     1.        0.355 ]
+ [   6.6109  970.        6.9574    0.334     1.        0.3388]
+ [   6.9701  878.        6.9528    0.3494    1.        0.3592]
+ [   7.3189  731.        6.1041    0.0623    1.        0.3487]
+ [   7.6995  703.        6.283     0.3755    1.        0.3806]
+ [   8.0582  760.        5.557     0.3534    1.        0.3587]
+ [   8.3869   23.        0.916     0.3242    1.        0.3287]
+ [   8.4156  775.        5.551     0.0286    1.        0.0286]
+ [   8.7768  914.        5.2381    0.3612    1.        0.3612]
+ [   9.1348  766.        4.9692    0.1844    1.        0.358 ]
+ [   9.5005  813.        5.3372    0.342     1.        0.3657]
+ [   9.8658  837.        5.8132    0.3576    1.        0.3653]
+ [  10.2355  720.        5.1118    0.3606    1.        0.3696]
+ [  10.6127  558.        4.9004    0.3554    1.        0.3772]
+ [  10.9713  520.        5.2808    0.3354    1.        0.3586]
+ [  11.3241  542.        5.0275    0.3424    1.        0.3529]
+ [  11.7109  519.        4.3604    0.3644    1.        0.3868]
+ [  12.0814  616.        4.4328    0.3705    1.        0.3705]
+ [  12.4491  595.        4.3545    0.3677    1.        0.3677]
+ [  12.8222  636.        4.3863    0.3696    1.        0.373 ]
+ [  13.2103  625.        4.4312    0.3881    1.        0.3881]
+ [  13.5891  582.        4.5151    0.3788    1.        0.3788]
+ [  13.9718  630.        4.5575    0.3795    1.        0.3827]
+ [  14.3654  535.        4.8423    0.186     1.        0.3936]
+ [  14.7477  726.        4.7928    0.3789    1.        0.3823]]
+</pre></div>
+</div>
+<img alt="_images/Detections_21_1.png" src="_images/Detections_21_1.png" />
+<img alt="_images/Detections_21_2.png" src="_images/Detections_21_2.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modified after https://www.askpython.com/python/examples/k-means-clustering-from-scratch</span>
@@ -744,7 +879,6 @@ title="Print to PDF"
 <span class="c1">#Importing required modules</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span> 
-
 <span class="n">n1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">t</span><span class="o">=</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">n1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
@@ -774,7 +908,7 @@ title="Print to PDF"
         <span class="n">variances</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span><span class="o">=</span><span class="n">m2</span><span class="o">-</span><span class="n">m1</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># variance</span>
     <span class="k">return</span> <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span>
 
-<span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="o">=</span><span class="n">mCluster</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">)</span>
+<span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="o">=</span><span class="n">mCluster</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="n">variances</span><span class="o">.</span><span class="n">trace</span><span class="p">())</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
@@ -785,7 +919,7 @@ title="Print to PDF"
 <span class="n">best</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">Inf</span>	
 <span class="k">for</span> <span class="n">ni</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nit</span><span class="p">):</span> 
     <span class="c1">#Updating Centroids by taking mean of Cluster it belongs to</span>
-    <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="o">=</span><span class="n">mCluster</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">)</span>
+    <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="o">=</span><span class="n">mCluster</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">)</span>
     <span class="c1">##</span>
     <span class="c1"># if variance get worth break loop</span>
     <span class="n">inert</span><span class="o">=</span><span class="n">variances</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span>
@@ -796,9 +930,9 @@ title="Print to PDF"
     <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">distances</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
         <span class="n">ni</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span><span class="o">==</span><span class="n">ii</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
             <span class="n">tcl</span><span class="o">=</span><span class="n">tt</span><span class="p">[</span><span class="n">ni</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">len</span><span class="p">(</span><span class="n">ni</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ni</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
                 <span class="n">ici</span><span class="o">=</span><span class="n">tcl</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">tcl</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
 
@@ -815,30 +949,19 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [11],</span> in <span class="ni">&lt;cell line: 36&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>         <span class="n">variances</span><span class="p">[</span><span class="n">ii</span><span class="p">,:]</span><span class="o">=</span><span class="n">m2</span><span class="o">-</span><span class="n">m1</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># variance</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="k">return</span> <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span>
-<span class="ne">---&gt; </span><span class="mi">36</span> <span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="o">=</span><span class="n">mCluster</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">centroids</span><span class="p">,</span><span class="n">variances</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="n">variances</span><span class="o">.</span><span class="n">trace</span><span class="p">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">,[</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-
-<span class="ne">TypeError</span>: mCluster() takes 5 positional arguments but 6 were given
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1
+ 2 3 4 0 1] 18988.49102369028
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variances</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span>
+<img alt="_images/Detections_22_1.png" src="_images/Detections_22_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([26], dtype=int64),) [1 2 2 1 2 2 1 2 2 1 2 1 2 1 2 1 2 2 2 1 2 1 2 1 2 1 4 3 2 1 2 1 1 2 1 3 1
+ 3 1 2 1 2] 18988.49102369028 (5, 2)
+(array([26, 27, 38], dtype=int64),) [1 0 3 1 2 0 1 0 0 1 3 1 3 1 2 1 2 2 0 1 3 1 2 1 0 1 4 4 2 1 3 1 1 3 1 3 1
+ 3 4 3 1 2] 0.1487966343315108 (5, 2)
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.07605365533087757
-</pre></div>
-</div>
+<img alt="_images/Detections_22_3.png" src="_images/Detections_22_3.png" />
+<img alt="_images/Detections_22_4.png" src="_images/Detections_22_4.png" />
 </div>
 </div>
 <div class="cell docutils container">
