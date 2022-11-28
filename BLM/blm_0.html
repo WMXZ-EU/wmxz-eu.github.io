@@ -419,6 +419,11 @@ title="Print to PDF"
    Additional commands
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-commands-to-publish">
+   Useful commands to publish
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -451,6 +456,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#additional-commands">
    Additional commands
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-commands-to-publish">
+   Useful commands to publish
   </a>
  </li>
 </ul>
@@ -544,13 +554,24 @@ True
 </section>
 <section id="additional-commands">
 <h2>Additional commands<a class="headerlink" href="#additional-commands" title="Permalink to this headline">#</a></h2>
-<p>as of 2022 Windows 11 uses Windows Terminal and CMD does not work
-To ensure Windows Terminal in VSCode</p>
+<p>As of 2022 Windows 11 uses Windows Terminal and CMD does not work.</p>
+<p>To ensure Windows Terminal in VSCode</p>
 <p>open Preferences &gt; Settings (CTRL+,)</p>
 <ul class="simple">
 <li><p>search for terminal.integrated.defaultProfile.windows and</p></li>
 <li><p>set a Windows Powershell</p></li>
 </ul>
+</section>
+<section id="useful-commands-to-publish">
+<h2>Useful commands to publish<a class="headerlink" href="#useful-commands-to-publish" title="Permalink to this headline">#</a></h2>
+<p>to generate notebook on github-io</p>
+<p>Installation</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">jupyter-book</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jb</span> <span class="pre">build</span> <span class="pre">./</span> <span class="pre">-v</span> <span class="pre">--all</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-Path</span> <span class="pre">&quot;_build/html/*&quot;</span> <span class="pre">-Destination</span> <span class="pre">&quot;../wmxz-eu.github.io&quot;</span> <span class="pre">-recurse</span> <span class="pre">-Force</span></code></p></li>
+</ul>
+<p>and using github to publish the files</p>
 </section>
 </section>
 

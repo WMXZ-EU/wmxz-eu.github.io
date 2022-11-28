@@ -1,0 +1,85 @@
+Traceback (most recent call last):
+  File "C:\Users\zimme\miniconda3\envs\blm\lib\site-packages\jupyter_cache\executors\utils.py", line 51, in single_nb_execution
+    executenb(
+  File "C:\Users\zimme\miniconda3\envs\blm\lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\zimme\miniconda3\envs\blm\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "C:\Users\zimme\miniconda3\envs\blm\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "C:\Users\zimme\miniconda3\envs\blm\lib\asyncio\base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "C:\Users\zimme\miniconda3\envs\blm\lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\zimme\miniconda3\envs\blm\lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\zimme\miniconda3\envs\blm\lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.signal as sig
+
+def mSpectrum(xx,win,fs):
+    # estimate power spectral density (PSD) usinf rfft directly
+    nwin=len(win)
+    nfft=nwin
+    yy=np.fft.rfft(xx[:nwin]*win,nfft)
+    pp=np.abs(yy)**2
+    pp[1:] *=2                  # compensate for negatice frequencies
+    ff=np.arange(int(nfft/2)+1)*fs/nfft
+    sc1= fs * (win*win).sum()  # for density
+    sc2= win.sum()**2          # for spectrum
+    return ff,pp/sc1,pp/sc2
+
+def wSpectrum(xx,win,fs):
+    # estimate power spectral density (PSD)
+    f, Pxx_dens = sig.welch(xx, fs=fs, nperseg=len(win), noverlap=0, scaling="density", window=win)
+    # estimate power spectrum
+    f, Pxx_spec = sig.welch(xx, fs=fs, nperseg=len(win), noverlap=0, scaling="spectrum", window=win)
+    return f,Pxx_dens,Pxx_spec
+
+
+def estSpectrums(time,xx,win,fs,amp):
+    f,Pxx_dens,Pxx_spec=mSpectrum(xx,win,fs)
+    #
+    print("'Spect' peak (RMS): ",np.sqrt(Pxx_spec.max()))
+    #
+    fig = plt.figure("figure.figsize",[15,10])
+
+    plt.subplot(211)
+    plt.plot(time,xx)
+    plt.plot(time,amp+0*time,'r')
+    plt.xlim(0.4,0.6)
+
+    plt.subplot(223)
+    plt.semilogy(f/1000, Pxx_dens)
+    plt.ylim(1e-4,np.max(np.floor(amp)*20))
+    plt.xlabel('Frequency [kHz]')
+    plt.ylabel('PSD [V**2/Hz]')
+    plt.grid(True)
+
+    plt.subplot(224)
+    plt.semilogy(f/1000, Pxx_spec)
+    plt.ylim(1e-4,np.max(np.floor(amp)*20))
+    plt.xlabel('Frequency [kHz]')
+    plt.ylabel('Spectrum [V**2]')
+    plt.grid(True)
+
+
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [1;32mIn [1][0m, in [0;36m<cell line: 3>[1;34m()[0m
+[0;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m----> 3[0m [38;5;28;01mimport[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01msignal[39;00m [38;5;28;01mas[39;00m [38;5;21;01msig[39;00m
+[0;32m      5[0m [38;5;28;01mdef[39;00m [38;5;21mmSpectrum[39m(xx,win,fs):
+[0;32m      6[0m     [38;5;66;03m# estimate power spectral density (PSD) usinf rfft directly[39;00m
+[0;32m      7[0m     nwin[38;5;241m=[39m[38;5;28mlen[39m(win)
+
+[1;31mModuleNotFoundError[0m: No module named 'scipy'
+ModuleNotFoundError: No module named 'scipy'
+
