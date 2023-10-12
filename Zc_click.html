@@ -458,13 +458,13 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="cuvier-s-beaked-whale-click">
 <h1>Cuvier’s beaked whale click<a class="headerlink" href="#cuvier-s-beaked-whale-click" title="Permalink to this headline">#</a></h1>
 <p>For applying a matched filter to Cuvier’s beaked whale (Zc) clicks, a synthetic beaked whale click could be constructed according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d5e45bae-4c1c-4895-8901-ca3b53be699c">
-<span class="eqno">(17)<a class="headerlink" href="#equation-d5e45bae-4c1c-4895-8901-ca3b53be699c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4b79c46c-c1f1-4622-9fa7-9e8991cd316d">
+<span class="eqno">(17)<a class="headerlink" href="#equation-4b79c46c-c1f1-4622-9fa7-9e8991cd316d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     s(t)=A(t)\exp \{-2\pi i (f_0+f_m t)t\}
 \end{equation}\]</div>
 <p>where A(t) the signal amplitude is modeled according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c66323d7-a68b-4501-aedc-f53ec699b685">
-<span class="eqno">(18)<a class="headerlink" href="#equation-c66323d7-a68b-4501-aedc-f53ec699b685" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c9f0fbd1-4e84-45e4-a55a-6af479a3ed92">
+<span class="eqno">(18)<a class="headerlink" href="#equation-c9f0fbd1-4e84-45e4-a55a-6af479a3ed92" title="Permalink to this equation">#</a></span>\[\begin{equation}
   A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
 \end{equation}\]</div>
 <p>and where f0 = 30 kHz, fm = 60 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span> and t denotes the time vector.</p>
@@ -495,11 +495,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\zimme\AppData\Local\Temp\ipykernel_17384\1507944608.py:5: RuntimeWarning: invalid value encountered in power
-  return (aa*tt)**bb * np.exp(-(aa*tt)**cc + 2*np.pi*1j*(f0+fm*tt)*tt)
-</pre></div>
-</div>
-<img alt="_images/Zc_click_1_1.png" src="_images/Zc_click_1_1.png" />
+<img alt="_images/Zc_click_1_0.png" src="_images/Zc_click_1_0.png" />
 </div>
 </div>
 <section id="reduced-sampling-rate">
@@ -509,7 +505,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
 
-<span class="n">fs</span><span class="o">=</span><span class="mi">384</span> <span class="c1">#kHz</span>
+<span class="n">fs</span><span class="o">=</span><span class="mi">768</span> <span class="c1">#kHz</span>
 <span class="n">ts</span><span class="o">=</span><span class="mf">0.3</span> <span class="c1">#ms</span>
 <span class="n">tt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ts</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
 
@@ -519,16 +515,22 @@ title="Print to PDF"
 <span class="n">bb</span><span class="o">=</span><span class="mf">1.5</span>
 <span class="n">cc</span><span class="o">=</span><span class="mf">1.5</span>
 <span class="n">xx</span><span class="o">=</span><span class="n">zcSig</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">fm</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span>
+<span class="n">tx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span><span class="o">/</span><span class="n">fs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">xx</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">xx</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">zz</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">decimate</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">tz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">zz</span><span class="p">))</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="n">fs</span>
+<span class="n">zz</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">decimate</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">tz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">zz</span><span class="p">))</span><span class="o">*</span><span class="mi">8</span><span class="o">/</span><span class="n">fs</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">zz</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">zz</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/Zc_click_3_0.png" src="_images/Zc_click_3_0.png" />
+<img alt="_images/Zc_click_3_1.png" src="_images/Zc_click_3_1.png" />
 </div>
 </div>
 </section>
