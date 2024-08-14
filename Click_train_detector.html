@@ -1,107 +1,172 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Click train detector &#8212; bioacoustics</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Click_train_detector';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Click detection" href="Detections.html" />
-    <link rel="prev" title="Transient detections" href="transient_detection.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="prev" title="cVAS stft direction finding" href="cVAS_stft_direction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">bioacoustics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">bioacoustics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -110,371 +175,280 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  General Bioacoustics
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">General Bioacoustics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="wave_equation.html">
-   Wave equation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="power_spectra.html">
-   Spectral estimation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Zc_click.html">
-   Cuvier’s beaked whale click
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sound_intensity.html">
-   Sound Intensity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="direction_finding.html">
-   Direction Finding
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ray_tracing.html">
-   Ray tracing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="transient_detection.html">
-   Transient detections
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="wave_equation.html">Wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Zc_click.html">Cuvier’s beaked whale click</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power_spectra.html">Spectral estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sound_intensity.html">Sound Intensity</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Work in Progress
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="transient_detection.html">Transient detections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-phone-localization.html">Multi-phone localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beamforming.html">Beamforming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-channel-processing.html">Multi channel processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ray_tracing.html">Ray tracing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Click train detector
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Detections.html">
-   Click detection
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Click train detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Detections.html">Click detection</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Bar La Mare
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bar La Mare</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_0.html">
-   BML_0: BAR_LA_MARE
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_1.html">
-   BLM_1: Basic signal spectral analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_2.html">
-   BLM_2:  Wave propagation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_3.html">
-   BLM_3: Underwater Sound Propagation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_4.html">
-   BLM_4: Spectrogram
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_0.html">BML_0: BAR_LA_MARE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_1.html">BLM_1: Basic signal spectral analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_2.html">BLM_2:  Wave propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_3.html">BLM_3: Underwater Sound Propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_4.html">BLM_4: Spectrogram</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/wmxz-eu/wmxz-eu.github.io/master?urlpath=tree/Click_train_detector.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmxz-eu/wmxz-eu.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2FClick_train_detector.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Click_train_detector.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2FClick_train_detector.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/Click_train_detector.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
+</div></div>
       
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
+    </div>
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
 </div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Click train detector</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Click train detector</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="click-train-detector">
-<h1>Click train detector<a class="headerlink" href="#click-train-detector" title="Permalink to this headline">#</a></h1>
+<h1>Click train detector<a class="headerlink" href="#click-train-detector" title="Link to this heading">#</a></h1>
 <p>In the following we try to develop a click train detector by means of a detection to click association algorithm</p>
 <p>Consider Inter-click-interval (ICI)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fed8eee6-c53d-4a94-b6c9-85a24f21fdc9">
-<span class="eqno">(96)<a class="headerlink" href="#equation-fed8eee6-c53d-4a94-b6c9-85a24f21fdc9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-37c0c6f6-8f35-443a-adfd-c2318afead07">
+<span class="eqno">(172)<a class="headerlink" href="#equation-37c0c6f6-8f35-443a-adfd-c2318afead07" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n = t_n - t_{n-1}
 \end{equation}\]</div>
-<p>Assume variation in ICI and the relative change in Power are stochastic processes that vary only randomly</p>
-<div class="amsmath math notranslate nohighlight" id="equation-319132db-aa05-42f3-b084-9fe03ad85bad">
-<span class="eqno">(97)<a class="headerlink" href="#equation-319132db-aa05-42f3-b084-9fe03ad85bad" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\Delta (ICI)_n  = \Delta (ICI)_{n-1} + N(0,\sigma_C) 
+<p>power variation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9ae0ef36-a72a-4b70-af34-7baafbd3b09d">
+<span class="eqno">(173)<a class="headerlink" href="#equation-9ae0ef36-a72a-4b70-af34-7baafbd3b09d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta P_{n}=P_{n}-P_{n-1}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-c9caa364-9602-47b4-b233-123d163022ad">
-<span class="eqno">(98)<a class="headerlink" href="#equation-c9caa364-9602-47b4-b233-123d163022ad" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\Delta^2 P_n  = \Delta^2 P_{n-1} + N(0,\sigma_P) 
-\end{equation}\]</div>
-<p>That is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cefa7bc7-ec98-4b4a-b419-a0d55148ef6f">
-<span class="eqno">(99)<a class="headerlink" href="#equation-cefa7bc7-ec98-4b4a-b419-a0d55148ef6f" title="Permalink to this equation">#</a></span>\[\begin{equation}
-(ICI)_n  = 2 (ICI)_{n-1} - (ICI)_{n-2} + N(0,\sigma_C) 
-\end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-46dced2e-bd3d-47d1-a6d9-f6c2cbdfd3d2">
-<span class="eqno">(100)<a class="headerlink" href="#equation-46dced2e-bd3d-47d1-a6d9-f6c2cbdfd3d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
-P_n-2P_{n-1}+P_{n-2}=P_{n-1}-2P_{n-2}+P_{n-3}+N(0,\sigma_P)
-\end{equation}\]</div>
-<p>Or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3fb3d0f-eb5a-471c-96c8-e6b3f6c02f25">
-<span class="eqno">(101)<a class="headerlink" href="#equation-b3fb3d0f-eb5a-471c-96c8-e6b3f6c02f25" title="Permalink to this equation">#</a></span>\[\begin{equation}
-t_n=3t_{n-1}-3t_{n-2}+t_{n-3}+N(0,σ_C)
-\end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-0a028260-ea77-4ec2-b66a-fdeac86e3bdb">
-<span class="eqno">(102)<a class="headerlink" href="#equation-0a028260-ea77-4ec2-b66a-fdeac86e3bdb" title="Permalink to this equation">#</a></span>\[\begin{equation}
-P_n=3P_{n-1}-3P_{n-2}+P_{n-3}+N(0,σ_P)
-\end{equation}\]</div>
-<p>Assume further that boundary reflection (multipath) is is deterimind by the changing geometry</p>
-<div class="amsmath math notranslate nohighlight" id="equation-48969517-e0f8-4a3a-bc30-bec1f6200078">
-<span class="eqno">(103)<a class="headerlink" href="#equation-48969517-e0f8-4a3a-bc30-bec1f6200078" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>and boundary reflection (multipath)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f361219c-9b4b-42aa-b489-8bdf486f41e4">
+<span class="eqno">(174)<a class="headerlink" href="#equation-f361219c-9b4b-42aa-b489-8bdf486f41e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 δτ_n=t_{r,n}-t_n
 \end{equation}\]</div>
-<p>is slowly varying</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fc35e60a-825e-45d3-ba86-9034917f2be4">
-<span class="eqno">(104)<a class="headerlink" href="#equation-fc35e60a-825e-45d3-ba86-9034917f2be4" title="Permalink to this equation">#</a></span>\[\begin{equation}
-Δδτ_n=Δδτ_{n-1}+N(0,σ_τ)
+<p>While for each click train, there is only one <span class="math notranslate nohighlight">\((ICI)\)</span> and <span class="math notranslate nohighlight">\(P\)</span>, there can be multiple boundary reflections</p>
+<p>Assume variations in these quantities are stochastic processes that vary only randomly</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7cf2f497-9764-4655-8cfc-4213ebb97674">
+<span class="eqno">(175)<a class="headerlink" href="#equation-7cf2f497-9764-4655-8cfc-4213ebb97674" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta (ICI)_n  = \Delta (ICI)_{n-1} + N(0,\sigma_C) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-bd721e29-7282-46c3-bc32-c89e28e6a7de">
-<span class="eqno">(105)<a class="headerlink" href="#equation-bd721e29-7282-46c3-bc32-c89e28e6a7de" title="Permalink to this equation">#</a></span>\[\begin{equation}
-δτ_n = 2 δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
+<div class="amsmath math notranslate nohighlight" id="equation-1fd05446-f2c4-4ada-99ee-0b003a8f5e59">
+<span class="eqno">(176)<a class="headerlink" href="#equation-1fd05446-f2c4-4ada-99ee-0b003a8f5e59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta (\Delta P_n)  = \Delta (\Delta P_{n-1}) + N(0,\sigma_P) 
 \end{equation}\]</div>
-<p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f09052a-7629-44f8-b6f8-cb56334e2211">
-<span class="eqno">(106)<a class="headerlink" href="#equation-5f09052a-7629-44f8-b6f8-cb56334e2211" title="Permalink to this equation">#</a></span>\[\begin{equation}
-t_{r,n} = t_n+2δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
+<div class="amsmath math notranslate nohighlight" id="equation-191ae70a-3764-46f6-85f7-0b2170b25dba">
+<span class="eqno">(177)<a class="headerlink" href="#equation-191ae70a-3764-46f6-85f7-0b2170b25dba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta δτ_n  = \Delta \delta\tau_{n-1} + N(0,\sigma_\tau) 
 \end{equation}\]</div>
-<p>This would indicate that the click time, received level and surface reflection delay can be considered AR processes.</p>
-<p>In summary:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5a770caf-456c-4696-a613-54c799843ff7">
-<span class="eqno">(107)<a class="headerlink" href="#equation-5a770caf-456c-4696-a613-54c799843ff7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>That is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-02fc0942-da53-47a5-9756-8b0c8852a2f8">
+<span class="eqno">(178)<a class="headerlink" href="#equation-02fc0942-da53-47a5-9756-8b0c8852a2f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n  = 2 (ICI)_{n-1} - (ICI)_{n-2} + N(0,\sigma_C) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-8d0f5400-d27f-402a-a860-904bfc045cc8">
-<span class="eqno">(108)<a class="headerlink" href="#equation-8d0f5400-d27f-402a-a860-904bfc045cc8" title="Permalink to this equation">#</a></span>\[\begin{equation}
-P_n=3P_{n-1}-3P_{n-2}+P_{n-3}+N(0,σ_P)
+<div class="amsmath math notranslate nohighlight" id="equation-5cdbe821-5b18-4a12-ac02-151918b31b14">
+<span class="eqno">(179)<a class="headerlink" href="#equation-5cdbe821-5b18-4a12-ac02-151918b31b14" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta P_n  = 2\Delta P_{n-1} - \Delta P_{n-2} + N(0,\sigma_P) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9a6f683e-5749-439c-a01f-21bc327ccd4c">
-<span class="eqno">(109)<a class="headerlink" href="#equation-9a6f683e-5749-439c-a01f-21bc327ccd4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
-δτ_n = 2 δτ_{n-1}-δτ_{n-2} +N(0,σ_τ)
+<div class="amsmath math notranslate nohighlight" id="equation-33a76c40-b2e2-4d04-89cf-015a851f4922">
+<span class="eqno">(180)<a class="headerlink" href="#equation-33a76c40-b2e2-4d04-89cf-015a851f4922" title="Permalink to this equation">#</a></span>\[\begin{equation}
+δτ_n  = 2\delta\tau_{n-1} -\delta\tau_{n-2}+ N(0,\sigma_\tau) 
 \end{equation}\]</div>
 </section>
 
@@ -490,7 +464,7 @@ P_n=3P_{n-1}-3P_{n-2}+P_{n-3}+N(0,σ_P)
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -498,50 +472,88 @@ P_n=3P_{n-1}-3P_{n-2}+P_{n-3}+N(0,σ_P)
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="transient_detection.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Transient detections</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cVAS_stft_direction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">cVAS stft direction finding</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="Detections.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="Detections.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Click detection</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Walter MX Zimmer<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Walter MX Zimmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

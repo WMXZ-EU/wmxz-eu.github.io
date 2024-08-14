@@ -1,107 +1,172 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>BLM_1: Basic signal spectral analysis &#8212; bioacoustics</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'BLM/blm_1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="BLM_2: Wave propagation" href="blm_2.html" />
     <link rel="prev" title="BML_0: BAR_LA_MARE" href="blm_0.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">bioacoustics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">bioacoustics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -110,759 +175,304 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  General Bioacoustics
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">General Bioacoustics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../wave_equation.html">
-   Wave equation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../power_spectra.html">
-   Spectral estimation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Zc_click.html">
-   Cuvier’s beaked whale click
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../sound_intensity.html">
-   Sound Intensity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../direction_finding.html">
-   Direction Finding
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ray_tracing.html">
-   Ray tracing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../transient_detection.html">
-   Transient detections
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../wave_equation.html">Wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Zc_click.html">Cuvier’s beaked whale click</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../power_spectra.html">Spectral estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sound_intensity.html">Sound Intensity</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Work in Progress
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Click_train_detector.html">
-   Click train detector
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Detections.html">
-   Click detection
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../transient_detection.html">Transient detections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi-phone-localization.html">Multi-phone localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beamforming.html">Beamforming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi-channel-processing.html">Multi channel processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ray_tracing.html">Ray tracing</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Bar La Mare
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cVAS_direction.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cVAS_phase_direction.html">cVAS phase direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Click_train_detector.html">Click train detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Detections.html">Click detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bar La Mare</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="blm_0.html">
-   BML_0: BAR_LA_MARE
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   BLM_1: Basic signal spectral analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="blm_2.html">
-   BLM_2:  Wave propagation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="blm_3.html">
-   BLM_3: Underwater Sound Propagation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="blm_4.html">
-   BLM_4: Spectrogram
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="blm_0.html">BML_0: BAR_LA_MARE</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">BLM_1: Basic signal spectral analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blm_2.html">BLM_2:  Wave propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blm_3.html">BLM_3: Underwater Sound Propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blm_4.html">BLM_4: Spectrogram</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/wmxz-eu/wmxz-eu.github.io/master?urlpath=tree/BLM/blm_1.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmxz-eu/wmxz-eu.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2FBLM/blm_1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/BLM/blm_1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2FBLM/blm_1.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/BLM/blm_1.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-
-      </li>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#observations">
-   Observations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#complex-numbers">
-   Complex numbers
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#trigonometry">
-     Trigonometry
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pythagoras">
-     Pythagoras
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#problem">
-     Problem
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hint">
-     Hint
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solution">
-     Solution
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#definitions">
-       Definitions
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#complex-number-real-i-imaginary">
-         complex number (real + i*imaginary)
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#conjugate-of-a-complex-number">
-         conjugate of a complex number
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#absolute-squared-complex-value-by-signal-multiplied-with-its-conjugate">
-         absolute squared complex value by signal multiplied with its conjugate
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#alternative-method">
-     Alternative method
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#general-frequencies">
-   General frequencies
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#frequency-analysis">
-   Frequency analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#discrete-fourier-transform-dft">
-     Discrete Fourier transform (DFT)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#observation">
-     Observation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fast-fourier-transform">
-   Fast Fourier Transform
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comments">
-     Comments
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fft-implementation">
-     FFT implementation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Observation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#general-signal-frequency">
-     General signal frequency
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Observations
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conclusions">
-     Conclusions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spectral-leakeage">
-     Spectral leakeage
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Observation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#noise-processing">
-   Noise processing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Observation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spectrum-implementation">
-   Spectrum implementation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#windowing">
-   Windowing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Observations
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     Conclusions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Observation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     Observations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#power-spectral-density-psd">
-   Power spectral density (PSD)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zero-padding">
-   Zero padding
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     Observations
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd">
-       Open question: does zero padding change the estimate of the PSD?
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comment">
-     Comment
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#custom-spectrum-implementation">
-     Custom Spectrum implementation
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>BLM_1: Basic signal spectral analysis</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#observations">
-   Observations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#complex-numbers">
-   Complex numbers
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#trigonometry">
-     Trigonometry
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pythagoras">
-     Pythagoras
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#problem">
-     Problem
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hint">
-     Hint
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solution">
-     Solution
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#definitions">
-       Definitions
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#complex-number-real-i-imaginary">
-         complex number (real + i*imaginary)
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#conjugate-of-a-complex-number">
-         conjugate of a complex number
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#absolute-squared-complex-value-by-signal-multiplied-with-its-conjugate">
-         absolute squared complex value by signal multiplied with its conjugate
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#alternative-method">
-     Alternative method
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#general-frequencies">
-   General frequencies
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#frequency-analysis">
-   Frequency analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#discrete-fourier-transform-dft">
-     Discrete Fourier transform (DFT)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#observation">
-     Observation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fast-fourier-transform">
-   Fast Fourier Transform
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comments">
-     Comments
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fft-implementation">
-     FFT implementation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Observation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#general-signal-frequency">
-     General signal frequency
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Observations
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conclusions">
-     Conclusions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spectral-leakeage">
-     Spectral leakeage
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Observation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#noise-processing">
-   Noise processing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Observation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spectrum-implementation">
-   Spectrum implementation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#windowing">
-   Windowing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Observations
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     Conclusions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Observation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     Observations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#power-spectral-density-psd">
-   Power spectral density (PSD)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zero-padding">
-   Zero padding
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     Observations
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd">
-       Open question: does zero padding change the estimate of the PSD?
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comment">
-     Comment
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#custom-spectrum-implementation">
-     Custom Spectrum implementation
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BLM_1: Basic signal spectral analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">Observations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-numbers">Complex numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometry">Trigonometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pythagoras">Pythagoras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hint">Hint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-number-real-i-imaginary">complex number (real + i*imaginary)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#conjugate-of-a-complex-number">conjugate of a complex number</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#absolute-squared-complex-value-by-signal-multiplied-with-its-conjugate">absolute squared complex value by signal multiplied with its conjugate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-method">Alternative method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-frequencies">General frequencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-analysis">Frequency analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-fourier-transform-dft">Discrete Fourier transform (DFT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observation">Observation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-fourier-transform">Fast Fourier Transform</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fft-implementation">FFT implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Observation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-signal-frequency">General signal frequency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-leakeage">Spectral leakeage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Observation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-processing">Noise processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Observation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-implementation">Spectrum implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windowing">Windowing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Conclusions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Observation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Observations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectral-density-psd">Power spectral density (PSD)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-padding">Zero padding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Observations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd">Open question: does zero padding change the estimate of the PSD?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comment">Comment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-spectrum-implementation">Custom Spectrum implementation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="blm-1-basic-signal-spectral-analysis">
-<h1>BLM_1: Basic signal spectral analysis<a class="headerlink" href="#blm-1-basic-signal-spectral-analysis" title="Permalink to this headline">#</a></h1>
+<h1>BLM_1: Basic signal spectral analysis<a class="headerlink" href="#blm-1-basic-signal-spectral-analysis" title="Link to this heading">#</a></h1>
 <p>The following shows some basic steps that one undertakes for signal processing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -893,7 +503,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_3_0.png" src="../_images/blm_1_3_0.png" />
+<img alt="../_images/964f4c35c37a52de14e4f280fbc225c0c03163e412080ce770151bf4e89afe03.png" src="../_images/964f4c35c37a52de14e4f280fbc225c0c03163e412080ce770151bf4e89afe03.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -909,7 +519,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_4_0.png" src="../_images/blm_1_4_0.png" />
+<img alt="../_images/025697a7b9137ee04f177b1f7ea657b7876b68de10643f86f33592b868de4bac.png" src="../_images/025697a7b9137ee04f177b1f7ea657b7876b68de10643f86f33592b868de4bac.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -926,7 +536,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_5_0.png" src="../_images/blm_1_5_0.png" />
+<img alt="../_images/388072e6e212905eea89e35fecaab7108dd43694c6822d0e3fb907eba8ea90fa.png" src="../_images/388072e6e212905eea89e35fecaab7108dd43694c6822d0e3fb907eba8ea90fa.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -944,17 +554,17 @@ title="Print to PDF"
 </div>
 </div>
 <section id="observations">
-<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">#</a></h2>
+<h2>Observations<a class="headerlink" href="#observations" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>the mean of a sinosoidal wave is zero</p></li>
 <li><p>the mean of the signals squared is equal to the amplitude.</p></li>
 </ul>
 </section>
 <section id="complex-numbers">
-<h2>Complex numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this headline">#</a></h2>
+<h2>Complex numbers<a class="headerlink" href="#complex-numbers" title="Link to this heading">#</a></h2>
 <p>The following mathematical excurse is helpful for further spectral analysis</p>
 <section id="trigonometry">
-<h3>Trigonometry<a class="headerlink" href="#trigonometry" title="Permalink to this headline">#</a></h3>
+<h3>Trigonometry<a class="headerlink" href="#trigonometry" title="Link to this heading">#</a></h3>
 <p>Triangle in circle</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -976,109 +586,109 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_9_0.png" src="../_images/blm_1_9_0.png" />
+<img alt="../_images/7ba28c1577ba2e21e698a90fb43b6ee791d10a4f214767e3f3e4e18346b51c43.png" src="../_images/7ba28c1577ba2e21e698a90fb43b6ee791d10a4f214767e3f3e4e18346b51c43.png" />
 </div>
 </div>
 <p>Triangle</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1454a28c-b6ee-44ae-bce8-5766d986b3de">
-<span class="eqno">(110)<a class="headerlink" href="#equation-1454a28c-b6ee-44ae-bce8-5766d986b3de" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-45c09059-b07a-4129-b758-6b333259c99a">
+<span class="eqno">(181)<a class="headerlink" href="#equation-45c09059-b07a-4129-b758-6b333259c99a" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x=\cos(\phi)
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7981de3-271a-4b73-a5be-a3fb8ecb5370">
-<span class="eqno">(111)<a class="headerlink" href="#equation-a7981de3-271a-4b73-a5be-a3fb8ecb5370" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-36546d92-1cec-45aa-b76d-7043248690d1">
+<span class="eqno">(182)<a class="headerlink" href="#equation-36546d92-1cec-45aa-b76d-7043248690d1" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y=\sin(\phi)
 \end{equation}\]</div>
 </section>
 <section id="pythagoras">
-<h3>Pythagoras<a class="headerlink" href="#pythagoras" title="Permalink to this headline">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-440d8db4-b3f5-4e4b-919f-08580b7dbad8">
-<span class="eqno">(112)<a class="headerlink" href="#equation-440d8db4-b3f5-4e4b-919f-08580b7dbad8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<h3>Pythagoras<a class="headerlink" href="#pythagoras" title="Link to this heading">#</a></h3>
+<div class="amsmath math notranslate nohighlight" id="equation-f16f700a-f9b0-4c58-9065-2559d2643782">
+<span class="eqno">(183)<a class="headerlink" href="#equation-f16f700a-f9b0-4c58-9065-2559d2643782" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x^2 + y^2 =r^2
 \end{equation}\]</div>
 <p>applied here</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29245443-31e1-4cf8-96ca-1743acbe8b76">
-<span class="eqno">(113)<a class="headerlink" href="#equation-29245443-31e1-4cf8-96ca-1743acbe8b76" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-419b184a-e306-479b-b377-cbdbceae2641">
+<span class="eqno">(184)<a class="headerlink" href="#equation-419b184a-e306-479b-b377-cbdbceae2641" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \cos^2(\phi) + \sin^2(\phi) =1
 \end{equation}\]</div>
 </section>
 <section id="problem">
-<h3>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h3>
+<h3>Problem<a class="headerlink" href="#problem" title="Link to this heading">#</a></h3>
 <p>Find a formula, so that sum of squares becomes constant (e.g. <span class="math notranslate nohighlight">\(r^2\)</span> or 1)</p>
 </section>
 <section id="hint">
-<h3>Hint<a class="headerlink" href="#hint" title="Permalink to this headline">#</a></h3>
+<h3>Hint<a class="headerlink" href="#hint" title="Link to this heading">#</a></h3>
 <p>We know <span class="math notranslate nohighlight">\((a+b)*(a-b) = a^2 - b^2\)</span>, and more general
 <span class="math notranslate nohighlight">\((a+c*b)*(a-c*b) = a^2 - c^2b^2\)</span>.</p>
 </section>
 <section id="solution">
-<h3>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h3>
+<h3>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h3>
 <p>Define a new symbol <span class="math notranslate nohighlight">\(c^2 =i^2= -1\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(i\)</span> is defined such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c4866353-5540-449f-bfb3-1d8405f86470">
-<span class="eqno">(114)<a class="headerlink" href="#equation-c4866353-5540-449f-bfb3-1d8405f86470" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e38250c-efb1-4bfe-a3df-7faa5e7489db">
+<span class="eqno">(185)<a class="headerlink" href="#equation-3e38250c-efb1-4bfe-a3df-7faa5e7489db" title="Permalink to this equation">#</a></span>\[\begin{equation}
 i^2 = -1
 \end{equation}\]</div>
 <p>This way we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d5696a80-8b54-44fd-80cd-1d9e6656183f">
-<span class="eqno">(115)<a class="headerlink" href="#equation-d5696a80-8b54-44fd-80cd-1d9e6656183f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd80388e-4999-4ec2-8741-4cef2ed16606">
+<span class="eqno">(186)<a class="headerlink" href="#equation-fd80388e-4999-4ec2-8741-4cef2ed16606" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (\cos(\phi)+i\sin(\phi))(\cos(\phi)-i\sin(\phi))=    \cos^2(\phi) + \sin^2(\phi) =1
 \end{equation}\]</div>
 <section id="definitions">
-<h4>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">#</a></h4>
+<h4>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h4>
 <section id="complex-number-real-i-imaginary">
-<h5>complex number (real + i*imaginary)<a class="headerlink" href="#complex-number-real-i-imaginary" title="Permalink to this headline">#</a></h5>
-<div class="amsmath math notranslate nohighlight" id="equation-f302d7cb-0ea6-421a-b9c8-8d51e0e12eea">
-<span class="eqno">(116)<a class="headerlink" href="#equation-f302d7cb-0ea6-421a-b9c8-8d51e0e12eea" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<h5>complex number (real + i*imaginary)<a class="headerlink" href="#complex-number-real-i-imaginary" title="Link to this heading">#</a></h5>
+<div class="amsmath math notranslate nohighlight" id="equation-8599f3ee-d46b-4b80-b486-6585493b74b8">
+<span class="eqno">(187)<a class="headerlink" href="#equation-8599f3ee-d46b-4b80-b486-6585493b74b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z=(\cos(\phi)+i\sin(\phi)) = \exp(i\phi)= e^{i\phi}
 \end{equation}\]</div>
 </section>
 <section id="conjugate-of-a-complex-number">
-<h5>conjugate of a complex number<a class="headerlink" href="#conjugate-of-a-complex-number" title="Permalink to this headline">#</a></h5>
-<div class="amsmath math notranslate nohighlight" id="equation-3bee3319-4159-42da-919a-8dfd425d0ddd">
-<span class="eqno">(117)<a class="headerlink" href="#equation-3bee3319-4159-42da-919a-8dfd425d0ddd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<h5>conjugate of a complex number<a class="headerlink" href="#conjugate-of-a-complex-number" title="Link to this heading">#</a></h5>
+<div class="amsmath math notranslate nohighlight" id="equation-36d02d5e-2166-4e01-848d-0c46fa023dd9">
+<span class="eqno">(188)<a class="headerlink" href="#equation-36d02d5e-2166-4e01-848d-0c46fa023dd9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z^*=(\cos(\phi)-i\sin(\phi)) = \exp(-i\phi) = e^{-i\phi}
 \end{equation}\]</div>
 </section>
 <section id="absolute-squared-complex-value-by-signal-multiplied-with-its-conjugate">
-<h5>absolute squared complex value by signal multiplied with its conjugate<a class="headerlink" href="#absolute-squared-complex-value-by-signal-multiplied-with-its-conjugate" title="Permalink to this headline">#</a></h5>
-<div class="amsmath math notranslate nohighlight" id="equation-6d1c366a-0984-4332-a57f-238332c54e87">
-<span class="eqno">(118)<a class="headerlink" href="#equation-6d1c366a-0984-4332-a57f-238332c54e87" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<h5>absolute squared complex value by signal multiplied with its conjugate<a class="headerlink" href="#absolute-squared-complex-value-by-signal-multiplied-with-its-conjugate" title="Link to this heading">#</a></h5>
+<div class="amsmath math notranslate nohighlight" id="equation-839349ed-033b-4c36-8ac0-b1db60331443">
+<span class="eqno">(189)<a class="headerlink" href="#equation-839349ed-033b-4c36-8ac0-b1db60331443" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |z|^2 = z z^* = (\cos(\phi)+i\sin(\phi))(\cos(\phi)-i\sin(\phi))
 \end{equation}\]</div>
 </section>
 </section>
 </section>
 <section id="alternative-method">
-<h3>Alternative method<a class="headerlink" href="#alternative-method" title="Permalink to this headline">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-6371e789-b584-41a7-a0e0-6c5f2c76adf7">
-<span class="eqno">(119)<a class="headerlink" href="#equation-6371e789-b584-41a7-a0e0-6c5f2c76adf7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<h3>Alternative method<a class="headerlink" href="#alternative-method" title="Link to this heading">#</a></h3>
+<div class="amsmath math notranslate nohighlight" id="equation-88d0648c-cee7-4118-ae61-5a37ce55b5ed">
+<span class="eqno">(190)<a class="headerlink" href="#equation-88d0648c-cee7-4118-ae61-5a37ce55b5ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |z|^2 =  e^{i\phi}e^{-i\phi} = e^{i\phi-i\phi} =e^0= 1
 \end{equation}\]</div>
 <p>Complex notation simplifies mathematics, but for physical phenomena only the real part is of relevance</p>
 <p>Also from</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1787495d-8753-4352-9184-d4301531da6d">
-<span class="eqno">(120)<a class="headerlink" href="#equation-1787495d-8753-4352-9184-d4301531da6d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dbbadbf8-9664-4d06-8b0d-38cc7e72e035">
+<span class="eqno">(191)<a class="headerlink" href="#equation-dbbadbf8-9664-4d06-8b0d-38cc7e72e035" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z z^* = 1
 \end{equation}\]</div>
 <p>follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8801113d-bc74-4b72-9f6f-df43e8992c59">
-<span class="eqno">(121)<a class="headerlink" href="#equation-8801113d-bc74-4b72-9f6f-df43e8992c59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d0d7999-bac4-43da-bf93-d76c86e6d63c">
+<span class="eqno">(192)<a class="headerlink" href="#equation-6d0d7999-bac4-43da-bf93-d76c86e6d63c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z^* = \frac{1}{z}
 \end{equation}\]</div>
 <p>A more general expression is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca4a638a-2397-414c-b732-89fed6068567">
-<span class="eqno">(122)<a class="headerlink" href="#equation-ca4a638a-2397-414c-b732-89fed6068567" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-833404ff-c6eb-4e89-9e48-d1055afdccac">
+<span class="eqno">(193)<a class="headerlink" href="#equation-833404ff-c6eb-4e89-9e48-d1055afdccac" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z z^* = |z|^2
 \end{equation}\]</div>
 <p>so that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f21a86e2-1ae0-4141-885d-3c97d05666b0">
-<span class="eqno">(123)<a class="headerlink" href="#equation-f21a86e2-1ae0-4141-885d-3c97d05666b0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-32049a8f-3a34-4436-bcc5-ade2e707fe8a">
+<span class="eqno">(194)<a class="headerlink" href="#equation-32049a8f-3a34-4436-bcc5-ade2e707fe8a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z^* = \frac{|z|^2}{z}
 \end{equation}\]</div>
 <p>or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b19bb9c0-30f0-47db-b6e7-5e935133b31b">
-<span class="eqno">(124)<a class="headerlink" href="#equation-b19bb9c0-30f0-47db-b6e7-5e935133b31b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-141e7cd3-6195-4645-b7ec-524dad0a84e1">
+<span class="eqno">(195)<a class="headerlink" href="#equation-141e7cd3-6195-4645-b7ec-524dad0a84e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z^{-1} = \frac{z^*}{|z|^2}
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -1096,13 +706,13 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_13_0.png" src="../_images/blm_1_13_0.png" />
+<img alt="../_images/52fd9791a2f080414f3e897ec571a009923279c6187054ad1cd284f2df5a3aa3.png" src="../_images/52fd9791a2f080414f3e897ec571a009923279c6187054ad1cd284f2df5a3aa3.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="general-frequencies">
-<h2>General frequencies<a class="headerlink" href="#general-frequencies" title="Permalink to this headline">#</a></h2>
+<h2>General frequencies<a class="headerlink" href="#general-frequencies" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creation of a 1 second time vector </span>
@@ -1125,7 +735,7 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_15_0.png" src="../_images/blm_1_15_0.png" />
+<img alt="../_images/282f2e2dd73911367b00c188468ceec94eb6457b88f972db18506c2cfbd21228.png" src="../_images/282f2e2dd73911367b00c188468ceec94eb6457b88f972db18506c2cfbd21228.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1138,7 +748,7 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_16_0.png" src="../_images/blm_1_16_0.png" />
+<img alt="../_images/39baf3c002039fac22e98d0b14b5c5b43d3050b91eb55285500048dc3ddfbf11.png" src="../_images/39baf3c002039fac22e98d0b14b5c5b43d3050b91eb55285500048dc3ddfbf11.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1154,7 +764,7 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_17_0.png" src="../_images/blm_1_17_0.png" />
+<img alt="../_images/0079145e75bfc25c34817bca6e246f215585a07fea6ceb2693955640616fe4d2.png" src="../_images/0079145e75bfc25c34817bca6e246f215585a07fea6ceb2693955640616fe4d2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1190,15 +800,15 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_18_0.png" src="../_images/blm_1_18_0.png" />
-<img alt="../_images/blm_1_18_1.png" src="../_images/blm_1_18_1.png" />
+<img alt="../_images/40ffc4fb8bf80c98364ac5f50f07c6971d7d831925a05f20a9c4f01fc8444ab7.png" src="../_images/40ffc4fb8bf80c98364ac5f50f07c6971d7d831925a05f20a9c4f01fc8444ab7.png" />
+<img alt="../_images/a5ac21d25018ddb199b01f69b4abe8d36860e5da87dc7ae1a8b88146c19cb2f9.png" src="../_images/a5ac21d25018ddb199b01f69b4abe8d36860e5da87dc7ae1a8b88146c19cb2f9.png" />
 </div>
 </div>
 </section>
 <section id="frequency-analysis">
-<h2>Frequency analysis<a class="headerlink" href="#frequency-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Frequency analysis<a class="headerlink" href="#frequency-analysis" title="Link to this heading">#</a></h2>
 <section id="discrete-fourier-transform-dft">
-<h3>Discrete Fourier transform (DFT)<a class="headerlink" href="#discrete-fourier-transform-dft" title="Permalink to this headline">#</a></h3>
+<h3>Discrete Fourier transform (DFT)<a class="headerlink" href="#discrete-fourier-transform-dft" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
@@ -1216,7 +826,7 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-2.842170943040401e-14+0j) (1024+0j) (-5.684341886080802e-14+5.684341886080802e-14j)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-2.842170943040401e-14+0j) (1024+2.958665228503174e-16j) (-8.526512829121202e-14+5.684341886080802e-14j)
 </pre></div>
 </div>
 </div>
@@ -1241,8 +851,8 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_21_0.png" src="../_images/blm_1_21_0.png" />
-<img alt="../_images/blm_1_21_1.png" src="../_images/blm_1_21_1.png" />
+<img alt="../_images/d1347da500eef393a97067d093c1a533b504d070c1bd5c351ea3849af68e5e01.png" src="../_images/d1347da500eef393a97067d093c1a533b504d070c1bd5c351ea3849af68e5e01.png" />
+<img alt="../_images/de3be514870877ee0ae70fec8c7b674b461738808c0813a9c9bcdfb60abf46d0.png" src="../_images/de3be514870877ee0ae70fec8c7b674b461738808c0813a9c9bcdfb60abf46d0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1271,8 +881,8 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_22_0.png" src="../_images/blm_1_22_0.png" />
-<img alt="../_images/blm_1_22_1.png" src="../_images/blm_1_22_1.png" />
+<img alt="../_images/91296b784ab9f8e629be4a7878d60325b2241040de8f2ba4254c22379c077f96.png" src="../_images/91296b784ab9f8e629be4a7878d60325b2241040de8f2ba4254c22379c077f96.png" />
+<img alt="../_images/aecc9cfde1619291e573a7278d833fce40295cc47cebcf85ec5ae9fac0357253.png" src="../_images/aecc9cfde1619291e573a7278d833fce40295cc47cebcf85ec5ae9fac0357253.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1292,7 +902,7 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </section>
 <section id="observation">
-<h3>Observation<a class="headerlink" href="#observation" title="Permalink to this headline">#</a></h3>
+<h3>Observation<a class="headerlink" href="#observation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>complex signal (cos and sin) peak is at correct frequency (5) with peak amplitude that correspond to the length of the DFT</p></li>
 <li><p>for real signals there are two peaks with half the amplitude at frequencies 5 and 1019 = (1024-5). The second peak is allso called negative frequency</p></li>
@@ -1302,7 +912,7 @@ z^{-1} = \frac{z^*}{|z|^2}
 </section>
 </section>
 <section id="fast-fourier-transform">
-<h2>Fast Fourier Transform<a class="headerlink" href="#fast-fourier-transform" title="Permalink to this headline">#</a></h2>
+<h2>Fast Fourier Transform<a class="headerlink" href="#fast-fourier-transform" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generic complex to complex fft</span>
@@ -1320,38 +930,38 @@ z^{-1} = \frac{z^*}{|z|^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_26_0.png" src="../_images/blm_1_26_0.png" />
-<img alt="../_images/blm_1_26_1.png" src="../_images/blm_1_26_1.png" />
+<img alt="../_images/6b5c2e55913325d2d60057f32439a48e0903d242d5c54a3cf41e2600bcd70594.png" src="../_images/6b5c2e55913325d2d60057f32439a48e0903d242d5c54a3cf41e2600bcd70594.png" />
+<img alt="../_images/be2e615700cfaf9f9b320d656b4b3f33c119bebd34248d33706b7da737abcd10.png" src="../_images/be2e615700cfaf9f9b320d656b4b3f33c119bebd34248d33706b7da737abcd10.png" />
 </div>
 </div>
 <section id="comments">
-<h3>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">#</a></h3>
+<h3>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>For a complex sinusoidal signal the Python FFT gives a negative frequency (fs-5 = 1019)</p></li>
 <li><p>a special version of the FFT call rfft gives only the positive frequencies (x-axis only up to fs/2 and not fs)</p></li>
 </ul>
 </section>
 <section id="fft-implementation">
-<h3>FFT implementation<a class="headerlink" href="#fft-implementation" title="Permalink to this headline">#</a></h3>
+<h3>FFT implementation<a class="headerlink" href="#fft-implementation" title="Link to this heading">#</a></h3>
 <p>To see how FFT is implemented (<span class="math notranslate nohighlight">\(\exp(2\pi i nm/N)\)</span> or <span class="math notranslate nohighlight">\(\exp(-2\pi i nm/N)\)</span>) we fourier transform a time series where only a single sample is set to a non-zero value (say sample 1 set to one)</p>
 <p>In the case of a DFT we note that for a single sample</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dee35ca1-a5ba-42c0-ad9b-10d23add010f">
-<span class="eqno">(125)<a class="headerlink" href="#equation-dee35ca1-a5ba-42c0-ad9b-10d23add010f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ca25e84-6dd5-4a24-a782-1f302a2fb7bb">
+<span class="eqno">(196)<a class="headerlink" href="#equation-9ca25e84-6dd5-4a24-a782-1f302a2fb7bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(m)= \sum_{n=0}^{N-1}x(n)\exp(2\pi i nm/N)
 \end{equation}\]</div>
 <p>would become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f68a65f4-011e-4fc7-be06-5e63ed283a1f">
-<span class="eqno">(126)<a class="headerlink" href="#equation-f68a65f4-011e-4fc7-be06-5e63ed283a1f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-66362fde-b8ca-47e0-9adc-4133817ca055">
+<span class="eqno">(197)<a class="headerlink" href="#equation-66362fde-b8ca-47e0-9adc-4133817ca055" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(m)= \exp(2\pi i m/N)= \cos(2\pi m/N)+1i\sin(2\pi m/N)
 \end{equation}\]</div>
 <p>taking the inverse DFT</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95db9ed7-f857-455e-8ea0-2dbd9a0a0ae9">
-<span class="eqno">(127)<a class="headerlink" href="#equation-95db9ed7-f857-455e-8ea0-2dbd9a0a0ae9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7366353b-05ca-4e49-b60e-f37e448fba3d">
+<span class="eqno">(198)<a class="headerlink" href="#equation-7366353b-05ca-4e49-b60e-f37e448fba3d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(n)= \sum_{m=0}^{M-1}\exp(2\pi i m/N)\exp(-2\pi i nm/N)=\sum_{m=0}^{M-1}\exp(2\pi i (1-n)m/N)
 \end{equation}\]</div>
 <p>which results to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fdb3a838-49de-48da-8928-a5588d9bd116">
-<span class="eqno">(128)<a class="headerlink" href="#equation-fdb3a838-49de-48da-8928-a5588d9bd116" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4339c943-85b9-4e80-9676-7d48ff2737f5">
+<span class="eqno">(199)<a class="headerlink" href="#equation-4339c943-85b9-4e80-9676-7d48ff2737f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(n) = M\delta_{n,1}
 \end{equation}\]</div>
 <p>or <span class="math notranslate nohighlight">\(x(1)=M\)</span> and <span class="math notranslate nohighlight">\(x(n)=0\)</span> for <span class="math notranslate nohighlight">\(n \ne 1\)</span></p>
@@ -1369,7 +979,7 @@ x(n) = M\delta_{n,1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_29_0.png" src="../_images/blm_1_29_0.png" />
+<img alt="../_images/653d74202b2eeba9431df1b9798bb65d653f36d9e0c69870d2c212b118a308f2.png" src="../_images/653d74202b2eeba9431df1b9798bb65d653f36d9e0c69870d2c212b118a308f2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DFT&#39; peak:  1024.0
 </pre></div>
 </div>
@@ -1392,7 +1002,7 @@ x(n) = M\delta_{n,1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_30_0.png" src="../_images/blm_1_30_0.png" />
+<img alt="../_images/60f89933df26e5580bb164d3daaf0f4e8bb56f16aeb34373a612fe1a4c9ed871.png" src="../_images/60f89933df26e5580bb164d3daaf0f4e8bb56f16aeb34373a612fe1a4c9ed871.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FFT peak:  1.0 1.0
 </pre></div>
 </div>
@@ -1400,14 +1010,14 @@ x(n) = M\delta_{n,1}
 </div>
 </section>
 <section id="id1">
-<h3>Observation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Observation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>The FFT spectrum of a signle sample is  <span class="math notranslate nohighlight">\(\cos(2\pi m/N) -i  \sin(2\pi m/N)\)</span>  contrary to the DFT used above that was using  <span class="math notranslate nohighlight">\(\cos(2\pi m/N) +i  \sin(2\pi m/N)\)</span> . This selection <span class="math notranslate nohighlight">\(+i\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> is purely a matter of cenvention. In practical terms it means that a decision has to be made if the ‘non-real’ imaginary signal is trailing (<span class="math notranslate nohighlight">\(+i\)</span>) or leading <span class="math notranslate nohighlight">\(-i\)</span> the real signal.</p>
 <p>As we are dealing mostly real signals and use the special rfft that only results in positive frequencies, we have not to worry about this ambiguity.</p>
 <p>While the spectra of the FFT and DFT are equivalent (equal when ignoring the different sign of the imaginary part), the inverse FFT produces the correct original time series, while the DFT</p>
 </section>
 <section id="general-signal-frequency">
-<h3>General signal frequency<a class="headerlink" href="#general-signal-frequency" title="Permalink to this headline">#</a></h3>
-<p>So far, the frequency was chosen to be an integer. In the following we relax this and use a nom-inter freqiency <span class="math notranslate nohighlight">\(f_o = 5.5\)</span></p>
+<h3>General signal frequency<a class="headerlink" href="#general-signal-frequency" title="Link to this heading">#</a></h3>
+<p>So far, the frequency was chosen to be an integer value. In the following we relax this and use a non-integer frequency, e.g.: <span class="math notranslate nohighlight">\(f_o = 5.5\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># signal frequency </span>
@@ -1429,13 +1039,13 @@ x(n) = M\delta_{n,1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_33_0.png" src="../_images/blm_1_33_0.png" />
-<img alt="../_images/blm_1_33_1.png" src="../_images/blm_1_33_1.png" />
+<img alt="../_images/a14bb39dd2a1ab8a9436112f921ecbc11819fd115ee076482db6ff6ceee3a0cd.png" src="../_images/a14bb39dd2a1ab8a9436112f921ecbc11819fd115ee076482db6ff6ceee3a0cd.png" />
+<img alt="../_images/e8776d07a1a7e1f64e9487f50023c51328864fe9782d577199d60692a5fa2988.png" src="../_images/e8776d07a1a7e1f64e9487f50023c51328864fe9782d577199d60692a5fa2988.png" />
 </div>
 </div>
 </section>
 <section id="id2">
-<h3>Observations<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3>Observations<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>Using a fractional frequency (5.5 instead of 5) different effects occur</p>
 <ul class="simple">
 <li><p>peak is reduced to less than 700</p></li>
@@ -1444,11 +1054,11 @@ x(n) = M\delta_{n,1}
 </ul>
 </section>
 <section id="conclusions">
-<h3>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h3>
+<h3>Conclusions<a class="headerlink" href="#conclusions" title="Link to this heading">#</a></h3>
 <p>When using fractional frequencies the energy (power) of the signal is leaked to other frequencies.</p>
 </section>
 <section id="spectral-leakeage">
-<h3>Spectral leakeage<a class="headerlink" href="#spectral-leakeage" title="Permalink to this headline">#</a></h3>
+<h3>Spectral leakeage<a class="headerlink" href="#spectral-leakeage" title="Link to this heading">#</a></h3>
 <p>The widening of the spectral peek occurs together with reduction in peak power and an increase for off-signal frequencies. A condition that is called spectral leakage.</p>
 <p>One notes that the integral value of the spectral energy remains constant at <code class="docutils literal notranslate"><span class="pre">(amp/2)*length(FFT)</span></code></p>
 <div class="cell docutils container">
@@ -1477,17 +1087,17 @@ x(n) = M\delta_{n,1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_37_0.png" src="../_images/blm_1_37_0.png" />
+<img alt="../_images/a14bb39dd2a1ab8a9436112f921ecbc11819fd115ee076482db6ff6ceee3a0cd.png" src="../_images/a14bb39dd2a1ab8a9436112f921ecbc11819fd115ee076482db6ff6ceee3a0cd.png" />
 </div>
 </div>
 </section>
 <section id="id3">
-<h3>Observation<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3>Observation<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>The inverse FFT of the complex spectrum generates the original time series, even if the spectrum is spead out over a wider frequency range.</p>
 </section>
 </section>
 <section id="noise-processing">
-<h2>Noise processing<a class="headerlink" href="#noise-processing" title="Permalink to this headline">#</a></h2>
+<h2>Noise processing<a class="headerlink" href="#noise-processing" title="Link to this heading">#</a></h2>
 <p>We now add noise to the sinusoidal signal</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1552,7 +1162,7 @@ x(n) = M\delta_{n,1}
 Noise  513.3273885838644 Peak  2073698.6295588852
 </pre></div>
 </div>
-<img alt="../_images/blm_1_40_1.png" src="../_images/blm_1_40_1.png" />
+<img alt="../_images/19a6bd6fb9c1f8daa4d8ca45ef5fb69d69bdf726bd68f9d7bab8e9bcbca3b39c.png" src="../_images/19a6bd6fb9c1f8daa4d8ca45ef5fb69d69bdf726bd68f9d7bab8e9bcbca3b39c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1570,14 +1180,14 @@ Noise  513.3273885838644 Peak  2073698.6295588852
 </div>
 </div>
 <section id="id4">
-<h3>Observation<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3>Observation<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>To obtain noise spectrum (variance per sample), the mean value of the rfft power spectrum must be scaled by <span class="math notranslate nohighlight">\(2/N^2\)</span>
 To obtain the RMS of the signal, the peak value of the rfft power spectrum must be scaled by <span class="math notranslate nohighlight">\(1/N^2\)</span></p>
 <p>The extimates are not exactly equal as the noise is random and consequently also all extimates of noisy data are randomvariables.</p>
 </section>
 </section>
 <section id="spectrum-implementation">
-<h2>Spectrum implementation<a class="headerlink" href="#spectrum-implementation" title="Permalink to this headline">#</a></h2>
+<h2>Spectrum implementation<a class="headerlink" href="#spectrum-implementation" title="Link to this heading">#</a></h2>
 <p>For future spectral analysis we can define the following support function that scales the power spectrum accordingly</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1622,16 +1232,16 @@ To obtain the RMS of the signal, the peak value of the rfft power spectrum must 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_45_0.png" src="../_images/blm_1_45_0.png" />
+<img alt="../_images/b42b388d45268676f965688bddb30233f9da2c9b0a5962732e94300f355dfa8a.png" src="../_images/b42b388d45268676f965688bddb30233f9da2c9b0a5962732e94300f355dfa8a.png" />
 </div>
 </div>
 </section>
 <section id="windowing">
-<h2>Windowing<a class="headerlink" href="#windowing" title="Permalink to this headline">#</a></h2>
+<h2>Windowing<a class="headerlink" href="#windowing" title="Link to this heading">#</a></h2>
 <p>The implementation of the FFT assumes that signal is periodic. Most interesting signals are aperiodic, resulting in what is called spectral leakage. The above signal with a frequency of 5.5 is such a case.</p>
 <p>Standard remedy is to taper the signal such that both ends of the time series are equal and very often close to zero. A typical window is the Hann window,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d82d3ada-7c03-44eb-ab79-c4dc06bcb47a">
-<span class="eqno">(129)<a class="headerlink" href="#equation-d82d3ada-7c03-44eb-ab79-c4dc06bcb47a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-22d7fcb2-8991-4ae7-9313-497e361247fd">
+<span class="eqno">(200)<a class="headerlink" href="#equation-22d7fcb2-8991-4ae7-9313-497e361247fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 hann(n)=\frac{1}{2}\big(1-\cos(2\pi \frac{n}{N-1})\big)
 \end{equation}\]</div>
 <p>In the following we assume that the window length is equal to FFT length, that is we assume first NO zero padding and analyse later the case of zero padding</p>
@@ -1647,12 +1257,12 @@ hann(n)=\frac{1}{2}\big(1-\cos(2\pi \frac{n}{N-1})\big)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_47_0.png" src="../_images/blm_1_47_0.png" />
-<img alt="../_images/blm_1_47_1.png" src="../_images/blm_1_47_1.png" />
+<img alt="../_images/8fb426d577f1d0da70c9677a1dea1a37f8945050919fe95cc2de3d31c76022b1.png" src="../_images/8fb426d577f1d0da70c9677a1dea1a37f8945050919fe95cc2de3d31c76022b1.png" />
+<img alt="../_images/bfd256f70d5bd149839e5b5d1b59f9ea02bde64942f0da6cbc2270c015e8111c.png" src="../_images/bfd256f70d5bd149839e5b5d1b59f9ea02bde64942f0da6cbc2270c015e8111c.png" />
 </div>
 </div>
 <section id="id5">
-<h3>Observations<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<h3>Observations<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>Windowing reduces</p>
 <ul class="simple">
 <li><p>the influences of initial and final data</p></li>
@@ -1660,7 +1270,7 @@ hann(n)=\frac{1}{2}\big(1-\cos(2\pi \frac{n}{N-1})\big)
 </ul>
 </section>
 <section id="id6">
-<h3>Conclusions<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>Conclusions<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>one should expect that</p>
 <ul class="simple">
 <li><p>the RMS value of the signal is modified</p></li>
@@ -1685,16 +1295,16 @@ hann(n)=\frac{1}{2}\big(1-\cos(2\pi \frac{n}{N-1})\big)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001 0.0003930318412076976
-2 0.5095595110138031
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001 0.00039303184120769764
+2 0.5095595110138033
 </pre></div>
 </div>
-<img alt="../_images/blm_1_49_1.png" src="../_images/blm_1_49_1.png" />
+<img alt="../_images/2b52e1dcba0dbc2124923070848deac0694fab45d2ca05ab8d9098ccd3407af0.png" src="../_images/2b52e1dcba0dbc2124923070848deac0694fab45d2ca05ab8d9098ccd3407af0.png" />
 </div>
 </div>
 </section>
 <section id="id7">
-<h3>Observation<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<h3>Observation<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <p>Both, the RMS estimate (peak value) and the per sample Var value (noise) are not correct. The obtained values are too low due to the windowing influence.
 This can be corrected by considering the window shape.</p>
 <div class="cell docutils container">
@@ -1710,8 +1320,8 @@ This can be corrected by considering the window shape.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3746337890625
 0.49951171875
-0.001 0.0010491094308157246
-2 2.042224816783136
+0.001 0.0010491094308157248
+2 2.0422248167831363
 </pre></div>
 </div>
 </div>
@@ -1766,15 +1376,15 @@ This can be corrected by considering the window shape.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001 0.0010491094308157246
-2 2.042224816783136
+2 2.0422248167831363
 </pre></div>
 </div>
-<img alt="../_images/blm_1_53_1.png" src="../_images/blm_1_53_1.png" />
+<img alt="../_images/60b9226667be275dd4b78edc040c696454c9573dd52d9ac245134e3d9707852d.png" src="../_images/60b9226667be275dd4b78edc040c696454c9573dd52d9ac245134e3d9707852d.png" />
 </div>
 </div>
 </section>
 <section id="id8">
-<h3>Observations<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<h3>Observations<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p>The general scaling functions of spectras are</p>
 <ul class="simple">
 <li><p>RMS estimation: <code class="docutils literal notranslate"><span class="pre">1/win.sum()**2</span></code></p></li>
@@ -1784,11 +1394,11 @@ This can be corrected by considering the window shape.</p>
 </section>
 </section>
 <section id="power-spectral-density-psd">
-<h2>Power spectral density (PSD)<a class="headerlink" href="#power-spectral-density-psd" title="Permalink to this headline">#</a></h2>
+<h2>Power spectral density (PSD)<a class="headerlink" href="#power-spectral-density-psd" title="Link to this heading">#</a></h2>
 <p>The VAR estimation provides the per sample noise variance  expressed in V^2/sample . To obtain the PSD that typically is expressed in V^2/Hz one needs to consider the spectral binwidth in terms of the sampling frequency <span class="math notranslate nohighlight">\(f_s\)</span>.</p>
 <p>Binwidth in Hz is for <span class="math notranslate nohighlight">\(N_{fft}= N_{win}\)</span> given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad133344-57fc-447e-95af-197f8cc222d8">
-<span class="eqno">(130)<a class="headerlink" href="#equation-ad133344-57fc-447e-95af-197f8cc222d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ec6a67a-5bc8-4f0b-96cd-c90c82fab6b7">
+<span class="eqno">(201)<a class="headerlink" href="#equation-2ec6a67a-5bc8-4f0b-96cd-c90c82fab6b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta f = \frac{f_s}{N_{win}}
 \end{equation}\]</div>
 <p>and therfore the PSD related scaling of the spectra</p>
@@ -1797,7 +1407,7 @@ This can be corrected by considering the window shape.</p>
 </ul>
 </section>
 <section id="zero-padding">
-<h2>Zero padding<a class="headerlink" href="#zero-padding" title="Permalink to this headline">#</a></h2>
+<h2>Zero padding<a class="headerlink" href="#zero-padding" title="Link to this heading">#</a></h2>
 <p>So far, we assumed that the length of the fft is equal to the length of the window. In the following we allow the fft length to be longer than the window length, wherby the added samples are kept at zero (zero padding).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1828,46 +1438,46 @@ This can be corrected by considering the window shape.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>534311.8738208096 534311.8738208096
-205.51190880005768 205.5145016630521
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>534311.8738208098 534311.8738208096
+205.5119088000577 205.5145016630521
 </pre></div>
 </div>
-<img alt="../_images/blm_1_57_1.png" src="../_images/blm_1_57_1.png" />
+<img alt="../_images/375c64c2e02c6fce437c764394f41c0725d1456961b6d712fe0a0571dbb63c46.png" src="../_images/375c64c2e02c6fce437c764394f41c0725d1456961b6d712fe0a0571dbb63c46.png" />
 </div>
 </div>
 <section id="id9">
-<h3>Observations<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<h3>Observations<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>We note that the unscaled spectra estimates do not vary when adding zeros to the data before FFT (zero padding). All what is changing is the number of frequency bins to cover the whole spectrum and consequently, zero padded FFTs are also called interpolationg FFT.</p>
 <p>One should expect that scaling for the RMS estimate (peak of spectrogram) does not depend on length of zero padded FFT but only on length of window</p>
 <section id="open-question-does-zero-padding-change-the-estimate-of-the-psd">
-<h4>Open question: does zero padding change the estimate of the PSD?<a class="headerlink" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd" title="Permalink to this headline">#</a></h4>
+<h4>Open question: does zero padding change the estimate of the PSD?<a class="headerlink" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd" title="Link to this heading">#</a></h4>
 <p>The PSD is given as the time averaged spectral energy</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13775195-1a97-4202-87e4-bb8c7cefd212">
-<span class="eqno">(131)<a class="headerlink" href="#equation-13775195-1a97-4202-87e4-bb8c7cefd212" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-98a752ab-47f0-4430-a0b0-aaae9737025b">
+<span class="eqno">(202)<a class="headerlink" href="#equation-98a752ab-47f0-4430-a0b0-aaae9737025b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P(f) = \frac{1}{T}\Big|\int_{0}^{T}x(t)\exp{(-2\pi i f t)} dt\Big|^2
 \end{equation}\]</div>
 <p>or for discrete sampling</p>
-<div class="amsmath math notranslate nohighlight" id="equation-658ee3ff-4da3-4ad2-b9cb-a8f811edb6aa">
-<span class="eqno">(132)<a class="headerlink" href="#equation-658ee3ff-4da3-4ad2-b9cb-a8f811edb6aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9b2dd6c1-182f-47b9-be63-099c45ad32ab">
+<span class="eqno">(203)<a class="headerlink" href="#equation-9b2dd6c1-182f-47b9-be63-099c45ad32ab" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P(f) = \frac{1}{N\Delta t}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i f n\Delta t)} \Delta t\Big|^2
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of samples of the signal and <span class="math notranslate nohighlight">\(\Delta t\)</span> is the sampling interval, i.e. <span class="math notranslate nohighlight">\(N\Delta t=T\)</span> is the length of the signal in seconds and <span class="math notranslate nohighlight">\(n\Delta t\)</span> is the time when the n-th samples was measured.</p>
 <p>The quantity <span class="math notranslate nohighlight">\(P(f)\)</span> is really a time averaged signal energy</p>
 <p>Assume zero padding from <span class="math notranslate nohighlight">\(N\)</span> to <span class="math notranslate nohighlight">\(K&gt;N\)</span>, the sum does not change as <span class="math notranslate nohighlight">\(x(n)=0\)</span> for all <span class="math notranslate nohighlight">\(n&gt;N\)</span>, but the frequency interpretation does:</p>
 <p>Assume <span class="math notranslate nohighlight">\(f_k =k(f_s/K)\)</span> for <span class="math notranslate nohighlight">\(k=0,1, ...,K-1\)</span> with <span class="math notranslate nohighlight">\(f_s = 1/\Delta t\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-a39527cf-5a2a-40fc-9165-fddfe06bcc44">
-<span class="eqno">(133)<a class="headerlink" href="#equation-a39527cf-5a2a-40fc-9165-fddfe06bcc44" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-34390765-f03d-4119-b75c-97d36f71cb08">
+<span class="eqno">(204)<a class="headerlink" href="#equation-34390765-f03d-4119-b75c-97d36f71cb08" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P(k) = P(\frac{kf_s}{K}) = \frac{1}{f_sN}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i kn/K)}\Big|^2
 \end{equation}\]</div>
 <p>The PSD is independent of the DFT size K, but it only depends on the number of time domain samples N</p>
 </section>
 </section>
 <section id="comment">
-<h3>Comment<a class="headerlink" href="#comment" title="Permalink to this headline">#</a></h3>
+<h3>Comment<a class="headerlink" href="#comment" title="Link to this heading">#</a></h3>
 <p>Zero padding is only useful if one is interested in the interpolating aspect of the zero-padded FFT, e.g. for RMS estimates of tonal signals. For broadband PSD estimation zero-padded FFT seems of little advantage.</p>
 </section>
 <section id="custom-spectrum-implementation">
-<h3>Custom Spectrum implementation<a class="headerlink" href="#custom-spectrum-implementation" title="Permalink to this headline">#</a></h3>
+<h3>Custom Spectrum implementation<a class="headerlink" href="#custom-spectrum-implementation" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># custom spectrum estimation</span>
@@ -1939,11 +1549,11 @@ P(k) = P(\frac{kf_s}{K}) = \frac{1}{f_sN}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/blm_1_62_0.png" src="../_images/blm_1_62_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMS:  2.042224816783136 2.042224816783136
+<img alt="../_images/f26912fb2edfe0da403965942c91cb46f3628ccfd74ed53a64afef59db33c58d.png" src="../_images/f26912fb2edfe0da403965942c91cb46f3628ccfd74ed53a64afef59db33c58d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMS:  2.0422248167831363 2.042224816783136
 </pre></div>
 </div>
-<img alt="../_images/blm_1_62_2.png" src="../_images/blm_1_62_2.png" />
+<img alt="../_images/d76c815f6c0019dbadda245ef55afccdc1f9cb2e9667d7864b2289519e072482.png" src="../_images/d76c815f6c0019dbadda245ef55afccdc1f9cb2e9667d7864b2289519e072482.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PSD:  0.0010463094086024442 0.0010463226094770898
 </pre></div>
 </div>
@@ -1965,7 +1575,7 @@ P(k) = P(\frac{kf_s}{K}) = \frac{1}{f_sN}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i 
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./BLM"
         },
         predefinedOutput: true
@@ -1973,50 +1583,159 @@ P(k) = P(\frac{kf_s}{K}) = \frac{1}{f_sN}\Big|\sum_{n=0}^{N-1}x(n)\exp{(-2\pi i 
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="blm_0.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">BML_0: BAR_LA_MARE</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="blm_0.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">BML_0: BAR_LA_MARE</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="blm_2.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="blm_2.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">BLM_2:  Wave propagation</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">Observations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-numbers">Complex numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometry">Trigonometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pythagoras">Pythagoras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hint">Hint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-number-real-i-imaginary">complex number (real + i*imaginary)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#conjugate-of-a-complex-number">conjugate of a complex number</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#absolute-squared-complex-value-by-signal-multiplied-with-its-conjugate">absolute squared complex value by signal multiplied with its conjugate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-method">Alternative method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-frequencies">General frequencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-analysis">Frequency analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-fourier-transform-dft">Discrete Fourier transform (DFT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observation">Observation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-fourier-transform">Fast Fourier Transform</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fft-implementation">FFT implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Observation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-signal-frequency">General signal frequency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-leakeage">Spectral leakeage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Observation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-processing">Noise processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Observation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-implementation">Spectrum implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windowing">Windowing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Conclusions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Observation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Observations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectral-density-psd">Power spectral density (PSD)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-padding">Zero padding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Observations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#open-question-does-zero-padding-change-the-estimate-of-the-psd">Open question: does zero padding change the estimate of the PSD?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comment">Comment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-spectrum-implementation">Custom Spectrum implementation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Walter MX Zimmer<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Walter MX Zimmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

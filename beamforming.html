@@ -1,0 +1,956 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Beamforming &#8212; bioacoustics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'beamforming';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Multi channel processing" href="multi-channel-processing.html" />
+    <link rel="prev" title="Multi-phone localization" href="multi-phone-localization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">bioacoustics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bioacoustics by WMXZ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">General Bioacoustics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="wave_equation.html">Wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Zc_click.html">Cuvier’s beaked whale click</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power_spectra.html">Spectral estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sound_intensity.html">Sound Intensity</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="transient_detection.html">Transient detections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-phone-localization.html">Multi-phone localization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Beamforming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-channel-processing.html">Multi channel processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ray_tracing.html">Ray tracing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Click_train_detector.html">Click train detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Detections.html">Click detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bar La Mare</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_0.html">BML_0: BAR_LA_MARE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_1.html">BLM_1: Basic signal spectral analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_2.html">BLM_2:  Wave propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_3.html">BLM_3: Underwater Sound Propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_4.html">BLM_4: Spectrogram</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmxz-eu/wmxz-eu.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2Fbeamforming.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/beamforming.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Beamforming</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-formulation-of-single-source-direction-finding">Basic formulation of single source direction finding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-array">Line array</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-formulation-of-beamforming">Basic formulation of beamforming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-measurements">simulate measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-steering">check steering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filtering-beamformer">spatial filtering (beamformer)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="beamforming">
+<h1>Beamforming<a class="headerlink" href="#beamforming" title="Link to this heading">#</a></h1>
+<p>Beamforming is based on the fact that signal (here sound) arrives at different times at distributed (array of) sensors (here hydrophones).</p>
+<p>While the direction of single sound source may be estimated ba measuring the relative delays within the hydrophone array and relating these measurements to the array geometry, beamforming analyses the arriving sound field for all possible direections (beams).</p>
+<section id="basic-formulation-of-single-source-direction-finding">
+<h2>Basic formulation of single source direction finding<a class="headerlink" href="#basic-formulation-of-single-source-direction-finding" title="Link to this heading">#</a></h2>
+<p>Let the sound direction  <span class="math notranslate nohighlight">\(\hat S\)</span> be given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b2ddc0e3-e5d3-4025-9648-8d053a6efc11">
+<span class="eqno">(74)<a class="headerlink" href="#equation-b2ddc0e3-e5d3-4025-9648-8d053a6efc11" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \hat S = 
+    \left(
+        \begin{array}{c}
+            S_x\\
+            S_y\\
+            S_z
+        \end{array}
+    \right)  
+\end{equation}\]</div>
+<p>and the hydrophone location matrix <span class="math notranslate nohighlight">\( H \)</span> be given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0ee88bc8-22e7-4ad3-baf3-d5d57b568023">
+<span class="eqno">(75)<a class="headerlink" href="#equation-0ee88bc8-22e7-4ad3-baf3-d5d57b568023" title="Permalink to this equation">#</a></span>\[\begin{equation}
+     H = 
+    \left(
+        \begin{array}{c c c c}
+            h_{0x} &amp; h_{1x} &amp; ... &amp; h_{nx}\\
+            h_{0y} &amp; h_{1y} &amp; ... &amp; h_{ny}\\
+            h_{0z} &amp; h_{1z} &amp; ... &amp; h_{nz}\\
+        \end{array}
+    \right)  
+\end{equation}\]</div>
+<p>where the elements <span class="math notranslate nohighlight">\((d_{ix},d_{iy},d_{iz}) \)</span> are the <span class="math notranslate nohighlight">\(x,y,z\)</span> components of the 3-D vector that locates the hydrophones.</p>
+<p>Let <span class="math notranslate nohighlight">\(D_0\)</span> be the hydrophone seperation matrix</p>
+<div class="amsmath math notranslate nohighlight" id="equation-874aec66-9301-4af2-973c-638fb566ed6c">
+<span class="eqno">(76)<a class="headerlink" href="#equation-874aec66-9301-4af2-973c-638fb566ed6c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+     D_0 = H-{h_0}=
+    \left(
+        \begin{array}{c c c c}
+            d_{1x} &amp; d_{2x} &amp; ... &amp; d_{nx}\\
+            d_{1y} &amp; d_{2y} &amp; ... &amp; d_{ny}\\
+            d_{1z} &amp; d_{2z} &amp; ... &amp; d_{nz}\\
+        \end{array}
+    \right)  
+\end{equation}\]</div>
+<p>then the vector of measurements <span class="math notranslate nohighlight">\( m\)</span> defined by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9d12ef3c-6c42-4271-acd8-b1a6d3f96c84">
+<span class="eqno">(77)<a class="headerlink" href="#equation-9d12ef3c-6c42-4271-acd8-b1a6d3f96c84" title="Permalink to this equation">#</a></span>\[\begin{equation}
+     m = 
+    \left(
+        \begin{array}{c}
+            m_1\\
+            m_2\\
+            \vdots\\
+            m_n
+        \end{array}
+    \right)  
+\end{equation}\]</div>
+<p>is estimated by the projection of the sound source direction onto the different hydrophone pairs.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-17f53d8e-9897-4146-ae74-217a82a5afd6">
+<span class="eqno">(78)<a class="headerlink" href="#equation-17f53d8e-9897-4146-ae74-217a82a5afd6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+     m =  D_0^T  {\hat S}
+\end{equation}\]</div>
+<p>The sound direction is then estimated from the measurement vector by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-07fb5abf-d8ce-4ef9-b06b-e99d66a8d7d5">
+<span class="eqno">(79)<a class="headerlink" href="#equation-07fb5abf-d8ce-4ef9-b06b-e99d66a8d7d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    {\hat S} = \left( D_0^T  D_0 \right)^{-1}  D_0  m
+\end{equation}\]</div>
+<section id="line-array">
+<h3>Line array<a class="headerlink" href="#line-array" title="Link to this heading">#</a></h3>
+<p>In case where the array geometry is a line array then typically one assumes that <span class="math notranslate nohighlight">\((h_{iy},h_{iz})=(0,0)\)</span> and we get</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f7b6750e-2221-4e67-ae8f-683142f2dac7">
+<span class="eqno">(80)<a class="headerlink" href="#equation-f7b6750e-2221-4e67-ae8f-683142f2dac7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \hat S_x = \frac{\sum_i(d_{ix}m_i)} {\sum_i(d_{ix}^2)}
+\end{equation}\]</div>
+</section>
+</section>
+<section id="basic-formulation-of-beamforming">
+<h2>Basic formulation of beamforming<a class="headerlink" href="#basic-formulation-of-beamforming" title="Link to this heading">#</a></h2>
+<p>Let the sound pressure measured an a single hydrophone be a signal <span class="math notranslate nohighlight">\(s\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-e4057b06-4046-4deb-94a1-950a7acae084">
+<span class="eqno">(81)<a class="headerlink" href="#equation-e4057b06-4046-4deb-94a1-950a7acae084" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x(t)=s(t)
+\end{equation}\]</div>
+<p>then in an array of hydrophones the measurements become</p>
+<div class="amsmath math notranslate nohighlight" id="equation-01f55d67-3eb7-49e2-a137-f19d2d3c837e">
+<span class="eqno">(82)<a class="headerlink" href="#equation-01f55d67-3eb7-49e2-a137-f19d2d3c837e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x_i(t)=s(t-\tau_i(\alpha,\beta))+n(t)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> is the delay of the signal at hydrophone <span class="math notranslate nohighlight">\(i\)</span> with respect to som reference hydrophone and <span class="math notranslate nohighlight">\(\alpha,\beta\)</span> are the angles of arrival</p>
+<p>For a line array with equally spaced hydrophones the delay has a simple form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-db4c67c2-9094-45ad-8fe7-e65bd7b8bfd0">
+<span class="eqno">(83)<a class="headerlink" href="#equation-db4c67c2-9094-45ad-8fe7-e65bd7b8bfd0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\tau_i(t)=i\frac{d}{c}\cos{\gamma}
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d\)</span> id the hydrophone spacing, <span class="math notranslate nohighlight">\(c\)</span> is the sound speed at the hydrophone, and <span class="math notranslate nohighlight">\(\gamma\)</span> is the relative angle of arrival, that for a line array is composed of the azimuth <span class="math notranslate nohighlight">\(\alpha\)</span> and elevation angle <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-035952ec-60d9-4312-8b03-46af43af4ac5">
+<span class="eqno">(84)<a class="headerlink" href="#equation-035952ec-60d9-4312-8b03-46af43af4ac5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\cos{\gamma}=\cos{\alpha}\cos{\beta}
+\end{equation}\]</div>
+<p>The beamforming algorithm simply speaking tries to undo the signal delays <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> by compensating with negative delays</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fcf09df4-d8bf-4eda-aee2-5dedb2125904">
+<span class="eqno">(85)<a class="headerlink" href="#equation-fcf09df4-d8bf-4eda-aee2-5dedb2125904" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x(t)=\frac{1}{N}\sum_i (x_t(+\delta_i(\gamma)))
+\end{equation}\]</div>
+<p>In cases, where <span class="math notranslate nohighlight">\(\delta_i(\gamma)=\tau_i(\alpha,\beta)\)</span> we get</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4f2117ee-ea86-488a-afca-e31413a423e3">
+<span class="eqno">(86)<a class="headerlink" href="#equation-4f2117ee-ea86-488a-afca-e31413a423e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
+\end{equation}\]</div>
+<p>indicating that the signal <span class="math notranslate nohighlight">\(s(t)\)</span> is completely reconstructed and that noise, that is assumed to be uncorrelated is attenuated.</p>
+<p>In all other cases also the signal is attenuated die to delay mismatch.</p>
+</section>
+<section id="simulation">
+<h2>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
+<p>In the following we simulate the beamforing with a line array of Zc clicks</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Simulation of Zc clicks</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">zcSig</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">fm</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">cc</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">aa</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span><span class="o">**</span><span class="n">bb</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">aa</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span><span class="o">**</span><span class="n">cc</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">f0</span><span class="o">+</span><span class="n">fm</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span>
+
+<span class="n">fs</span><span class="o">=</span><span class="mi">192</span> <span class="c1">#kHz</span>
+<span class="n">ts</span><span class="o">=</span><span class="mi">1</span> <span class="c1">#ms</span>
+<span class="n">tt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ts</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
+
+<span class="n">f0</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">fm</span><span class="o">=</span><span class="mi">60</span>
+<span class="n">aa</span><span class="o">=</span><span class="mi">13</span>
+<span class="n">bb</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">cc</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">ss</span><span class="o">=</span><span class="n">zcSig</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">fm</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span>
+<span class="n">ss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="n">ss</span><span class="p">)</span>
+<span class="n">tt</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ss</span><span class="p">)))</span><span class="o">/</span><span class="n">fs</span>
+<span class="c1">#tt=np.arange(-20/fs,ts,1/fs)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ss</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ss</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a44bebb9ae1b730f714658d28cbc3a6c57349771169faaf174995160eaf058ca.png" src="_images/a44bebb9ae1b730f714658d28cbc3a6c57349771169faaf174995160eaf058ca.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Line array</span>
+<span class="n">c</span><span class="o">=</span><span class="mi">1500</span>      <span class="c1"># m/s sound speed</span>
+<span class="n">d</span><span class="o">=</span><span class="mf">0.0125</span>    <span class="c1"># hydrophone spacing (0.75/60)</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">10</span>        <span class="c1"># number of hydrophones</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;d:&#39;</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+<span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d: 0.0125
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Overlap-add FIR filter, (c) Joachim Thiemann 2016</span>
+<span class="c1"># https://github.com/jthiem/overlapadd/blob/master/olafilt.py</span>
+<span class="c1">#</span>
+<span class="k">def</span> <span class="nf">fftfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">zi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filter a one-dimensional array with an FIR filter</span>
+
+<span class="sd">    Filter a data sequence, `x`, using a FIR filter given in `b`.</span>
+<span class="sd">    Filtering uses the overlap-add method converting both `x` and `b`</span>
+<span class="sd">    into frequency domain first.  The FFT size is determined as the</span>
+<span class="sd">    next higher power of 2 of twice the length of `b`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    b : one-dimensional numpy array</span>
+<span class="sd">        The impulse response of the filter</span>
+<span class="sd">    x : one-dimensional numpy array</span>
+<span class="sd">        Signal to be filtered</span>
+<span class="sd">    zi : one-dimensional numpy array, optional</span>
+<span class="sd">        Initial condition of the filter, but in reality just the</span>
+<span class="sd">        runout of the previous computation.  If `zi` is None or not</span>
+<span class="sd">        given, then zero initial state is assumed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    y : array</span>
+<span class="sd">        The output of the digital filter.</span>
+<span class="sd">    zf : array, optional</span>
+<span class="sd">        If `zi` is None, this is not returned, otherwise, `zf` holds the</span>
+<span class="sd">        final filter delay values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">L_I</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Find power of 2 larger that 2*L_I (from abarnert on Stackoverflow)</span>
+    <span class="n">L_F</span> <span class="o">=</span> <span class="mi">2</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">L_I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span>
+    <span class="n">L_S</span> <span class="o">=</span> <span class="n">L_F</span> <span class="o">-</span> <span class="n">L_I</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">L_sig</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">offsets</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L_sig</span><span class="p">,</span> <span class="n">L_S</span><span class="p">)</span>
+
+    <span class="c1"># handle complex or real input</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">iscomplexobj</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">fft_func</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span>
+        <span class="n">ifft_func</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L_sig</span><span class="o">+</span><span class="n">L_F</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fft_func</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span>
+        <span class="n">ifft_func</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">L_sig</span><span class="o">+</span><span class="n">L_F</span><span class="p">)</span>
+
+    <span class="n">FDir</span> <span class="o">=</span> <span class="n">fft_func</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">L_F</span><span class="p">)</span>
+
+    <span class="c1"># overlap and add</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">:</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">L_F</span><span class="p">]</span> <span class="o">+=</span> <span class="n">ifft_func</span><span class="p">(</span><span class="n">fft_func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">L_S</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="n">L_F</span><span class="p">)</span><span class="o">*</span><span class="n">FDir</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">zi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">res</span><span class="p">[:</span><span class="n">zi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[:</span><span class="n">zi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">zi</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[:</span><span class="n">L_sig</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="n">L_sig</span><span class="p">:]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[:</span><span class="n">L_sig</span><span class="p">]</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<section id="simulate-measurements">
+<h3>simulate measurements<a class="headerlink" href="#simulate-measurements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>estimate the arrival times (up to a constant) for all hydrophones</p></li>
+<li><p>delay time series using a fractional sinc function</p></li>
+</ul>
+<p>A sinc function is used as it is an all-pass filter with well defined delay proprty. Other interpolating low-pass filter may be used (e.g. Kaiser filters). The filters should be of FIR type to have well defined delay properties.</p>
+<p>Here, to simplify algorithm, no integer resampling is done, requiring somewhat more coefficients to minimize edge effects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
+
+<span class="n">fs</span><span class="o">=</span><span class="mi">192000</span>
+<span class="c1">#</span>
+<span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># noise</span>
+    <span class="n">noise_power</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="n">fs</span> <span class="o">/</span> <span class="mi">2</span> 
+    <span class="n">ndat</span><span class="o">=</span><span class="n">fs</span><span class="o">//</span><span class="mi">100</span>
+    <span class="n">M</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_power</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">ndat</span><span class="p">))</span>
+
+    <span class="c1"># estimate power spectral density (PSD)</span>
+    <span class="n">win</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">get_window</span><span class="p">(</span><span class="s2">&quot;hann&quot;</span><span class="p">,</span><span class="mi">1024</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">Pxx_dens</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">win</span><span class="p">),</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">win</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">Pxx_dens</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency [kHz]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD [V**2/Hz]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span><span class="mf">1e-1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># signal</span>
+<span class="n">iao</span><span class="o">=</span><span class="mi">60</span>  <span class="c1"># simulated angle</span>
+
+<span class="n">xo</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">real</span>
+<span class="c1"># simulated delays relative to hydrophone 0</span>
+<span class="n">tau</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">iao</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">xo</span><span class="p">),</span><span class="n">N</span><span class="p">))</span>
+
+<span class="n">kk</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">kk</span><span class="o">-</span><span class="n">tau</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">yy</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">fftfilt</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">xo</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">yy</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">yy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/57bb13c9df1f862dee482442fe5af0979ae65ea3b89a01d07df66d30389fee24.png" src="_images/57bb13c9df1f862dee482442fe5af0979ae65ea3b89a01d07df66d30389fee24.png" />
+</div>
+</div>
+</section>
+<section id="check-steering">
+<h3>check steering<a class="headerlink" href="#check-steering" title="Link to this heading">#</a></h3>
+<p>To check method compensate simulated delay so that all hydrophone receive in parallel</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check steering (replace sinc(kk-tau[ii]*fs) by sinc(kk+tau[ii]*fs))</span>
+<span class="n">vv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">ss</span><span class="p">),</span><span class="n">N</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">kk</span><span class="o">+</span><span class="n">tau</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">vv</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">fftfilt</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">yy</span><span class="p">[:,</span><span class="n">ii</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">vv</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">vv</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/49c618f6158cf9ef63922eeefeb7005486f0de95b4a33850417ad558f725faa8.png" src="_images/49c618f6158cf9ef63922eeefeb7005486f0de95b4a33850417ad558f725faa8.png" />
+</div>
+</div>
+</section>
+<section id="spatial-filtering-beamformer">
+<h3>spatial filtering (beamformer)<a class="headerlink" href="#spatial-filtering-beamformer" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Create first the filter coefficient matrix</p></li>
+<li><p>filter all hydrophone using the adequate coefficients.</p></li>
+<li><p>for each time step average all hydrophones</p></li>
+</ul>
+<p>inpection of the coefficients indicate that for the 0 and 180 deg cases edge effects may occur at the end of the array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># beamformer</span>
+
+<span class="k">def</span> <span class="nf">delayMatrix</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span><span class="n">maxDel</span><span class="p">):</span>
+    <span class="c1"># generate delay coefficient matrix</span>
+    <span class="n">nc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">maxDel</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span>  <span class="c1"># assume nimimum sinc coefficients: -10:10</span>
+    <span class="n">kk</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">nc</span><span class="p">,</span><span class="n">nc</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">ww</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">kk</span><span class="p">),</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">cc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndir</span><span class="p">):</span>              <span class="c1"># over all beams</span>
+        <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>             <span class="c1"># over all hydrophones</span>
+            <span class="n">arg</span><span class="o">=</span><span class="n">kk</span><span class="o">+</span><span class="n">dd</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span><span class="n">cc</span><span class="p">]</span>
+            <span class="n">ww</span><span class="p">[:,</span><span class="n">ii</span><span class="p">,</span><span class="n">cc</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ww</span>
+
+
+<span class="n">ndir</span><span class="o">=</span><span class="mi">180</span>
+<span class="n">dd</span><span class="o">=</span><span class="n">h</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ndir</span><span class="p">)</span><span class="o">/</span><span class="n">ndir</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span>
+<span class="n">maxDel</span><span class="o">=</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">fs</span>
+<span class="n">ww</span><span class="o">=</span><span class="n">delayMatrix</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span><span class="n">maxDel</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;coefficient for last hydrophone for all beams&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ww</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">ww</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="n">ndir</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;coefficients&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;beam direction [deg]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># filter data (beamformer)</span>
+<span class="k">def</span> <span class="nf">beamform</span><span class="p">(</span><span class="n">ww</span><span class="p">,</span><span class="n">yy</span><span class="p">):</span>
+    <span class="n">vv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">yy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">zz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">yy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ww</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">cc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndir</span><span class="p">):</span>              <span class="c1"># over all beams</span>
+        <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>             <span class="c1"># over all hydrophones</span>
+            <span class="n">vv</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">fftfilt</span><span class="p">(</span><span class="n">ww</span><span class="p">[:,</span><span class="n">ii</span><span class="p">,</span><span class="n">cc</span><span class="p">],</span><span class="n">yy</span><span class="p">[:,</span><span class="n">ii</span><span class="p">])</span>
+        <span class="n">zz</span><span class="p">[:,</span><span class="n">cc</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># sum hydrophones for each beam</span>
+    <span class="k">return</span> <span class="n">zz</span>
+<span class="c1">#</span>
+<span class="n">zz</span><span class="o">=</span><span class="n">beamform</span><span class="p">(</span><span class="n">ww</span><span class="p">,</span><span class="n">yy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;beamformed time series&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">zz</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">zz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="n">ndir</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;samples&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;beam direction [deg]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;beamformed time series&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zz</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;samples&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;beam direction [deg]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#</span>
+<span class="c1"># compare with input signal</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">ss</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">zz</span><span class="p">[:,</span><span class="n">iao</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fb9e5ec75c02864342d662698b96808ed6707eed9cc72df6cb01d7fb4429c1f9.png" src="_images/fb9e5ec75c02864342d662698b96808ed6707eed9cc72df6cb01d7fb4429c1f9.png" />
+<img alt="_images/f7d33a899e797f1769f45f9df98cb2e2c17d9dc520c1f1d433cb9d792b79bf85.png" src="_images/f7d33a899e797f1769f45f9df98cb2e2c17d9dc520c1f1d433cb9d792b79bf85.png" />
+<img alt="_images/5da0177d77d2d1ee88bd337ea263c26b1b29d9cf50d76a6a5a6fe747f89dfc95.png" src="_images/5da0177d77d2d1ee88bd337ea263c26b1b29d9cf50d76a6a5a6fe747f89dfc95.png" />
+<img alt="_images/c7202a2e24b3a5c13a0d60e3a21f347cf57e777d9b0787d8ed2981191d67288c.png" src="_images/c7202a2e24b3a5c13a0d60e3a21f347cf57e777d9b0787d8ed2981191d67288c.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multi-phone-localization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multi-phone localization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="multi-channel-processing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Multi channel processing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-formulation-of-single-source-direction-finding">Basic formulation of single source direction finding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-array">Line array</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-formulation-of-beamforming">Basic formulation of beamforming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-measurements">simulate measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-steering">check steering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filtering-beamformer">spatial filtering (beamformer)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Walter MX Zimmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

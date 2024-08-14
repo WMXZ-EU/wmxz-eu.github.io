@@ -1,107 +1,172 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Ray tracing &#8212; bioacoustics</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ray_tracing';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Transient detections" href="transient_detection.html" />
-    <link rel="prev" title="Direction Finding" href="direction_finding.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="Simulation" href="cVAS_direction.html" />
+    <link rel="prev" title="Multi channel processing" href="multi-channel-processing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">bioacoustics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">bioacoustics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -110,461 +175,263 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  General Bioacoustics
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">General Bioacoustics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="wave_equation.html">Wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Zc_click.html">Cuvier’s beaked whale click</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power_spectra.html">Spectral estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sound_intensity.html">Sound Intensity</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Processing</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="wave_equation.html">
-   Wave equation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="power_spectra.html">
-   Spectral estimation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Zc_click.html">
-   Cuvier’s beaked whale click
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sound_intensity.html">
-   Sound Intensity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="direction_finding.html">
-   Direction Finding
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Ray tracing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="transient_detection.html">
-   Transient detections
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="transient_detection.html">Transient detections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-phone-localization.html">Multi-phone localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beamforming.html">Beamforming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi-channel-processing.html">Multi channel processing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ray tracing</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Work in Progress
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Click_train_detector.html">
-   Click train detector
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Detections.html">
-   Click detection
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Bar La Mare
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_0.html">
-   BML_0: BAR_LA_MARE
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_1.html">
-   BLM_1: Basic signal spectral analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_2.html">
-   BLM_2:  Wave propagation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_3.html">
-   BLM_3: Underwater Sound Propagation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="BLM/blm_4.html">
-   BLM_4: Spectrogram
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="Click_train_detector.html">Click train detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Detections.html">Click detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bar La Mare</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_0.html">BML_0: BAR_LA_MARE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_1.html">BLM_1: Basic signal spectral analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_2.html">BLM_2:  Wave propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_3.html">BLM_3: Underwater Sound Propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BLM/blm_4.html">BLM_4: Spectrogram</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/wmxz-eu/wmxz-eu.github.io/master?urlpath=tree/ray_tracing.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmxz-eu/wmxz-eu.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2Fray_tracing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ray_tracing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/wmxz-eu/wmxz-eu.github.io/issues/new?title=Issue%20on%20page%20%2Fray_tracing.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/ray_tracing.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-
-      </li>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#snell-s-law">
-   Snell’s law
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#differential-equations">
-   Differential equations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#integration">
-   Integration
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#propagate-acoustic-rays">
-     Propagate acoustic rays
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#boundary-reflections">
-     Boundary reflections
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#surface-reflection">
-     Surface reflection
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bottom-reflection">
-   Bottom reflection
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#boundary-intercept">
-     Boundary intercept
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reflected-ray">
-     Reflected ray
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#refracted-ray-and-critical-angle">
-     Refracted ray and critical angle
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python-code">
-   Python code
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-example">
-   Test example
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Ray tracing</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#snell-s-law">
-   Snell’s law
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#differential-equations">
-   Differential equations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#integration">
-   Integration
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#propagate-acoustic-rays">
-     Propagate acoustic rays
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#boundary-reflections">
-     Boundary reflections
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#surface-reflection">
-     Surface reflection
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bottom-reflection">
-   Bottom reflection
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#boundary-intercept">
-     Boundary intercept
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reflected-ray">
-     Reflected ray
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#refracted-ray-and-critical-angle">
-     Refracted ray and critical angle
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python-code">
-   Python code
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-example">
-   Test example
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ray tracing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snell-s-law">Snell’s law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-equations">Differential equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration">Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagate-acoustic-rays">Propagate acoustic rays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-reflections">Boundary reflections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#surface-reflection">Surface reflection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bottom-reflection">Bottom reflection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-intercept">Boundary intercept</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflected-ray">Reflected ray</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refracted-ray-and-critical-angle">Refracted ray and critical angle</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code">Python code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-example">Test example</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="ray-tracing">
-<h1>Ray tracing<a class="headerlink" href="#ray-tracing" title="Permalink to this headline">#</a></h1>
+<h1>Ray tracing<a class="headerlink" href="#ray-tracing" title="Link to this heading">#</a></h1>
 <p>Consider the following simplified scenario, where sound propagates through a horizontal layered medium with piece-wise constant sound speed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -610,180 +477,180 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ray_tracing_1_0.png" src="_images/ray_tracing_1_0.png" />
+<img alt="_images/332400d9745ddfd24cbca766c322e23a94471a2592582c01f7f5b91a837add41.png" src="_images/332400d9745ddfd24cbca766c322e23a94471a2592582c01f7f5b91a837add41.png" />
 </div>
 </div>
 <section id="snell-s-law">
-<h2>Snell’s law<a class="headerlink" href="#snell-s-law" title="Permalink to this headline">#</a></h2>
+<h2>Snell’s law<a class="headerlink" href="#snell-s-law" title="Link to this heading">#</a></h2>
 <p>When rays transition from one medium to another that are characterized by different sound speeds, the ray propagation angle <span class="math notranslate nohighlight">\(\vartheta\)</span> varies according to Snell’s law</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bce88da-fd9b-4cf3-bb7a-bdc5667e6bd4">
-<span class="eqno">(51)<a class="headerlink" href="#equation-4bce88da-fd9b-4cf3-bb7a-bdc5667e6bd4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-70a5ce46-76e6-4ab4-bb83-5a7672e3e577">
+<span class="eqno">(127)<a class="headerlink" href="#equation-70a5ce46-76e6-4ab4-bb83-5a7672e3e577" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\cos \vartheta(z)}{c(z)} =  \alpha_0 =\texttt{const}
 \end{equation}\]</div>
 <p>This law is simply the consequence that at the interface between two layers the horizontal component of the sound propagation must be the same in both layers.</p>
 <p>Snell’s law in other words</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b633cde7-f1d3-4813-8011-646fc05cf381">
-<span class="eqno">(52)<a class="headerlink" href="#equation-b633cde7-f1d3-4813-8011-646fc05cf381" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d32a177f-07ff-4ac8-8686-41a931b28eb0">
+<span class="eqno">(128)<a class="headerlink" href="#equation-d32a177f-07ff-4ac8-8686-41a931b28eb0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos\vartheta(z) = c(z)\alpha_0
 \end{equation}\]</div>
 <p>We note that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a787910-be16-49c7-a669-db77b7dd94b9">
-<span class="eqno">(53)<a class="headerlink" href="#equation-4a787910-be16-49c7-a669-db77b7dd94b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8854cb4a-ae67-4e52-a52c-430834731897">
+<span class="eqno">(129)<a class="headerlink" href="#equation-8854cb4a-ae67-4e52-a52c-430834731897" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta(z)=\sqrt{1-\left( c(z)\alpha_0\right)^2}
 \end{equation}\]</div>
 </section>
 <section id="differential-equations">
-<h2>Differential equations<a class="headerlink" href="#differential-equations" title="Permalink to this headline">#</a></h2>
+<h2>Differential equations<a class="headerlink" href="#differential-equations" title="Link to this heading">#</a></h2>
 <p>From this general geometry we observe</p>
-<div class="amsmath math notranslate nohighlight" id="equation-55b91b85-3758-46ae-bf78-4379149c3288">
-<span class="eqno">(54)<a class="headerlink" href="#equation-55b91b85-3758-46ae-bf78-4379149c3288" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7c20acb6-d1de-42c6-a2e1-850500a4835a">
+<span class="eqno">(130)<a class="headerlink" href="#equation-7c20acb6-d1de-42c6-a2e1-850500a4835a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tan \vartheta(z)=\frac{dz}{dx}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-771bfd77-4106-45b6-abd2-a31e7a80fd4f">
-<span class="eqno">(55)<a class="headerlink" href="#equation-771bfd77-4106-45b6-abd2-a31e7a80fd4f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-57664aba-5cc1-41ae-91f8-0984235b035e">
+<span class="eqno">(131)<a class="headerlink" href="#equation-57664aba-5cc1-41ae-91f8-0984235b035e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin \vartheta(z)=\frac{dz}{ds}
 \end{equation}\]</div>
 <p>The path length is related to the travel time of sound pulses</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41a9ec57-85a9-4428-8b73-89fa8318938e">
-<span class="eqno">(56)<a class="headerlink" href="#equation-41a9ec57-85a9-4428-8b73-89fa8318938e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4360a41b-4f76-40b2-97e1-35c45672edf0">
+<span class="eqno">(132)<a class="headerlink" href="#equation-4360a41b-4f76-40b2-97e1-35c45672edf0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{ds}{dt}=c(z)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-b6dc1995-4276-4abb-92d8-26faf4046dda">
-<span class="eqno">(57)<a class="headerlink" href="#equation-b6dc1995-4276-4abb-92d8-26faf4046dda" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4a81591b-08ed-465a-8c30-092f7c035bce">
+<span class="eqno">(133)<a class="headerlink" href="#equation-4a81591b-08ed-465a-8c30-092f7c035bce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dz}{dt}=\frac{dz}{ds}\frac{ds}{dt}=c(z)\sin\vartheta(z)
 \end{equation}\]</div>
 <p>Using Snell’s law the different differential equations become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-40c3d170-071b-4134-b2bb-1a495b81879a">
-<span class="eqno">(58)<a class="headerlink" href="#equation-40c3d170-071b-4134-b2bb-1a495b81879a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6da7c100-5455-4a7b-8e73-3d34e9f9ab6d">
+<span class="eqno">(134)<a class="headerlink" href="#equation-6da7c100-5455-4a7b-8e73-3d34e9f9ab6d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dx}{dz} =\frac{c(z)\alpha_0}{\sqrt{1-(c(z)\alpha_0)^2}}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-60f983a8-ee8f-4a45-8154-bf459532a837">
-<span class="eqno">(59)<a class="headerlink" href="#equation-60f983a8-ee8f-4a45-8154-bf459532a837" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-728a0c92-020d-4fec-837d-98129b9783e1">
+<span class="eqno">(135)<a class="headerlink" href="#equation-728a0c92-020d-4fec-837d-98129b9783e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dt}{dz} = \frac{1}{c(z)\sqrt{1-(c(z)\alpha_0)^2}}
 \end{equation}\]</div>
 </section>
 <section id="integration">
-<h2>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">#</a></h2>
+<h2>Integration<a class="headerlink" href="#integration" title="Link to this heading">#</a></h2>
 <p>The ray advance in space and time is estimated by integration of these differential equations</p>
-<div class="amsmath math notranslate nohighlight" id="equation-060058a5-f54b-4d43-8ebd-cb7e9f13ca0e">
-<span class="eqno">(60)<a class="headerlink" href="#equation-060058a5-f54b-4d43-8ebd-cb7e9f13ca0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cab5f3ee-9605-4119-97f6-ba2406a1155d">
+<span class="eqno">(136)<a class="headerlink" href="#equation-cab5f3ee-9605-4119-97f6-ba2406a1155d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x - x_i =\int_{z_i}^{z} \frac{\cos \vartheta(u)}{\sin \vartheta(u)} du
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-045eb49d-cf5f-40ab-be7e-06b370367f6e">
-<span class="eqno">(61)<a class="headerlink" href="#equation-045eb49d-cf5f-40ab-be7e-06b370367f6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e3634875-4f66-4e11-8f6f-125fcd44e4e6">
+<span class="eqno">(137)<a class="headerlink" href="#equation-e3634875-4f66-4e11-8f6f-125fcd44e4e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 t - t_i = \int_{z_i}^{z} \frac{du}{c(u)\sin \vartheta(u)} 
 \end{equation}\]</div>
 <p>To carry out the integration, the sound speed profile <span class="math notranslate nohighlight">\(c(z)\)</span> must be specified in more details. In general, these integrals could be integrated numerically, but for some simple special cases a closed form solution of the integral can be given.</p>
 <p>Case 1: piece-wise constant sound speed profile:</p>
 <p>For a piece-wise constant sound speed profile, that is, for <span class="math notranslate nohighlight">\(z\in \left[z_i , z_{i+1}\right[\)</span>  we assume</p>
-<div class="amsmath math notranslate nohighlight" id="equation-932581ca-b99c-4130-844c-d6d0327446b4">
-<span class="eqno">(62)<a class="headerlink" href="#equation-932581ca-b99c-4130-844c-d6d0327446b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e73c7263-cba1-4630-9d56-d168a14f3cf3">
+<span class="eqno">(138)<a class="headerlink" href="#equation-e73c7263-cba1-4630-9d56-d168a14f3cf3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 c(z)=c(z_i)
 \end{equation}\]</div>
 <p>the integrals are straight forward and result to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5d896b9-d420-42cf-9e4c-a4c213fd6e2d">
-<span class="eqno">(63)<a class="headerlink" href="#equation-c5d896b9-d420-42cf-9e4c-a4c213fd6e2d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb88d7c6-699b-4a5e-b74d-51a37c068330">
+<span class="eqno">(139)<a class="headerlink" href="#equation-bb88d7c6-699b-4a5e-b74d-51a37c068330" title="Permalink to this equation">#</a></span>\[\begin{align}
 x-x_i =&amp; \int_{z_i}^{z} \frac{\cos \vartheta(u)}{\sin \vartheta(u)} du \\
  =&amp; \frac{\cos \vartheta(z_i)}{\sin \vartheta(z_i)}\left(z-z_i\right)
 \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-d87b336f-c90a-4820-8b75-4e55a877d580">
-<span class="eqno">(64)<a class="headerlink" href="#equation-d87b336f-c90a-4820-8b75-4e55a877d580" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cf841738-f3b1-4dd1-a101-7b0e8aae617c">
+<span class="eqno">(140)<a class="headerlink" href="#equation-cf841738-f3b1-4dd1-a101-7b0e8aae617c" title="Permalink to this equation">#</a></span>\[\begin{align}
  t-t_i =&amp; \int_{z_i}^{z} \frac{du}{c(u)\sin \vartheta(u)} \\
 =&amp;\frac{\left(z-z_i\right)}{c(z_i)\sin \vartheta(z_i)} 
 \end{align}\]</div>
 <p>Case 2: piece-wise linear sound speed profile:</p>
 <p>Very often, however,  it is better to describe the sound-speed by a piece-wise linear profile, that is, for  <span class="math notranslate nohighlight">\(z\in \left[z_i , z_{i+1}\right[\)</span>   we assume</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8be8ccba-c5e3-4f79-b7ca-347506e941b9">
-<span class="eqno">(65)<a class="headerlink" href="#equation-8be8ccba-c5e3-4f79-b7ca-347506e941b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6fee93a2-b285-4396-8793-2187b6c25c09">
+<span class="eqno">(141)<a class="headerlink" href="#equation-6fee93a2-b285-4396-8793-2187b6c25c09" title="Permalink to this equation">#</a></span>\[\begin{equation}
 c(z)=c(z_i)+g_i (z-z_i)
 \end{equation}\]</div>
 <p>where the sound-speed gradient is assumed to be constant and is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f6a945f0-351e-45e4-819d-ee5d306d7c32">
-<span class="eqno">(66)<a class="headerlink" href="#equation-f6a945f0-351e-45e4-819d-ee5d306d7c32" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2a29981-b769-47c5-8681-dd4d817aa3d4">
+<span class="eqno">(142)<a class="headerlink" href="#equation-d2a29981-b769-47c5-8681-dd4d817aa3d4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 g_i=\frac{c(z_{i+1})-c(z_i)}{z_{i+1}-z{i}}
 \end{equation}\]</div>
 <p>or, equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4e3be1f8-701b-459f-863b-36db5513a2e4">
-<span class="eqno">(67)<a class="headerlink" href="#equation-4e3be1f8-701b-459f-863b-36db5513a2e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4320a254-90ed-4ea9-a1d4-d517ba1d1307">
+<span class="eqno">(143)<a class="headerlink" href="#equation-4320a254-90ed-4ea9-a1d4-d517ba1d1307" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \alpha_0 g_i=\frac{\cos\vartheta(z_{i+1})-\cos \vartheta(z_i)}{z_{i+1}-z{i}}
 \end{equation}\]</div>
 <p>The integrals are in this case somewhat more complicated, but follow still basic mathematical methods.
 For the integration we define</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c1ad1263-b91a-49d7-bb7e-83200f49946d">
-<span class="eqno">(68)<a class="headerlink" href="#equation-c1ad1263-b91a-49d7-bb7e-83200f49946d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-16dea56d-120d-4fd7-8792-47e14139c462">
+<span class="eqno">(144)<a class="headerlink" href="#equation-16dea56d-120d-4fd7-8792-47e14139c462" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u=a_0c(z)
 \end{equation}\]</div>
 <p>so that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db057c70-d7ee-486f-a4d6-e1ae740fc30f">
-<span class="eqno">(69)<a class="headerlink" href="#equation-db057c70-d7ee-486f-a4d6-e1ae740fc30f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4f6dcdba-a6aa-4f19-a919-1f60444064d0">
+<span class="eqno">(145)<a class="headerlink" href="#equation-4f6dcdba-a6aa-4f19-a919-1f60444064d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{du}{dz}=\alpha_0 g_i
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf03f275-4e2d-497b-84f7-b9fcca0b0ffa">
-<span class="eqno">(70)<a class="headerlink" href="#equation-bf03f275-4e2d-497b-84f7-b9fcca0b0ffa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6c4ff54e-fddb-4896-92fd-0eefbd794846">
+<span class="eqno">(146)<a class="headerlink" href="#equation-6c4ff54e-fddb-4896-92fd-0eefbd794846" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dz=\frac{1}{\alpha_0g_i}du
 \end{equation}\]</div>
 <p>and the using tabled integrals
 the integrals become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c2263578-b403-46bd-b99e-c7251084f3be">
-<span class="eqno">(71)<a class="headerlink" href="#equation-c2263578-b403-46bd-b99e-c7251084f3be" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3a8b1cf1-a835-4854-9295-ca6bbeeadf1c">
+<span class="eqno">(147)<a class="headerlink" href="#equation-3a8b1cf1-a835-4854-9295-ca6bbeeadf1c" title="Permalink to this equation">#</a></span>\[\begin{align}
  x-x_i =&amp; \int_{z_i}^{z} \frac{\cos \vartheta(u)}{\sin \vartheta(u)} du \\
 =&amp; -\frac{1}{\alpha_0 g_i}\left(\sin\vartheta(z)- \sin\vartheta(z_i)\right) 
 \end{align}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a6acc76-f4de-4388-81c0-65563c282b53">
-<span class="eqno">(72)<a class="headerlink" href="#equation-4a6acc76-f4de-4388-81c0-65563c282b53" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0711a16a-dd2c-468b-b26a-ce729028e1c0">
+<span class="eqno">(148)<a class="headerlink" href="#equation-0711a16a-dd2c-468b-b26a-ce729028e1c0" title="Permalink to this equation">#</a></span>\[\begin{align}
 t-t_i =&amp; \int_{z_i}^{z} \frac{du}{c(u)\sin \vartheta(u)} \\
 =&amp; -\frac{1}{g_i}\left(\ln\left( \frac{1+\sin\vartheta(z)}{\cos \vartheta(z)}\right) 
                      - \ln\left( \frac{1+\sin\vartheta(z_i)}{\cos\vartheta(z_i)}\right)\right)
 \end{align}\]</div>
 <section id="propagate-acoustic-rays">
-<h3>Propagate acoustic rays<a class="headerlink" href="#propagate-acoustic-rays" title="Permalink to this headline">#</a></h3>
+<h3>Propagate acoustic rays<a class="headerlink" href="#propagate-acoustic-rays" title="Link to this heading">#</a></h3>
 <p>To propagate the acoustic rays through the ocean it turns out that, even if the mathematics are somewhat more complicated, it is more convenient to assume a piece-wise linear and not a piece-wise constant sound speed profile.
 Also it is more intuitive to consider a constant horizontal step size <span class="math notranslate nohighlight">\(\Delta x\)</span> and estimate the vertical component of each step.
 This approach differs somewhat from standard textbook approaches where the ray equations are integrated over depth and horizontal progress is estimated. As we will propagate rays also with varying bottom depths and the bottom interaction is difficult to be predicted, the approach chosen here seems more appropriate.</p>
 <p>Considering therefore a horizontal step site <span class="math notranslate nohighlight">\(\Delta x = x_{i+1}-x_i\)</span> then above equation may be used to estimate the change of ray angle due to advancing the acoustic ray:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-81563eb2-ca75-4e8c-829e-705288e03b0f">
-<span class="eqno">(73)<a class="headerlink" href="#equation-81563eb2-ca75-4e8c-829e-705288e03b0f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-13ef81fa-3843-4cc5-9d40-b139acee79e3">
+<span class="eqno">(149)<a class="headerlink" href="#equation-13ef81fa-3843-4cc5-9d40-b139acee79e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta(z_{i+1})=\sin\vartheta(z_i)-{\alpha_0 g_i}\Delta x
 \end{equation}\]</div>
 <p>With</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cc104f1c-c713-4802-85d2-a6f1e61c72d5">
-<span class="eqno">(74)<a class="headerlink" href="#equation-cc104f1c-c713-4802-85d2-a6f1e61c72d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b8c9237f-55a0-46db-8d36-f9d4b1e3b5d0">
+<span class="eqno">(150)<a class="headerlink" href="#equation-b8c9237f-55a0-46db-8d36-f9d4b1e3b5d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos\vartheta(z_{i+1})=\sqrt{1-\sin^2\vartheta(z_{i+1})}
 \end{equation}\]</div>
 <p>and  one estimates the resulting ray depth <span class="math notranslate nohighlight">\(z_{i+1}\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee0bf831-8ac3-40b9-9f37-f40e7e809625">
-<span class="eqno">(75)<a class="headerlink" href="#equation-ee0bf831-8ac3-40b9-9f37-f40e7e809625" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a1e6f98-71f1-4218-a91d-99601c627865">
+<span class="eqno">(151)<a class="headerlink" href="#equation-2a1e6f98-71f1-4218-a91d-99601c627865" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_{i+1}=z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_{i+1})-\cos\vartheta(z_i)\right)
 \end{equation}\]</div>
 <p>and the travel time <span class="math notranslate nohighlight">\(t_{i+1}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-58a39370-1813-4667-8e8a-9dbd8adceb8d">
-<span class="eqno">(76)<a class="headerlink" href="#equation-58a39370-1813-4667-8e8a-9dbd8adceb8d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0c66a18a-7333-4804-ac25-67ff27224ce0">
+<span class="eqno">(152)<a class="headerlink" href="#equation-0c66a18a-7333-4804-ac25-67ff27224ce0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 t_{i+1}= t_i -\frac{1}{g_i}\left(\ln\left( \frac{1+\sin\vartheta(z_{i+1})}{\cos \vartheta(z_{i+1})}\right) 
                      - \ln\left( \frac{1+\sin\vartheta(z_i)}{\cos\vartheta(z_i)}\right)\right)
 \end{equation}\]</div>
 </section>
 <section id="boundary-reflections">
-<h3>Boundary reflections<a class="headerlink" href="#boundary-reflections" title="Permalink to this headline">#</a></h3>
+<h3>Boundary reflections<a class="headerlink" href="#boundary-reflections" title="Link to this heading">#</a></h3>
 <p>If sound rays arrive at a discontinuity in the sound speed profile (e.g. at the surface or bottom, where the sound speed in the bottom is significantly different than the sound speed in water, then sound is not only refracted but also reflected as sketched in next figure.</p>
 </section>
 <section id="surface-reflection">
-<h3>Surface reflection<a class="headerlink" href="#surface-reflection" title="Permalink to this headline">#</a></h3>
+<h3>Surface reflection<a class="headerlink" href="#surface-reflection" title="Link to this heading">#</a></h3>
 <p>Assume that boundary is flat as it happens with a calm surface then, by virtue of the reflection the ray elevation angle simply changes its sign, or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f291e3c-ef2b-442b-ba12-038fc0dba697">
-<span class="eqno">(77)<a class="headerlink" href="#equation-9f291e3c-ef2b-442b-ba12-038fc0dba697" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b94c1f11-adf8-47e7-b2b4-08493576dc5e">
+<span class="eqno">(153)<a class="headerlink" href="#equation-b94c1f11-adf8-47e7-b2b4-08493576dc5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta_b = -\sin\vartheta_0
 \end{equation}\]</div>
 <p>and the new ray depth becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29b1a91f-0437-4297-ab22-c443b8b446ac">
-<span class="eqno">(78)<a class="headerlink" href="#equation-29b1a91f-0437-4297-ab22-c443b8b446ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-14b0c510-8951-43b1-8a86-7b1d7feb927b">
+<span class="eqno">(154)<a class="headerlink" href="#equation-14b0c510-8951-43b1-8a86-7b1d7feb927b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_{i+1} = -\left(z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_{i+1})-\cos\vartheta(z_i)\right)\right)
 \end{equation}\]</div>
 </section>
 </section>
 <section id="bottom-reflection">
-<h2>Bottom reflection<a class="headerlink" href="#bottom-reflection" title="Permalink to this headline">#</a></h2>
+<h2>Bottom reflection<a class="headerlink" href="#bottom-reflection" title="Link to this heading">#</a></h2>
 <p>If, however the boundary has a slope, at it happens typically at the bottom, then the ray elevation angle not simply changes the sign but more generally its value as sketched in following figure. In such situations the location of  the boundary intercept point is of importance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -831,112 +698,112 @@ z_{i+1} = -\left(z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_{i+1})-\cos\va
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ray_tracing_5_0.png" src="_images/ray_tracing_5_0.png" />
+<img alt="_images/61171ada395cadb04c696903f8ab8b22c0643f1ae80a787e2ff56d784e1ce786.png" src="_images/61171ada395cadb04c696903f8ab8b22c0643f1ae80a787e2ff56d784e1ce786.png" />
 </div>
 </div>
 <p>In this figure, the ray arrives the bottom depth <span class="math notranslate nohighlight">\(z_b\)</span> with an ray-angle <span class="math notranslate nohighlight">\(\vartheta_b\)</span> (measured with respect to the horizontal) and leaves after reflection with the ray-angle <span class="math notranslate nohighlight">\(2\beta_i -\vartheta_b\)</span></p>
 <p>A part of the acoustic energy gets refracted into the new layer, but another, in most cases significant amount of acoustic energy gets reflected back into the same layer.</p>
 <p>In these cases, the vertical excursion of the ray (integration boundaries) must be limited to <span class="math notranslate nohighlight">\(z = z_b\)</span> and the ray parameters must be modified to describe the new, now reflected, ray.</p>
 <section id="boundary-intercept">
-<h3>Boundary intercept<a class="headerlink" href="#boundary-intercept" title="Permalink to this headline">#</a></h3>
+<h3>Boundary intercept<a class="headerlink" href="#boundary-intercept" title="Link to this heading">#</a></h3>
 <p>To determine the intercept point of the ray with the bottom, one considers the two equations that describe the bottom and the ray path. Assuming a piece-wise linear bottom</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72dfdbe8-f82b-4139-a4be-053d80e459e0">
-<span class="eqno">(79)<a class="headerlink" href="#equation-72dfdbe8-f82b-4139-a4be-053d80e459e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0b60703e-cd3d-479f-9cf2-286512511671">
+<span class="eqno">(155)<a class="headerlink" href="#equation-0b60703e-cd3d-479f-9cf2-286512511671" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_b=b_i+(x_b-x_i)\tan\beta_i
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8123fca5-f1e6-48b6-a605-18e8a358cff1">
-<span class="eqno">(80)<a class="headerlink" href="#equation-8123fca5-f1e6-48b6-a605-18e8a358cff1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c80c686f-9f12-473d-9538-d159a164ea76">
+<span class="eqno">(156)<a class="headerlink" href="#equation-c80c686f-9f12-473d-9538-d159a164ea76" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_b=z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_b)-\cos\vartheta(z_i)\right)
 \end{equation}\]</div>
 <p>an ray-bottom intercept location <span class="math notranslate nohighlight">\(x_b\)</span> should satisfy the following equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bac18074-b693-43fe-a5d8-fe1ae6f7ae53">
-<span class="eqno">(81)<a class="headerlink" href="#equation-bac18074-b693-43fe-a5d8-fe1ae6f7ae53" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f582e6d3-663f-45c9-8245-d2c4443fb05a">
+<span class="eqno">(157)<a class="headerlink" href="#equation-f582e6d3-663f-45c9-8245-d2c4443fb05a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_i+(x_b-x_i)\tan\beta_i=
 z_i +\frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_b)-\cos\vartheta(z_i)\right)
 \end{equation}\]</div>
 <p>that is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-34b0ba5c-5693-4081-8ebb-29b6f5fcb9d8">
-<span class="eqno">(82)<a class="headerlink" href="#equation-34b0ba5c-5693-4081-8ebb-29b6f5fcb9d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f7f61a98-9819-4141-92a2-69048bcff697">
+<span class="eqno">(158)<a class="headerlink" href="#equation-f7f61a98-9819-4141-92a2-69048bcff697" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_i-z_i =
 \frac{1}{\alpha_0 g_i}\left(\cos\vartheta(z_b)-\cos\vartheta(z_i)\right) 
 -(x_b-x_i)\tan\beta_i
 \end{equation}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-011de5d8-39b3-4d0f-ac54-4282c7186539">
-<span class="eqno">(83)<a class="headerlink" href="#equation-011de5d8-39b3-4d0f-ac54-4282c7186539" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fdfe57c5-db3c-4249-a268-caf550d21d47">
+<span class="eqno">(159)<a class="headerlink" href="#equation-fdfe57c5-db3c-4249-a268-caf550d21d47" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos\vartheta(z_b)=\sqrt{1-\sin^2\vartheta(z_b)}
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-417edbd1-fee5-43a0-881a-f93abe313e3c">
-<span class="eqno">(84)<a class="headerlink" href="#equation-417edbd1-fee5-43a0-881a-f93abe313e3c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c4f6c824-9ec2-4a5f-8fc0-c11ceb2e87e2">
+<span class="eqno">(160)<a class="headerlink" href="#equation-c4f6c824-9ec2-4a5f-8fc0-c11ceb2e87e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta(z_b)=\sin\vartheta(z_i)-\alpha_0 g_i (x_b-x_i)
 \end{equation}\]</div>
 <p>The solution of this equation  depends only on the variable <span class="math notranslate nohighlight">\(x_v = x_b-x_i\)</span> and is obtained with sufficient accuracy by linear interpolation.</p>
 </section>
 <section id="reflected-ray">
-<h3>Reflected ray<a class="headerlink" href="#reflected-ray" title="Permalink to this headline">#</a></h3>
+<h3>Reflected ray<a class="headerlink" href="#reflected-ray" title="Link to this heading">#</a></h3>
 <p>To estimated the reflected ray, first the incidence angle <span class="math notranslate nohighlight">\(\vartheta_b\)</span> is estimated</p>
-<div class="amsmath math notranslate nohighlight" id="equation-946d7d7a-3040-4b62-8e1a-866c7d2ecf64">
-<span class="eqno">(85)<a class="headerlink" href="#equation-946d7d7a-3040-4b62-8e1a-866c7d2ecf64" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c6c3c095-0318-40ca-ad71-d065ace3fc36">
+<span class="eqno">(161)<a class="headerlink" href="#equation-c6c3c095-0318-40ca-ad71-d065ace3fc36" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vartheta_b = \sin^{-1}\left(\sin\vartheta(z_b)\right)
 \end{equation}\]</div>
 <p>\noindent Let <span class="math notranslate nohighlight">\(\beta_i\)</span> be the slope angle of the bottom</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fc6c070f-eb43-49ca-b0fd-4ac5c2c5580f">
-<span class="eqno">(86)<a class="headerlink" href="#equation-fc6c070f-eb43-49ca-b0fd-4ac5c2c5580f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cd568ca7-c7c5-4e40-a8f8-9b8ba68932a2">
+<span class="eqno">(162)<a class="headerlink" href="#equation-cd568ca7-c7c5-4e40-a8f8-9b8ba68932a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \beta_i = \tan^{-1}\left(\frac{db}{dx}\right)
 \end{equation}\]</div>
 <p>\noindent then the reflected ray angle becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-290adf0a-892a-47bf-9710-38dbb2b684cf">
-<span class="eqno">(87)<a class="headerlink" href="#equation-290adf0a-892a-47bf-9710-38dbb2b684cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-808bcbe6-3fc9-4a8d-86f0-31307f5dafed">
+<span class="eqno">(163)<a class="headerlink" href="#equation-808bcbe6-3fc9-4a8d-86f0-31307f5dafed" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vartheta_b \Longrightarrow 2\beta_i -\vartheta_b
 \end{equation}\]</div>
 <p>\noindent and consequently, the new ray constant becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bb2ec51-e121-4174-85e8-4d9af8dfddb9">
-<span class="eqno">(88)<a class="headerlink" href="#equation-4bb2ec51-e121-4174-85e8-4d9af8dfddb9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-20722895-dcaf-470d-b7b4-aa8c361805a2">
+<span class="eqno">(164)<a class="headerlink" href="#equation-20722895-dcaf-470d-b7b4-aa8c361805a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \alpha_b =\frac{\cos \vartheta_b}{c(z_i)}
 \end{equation}\]</div>
 <p>To continue the ray path, ray end location and associated ray elevation angle are estimated according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b839f02d-bb79-44b9-8d08-aeddbb015467">
-<span class="eqno">(89)<a class="headerlink" href="#equation-b839f02d-bb79-44b9-8d08-aeddbb015467" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d9b58647-bd39-4c8f-8b7f-cc96359373b2">
+<span class="eqno">(165)<a class="headerlink" href="#equation-d9b58647-bd39-4c8f-8b7f-cc96359373b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sin\vartheta(z_{i+1}) = \sin\left(2\beta_i-\vartheta(z_b)\right)
 -\alpha_b g_i \left(x_{i+1}-x_b \right)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-944fb041-56ea-4ec7-a2a9-a1e31d043b42">
-<span class="eqno">(90)<a class="headerlink" href="#equation-944fb041-56ea-4ec7-a2a9-a1e31d043b42" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5c2fe634-2af7-4c78-8a92-722f31000acf">
+<span class="eqno">(166)<a class="headerlink" href="#equation-5c2fe634-2af7-4c78-8a92-722f31000acf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_{i+1} = z_b + \frac{1}{\alpha_b g_i}\left(\cos \vartheta(z_{i+1}) - \cos (2\beta_i-\vartheta(z_b ))\right)
 \end{equation}\]</div>
 </section>
 <section id="refracted-ray-and-critical-angle">
-<h3>Refracted ray and critical angle<a class="headerlink" href="#refracted-ray-and-critical-angle" title="Permalink to this headline">#</a></h3>
+<h3>Refracted ray and critical angle<a class="headerlink" href="#refracted-ray-and-critical-angle" title="Link to this heading">#</a></h3>
 <p>As indicated in above figure not all sound energy is reflected on the boundary but some sound still penetrates the boundary layer. Obviously a new ray angle <span class="math notranslate nohighlight">\(\vartheta_t\)</span> is determined by Snell’s law and therefore</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e5e68605-8bd2-40c6-abf9-86d8afc507f0">
-<span class="eqno">(91)<a class="headerlink" href="#equation-e5e68605-8bd2-40c6-abf9-86d8afc507f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-64653980-2223-4969-a218-b8fa9b725ecf">
+<span class="eqno">(167)<a class="headerlink" href="#equation-64653980-2223-4969-a218-b8fa9b725ecf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos(\beta_i-\vartheta_t)=\frac{c_b}{c(z_b)}\cos(\beta_i-\vartheta_b )=c_b\alpha_0
 \end{equation}\]</div>
 <p>However, no sound will penetrate the bottom, if for a given ray parameter <span class="math notranslate nohighlight">\(\alpha_0\)</span> the product <span class="math notranslate nohighlight">\(c_b\alpha_0\)</span> exceeds the value of 1, or in other words if <span class="math notranslate nohighlight">\(\vartheta_b\)</span> is less than a  critical angle <span class="math notranslate nohighlight">\(\vartheta_c\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ade5e046-34e1-49a1-af05-51a858c521c2">
-<span class="eqno">(92)<a class="headerlink" href="#equation-ade5e046-34e1-49a1-af05-51a858c521c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a923fde4-ddcf-4b36-a303-598d09f3cf1c">
+<span class="eqno">(168)<a class="headerlink" href="#equation-a923fde4-ddcf-4b36-a303-598d09f3cf1c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos(\beta_i-\vartheta_c )=\frac{c(z_b)}{c_b}
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d90a8200-2ce3-464f-8506-31338078ff7b">
-<span class="eqno">(93)<a class="headerlink" href="#equation-d90a8200-2ce3-464f-8506-31338078ff7b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ab213ed4-3926-4bfa-ae87-afc944ad6aef">
+<span class="eqno">(169)<a class="headerlink" href="#equation-ab213ed4-3926-4bfa-ae87-afc944ad6aef" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vartheta_c=\beta_i-\cos^{-1}\left(\frac{c(z_b)}{c_b}\right)
 \end{equation}\]</div>
 <p>As one may assume that the sound speed in the bottom layer <span class="math notranslate nohighlight">\(c_b\)</span> is constant, the ray will propagate in the bottom layer according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b5fe105d-fd41-4a3f-9eec-25f6620ab169">
-<span class="eqno">(94)<a class="headerlink" href="#equation-b5fe105d-fd41-4a3f-9eec-25f6620ab169" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a9b2edaa-1fae-4d21-9330-1fd54ee4a520">
+<span class="eqno">(170)<a class="headerlink" href="#equation-a9b2edaa-1fae-4d21-9330-1fd54ee4a520" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vartheta_t=\beta_i-\cos^{-1}\left(c_b\alpha_0\right)
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-bfe33dc1-89fa-4a26-9a74-dd9caff89bb1">
-<span class="eqno">(95)<a class="headerlink" href="#equation-bfe33dc1-89fa-4a26-9a74-dd9caff89bb1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ef37d132-1f09-4dde-83f9-52010f648576">
+<span class="eqno">(171)<a class="headerlink" href="#equation-ef37d132-1f09-4dde-83f9-52010f648576" title="Permalink to this equation">#</a></span>\[\begin{equation}
 z_{i+1}=z_b+\frac{\sin\vartheta_t}{\cos\vartheta_t}\left(x_{i+1}-x_i\right)
 \end{equation}\]</div>
 </section>
 </section>
 <section id="python-code">
-<h2>Python code<a class="headerlink" href="#python-code" title="Permalink to this headline">#</a></h2>
+<h2>Python code<a class="headerlink" href="#python-code" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1029,7 +896,7 @@ z_{i+1}=z_b+\frac{\sin\vartheta_t}{\cos\vartheta_t}\left(x_{i+1}-x_i\right)
 </div>
 </section>
 <section id="test-example">
-<h2>Test example<a class="headerlink" href="#test-example" title="Permalink to this headline">#</a></h2>
+<h2>Test example<a class="headerlink" href="#test-example" title="Link to this heading">#</a></h2>
 <p>For the test example first a sound speed is converted from digitized picture to numbers. Three rays were then generated on a bottom slope from a deep receiver location to a distant sound source.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1098,7 +965,7 @@ z_{i+1}=z_b+\frac{\sin\vartheta_t}{\cos\vartheta_t}\left(x_{i+1}-x_i\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ray_tracing_10_0.png" src="_images/ray_tracing_10_0.png" />
+<img alt="_images/02c0149735a86b644d105468a75045eae1385d0c23ae49dcdeb307c287670f3f.png" src="_images/02c0149735a86b644d105468a75045eae1385d0c23ae49dcdeb307c287670f3f.png" />
 </div>
 </div>
 </section>
@@ -1116,7 +983,7 @@ z_{i+1}=z_b+\frac{\sin\vartheta_t}{\cos\vartheta_t}\left(x_{i+1}-x_i\right)
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1124,50 +991,118 @@ z_{i+1}=z_b+\frac{\sin\vartheta_t}{\cos\vartheta_t}\left(x_{i+1}-x_i\right)
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="direction_finding.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Direction Finding</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="transient_detection.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Transient detections</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Walter MX Zimmer<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
 
-
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multi-channel-processing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multi channel processing</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="cVAS_direction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simulation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snell-s-law">Snell’s law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-equations">Differential equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration">Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagate-acoustic-rays">Propagate acoustic rays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-reflections">Boundary reflections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#surface-reflection">Surface reflection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bottom-reflection">Bottom reflection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-intercept">Boundary intercept</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflected-ray">Reflected ray</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refracted-ray-and-critical-angle">Refracted ray and critical angle</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code">Python code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-example">Test example</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Walter MX Zimmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

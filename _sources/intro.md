@@ -8,3 +8,8 @@ The book is divided in three parts
 - General bio acoustic considerations
 - Work in  progress, that may and will change 
 - Bar La Mare (**B**io **A**coustic **R**esearch to **L**earn **A**bout the **MAR**ine **E**nvironment), a collection of bioacoustic material that is aimed to demonstrate bioacoustic concepts
+
+##compilation
+- new pages: jb build ./
+- all pages: jb build ./ --all
+- single page: jb build ./multi-phone-processing.ipynb
