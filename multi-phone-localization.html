@@ -437,40 +437,40 @@ document.write(`
 <h2>Sound source distance<a class="headerlink" href="#sound-source-distance" title="Link to this heading">#</a></h2>
 <p>Let the location of hydrophone <span class="math notranslate nohighlight">\(i\)</span> be <span class="math notranslate nohighlight">\(h_i = (x_i,y_i.z_i)\)</span> and the source location be <span class="math notranslate nohighlight">\(s=(s_x,s_y,s_z)\)</span> then the distance of the source from the hydrophone is related by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-af3d1eff-4c4c-49f8-aba6-63a0b3be20f2">
-<span class="eqno">(41)<a class="headerlink" href="#equation-af3d1eff-4c4c-49f8-aba6-63a0b3be20f2" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
+<span class="eqno">(55)<a class="headerlink" href="#equation-af3d1eff-4c4c-49f8-aba6-63a0b3be20f2" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
 R_i^2=(s_x-x_i)^2+(s_y-y_i)^2+(s_z-z_i)^2
 \end{equation}\]</div>
 <p>which becomes</p>
 <div class="amsmath math notranslate nohighlight" id="equation-2d568cb2-b4c1-4d4c-8a25-6b5115b6d698">
-<span class="eqno">(42)<a class="headerlink" href="#equation-2d568cb2-b4c1-4d4c-8a25-6b5115b6d698" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
+<span class="eqno">(56)<a class="headerlink" href="#equation-2d568cb2-b4c1-4d4c-8a25-6b5115b6d698" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
 R_i^2=(s_x^2+s_y^2+s_z^2)+(x_i^2+y_i^2+z_i^2) -2s_x x_i -2s_y y_i -2s_z z_i
 \end{equation}\]</div>
 <p>or in short</p>
 <div class="amsmath math notranslate nohighlight" id="equation-df77949d-1322-4a78-ac69-5847cfe46d8e">
-<span class="eqno">(43)<a class="headerlink" href="#equation-df77949d-1322-4a78-ac69-5847cfe46d8e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(57)<a class="headerlink" href="#equation-df77949d-1322-4a78-ac69-5847cfe46d8e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_i^2=|s|^2+|h_i|^2-2h_i^Ts
 \end{equation}\]</div>
 <p>Having more then 1 hydrophone, then for any pair of hydrophones <span class="math notranslate nohighlight">\((h_i, h_j)\)</span> one can form the difference obtaining</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4e552341-478b-4442-b84e-3b2cac79bd2e">
-<span class="eqno">(44)<a class="headerlink" href="#equation-4e552341-478b-4442-b84e-3b2cac79bd2e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(58)<a class="headerlink" href="#equation-4e552341-478b-4442-b84e-3b2cac79bd2e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_i^2-R_j^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>Noting that <span class="math notranslate nohighlight">\(R_i^2-R_j^2=(R_j+(\delta R_{ij}))^2-R_j^2 = 2(\delta R_{ij})R_j+(\delta R_{ij})^2 \)</span></p>
 <p>one gets the linear equation</p>
 <div class="amsmath math notranslate nohighlight" id="equation-f5eb88cd-bbb5-4d97-b812-5b7ee099f89d">
-<span class="eqno">(45)<a class="headerlink" href="#equation-f5eb88cd-bbb5-4d97-b812-5b7ee099f89d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(59)<a class="headerlink" href="#equation-f5eb88cd-bbb5-4d97-b812-5b7ee099f89d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 2(\delta R_{ij})R_j+(\delta R_{ij})^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>or, by putting the unknown source location to the left side and dividing by 2</p>
 <div class="amsmath math notranslate nohighlight" id="equation-0fc88a76-9ab6-4150-9fb4-c7327417cbe2">
-<span class="eqno">(46)<a class="headerlink" href="#equation-0fc88a76-9ab6-4150-9fb4-c7327417cbe2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(60)<a class="headerlink" href="#equation-0fc88a76-9ab6-4150-9fb4-c7327417cbe2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2}-(\delta R_{ij})R_j
 \end{equation}\]</div>
 <section id="system-of-equations">
 <h3>System of equations<a class="headerlink" href="#system-of-equations" title="Link to this heading">#</a></h3>
 <p>Let the number of hydrophones be <span class="math notranslate nohighlight">\(n+1\)</span> then one gets <span class="math notranslate nohighlight">\(n\)</span> equations</p>
 <div class="amsmath math notranslate nohighlight" id="equation-471ce9ec-19a4-49c8-8170-70efa1bc741a">
-<span class="eqno">(47)<a class="headerlink" href="#equation-471ce9ec-19a4-49c8-8170-70efa1bc741a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(61)<a class="headerlink" href="#equation-471ce9ec-19a4-49c8-8170-70efa1bc741a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\begin{matrix}(x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\\vdots&amp;\vdots&amp;\vdots\\(x_n-x_0)&amp;(y_n-y_0)&amp;(z_n-z_0)\end{matrix}\right)s
 =\frac{1}{2}
 \left(\begin{matrix}|h_1|^2-|h_0|^2-(\delta R_{10})^2\\\vdots\\|h_n|^2-|h_0|^2-(\delta R_{n0})^2\end{matrix}\right)
@@ -478,21 +478,21 @@ R_i^2-R_j^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>or in matrix notation</p>
 <div class="amsmath math notranslate nohighlight" id="equation-69d89c1b-e813-4745-ab02-6e5cede6f8c8">
-<span class="eqno">(48)<a class="headerlink" href="#equation-69d89c1b-e813-4745-ab02-6e5cede6f8c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(62)<a class="headerlink" href="#equation-69d89c1b-e813-4745-ab02-6e5cede6f8c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 As=b_0-b_1R_0
 \end{equation}\]</div>
 <p>whereby</p>
 <div class="amsmath math notranslate nohighlight" id="equation-bbcfa0b5-53a6-4e48-b7f5-8cb66e9e2d71">
-<span class="eqno">(49)<a class="headerlink" href="#equation-bbcfa0b5-53a6-4e48-b7f5-8cb66e9e2d71" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(63)<a class="headerlink" href="#equation-bbcfa0b5-53a6-4e48-b7f5-8cb66e9e2d71" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A=\left(\begin{matrix}(x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\\vdots&amp;\vdots&amp;\vdots\\(x_n-x_0)&amp;(y_n-y_0)&amp;(z_n-z_0)\end{matrix}\right)
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-c6323717-eedb-4f31-85ab-340e76503399">
-<span class="eqno">(50)<a class="headerlink" href="#equation-c6323717-eedb-4f31-85ab-340e76503399" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(64)<a class="headerlink" href="#equation-c6323717-eedb-4f31-85ab-340e76503399" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_0=\frac{1}{2}
 \left(\begin{matrix}|h_1|^2-|h_0|^2-(\delta R_{10})^2\\\vdots\\|h_n|^2-|h_0|^2-(\delta R_{n0})^2\end{matrix}\right)
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-0ba0a446-4162-45df-b6dc-4cb3a6002a96">
-<span class="eqno">(51)<a class="headerlink" href="#equation-0ba0a446-4162-45df-b6dc-4cb3a6002a96" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(65)<a class="headerlink" href="#equation-0ba0a446-4162-45df-b6dc-4cb3a6002a96" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_1=\left(\begin{matrix}\delta R_{10}\\\vdots\\\delta R_{n0}\end{matrix}\right)
 \end{equation}\]</div>
 </section>
@@ -501,17 +501,17 @@ b_1=\left(\begin{matrix}\delta R_{10}\\\vdots\\\delta R_{n0}\end{matrix}\right)
 <p>A system of equations for three unknows <span class="math notranslate nohighlight">\(s=(s_x,s_y,s_z)\)</span> cannot be solved without additional constraints if the number of independent equations is different of three. The additional constraint, whicht is typically assumed is that the vector norm <span class="math notranslate nohighlight">\(||s|| \to \min\)</span> that leads to the (Penrose) pseudo inverse <span class="math notranslate nohighlight">\(A^+\)</span></p>
 <p>Definintion of pseudo inverse <span class="math notranslate nohighlight">\(A^+\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-c8558adb-4d63-4da7-9fba-d383039690f9">
-<span class="eqno">(52)<a class="headerlink" href="#equation-c8558adb-4d63-4da7-9fba-d383039690f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(66)<a class="headerlink" href="#equation-c8558adb-4d63-4da7-9fba-d383039690f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     A A^+ A = A
 \end{equation}\]</div>
 <p>For an underdetermined system, i.e. number of equation &lt; number of unknows, or rank of matrix <span class="math notranslate nohighlight">\(A\)</span> &lt; numbers of unknown, the pseudo inverse is given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-942c8f4d-102a-4050-9333-cee110e2c4bb">
-<span class="eqno">(53)<a class="headerlink" href="#equation-942c8f4d-102a-4050-9333-cee110e2c4bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(67)<a class="headerlink" href="#equation-942c8f4d-102a-4050-9333-cee110e2c4bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     A^+ = A^T(AA^T)^{-1}
 \end{equation}\]</div>
 <p>For an overdetermined system, i.e. number of equation &gt; number of unknows, or rank of matrix <span class="math notranslate nohighlight">\(A\)</span> &lt; numbers of equations, the pseudo inverse is given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-35161f1c-5466-4d64-808f-ee48fab321e0">
-<span class="eqno">(54)<a class="headerlink" href="#equation-35161f1c-5466-4d64-808f-ee48fab321e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(68)<a class="headerlink" href="#equation-35161f1c-5466-4d64-808f-ee48fab321e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     A^+ = (A^TA)^{-1}A^T
 \end{equation}\]</div>
 <p>which is the classical least mean square (LMS) fit</p>
@@ -520,53 +520,53 @@ b_1=\left(\begin{matrix}\delta R_{10}\\\vdots\\\delta R_{n0}\end{matrix}\right)
 <h3>Source location and range estimation<a class="headerlink" href="#source-location-and-range-estimation" title="Link to this heading">#</a></h3>
 <p>With</p>
 <div class="amsmath math notranslate nohighlight" id="equation-9bac7b81-d16e-4709-b8c5-22e359d3ff54">
-<span class="eqno">(55)<a class="headerlink" href="#equation-9bac7b81-d16e-4709-b8c5-22e359d3ff54" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(69)<a class="headerlink" href="#equation-9bac7b81-d16e-4709-b8c5-22e359d3ff54" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_0 =&amp; A^+ b_0\\
 u_1 =&amp; A^+ b_1
 \end{align}\]</div>
 <p>the source vector becomes</p>
 <div class="amsmath math notranslate nohighlight" id="equation-60f2ecf9-fb29-4c52-85f2-4ef5d4157956">
-<span class="eqno">(56)<a class="headerlink" href="#equation-60f2ecf9-fb29-4c52-85f2-4ef5d4157956" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(70)<a class="headerlink" href="#equation-60f2ecf9-fb29-4c52-85f2-4ef5d4157956" title="Permalink to this equation">#</a></span>\[\begin{equation}
 s=u_0-u_1R_0
 \end{equation}\]</div>
 <p>Knowing that</p>
 <div class="amsmath math notranslate nohighlight" id="equation-ebc376bd-4eee-4584-b1ed-c397af23f452">
-<span class="eqno">(57)<a class="headerlink" href="#equation-ebc376bd-4eee-4584-b1ed-c397af23f452" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(71)<a class="headerlink" href="#equation-ebc376bd-4eee-4584-b1ed-c397af23f452" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_0^2=|s-h_0|^2=|u_0-h_0-u_1R_0|^2
 \end{equation}\]</div>
 <p>or</p>
 <div class="amsmath math notranslate nohighlight" id="equation-7891ba21-1ca3-4b1e-87e8-497aa8b5169e">
-<span class="eqno">(58)<a class="headerlink" href="#equation-7891ba21-1ca3-4b1e-87e8-497aa8b5169e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(72)<a class="headerlink" href="#equation-7891ba21-1ca3-4b1e-87e8-497aa8b5169e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_0^2=|u_0-h_0|^2-2(u_0-h_0)^Tu_1R_0 + |u_1|^2R_0^2
 \end{equation}\]</div>
 <p>one obtains a quadratic equation in <span class="math notranslate nohighlight">\(R_0\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-7fea66a3-8be9-46d2-afa0-8ffecc4a9d37">
-<span class="eqno">(59)<a class="headerlink" href="#equation-7fea66a3-8be9-46d2-afa0-8ffecc4a9d37" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(73)<a class="headerlink" href="#equation-7fea66a3-8be9-46d2-afa0-8ffecc4a9d37" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (|u_1|^2-1)R_0^2 -2(u_0-h_0)^Tu_1R_0 +|u_0-h_0|^2=0
 \end{equation}\]</div>
 <section id="quadratic-equation">
 <h4>Quadratic equation<a class="headerlink" href="#quadratic-equation" title="Link to this heading">#</a></h4>
 <p>For a quadratic equation</p>
 <div class="amsmath math notranslate nohighlight" id="equation-346f1d6f-e9fe-4c3c-a8c5-59a25aed7629">
-<span class="eqno">(60)<a class="headerlink" href="#equation-346f1d6f-e9fe-4c3c-a8c5-59a25aed7629" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(74)<a class="headerlink" href="#equation-346f1d6f-e9fe-4c3c-a8c5-59a25aed7629" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ax^2+bx+c=0
 \end{equation}\]</div>
 <p>the solution is known to be</p>
 <div class="amsmath math notranslate nohighlight" id="equation-ca6fd39e-896b-4733-bdf0-773fcf5389e9">
-<span class="eqno">(61)<a class="headerlink" href="#equation-ca6fd39e-896b-4733-bdf0-773fcf5389e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(75)<a class="headerlink" href="#equation-ca6fd39e-896b-4733-bdf0-773fcf5389e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 \end{equation}\]</div>
 <p>To apply the solution of a quadratic equation one defines</p>
 <div class="amsmath math notranslate nohighlight" id="equation-ccfda9a9-70c5-43c5-996f-cab6e88f7681">
-<span class="eqno">(62)<a class="headerlink" href="#equation-ccfda9a9-70c5-43c5-996f-cab6e88f7681" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(76)<a class="headerlink" href="#equation-ccfda9a9-70c5-43c5-996f-cab6e88f7681" title="Permalink to this equation">#</a></span>\[\begin{equation}
 a=(|u_1|^2-1)
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-e29fa2d7-42af-4502-ad99-e4f7d9ec98ed">
-<span class="eqno">(63)<a class="headerlink" href="#equation-e29fa2d7-42af-4502-ad99-e4f7d9ec98ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(77)<a class="headerlink" href="#equation-e29fa2d7-42af-4502-ad99-e4f7d9ec98ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b=-2(u_0-h_0)^Tu_1
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-53db9ac6-6ff1-4937-8e39-83eb7118b8f9">
-<span class="eqno">(64)<a class="headerlink" href="#equation-53db9ac6-6ff1-4937-8e39-83eb7118b8f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(78)<a class="headerlink" href="#equation-53db9ac6-6ff1-4937-8e39-83eb7118b8f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 c=|u_0-h_0|^2
 \end{equation}\]</div>
 </section>
@@ -579,7 +579,7 @@ c=|u_0-h_0|^2
 <h3>method 1<a class="headerlink" href="#method-1" title="Link to this heading">#</a></h3>
 <p>Let the number of hydrophones be <span class="math notranslate nohighlight">\(n+1\)</span> then one gets <span class="math notranslate nohighlight">\(n\)</span> equations</p>
 <div class="amsmath math notranslate nohighlight" id="equation-fbd85bb1-3a63-4367-9500-fcb9c7e192b4">
-<span class="eqno">(65)<a class="headerlink" href="#equation-fbd85bb1-3a63-4367-9500-fcb9c7e192b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(79)<a class="headerlink" href="#equation-fbd85bb1-3a63-4367-9500-fcb9c7e192b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\begin{matrix}(x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\\vdots&amp;\vdots&amp;\vdots\\(x_n-x_0)&amp;(y_n-y_0)&amp;(z_n-z_0)\end{matrix}\right)s
 =\frac{1}{2}
 \left(\begin{matrix}|h_1|^2-|h_0|^2-(\delta R_{10})^2\\\vdots\\|h_n|^2-|h_0|^2-(\delta R_{n0})^2\end{matrix}\right)
@@ -587,12 +587,12 @@ c=|u_0-h_0|^2
 \end{equation}\]</div>
 <p>that again transforms to a vector</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4ab1807a-0c05-4899-9669-bb0076503568">
-<span class="eqno">(66)<a class="headerlink" href="#equation-4ab1807a-0c05-4899-9669-bb0076503568" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(80)<a class="headerlink" href="#equation-4ab1807a-0c05-4899-9669-bb0076503568" title="Permalink to this equation">#</a></span>\[\begin{equation}
 s=u_0 - u_1R_0
 \end{equation}\]</div>
 <p>with</p>
 <div class="amsmath math notranslate nohighlight" id="equation-26f069e6-3d0e-40f0-a697-e2c5828c0f7d">
-<span class="eqno">(67)<a class="headerlink" href="#equation-26f069e6-3d0e-40f0-a697-e2c5828c0f7d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(81)<a class="headerlink" href="#equation-26f069e6-3d0e-40f0-a697-e2c5828c0f7d" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_0=&amp;A^+b_0\\
 u_1=&amp;A^+b_1
 \end{align}\]</div>
@@ -690,7 +690,7 @@ S: [ 4. 10.  2.] r0: 10.95445115010333
 <h3>method 2<a class="headerlink" href="#method-2" title="Link to this heading">#</a></h3>
 <p>Let the number of hydrophones be again <span class="math notranslate nohighlight">\(n+1\)</span> then one gets <span class="math notranslate nohighlight">\(n\)</span> equations</p>
 <div class="amsmath math notranslate nohighlight" id="equation-de0365ea-6dd7-4c9e-8c90-0e5a50f79b0e">
-<span class="eqno">(68)<a class="headerlink" href="#equation-de0365ea-6dd7-4c9e-8c90-0e5a50f79b0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(82)<a class="headerlink" href="#equation-de0365ea-6dd7-4c9e-8c90-0e5a50f79b0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\begin{matrix}\delta R_{10}&amp;(x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\\vdots&amp;\vdots&amp;\vdots&amp;\vdots\\\delta R_{n0}&amp;(x_n-x_0)&amp;(y_n-y_0)&amp;(z_n-z_0)\end{matrix}\right)\left(\begin{matrix}R_0\\s_y\\s_y\\s_z\end{matrix}\right)
 =\frac{1}{2}
 \left(\begin{matrix}|h_1|^2-|h_0|^2-(\delta R_{10})^2\\\vdots\\|h_n|^2-|h_0|^2-(\delta R_{n0})^2\end{matrix}\right)
@@ -764,7 +764,7 @@ R[0]: 10.954451150103322 r0: 10.954451150103374
 <h2>Four-hydrophone localization<a class="headerlink" href="#four-hydrophone-localization" title="Link to this heading">#</a></h2>
 <p>Four hydrophones allow 3 hydrophone pairs that in matrix notation are written as</p>
 <div class="amsmath math notranslate nohighlight" id="equation-7c9a9c6d-8d9e-4e0e-b6b6-dcc08668d1dd">
-<span class="eqno">(69)<a class="headerlink" href="#equation-7c9a9c6d-8d9e-4e0e-b6b6-dcc08668d1dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(83)<a class="headerlink" href="#equation-7c9a9c6d-8d9e-4e0e-b6b6-dcc08668d1dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\begin{matrix}(x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\(x_2-x_0)&amp;(y_2-y_0)&amp;(z_2-z_0)\\(x_3-x_0)&amp;(y_3-y_0)&amp;(z_3-z_0)\end{matrix}\right)s
 =\frac{1}{2}
 \left(\begin{matrix}|h_1|^2-|h_0|^2-(\delta R_{10})^2\\|h_2|^2-|h_0|^2-(\delta R_{20})^2\\|h_3|^2-|h_0|^2-(\delta R_{30})^2\end{matrix}\right)
@@ -772,7 +772,7 @@ R[0]: 10.954451150103322 r0: 10.954451150103374
 \end{equation}\]</div>
 <p>or equivalently</p>
 <div class="amsmath math notranslate nohighlight" id="equation-08005b42-0488-4c5f-b2f0-0ca85dfea8e9">
-<span class="eqno">(70)<a class="headerlink" href="#equation-08005b42-0488-4c5f-b2f0-0ca85dfea8e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(84)<a class="headerlink" href="#equation-08005b42-0488-4c5f-b2f0-0ca85dfea8e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 s=u_0-u_1R_0
 \end{equation}\]</div>
 <p>and the solution is obtained via the quadratic equation in <span class="math notranslate nohighlight">\(R_0\)</span></p>
@@ -849,7 +849,7 @@ S: [ 4. 10.  2.] r0: 10.954451150103324
 <h2>Three-hydrophone localization<a class="headerlink" href="#three-hydrophone-localization" title="Link to this heading">#</a></h2>
 <p>With three hydrophones once can form two pairs of hydrophones and one gets a system of two equations</p>
 <div class="amsmath math notranslate nohighlight" id="equation-b6d028e4-8eed-4fdc-9f3e-71b1fddc5ec5">
-<span class="eqno">(71)<a class="headerlink" href="#equation-b6d028e4-8eed-4fdc-9f3e-71b1fddc5ec5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(85)<a class="headerlink" href="#equation-b6d028e4-8eed-4fdc-9f3e-71b1fddc5ec5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\begin{matrix}(x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\(x_2-x_0)&amp;(y_2-y_0)&amp;(z_2-z_0)\end{matrix}\right)s
 =\frac{1}{2}
 \left(\begin{matrix}|h_1|^2-|h_0|^2-(\delta R_{10})^2\\|h_2|^2-|h_0|^2-(\delta R_{20})^2\end{matrix}\right)
@@ -859,7 +859,7 @@ S: [ 4. 10.  2.] r0: 10.954451150103324
 <p>To estimate source location with three hydrophones requires the knowledge of one component of the source vector. This is typically the z-component <span class="math notranslate nohighlight">\(s_z\)</span>.</p>
 <p>The source range <span class="math notranslate nohighlight">\(R_0\)</span> is then estimated ba adding the assumed z-component <span class="math notranslate nohighlight">\(s_z\)</span> as constant to the quadratic equation</p>
 <div class="amsmath math notranslate nohighlight" id="equation-59377dcf-dcc7-4204-8ce5-d77280f28cac">
-<span class="eqno">(72)<a class="headerlink" href="#equation-59377dcf-dcc7-4204-8ce5-d77280f28cac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(86)<a class="headerlink" href="#equation-59377dcf-dcc7-4204-8ce5-d77280f28cac" title="Permalink to this equation">#</a></span>\[\begin{equation}
 c=|u_0-h_0|^2+(s_z-z_0)^2=(u_{0x}-x_0)^2+(u_{0y}-y_0)^2+(s_z-z_0)^2
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -937,7 +937,7 @@ S: [ 4. 10.  2.] r0: 10.95445115010332
 <h2>Two-hydrophone localization<a class="headerlink" href="#two-hydrophone-localization" title="Link to this heading">#</a></h2>
 <p>with two hydrophones, one can form a single pair and with <span class="math notranslate nohighlight">\((i,j)=(1,0)\)</span> the resulting single equation becomes</p>
 <div class="amsmath math notranslate nohighlight" id="equation-eb8ae77e-32d3-42c2-9a9f-1012bdce12ce">
-<span class="eqno">(73)<a class="headerlink" href="#equation-eb8ae77e-32d3-42c2-9a9f-1012bdce12ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(87)<a class="headerlink" href="#equation-eb8ae77e-32d3-42c2-9a9f-1012bdce12ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_1-h_0)^Ts=\frac{|h_1|^2-|h_0|^2-(\delta R_{10})^2}{2}-(\delta R_{10})R_0
 \end{equation}\]</div>
 <p>which cannot be solved for the source location without knowing two of the three components of the source vector. While sometimes the vertical, or z component of the source vector may be guessed an assumed, this is nearly impossible for the still missing horizontal component of the source vector.</p>

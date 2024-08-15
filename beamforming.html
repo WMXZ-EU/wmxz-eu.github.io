@@ -433,7 +433,7 @@ document.write(`
 <h2>Basic formulation of single source direction finding<a class="headerlink" href="#basic-formulation-of-single-source-direction-finding" title="Link to this heading">#</a></h2>
 <p>Let the sound direction  <span class="math notranslate nohighlight">\(\hat S\)</span> be given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-b2ddc0e3-e5d3-4025-9648-8d053a6efc11">
-<span class="eqno">(74)<a class="headerlink" href="#equation-b2ddc0e3-e5d3-4025-9648-8d053a6efc11" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(88)<a class="headerlink" href="#equation-b2ddc0e3-e5d3-4025-9648-8d053a6efc11" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat S = 
     \left(
         \begin{array}{c}
@@ -445,7 +445,7 @@ document.write(`
 \end{equation}\]</div>
 <p>and the hydrophone location matrix <span class="math notranslate nohighlight">\( H \)</span> be given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-0ee88bc8-22e7-4ad3-baf3-d5d57b568023">
-<span class="eqno">(75)<a class="headerlink" href="#equation-0ee88bc8-22e7-4ad3-baf3-d5d57b568023" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(89)<a class="headerlink" href="#equation-0ee88bc8-22e7-4ad3-baf3-d5d57b568023" title="Permalink to this equation">#</a></span>\[\begin{equation}
      H = 
     \left(
         \begin{array}{c c c c}
@@ -458,7 +458,7 @@ document.write(`
 <p>where the elements <span class="math notranslate nohighlight">\((d_{ix},d_{iy},d_{iz}) \)</span> are the <span class="math notranslate nohighlight">\(x,y,z\)</span> components of the 3-D vector that locates the hydrophones.</p>
 <p>Let <span class="math notranslate nohighlight">\(D_0\)</span> be the hydrophone seperation matrix</p>
 <div class="amsmath math notranslate nohighlight" id="equation-874aec66-9301-4af2-973c-638fb566ed6c">
-<span class="eqno">(76)<a class="headerlink" href="#equation-874aec66-9301-4af2-973c-638fb566ed6c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(90)<a class="headerlink" href="#equation-874aec66-9301-4af2-973c-638fb566ed6c" title="Permalink to this equation">#</a></span>\[\begin{equation}
      D_0 = H-{h_0}=
     \left(
         \begin{array}{c c c c}
@@ -470,7 +470,7 @@ document.write(`
 \end{equation}\]</div>
 <p>then the vector of measurements <span class="math notranslate nohighlight">\( m\)</span> defined by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-9d12ef3c-6c42-4271-acd8-b1a6d3f96c84">
-<span class="eqno">(77)<a class="headerlink" href="#equation-9d12ef3c-6c42-4271-acd8-b1a6d3f96c84" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(91)<a class="headerlink" href="#equation-9d12ef3c-6c42-4271-acd8-b1a6d3f96c84" title="Permalink to this equation">#</a></span>\[\begin{equation}
      m = 
     \left(
         \begin{array}{c}
@@ -483,19 +483,19 @@ document.write(`
 \end{equation}\]</div>
 <p>is estimated by the projection of the sound source direction onto the different hydrophone pairs.</p>
 <div class="amsmath math notranslate nohighlight" id="equation-17f53d8e-9897-4146-ae74-217a82a5afd6">
-<span class="eqno">(78)<a class="headerlink" href="#equation-17f53d8e-9897-4146-ae74-217a82a5afd6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(92)<a class="headerlink" href="#equation-17f53d8e-9897-4146-ae74-217a82a5afd6" title="Permalink to this equation">#</a></span>\[\begin{equation}
      m =  D_0^T  {\hat S}
 \end{equation}\]</div>
 <p>The sound direction is then estimated from the measurement vector by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-07fb5abf-d8ce-4ef9-b06b-e99d66a8d7d5">
-<span class="eqno">(79)<a class="headerlink" href="#equation-07fb5abf-d8ce-4ef9-b06b-e99d66a8d7d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(93)<a class="headerlink" href="#equation-07fb5abf-d8ce-4ef9-b06b-e99d66a8d7d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     {\hat S} = \left( D_0^T  D_0 \right)^{-1}  D_0  m
 \end{equation}\]</div>
 <section id="line-array">
 <h3>Line array<a class="headerlink" href="#line-array" title="Link to this heading">#</a></h3>
 <p>In case where the array geometry is a line array then typically one assumes that <span class="math notranslate nohighlight">\((h_{iy},h_{iz})=(0,0)\)</span> and we get</p>
 <div class="amsmath math notranslate nohighlight" id="equation-f7b6750e-2221-4e67-ae8f-683142f2dac7">
-<span class="eqno">(80)<a class="headerlink" href="#equation-f7b6750e-2221-4e67-ae8f-683142f2dac7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(94)<a class="headerlink" href="#equation-f7b6750e-2221-4e67-ae8f-683142f2dac7" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat S_x = \frac{\sum_i(d_{ix}m_i)} {\sum_i(d_{ix}^2)}
 \end{equation}\]</div>
 </section>
@@ -504,33 +504,33 @@ document.write(`
 <h2>Basic formulation of beamforming<a class="headerlink" href="#basic-formulation-of-beamforming" title="Link to this heading">#</a></h2>
 <p>Let the sound pressure measured an a single hydrophone be a signal <span class="math notranslate nohighlight">\(s\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-e4057b06-4046-4deb-94a1-950a7acae084">
-<span class="eqno">(81)<a class="headerlink" href="#equation-e4057b06-4046-4deb-94a1-950a7acae084" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(95)<a class="headerlink" href="#equation-e4057b06-4046-4deb-94a1-950a7acae084" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=s(t)
 \end{equation}\]</div>
 <p>then in an array of hydrophones the measurements become</p>
 <div class="amsmath math notranslate nohighlight" id="equation-01f55d67-3eb7-49e2-a137-f19d2d3c837e">
-<span class="eqno">(82)<a class="headerlink" href="#equation-01f55d67-3eb7-49e2-a137-f19d2d3c837e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(96)<a class="headerlink" href="#equation-01f55d67-3eb7-49e2-a137-f19d2d3c837e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i(t)=s(t-\tau_i(\alpha,\beta))+n(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> is the delay of the signal at hydrophone <span class="math notranslate nohighlight">\(i\)</span> with respect to som reference hydrophone and <span class="math notranslate nohighlight">\(\alpha,\beta\)</span> are the angles of arrival</p>
 <p>For a line array with equally spaced hydrophones the delay has a simple form</p>
 <div class="amsmath math notranslate nohighlight" id="equation-db4c67c2-9094-45ad-8fe7-e65bd7b8bfd0">
-<span class="eqno">(83)<a class="headerlink" href="#equation-db4c67c2-9094-45ad-8fe7-e65bd7b8bfd0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(97)<a class="headerlink" href="#equation-db4c67c2-9094-45ad-8fe7-e65bd7b8bfd0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tau_i(t)=i\frac{d}{c}\cos{\gamma}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(d\)</span> id the hydrophone spacing, <span class="math notranslate nohighlight">\(c\)</span> is the sound speed at the hydrophone, and <span class="math notranslate nohighlight">\(\gamma\)</span> is the relative angle of arrival, that for a line array is composed of the azimuth <span class="math notranslate nohighlight">\(\alpha\)</span> and elevation angle <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <div class="amsmath math notranslate nohighlight" id="equation-035952ec-60d9-4312-8b03-46af43af4ac5">
-<span class="eqno">(84)<a class="headerlink" href="#equation-035952ec-60d9-4312-8b03-46af43af4ac5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(98)<a class="headerlink" href="#equation-035952ec-60d9-4312-8b03-46af43af4ac5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos{\gamma}=\cos{\alpha}\cos{\beta}
 \end{equation}\]</div>
 <p>The beamforming algorithm simply speaking tries to undo the signal delays <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> by compensating with negative delays</p>
 <div class="amsmath math notranslate nohighlight" id="equation-fcf09df4-d8bf-4eda-aee2-5dedb2125904">
-<span class="eqno">(85)<a class="headerlink" href="#equation-fcf09df4-d8bf-4eda-aee2-5dedb2125904" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(99)<a class="headerlink" href="#equation-fcf09df4-d8bf-4eda-aee2-5dedb2125904" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=\frac{1}{N}\sum_i (x_t(+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>In cases, where <span class="math notranslate nohighlight">\(\delta_i(\gamma)=\tau_i(\alpha,\beta)\)</span> we get</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4f2117ee-ea86-488a-afca-e31413a423e3">
-<span class="eqno">(86)<a class="headerlink" href="#equation-4f2117ee-ea86-488a-afca-e31413a423e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(100)<a class="headerlink" href="#equation-4f2117ee-ea86-488a-afca-e31413a423e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>indicating that the signal <span class="math notranslate nohighlight">\(s(t)\)</span> is completely reconstructed and that noise, that is assumed to be uncorrelated is attenuated.</p>

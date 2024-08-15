@@ -410,44 +410,44 @@ document.write(`
 <p>In the following we try to develop a click train detector by means of a detection to click association algorithm</p>
 <p>Consider Inter-click-interval (ICI)</p>
 <div class="amsmath math notranslate nohighlight" id="equation-37c0c6f6-8f35-443a-adfd-c2318afead07">
-<span class="eqno">(172)<a class="headerlink" href="#equation-37c0c6f6-8f35-443a-adfd-c2318afead07" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(186)<a class="headerlink" href="#equation-37c0c6f6-8f35-443a-adfd-c2318afead07" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n = t_n - t_{n-1}
 \end{equation}\]</div>
 <p>power variation</p>
 <div class="amsmath math notranslate nohighlight" id="equation-9ae0ef36-a72a-4b70-af34-7baafbd3b09d">
-<span class="eqno">(173)<a class="headerlink" href="#equation-9ae0ef36-a72a-4b70-af34-7baafbd3b09d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(187)<a class="headerlink" href="#equation-9ae0ef36-a72a-4b70-af34-7baafbd3b09d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta P_{n}=P_{n}-P_{n-1}
 \end{equation}\]</div>
 <p>and boundary reflection (multipath)</p>
 <div class="amsmath math notranslate nohighlight" id="equation-f361219c-9b4b-42aa-b489-8bdf486f41e4">
-<span class="eqno">(174)<a class="headerlink" href="#equation-f361219c-9b4b-42aa-b489-8bdf486f41e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(188)<a class="headerlink" href="#equation-f361219c-9b4b-42aa-b489-8bdf486f41e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 δτ_n=t_{r,n}-t_n
 \end{equation}\]</div>
 <p>While for each click train, there is only one <span class="math notranslate nohighlight">\((ICI)\)</span> and <span class="math notranslate nohighlight">\(P\)</span>, there can be multiple boundary reflections</p>
 <p>Assume variations in these quantities are stochastic processes that vary only randomly</p>
 <div class="amsmath math notranslate nohighlight" id="equation-7cf2f497-9764-4655-8cfc-4213ebb97674">
-<span class="eqno">(175)<a class="headerlink" href="#equation-7cf2f497-9764-4655-8cfc-4213ebb97674" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(189)<a class="headerlink" href="#equation-7cf2f497-9764-4655-8cfc-4213ebb97674" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta (ICI)_n  = \Delta (ICI)_{n-1} + N(0,\sigma_C) 
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-1fd05446-f2c4-4ada-99ee-0b003a8f5e59">
-<span class="eqno">(176)<a class="headerlink" href="#equation-1fd05446-f2c4-4ada-99ee-0b003a8f5e59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(190)<a class="headerlink" href="#equation-1fd05446-f2c4-4ada-99ee-0b003a8f5e59" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta (\Delta P_n)  = \Delta (\Delta P_{n-1}) + N(0,\sigma_P) 
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-191ae70a-3764-46f6-85f7-0b2170b25dba">
-<span class="eqno">(177)<a class="headerlink" href="#equation-191ae70a-3764-46f6-85f7-0b2170b25dba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(191)<a class="headerlink" href="#equation-191ae70a-3764-46f6-85f7-0b2170b25dba" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta δτ_n  = \Delta \delta\tau_{n-1} + N(0,\sigma_\tau) 
 \end{equation}\]</div>
 <p>That is</p>
 <div class="amsmath math notranslate nohighlight" id="equation-02fc0942-da53-47a5-9756-8b0c8852a2f8">
-<span class="eqno">(178)<a class="headerlink" href="#equation-02fc0942-da53-47a5-9756-8b0c8852a2f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(192)<a class="headerlink" href="#equation-02fc0942-da53-47a5-9756-8b0c8852a2f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n  = 2 (ICI)_{n-1} - (ICI)_{n-2} + N(0,\sigma_C) 
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-5cdbe821-5b18-4a12-ac02-151918b31b14">
-<span class="eqno">(179)<a class="headerlink" href="#equation-5cdbe821-5b18-4a12-ac02-151918b31b14" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(193)<a class="headerlink" href="#equation-5cdbe821-5b18-4a12-ac02-151918b31b14" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta P_n  = 2\Delta P_{n-1} - \Delta P_{n-2} + N(0,\sigma_P) 
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-33a76c40-b2e2-4d04-89cf-015a851f4922">
-<span class="eqno">(180)<a class="headerlink" href="#equation-33a76c40-b2e2-4d04-89cf-015a851f4922" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(194)<a class="headerlink" href="#equation-33a76c40-b2e2-4d04-89cf-015a851f4922" title="Permalink to this equation">#</a></span>\[\begin{equation}
 δτ_n  = 2\delta\tau_{n-1} -\delta\tau_{n-2}+ N(0,\sigma_\tau) 
 \end{equation}\]</div>
 </section>

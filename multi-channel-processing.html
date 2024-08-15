@@ -455,33 +455,33 @@ document.write(`
 <h2>Sound source distance<a class="headerlink" href="#sound-source-distance" title="Link to this heading">#</a></h2>
 <p>Let the location of hydrophone <span class="math notranslate nohighlight">\(i\)</span> be <span class="math notranslate nohighlight">\(h_i = (x_i,y_i.z_i)\)</span> and the source location be <span class="math notranslate nohighlight">\(s=(s_x,s_y,s_z)\)</span> then the distance of the source from the hydrophone is related by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-f95b84cc-76b4-4ebe-a87f-5242d4c44726">
-<span class="eqno">(87)<a class="headerlink" href="#equation-f95b84cc-76b4-4ebe-a87f-5242d4c44726" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
+<span class="eqno">(101)<a class="headerlink" href="#equation-f95b84cc-76b4-4ebe-a87f-5242d4c44726" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
 R_i^2=(s_x-x_i)^2+(s_y-y_i)^2+(s_z-z_i)^2
 \end{equation}\]</div>
 <p>which becomes</p>
 <div class="amsmath math notranslate nohighlight" id="equation-26d80a65-c920-4cf5-a45e-9eafac7c539f">
-<span class="eqno">(88)<a class="headerlink" href="#equation-26d80a65-c920-4cf5-a45e-9eafac7c539f" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
+<span class="eqno">(102)<a class="headerlink" href="#equation-26d80a65-c920-4cf5-a45e-9eafac7c539f" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
 R_i^2=(s_x^2+s_y^2+s_z^2)+(x_i^2+y_i^2+z_i^2) -2s_x x_i -2s_y y_i -2s_z z_i
 \end{equation}\]</div>
 <p>or in short</p>
 <div class="amsmath math notranslate nohighlight" id="equation-62092a59-6367-4354-bd98-b3134e948495">
-<span class="eqno">(89)<a class="headerlink" href="#equation-62092a59-6367-4354-bd98-b3134e948495" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(103)<a class="headerlink" href="#equation-62092a59-6367-4354-bd98-b3134e948495" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_i^2=|s|^2+|h_i|^2-2h_i^Ts
 \end{equation}\]</div>
 <p>Having more then 1 hydrophone, then for any pair of hydrophones <span class="math notranslate nohighlight">\((h_i, h_j)\)</span> one can form the difference obtaining</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4f62e337-711c-4004-b7ff-7eaabee32dae">
-<span class="eqno">(90)<a class="headerlink" href="#equation-4f62e337-711c-4004-b7ff-7eaabee32dae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(104)<a class="headerlink" href="#equation-4f62e337-711c-4004-b7ff-7eaabee32dae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_i^2-R_j^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>Noting that <span class="math notranslate nohighlight">\(R_i^2-R_j^2=(R_j+(\delta R_{ij}))^2-R_j^2 = 2(\delta R_{ij})R_j+(\delta R_{ij})^2 \)</span></p>
 <p>one gets the linear equation</p>
 <div class="amsmath math notranslate nohighlight" id="equation-3e9fcb5c-9970-4078-a42d-8295c2418131">
-<span class="eqno">(91)<a class="headerlink" href="#equation-3e9fcb5c-9970-4078-a42d-8295c2418131" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(105)<a class="headerlink" href="#equation-3e9fcb5c-9970-4078-a42d-8295c2418131" title="Permalink to this equation">#</a></span>\[\begin{equation}
 2(\delta R_{ij})R_j+(\delta R_{ij})^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>or, by putting the unknown source location to the left side and dividing by 2</p>
 <div class="amsmath math notranslate nohighlight" id="equation-c660dc8a-cb1a-422e-95c4-6fcb50baf5ba">
-<span class="eqno">(92)<a class="headerlink" href="#equation-c660dc8a-cb1a-422e-95c4-6fcb50baf5ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(106)<a class="headerlink" href="#equation-c660dc8a-cb1a-422e-95c4-6fcb50baf5ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2}-(\delta R_{ij})R_j
 \end{equation}\]</div>
 </section>
@@ -489,38 +489,38 @@ R_i^2-R_j^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 <h2>Direction finding<a class="headerlink" href="#direction-finding" title="Link to this heading">#</a></h2>
 <p>Given</p>
 <div class="amsmath math notranslate nohighlight" id="equation-72dcbba5-61e1-4a2e-9936-d85b424d0efe">
-<span class="eqno">(93)<a class="headerlink" href="#equation-72dcbba5-61e1-4a2e-9936-d85b424d0efe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(107)<a class="headerlink" href="#equation-72dcbba5-61e1-4a2e-9936-d85b424d0efe" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2}-(\delta R_{ij})R_j
 \end{equation}\]</div>
 <p>Assume that all phones are closely spaced compared to distance to source</p>
 <p>and noting that</p>
 <div class="amsmath math notranslate nohighlight" id="equation-9078c5af-ce08-4867-954c-5c5bd98c844a">
-<span class="eqno">(94)<a class="headerlink" href="#equation-9078c5af-ce08-4867-954c-5c5bd98c844a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(108)<a class="headerlink" href="#equation-9078c5af-ce08-4867-954c-5c5bd98c844a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=|h_i-h_j||s|\cos{(\beta)}
 \end{equation}\]</div>
 <p>or equivalently with <span class="math notranslate nohighlight">\(s=|s|\hat{s}\)</span> and dividing by <span class="math notranslate nohighlight">\(|s|\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-444a71b3-f59c-4c00-8f66-786ee516166e">
-<span class="eqno">(95)<a class="headerlink" href="#equation-444a71b3-f59c-4c00-8f66-786ee516166e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(109)<a class="headerlink" href="#equation-444a71b3-f59c-4c00-8f66-786ee516166e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=|h_i-h_j|\cos{(\beta)}
 \end{equation}\]</div>
 <p>then</p>
 <div class="amsmath math notranslate nohighlight" id="equation-c172b6e4-a20a-4c2a-9004-e4f5eb7b08ac">
-<span class="eqno">(96)<a class="headerlink" href="#equation-c172b6e4-a20a-4c2a-9004-e4f5eb7b08ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(110)<a class="headerlink" href="#equation-c172b6e4-a20a-4c2a-9004-e4f5eb7b08ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |h_i-h_j|\cos{(\beta)}=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2|s|}-(\delta R_{ij})\frac{R_j}{|s|}
 \end{equation}\]</div>
 <p>Let</p>
 <div class="amsmath math notranslate nohighlight" id="equation-135391ce-cdbe-4e97-af8a-f0fc508cbbc3">
-<span class="eqno">(97)<a class="headerlink" href="#equation-135391ce-cdbe-4e97-af8a-f0fc508cbbc3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(111)<a class="headerlink" href="#equation-135391ce-cdbe-4e97-af8a-f0fc508cbbc3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_j=|s-h_j|
 \end{equation}\]</div>
 <p>then</p>
 <div class="amsmath math notranslate nohighlight" id="equation-2dfec2f4-ee31-4fe3-9755-476ff2d5a63f">
-<span class="eqno">(98)<a class="headerlink" href="#equation-2dfec2f4-ee31-4fe3-9755-476ff2d5a63f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(112)<a class="headerlink" href="#equation-2dfec2f4-ee31-4fe3-9755-476ff2d5a63f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |h_i-h_j|\cos{(\beta)}=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2|s|}-(\delta R_{ij})\frac{|s-h_j|}{|s|}
 \end{equation}\]</div>
 <p>which for <span class="math notranslate nohighlight">\(|s| \to \infty\)</span> becomes an equation that may be used to estimate the direction <span class="math notranslate nohighlight">\(\beta\)</span> to a distant sound source.</p>
 <div class="amsmath math notranslate nohighlight" id="equation-2b7ec3c0-83e3-4c33-ae58-ab8e837da49f">
-<span class="eqno">(99)<a class="headerlink" href="#equation-2b7ec3c0-83e3-4c33-ae58-ab8e837da49f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(113)<a class="headerlink" href="#equation-2b7ec3c0-83e3-4c33-ae58-ab8e837da49f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>This equation is the basis for all direction finding algorithms</p>
@@ -529,12 +529,12 @@ R_j=|s-h_j|
 <h2>Multi-phone direction finding<a class="headerlink" href="#multi-phone-direction-finding" title="Link to this heading">#</a></h2>
 <p>Let</p>
 <div class="amsmath math notranslate nohighlight" id="equation-a66ffc11-0ecf-478a-a43a-463347428171">
-<span class="eqno">(100)<a class="headerlink" href="#equation-a66ffc11-0ecf-478a-a43a-463347428171" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(114)<a class="headerlink" href="#equation-a66ffc11-0ecf-478a-a43a-463347428171" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>and assume an array of <span class="math notranslate nohighlight">\(n+1\)</span> phones then one can form  <span class="math notranslate nohighlight">\(npp=(n+1)n/2\)</span> different pairs of phones resulting to a system of <span class="math notranslate nohighlight">\(npp\)</span> equations</p>
 <div class="amsmath math notranslate nohighlight" id="equation-0e63acb7-8fc8-4de3-9095-6d240c9a88f0">
-<span class="eqno">(101)<a class="headerlink" href="#equation-0e63acb7-8fc8-4de3-9095-6d240c9a88f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(115)<a class="headerlink" href="#equation-0e63acb7-8fc8-4de3-9095-6d240c9a88f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\begin{matrix} (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         \vdots&amp;\vdots&amp;\vdots\\ 
@@ -545,7 +545,7 @@ R_j=|s-h_j|
 \end{equation}\]</div>
 <p>With</p>
 <div class="amsmath math notranslate nohighlight" id="equation-43b3f6e0-fcf9-457d-bcaa-dc3fcef54ada">
-<span class="eqno">(102)<a class="headerlink" href="#equation-43b3f6e0-fcf9-457d-bcaa-dc3fcef54ada" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(116)<a class="headerlink" href="#equation-43b3f6e0-fcf9-457d-bcaa-dc3fcef54ada" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A=
 \left(\begin{matrix} (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
@@ -554,14 +554,14 @@ A=
                         \end{matrix}\right)                        
 \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-2071cf69-0c94-4120-a86b-d7e3a792c291">
-<span class="eqno">(103)<a class="headerlink" href="#equation-2071cf69-0c94-4120-a86b-d7e3a792c291" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(117)<a class="headerlink" href="#equation-2071cf69-0c94-4120-a86b-d7e3a792c291" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_1=
 \left(\begin{matrix} \delta R_{10}\\\delta R_{20}\\\vdots\\\delta R_{n(n-1)}
                         \end{matrix}\right)                        
 \end{equation}\]</div>
 <p>the solution for the source direction vector <span class="math notranslate nohighlight">\(\hat{s}\)</span> becomes</p>
 <div class="amsmath math notranslate nohighlight" id="equation-536c1687-ad35-4a2a-a777-8acd31824434">
-<span class="eqno">(104)<a class="headerlink" href="#equation-536c1687-ad35-4a2a-a777-8acd31824434" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(118)<a class="headerlink" href="#equation-536c1687-ad35-4a2a-a777-8acd31824434" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{s}=-A^+b_1
 \end{equation}\]</div>
 <p>It should be noted that the path difference <span class="math notranslate nohighlight">\(\delta R_{ij}=R_i-R_j\)</span>, where <span class="math notranslate nohighlight">\(R_j\)</span> is the path to the reference phone, is negative if the sound arrives first to phone at <span class="math notranslate nohighlight">\(h_i\)</span> and then to the one at <span class="math notranslate nohighlight">\(h_j\)</span>, as it would for <span class="math notranslate nohighlight">\(\cos{\beta}&gt;0\)</span>.</p>
@@ -569,7 +569,7 @@ b_1=
 <h3>Time delay based direction finding<a class="headerlink" href="#time-delay-based-direction-finding" title="Link to this heading">#</a></h3>
 <p>Assume that the travel path difference  <span class="math notranslate nohighlight">\((\delta R_{ij})\)</span> is based on time-delay estimation</p>
 <div class="amsmath math notranslate nohighlight" id="equation-dbb63eac-b894-46f8-8bd5-2c503759f5b5">
-<span class="eqno">(105)<a class="headerlink" href="#equation-dbb63eac-b894-46f8-8bd5-2c503759f5b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(119)<a class="headerlink" href="#equation-dbb63eac-b894-46f8-8bd5-2c503759f5b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta R_{ij} = c (\delta t_{ij})
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(c\)</span> being the sound speed and <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span> the measured time delay of the signal.</p>
@@ -578,28 +578,28 @@ b_1=
 <h3>Phase based direction finding<a class="headerlink" href="#phase-based-direction-finding" title="Link to this heading">#</a></h3>
 <p>Assume that the measured time delay between two hydrophones <span class="math notranslate nohighlight">\(\delta t\)</span> is small enough that a sinusoidal signal</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4a134fa3-83e2-40dc-9062-5a85c3977eeb">
-<span class="eqno">(106)<a class="headerlink" href="#equation-4a134fa3-83e2-40dc-9062-5a85c3977eeb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(120)<a class="headerlink" href="#equation-4a134fa3-83e2-40dc-9062-5a85c3977eeb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta t = \frac{1}{2\pi f_0}\sin^{-1}(\sin(2\pi f (\delta t)))
 \end{equation}\]</div>
 <p>As in inverse sinus results in values between <span class="math notranslate nohighlight">\(\pm \pi\)</span> we can conclude that phase processing is possible for</p>
 <div class="amsmath math notranslate nohighlight" id="equation-b3dc85c8-2970-4b75-9806-40c7f7dd3b82">
-<span class="eqno">(107)<a class="headerlink" href="#equation-b3dc85c8-2970-4b75-9806-40c7f7dd3b82" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(121)<a class="headerlink" href="#equation-b3dc85c8-2970-4b75-9806-40c7f7dd3b82" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\delta t| &lt; \frac{1}{2 f}
 \end{equation}\]</div>
 <p>The maximal delay between two hydrophones seperated by <span class="math notranslate nohighlight">\(d_{ij}\)</span> is</p>
 <div class="amsmath math notranslate nohighlight" id="equation-bdfc94ca-2365-41db-bf24-2df4cc2e8eb8">
-<span class="eqno">(108)<a class="headerlink" href="#equation-bdfc94ca-2365-41db-bf24-2df4cc2e8eb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(122)<a class="headerlink" href="#equation-bdfc94ca-2365-41db-bf24-2df4cc2e8eb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\delta t|_{max} = \frac{|d_{ij}|}{c}
 \end{equation}\]</div>
 <p>so that phase processing is possible for all frequencies <span class="math notranslate nohighlight">\(f\)</span> for which</p>
 <div class="amsmath math notranslate nohighlight" id="equation-c60332e7-fa64-415b-8508-21df2820712e">
-<span class="eqno">(109)<a class="headerlink" href="#equation-c60332e7-fa64-415b-8508-21df2820712e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(123)<a class="headerlink" href="#equation-c60332e7-fa64-415b-8508-21df2820712e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f &lt; \frac{c}{2|d_{ij}|}
 \end{equation}\]</div>
 <p>and the time delay of a signal is equivalent to a phase shift of the signal.</p>
 <p>Given a time delay <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span>, the phase shift is given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-bb9a9536-deca-4b22-bcda-fee13449b019">
-<span class="eqno">(110)<a class="headerlink" href="#equation-bb9a9536-deca-4b22-bcda-fee13449b019" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(124)<a class="headerlink" href="#equation-bb9a9536-deca-4b22-bcda-fee13449b019" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta \Phi_{ij} = 2\pi c\frac{(\delta t_{ij})}{d_{ij}}
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -766,7 +766,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 <section id="fm-modulation">
 <h3>FM modulation<a class="headerlink" href="#fm-modulation" title="Link to this heading">#</a></h3>
 <div class="amsmath math notranslate nohighlight" id="equation-b8c2804c-fc79-4d2e-b755-c83e09a637bf">
-<span class="eqno">(111)<a class="headerlink" href="#equation-b8c2804c-fc79-4d2e-b755-c83e09a637bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(125)<a class="headerlink" href="#equation-b8c2804c-fc79-4d2e-b755-c83e09a637bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{aligned}y(t)&amp;=A_{c}\cos \left(2\pi \int _{0}^{t}f(\tau )d\tau \right)\\
 &amp;=A_{c}\cos \left(2\pi \int _{0}^{t}\left[f_{c}+f_{\Delta }x_{m}(\tau )\right]d\tau \right)\\
 &amp;=A_{c}\cos \left(2\pi f_{c}t+2\pi f_{\Delta }\int _{0}^{t}x_{m}(\tau )d\tau \right)\\
@@ -1042,14 +1042,14 @@ f &lt; \frac{c}{2|d_{ij}|}
 <h2>Broadband (ship) noise<a class="headerlink" href="#broadband-ship-noise" title="Link to this heading">#</a></h2>
 <p>To simultate a colored, i.e. not white, noise sequence, white noise spectrum <span class="math notranslate nohighlight">\(Y(f)\)</span> is first modeled as having uniform random phase <span class="math notranslate nohighlight">\(U(N_f)\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-cad55f81-f7e7-4c84-879b-d18ebebb8c0d">
-<span class="eqno">(112)<a class="headerlink" href="#equation-cad55f81-f7e7-4c84-879b-d18ebebb8c0d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(126)<a class="headerlink" href="#equation-cad55f81-f7e7-4c84-879b-d18ebebb8c0d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y(f)=\exp(2\pi i U(N_f))
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_f\)</span> is the number of (positive) frequenency bins.</p>
 <p>The white noise spectrum is then wheighted by the square-root of the desired colored power spectrum.</p>
 <p>The desired colored noise <span class="math notranslate nohighlight">\(n\)</span> is then obtained by the inverse Fourier Transform of the colored noise spectrum.</p>
 <div class="amsmath math notranslate nohighlight" id="equation-e5e8ad20-d86e-41ef-9cc4-cd7521dc2860">
-<span class="eqno">(113)<a class="headerlink" href="#equation-e5e8ad20-d86e-41ef-9cc4-cd7521dc2860" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(127)<a class="headerlink" href="#equation-e5e8ad20-d86e-41ef-9cc4-cd7521dc2860" title="Permalink to this equation">#</a></span>\[\begin{equation}
 n=\text{fft}^{-1}\Big(\frac{W(f)}{W(f)_{\text{RMS}}}Y(f)\Big)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(W(f)\)</span> is the amplitude weghting function and <span class="math notranslate nohighlight">\(W(f)_{\text{RMS}}\)</span> is the root-mean-square of the amplitude weighting function to obtain the same noise energy as the input white noise.</p>
@@ -1058,14 +1058,14 @@ n=\text{fft}^{-1}\Big(\frac{W(f)}{W(f)_{\text{RMS}}}Y(f)\Big)
 <section id="pink-noise">
 <h4>pink noise<a class="headerlink" href="#pink-noise" title="Link to this heading">#</a></h4>
 <div class="amsmath math notranslate nohighlight" id="equation-b77937f2-4780-495d-bd17-a08ea4569b12">
-<span class="eqno">(114)<a class="headerlink" href="#equation-b77937f2-4780-495d-bd17-a08ea4569b12" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(128)<a class="headerlink" href="#equation-b77937f2-4780-495d-bd17-a08ea4569b12" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{\sqrt{(f)}}
 \end{equation}\]</div>
 </section>
 <section id="brown-noise">
 <h4>brown noise<a class="headerlink" href="#brown-noise" title="Link to this heading">#</a></h4>
 <div class="amsmath math notranslate nohighlight" id="equation-f1e4c5fa-93c9-4618-b886-ae1cd73e549e">
-<span class="eqno">(115)<a class="headerlink" href="#equation-f1e4c5fa-93c9-4618-b886-ae1cd73e549e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(129)<a class="headerlink" href="#equation-f1e4c5fa-93c9-4618-b886-ae1cd73e549e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{f}
 \end{equation}\]</div>
 </section>
@@ -1073,7 +1073,7 @@ W(f)=\frac{1}{f}
 <h4>ship noise<a class="headerlink" href="#ship-noise" title="Link to this heading">#</a></h4>
 <p>Text book ship spectrum are described as constant below a certain frequency <span class="math notranslate nohighlight">\(fo\)</span> and then to fall off with frequency squared</p>
 <div class="amsmath math notranslate nohighlight" id="equation-ae86b9a9-c774-4146-82d2-15d0bedd4f86">
-<span class="eqno">(116)<a class="headerlink" href="#equation-ae86b9a9-c774-4146-82d2-15d0bedd4f86" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(130)<a class="headerlink" href="#equation-ae86b9a9-c774-4146-82d2-15d0bedd4f86" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{\text{max}(fo,f)}
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -1318,12 +1318,12 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <h2>Time delay direction finding<a class="headerlink" href="#time-delay-direction-finding" title="Link to this heading">#</a></h2>
 <p>Given</p>
 <div class="amsmath math notranslate nohighlight" id="equation-21dc6658-8d30-4a55-b764-62e16bd3ace9">
-<span class="eqno">(117)<a class="headerlink" href="#equation-21dc6658-8d30-4a55-b764-62e16bd3ace9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(131)<a class="headerlink" href="#equation-21dc6658-8d30-4a55-b764-62e16bd3ace9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>and assume that the travel path difference  <span class="math notranslate nohighlight">\((\delta R_{ij})\)</span> is based on time-delay estimation</p>
 <div class="amsmath math notranslate nohighlight" id="equation-3aa10d19-7a07-42dc-8a45-307f973f1817">
-<span class="eqno">(118)<a class="headerlink" href="#equation-3aa10d19-7a07-42dc-8a45-307f973f1817" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(132)<a class="headerlink" href="#equation-3aa10d19-7a07-42dc-8a45-307f973f1817" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta R_{ij} = c (\delta t_{ij})
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(c\)</span> being the sound speed and <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span> the measured time delay of the signal.</p>
@@ -1561,12 +1561,12 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <h2>Basic formulation of beamforming<a class="headerlink" href="#basic-formulation-of-beamforming" title="Link to this heading">#</a></h2>
 <p>Let the sound pressure measured an a single hydrophone be a signal <span class="math notranslate nohighlight">\(s\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-d94724b1-2a11-40a3-92ec-5ac70bd4f2a1">
-<span class="eqno">(119)<a class="headerlink" href="#equation-d94724b1-2a11-40a3-92ec-5ac70bd4f2a1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(133)<a class="headerlink" href="#equation-d94724b1-2a11-40a3-92ec-5ac70bd4f2a1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=s(t)
 \end{equation}\]</div>
 <p>then in an array of hydrophones the measurements become</p>
 <div class="amsmath math notranslate nohighlight" id="equation-884f66e9-a317-4a3d-88bd-2c6532d380d7">
-<span class="eqno">(120)<a class="headerlink" href="#equation-884f66e9-a317-4a3d-88bd-2c6532d380d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(134)<a class="headerlink" href="#equation-884f66e9-a317-4a3d-88bd-2c6532d380d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i(t)=s(t-\tau_i(\alpha,\beta))+n(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> is the delay of the signal at hydrophone <span class="math notranslate nohighlight">\(i\)</span> with respect to som reference hydrophone and <span class="math notranslate nohighlight">\(\alpha,\beta\)</span> are the angles of arrival</p>
@@ -1574,22 +1574,22 @@ x_i(t)=s(t-\tau_i(\alpha,\beta))+n(t)
 <h3>Line array<a class="headerlink" href="#line-array" title="Link to this heading">#</a></h3>
 <p>For a line array with equally spaced hydrophones the delay has a simple form</p>
 <div class="amsmath math notranslate nohighlight" id="equation-fd908698-dd3b-4a9f-80db-9cd0a44e0cfc">
-<span class="eqno">(121)<a class="headerlink" href="#equation-fd908698-dd3b-4a9f-80db-9cd0a44e0cfc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(135)<a class="headerlink" href="#equation-fd908698-dd3b-4a9f-80db-9cd0a44e0cfc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tau_i(t)=i\frac{d}{c}\cos{\gamma}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(d\)</span> id the hydrophone spacing, <span class="math notranslate nohighlight">\(c\)</span> is the sound speed at the hydrophone, and <span class="math notranslate nohighlight">\(\gamma\)</span> is the relative angle of arrival, that for a line array is composed of the azimuth <span class="math notranslate nohighlight">\(\alpha\)</span> and elevation angle <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <div class="amsmath math notranslate nohighlight" id="equation-15adac4a-f7ad-4154-97ad-1ca80554d5e0">
-<span class="eqno">(122)<a class="headerlink" href="#equation-15adac4a-f7ad-4154-97ad-1ca80554d5e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(136)<a class="headerlink" href="#equation-15adac4a-f7ad-4154-97ad-1ca80554d5e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos{\gamma}=\cos{\alpha}\cos{\beta}
 \end{equation}\]</div>
 <p>The beamforming algorithm simply speaking tries to undo the signal delays <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> by compensating with negative delays</p>
 <div class="amsmath math notranslate nohighlight" id="equation-b2111cbe-7ae6-4d40-8b2d-b7ae28bf8794">
-<span class="eqno">(123)<a class="headerlink" href="#equation-b2111cbe-7ae6-4d40-8b2d-b7ae28bf8794" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(137)<a class="headerlink" href="#equation-b2111cbe-7ae6-4d40-8b2d-b7ae28bf8794" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t)=\frac{1}{N}\sum_i (x(t+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>In cases, where <span class="math notranslate nohighlight">\(\delta_i(\gamma)=\tau_i(\alpha,\beta)\)</span> we get</p>
 <div class="amsmath math notranslate nohighlight" id="equation-efb8a635-9e12-41df-bdf3-c8a81114962f">
-<span class="eqno">(124)<a class="headerlink" href="#equation-efb8a635-9e12-41df-bdf3-c8a81114962f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(138)<a class="headerlink" href="#equation-efb8a635-9e12-41df-bdf3-c8a81114962f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>indicating that the signal <span class="math notranslate nohighlight">\(s(t)\)</span> is completely reconstructed and that noise, that is assumed to be uncorrelated is attenuated.</p>
@@ -1600,12 +1600,12 @@ y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 <p>This operation is opposite to the simulation of measurements using azimuth and elevation angles.</p>
 <p>In particular, given a source direction <span class="math notranslate nohighlight">\(s\)</span> that is obtaind from azimuth and elevation angles</p>
 <div class="amsmath math notranslate nohighlight" id="equation-2074b003-a593-467a-9f88-a218a6a6b8f8">
-<span class="eqno">(125)<a class="headerlink" href="#equation-2074b003-a593-467a-9f88-a218a6a6b8f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(139)<a class="headerlink" href="#equation-2074b003-a593-467a-9f88-a218a6a6b8f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=+(\delta R_{ij})
 \end{equation}\]</div>
 <p>then the number of fractional samples <span class="math notranslate nohighlight">\(\delta N_{ij}\)</span> needed to align the arriving time series is estimated by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-7feaa28b-211b-4a04-9a3f-a4f8ef8f35d6">
-<span class="eqno">(126)<a class="headerlink" href="#equation-7feaa28b-211b-4a04-9a3f-a4f8ef8f35d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(140)<a class="headerlink" href="#equation-7feaa28b-211b-4a04-9a3f-a4f8ef8f35d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta N_{ij}=\frac{fs}{c}(h_i-h_j)^T\hat{s}
 \end{equation}\]</div>
 </section>
