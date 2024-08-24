@@ -406,6 +406,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-finding-using-phase-differences">Direction finding using phase differences</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-finding-using-hydrophone-spectrogram-based-cross-correlation">Direction finding using hydrophone spectrogram based cross correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-finding-using-time-delay-of-arrival-tdoa-of-matched-filtered-data">Direction finding using time-delay-of-arrival (tdoa) of matched filtered data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beamformer">Beamformer</a></li>
 </ul>
             </nav>
         </div>
@@ -491,10 +492,21 @@ FUNCTIONS
     arrayTransformer(ho, hsel)
 
     array_delay(S, ho, fs=None)
+        estimate delays using direction vector
+        S direction vector
+        ho hydrophone locations
+        fs sampling frequency
+
+    array_timeseries(yy, DS, noise)
+        delay signal according to array geometry
+        (use fractional delay with sinc function)
+        yy      : time series
+        DS      : delay vector [samples]
+        noise   : noise variance
 
     beamForm(yy, DS)
 
-    brownNoise(f)
+    brownNoise(f, fo)
 
     cosd(x)
 
@@ -574,34 +586,61 @@ FUNCTIONS
             If `zi` is None, this is not returned, otherwise, `zf` holds the
             final filter delay values.
 
-    genNoise(N, fo, fs, method)
+    genNoise(N, fs, fo=0, method=None)
+        generate colored noise
+        N       : number of samples
+        fs      : sampling frequency
+        fo      : lower cut-off frequency
+        method  : noise color method
+                    pinkNoise(f)
+                    brownNoise(f)
+                    shipNoise(f,fo)
 
     getOctahedron(ro)
 
     getTetrahedron(ro)
 
     hilbert_filt(ss, nh)
+        filter timeseries using hilbert response (complex valued )
+        ss is data to be filtered
+        nh is number if (positive) coefficients of hilbert response
 
     lfm(f1, f2, t2, fs)
         # %%
 
     matched_filt(xx, ss)
+        matched filter
+        xx is signal for replica
+        ss is data to be filtered
 
-    pinkNoise(f)
+    pinkNoise(f, fo)
 
     quadInt(uu, imx, nd1)
-        #------------------------------------------------------------------
+        three point quardatic interpolation
+        to find location and value of interpolated maxima
+        uu  : time series
+        imx : index of maxima
+        nd1 : reference sample (to be subtracted from nd1)
 
     quadInt1(C, infft, dn)
 
     shipNoise(f, fo)
 
     signalPath(dx, dy, az, ho)
+        estimate delays using distance, depth geometry
+        dx  : horizontal distance
+        dy  : vertical separation
+        az  : azimuth angle
+        ho  : hydrophone locations
 
     simMultiPath(hd, sd, dx, bd, az, ho, type)
-
-    sim_array(yy, DS, noise)
-        # %%
+        Simulate multi-path
+        hd  : hydrophone depth
+        sd  : source depth
+        dx  : horizontal distance (hydrophone-source)
+        az  : azimuth angle
+        ho  : hydrophone locations
+        type: type of arrival {&#39;D&#39;,&#39;S&#39;,&#39;B&#39;}
 
     sind(x)
 
@@ -610,6 +649,11 @@ FUNCTIONS
     stack(x)
 
     tonal(fs, ax, fx)
+        generate tonal from frequency
+        e.g. generate 5 s LFM from 1 to 10 kHz and 96 kHz sampling
+          xx=tonal(96000,1,lfm(1000,10000,5,96000))
+        e.g. generate 2 s sinusoidal fm: 3 oscillations/s from 1 to 3 kHz and 96 kHz sampling
+          xx=tonal(96000,1,sinfm(2000,1000,3,2,96000))
 
     xcorr_fft(xx, hsel, method=None)
 
@@ -691,10 +735,13 @@ None
 <span class="n">DS</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Tx</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="mi">1000</span>                      <span class="c1"># DS samples from acoustic center</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">DS</span><span class="p">)</span>
 <span class="c1">#</span>
+
 <span class="n">noise</span><span class="o">=</span><span class="mf">0.01</span>
-<span class="n">xx</span><span class="o">=</span><span class="n">bat</span><span class="o">.</span><span class="n">sim_array</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">noise</span><span class="p">)</span>
+<span class="n">xx</span><span class="o">=</span><span class="n">bat</span><span class="o">.</span><span class="n">array_timeseries</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">noise</span><span class="p">)</span>
 <span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.4</span><span class="o">*</span><span class="n">xx</span><span class="o">/</span><span class="n">xx</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">95000</span><span class="p">,</span><span class="mi">105000</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -800,8 +847,8 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6776a75b7d79ea622ce806e9d38767daf4197f0afdbeeae10fa001f43ea66235.png" src="_images/6776a75b7d79ea622ce806e9d38767daf4197f0afdbeeae10fa001f43ea66235.png" />
-<img alt="_images/41422a14fa347e15becb89c81a41be998bc464af48c45a51b856d629763cc952.png" src="_images/41422a14fa347e15becb89c81a41be998bc464af48c45a51b856d629763cc952.png" />
+<img alt="_images/2e588b1afa86c94d6465d2f2eb7b8927d00b700b025b032c6b9e8f90be8690c3.png" src="_images/2e588b1afa86c94d6465d2f2eb7b8927d00b700b025b032c6b9e8f90be8690c3.png" />
+<img alt="_images/6b3200b754d2f5eaaddc4d8a506bd388c4c4382ccad32b4c4464591991ba9b88.png" src="_images/6b3200b754d2f5eaaddc4d8a506bd388c4c4382ccad32b4c4464591991ba9b88.png" />
 </div>
 </div>
 <p>The figure shows the estimated azimuth and elevation angles as function of frequency versus time. The two horizontal dashed lines indicate the two spectral limits where phase-based operations are unique. The lower line considers all hydrophone pairs (including the 3 longer cross-diagonal ones) and the upper line corresonds to the 12 ‘normal’ hydrophone pairs.</p>
@@ -839,12 +886,8 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/69dccfed6595480b6fff5c570aaeed88c0039a09033e7625c9f937d6fe14ebd2.png" src="_images/69dccfed6595480b6fff5c570aaeed88c0039a09033e7625c9f937d6fe14ebd2.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\zimme\miniconda3\envs\cVAS\Lib\site-packages\IPython\core\pylabtools.py:170: UserWarning: Creating legend with loc=&quot;best&quot; can be slow with large amounts of data.
-  fig.canvas.print_figure(bytes_io, **kw)
-</pre></div>
-</div>
-<img alt="_images/74264d020f222a53d177a486ed36e3ff1e4fad93fdb964ff85d52cf964992b50.png" src="_images/74264d020f222a53d177a486ed36e3ff1e4fad93fdb964ff85d52cf964992b50.png" />
+<img alt="_images/8b59a00a9ed913dc1d6291c3d4398278275bcb54edbe69a9b0b6097c01eb7244.png" src="_images/8b59a00a9ed913dc1d6291c3d4398278275bcb54edbe69a9b0b6097c01eb7244.png" />
+<img alt="_images/af15c50be5c13f189eafbe192b3d64bbc74a89986861a932f02101ff0d141d5b.png" src="_images/af15c50be5c13f189eafbe192b3d64bbc74a89986861a932f02101ff0d141d5b.png" />
 </div>
 </div>
 </section>
@@ -872,8 +915,8 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/60df6c3914122f11ff2980e7abdd9f07a1ca3c19be6dd46dfe4ac6db340d2524.png" src="_images/60df6c3914122f11ff2980e7abdd9f07a1ca3c19be6dd46dfe4ac6db340d2524.png" />
-<img alt="_images/6af41aa455a027429226bcd5d98581e9628439407eead732da623729bf413332.png" src="_images/6af41aa455a027429226bcd5d98581e9628439407eead732da623729bf413332.png" />
+<img alt="_images/8cb8162836eb8cbcc389d32da06eb9183593e8aa5f7f17e5e36b972447aa8a32.png" src="_images/8cb8162836eb8cbcc389d32da06eb9183593e8aa5f7f17e5e36b972447aa8a32.png" />
+<img alt="_images/e0ffd0c6802b538bac427e39424ab5b161fff6362215b016a767edf2b3533cb9.png" src="_images/e0ffd0c6802b538bac427e39424ab5b161fff6362215b016a767edf2b3533cb9.png" />
 </div>
 </div>
 </section>
@@ -906,14 +949,18 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>135.71845148771868 -71.37048304171563
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>135.2581791112572 -71.19157128013923
 [135.         -71.56505118]
 </pre></div>
 </div>
-<img alt="_images/174ca41f58754233b7a16c636114d00901f91515bce879f2d91d612e055b18ed.png" src="_images/174ca41f58754233b7a16c636114d00901f91515bce879f2d91d612e055b18ed.png" />
+<img alt="_images/91fac28aaf9f0eac5b0c8a35ea96167c1ca9dc9322a81ae536304128121c15fa.png" src="_images/91fac28aaf9f0eac5b0c8a35ea96167c1ca9dc9322a81ae536304128121c15fa.png" />
 </div>
 </div>
 <p>The figure shows the output of the matched filter for all hydrophones and the time delays are clearly visible. For each of the transient the time of the maximum was obtained by quadratic interpolation of 3 relevant samples. The estimated sound direction (azimuth and elevation)  are very close to the simulated one.</p>
+</section>
+<section id="beamformer">
+<h2>Beamformer<a class="headerlink" href="#beamformer" title="Link to this heading">#</a></h2>
+<p>Knowing, or assuming the arrival angles of the sound, a beamformer takes the delayed time series of the array, correct for the delays and generates an average time series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aze</span><span class="o">=</span><span class="n">azx</span>
@@ -942,12 +989,13 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>135.71845148771868 -71.37048304171563
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>135.2581791112572 -71.19157128013923
 </pre></div>
 </div>
-<img alt="_images/6da5e821bbd7f4957afcac0b73449aafb705ecd8d563f78c1c59638f0a8367e4.png" src="_images/6da5e821bbd7f4957afcac0b73449aafb705ecd8d563f78c1c59638f0a8367e4.png" />
+<img alt="_images/2e88d0a0cafa9ee4e93ddf2adb0644ba1853e333635579036f51c9caf82ee07a.png" src="_images/2e88d0a0cafa9ee4e93ddf2adb0644ba1853e333635579036f51c9caf82ee07a.png" />
 </div>
 </div>
+<p>In the following a short snippet is extracted from the measurements and the arrival angles are used to line-up (beamform) the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">io</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">3.5</span><span class="o">*</span><span class="n">fs</span><span class="p">)</span><span class="o">-</span><span class="mi">128</span>
@@ -970,8 +1018,8 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6c99488f2a999ddbd24dbd64f85faa0a4891929c3c9e29eb3b918c7dd372ef07.png" src="_images/6c99488f2a999ddbd24dbd64f85faa0a4891929c3c9e29eb3b918c7dd372ef07.png" />
-<img alt="_images/2414017be155a77427b26494dfa73dbe2b595b000f5a77557dfe386b9f5bf436.png" src="_images/2414017be155a77427b26494dfa73dbe2b595b000f5a77557dfe386b9f5bf436.png" />
+<img alt="_images/49bef598e7064215adb6b465d90dbd5796b0a63aff43e7d0f6c36ba7c3d83e7f.png" src="_images/49bef598e7064215adb6b465d90dbd5796b0a63aff43e7d0f6c36ba7c3d83e7f.png" />
+<img alt="_images/3ae320bb6c2699122c3eeb5c09b0cf496161405a8ac51ca6f7d59d76364b23c5.png" src="_images/3ae320bb6c2699122c3eeb5c09b0cf496161405a8ac51ca6f7d59d76364b23c5.png" />
 </div>
 </div>
 </section>
@@ -1047,6 +1095,7 @@ None
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-finding-using-phase-differences">Direction finding using phase differences</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-finding-using-hydrophone-spectrogram-based-cross-correlation">Direction finding using hydrophone spectrogram based cross correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-finding-using-time-delay-of-arrival-tdoa-of-matched-filtered-data">Direction finding using time-delay-of-arrival (tdoa) of matched filtered data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beamformer">Beamformer</a></li>
 </ul>
   </nav></div>
 

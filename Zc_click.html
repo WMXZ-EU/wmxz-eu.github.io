@@ -418,13 +418,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="cuvier-s-beaked-whale-click">
 <h1>Cuvier’s beaked whale click<a class="headerlink" href="#cuvier-s-beaked-whale-click" title="Link to this heading">#</a></h1>
 <p>For applying a matched filter to Cuvier’s beaked whale (Zc) clicks, a synthetic beaked whale click could be constructed according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9fc9a845-67b4-4e7e-b766-162c41e84f8d">
-<span class="eqno">(4)<a class="headerlink" href="#equation-9fc9a845-67b4-4e7e-b766-162c41e84f8d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cbbfbc19-efdc-4ff3-8910-3c545346ed5e">
+<span class="eqno">(4)<a class="headerlink" href="#equation-cbbfbc19-efdc-4ff3-8910-3c545346ed5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     s(t)=A(t)\exp \{-2\pi i (f_0+f_m t)t\}
 \end{equation}\]</div>
 <p>where A(t) the signal amplitude is modeled according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d905f6f-767a-4368-82ba-b2ee878e880e">
-<span class="eqno">(5)<a class="headerlink" href="#equation-8d905f6f-767a-4368-82ba-b2ee878e880e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6317e477-5d6e-4943-a07b-0b0d80dcf160">
+<span class="eqno">(5)<a class="headerlink" href="#equation-6317e477-5d6e-4943-a07b-0b0d80dcf160" title="Permalink to this equation">#</a></span>\[\begin{equation}
   A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
 \end{equation}\]</div>
 <p>and where f0 = 30 kHz, fm = 60 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span> and t denotes the time vector.</p>
@@ -455,7 +455,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/31c4701a7129958f153b46d180628aa1395214fd6eda91f9c459167d3d49f9ea.png" src="_images/31c4701a7129958f153b46d180628aa1395214fd6eda91f9c459167d3d49f9ea.png" />
+<img alt="_images/15b1dbe722ab9735859c83285f92e55813d870493286961391ae9a83e716abc1.png" src="_images/15b1dbe722ab9735859c83285f92e55813d870493286961391ae9a83e716abc1.png" />
 </div>
 </div>
 <section id="reduced-sampling-rate">
@@ -489,8 +489,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1a4345f6cf5108c6e6efd3a7cee857376f678f402c8d19b618170fcf59bf1471.png" src="_images/1a4345f6cf5108c6e6efd3a7cee857376f678f402c8d19b618170fcf59bf1471.png" />
-<img alt="_images/ddef21a675c9a7b76f9e599dfff03d27ec74f653af412c01bbf08df155128813.png" src="_images/ddef21a675c9a7b76f9e599dfff03d27ec74f653af412c01bbf08df155128813.png" />
+<img alt="_images/746872a205d9ee989c679a88099e0cea0162bb300c217f0442ec770edfbeb8dc.png" src="_images/746872a205d9ee989c679a88099e0cea0162bb300c217f0442ec770edfbeb8dc.png" />
+<img alt="_images/4f0ec650307fa612fbfa5b6deee2f8281877f5ed4f0e2d558f75ced58441e47d.png" src="_images/4f0ec650307fa612fbfa5b6deee2f8281877f5ed4f0e2d558f75ced58441e47d.png" />
 </div>
 </div>
 </section>
@@ -512,37 +512,38 @@ document.write(`
 <span class="n">ss</span><span class="o">=</span><span class="n">zcSig</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="n">fm</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span>
 
 <span class="c1">#see also http://www.labbookpages.co.uk/audio/beamforming/fractionalDelay.html#filter</span>
-<span class="k">def</span> <span class="nf">delay</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">tau</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">delay</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">tau</span><span class="p">):</span>
     <span class="c1">#tau = -4.5 # Fractional delay [samples].</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="mi">21</span>     <span class="c1"># Filter length.</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">N</span><span class="p">)</span>
     
     <span class="c1"># Compute sinc filter.</span>
-    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span>
     
     <span class="c1"># Multiply sinc filter by window</span>
-    <span class="n">h</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">blackman</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">blackman</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
     
     <span class="c1"># Normalize to get unity gain.</span>
     <span class="n">h</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
 
-    <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xx</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,)))</span>
+    <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xx</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,)))</span>
 
-    <span class="n">yy</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">uu</span><span class="p">);</span> <span class="n">yy</span><span class="o">=</span><span class="n">yy</span><span class="p">[</span><span class="mi">10</span><span class="p">:,]</span>
+    <span class="n">yy</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">uu</span><span class="p">);</span> <span class="n">yy</span><span class="o">=</span><span class="n">yy</span><span class="p">[</span><span class="n">N</span><span class="p">:,]</span>
     <span class="k">return</span> <span class="n">yy</span>
 
 <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ss</span><span class="p">)))</span>
 <span class="n">tu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">uu</span><span class="p">))</span><span class="o">/</span><span class="n">fs</span>
 
+<span class="n">N</span><span class="o">=</span><span class="mi">10</span>
 <span class="n">dt</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">x0</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x0</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tu</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
 
-<span class="n">x1</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="o">+</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">x1</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="o">+</span><span class="n">dt</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tu</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
 
-<span class="n">x2</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="o">-</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">x2</span><span class="o">=</span><span class="n">delay</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="o">-</span><span class="n">dt</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tu</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.35</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -551,7 +552,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 0.35)
 </pre></div>
 </div>
-<img alt="_images/ddf78b2cf8d851d5d102ef1ed8deb8eb2815c75c1253b323462de6c2ea4b8c17.png" src="_images/ddf78b2cf8d851d5d102ef1ed8deb8eb2815c75c1253b323462de6c2ea4b8c17.png" />
+<img alt="_images/956ba9feaad205eb8517dd7797cd4b6b2a2acd7108ab91e8c94d737d34d60127.png" src="_images/956ba9feaad205eb8517dd7797cd4b6b2a2acd7108ab91e8c94d737d34d60127.png" />
 </div>
 </div>
 </section>
