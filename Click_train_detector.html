@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Click detection" href="Detections.html" />
-    <link rel="prev" title="cVAS stft direction finding" href="cVAS_stft_direction.html" />
+    <link rel="prev" title="Direction finding with compact Volumetric Acoustic Sensor (cVAS)" href="cVAS_direction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,9 +192,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioacoustic_tools.html">bioacoustic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="current nav bd-sidenav">
@@ -409,45 +408,45 @@ document.write(`
 <h1>Click train detector<a class="headerlink" href="#click-train-detector" title="Link to this heading">#</a></h1>
 <p>In the following we try to develop a click train detector by means of a detection to click association algorithm</p>
 <p>Consider Inter-click-interval (ICI)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37c0c6f6-8f35-443a-adfd-c2318afead07">
-<span class="eqno">(186)<a class="headerlink" href="#equation-37c0c6f6-8f35-443a-adfd-c2318afead07" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7191c076-1b8a-48f4-b9bc-b5c293a2a474">
+<span class="eqno">(186)<a class="headerlink" href="#equation-7191c076-1b8a-48f4-b9bc-b5c293a2a474" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n = t_n - t_{n-1}
 \end{equation}\]</div>
 <p>power variation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9ae0ef36-a72a-4b70-af34-7baafbd3b09d">
-<span class="eqno">(187)<a class="headerlink" href="#equation-9ae0ef36-a72a-4b70-af34-7baafbd3b09d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-87da5a6c-ca70-4af6-9820-f11abf7f77db">
+<span class="eqno">(187)<a class="headerlink" href="#equation-87da5a6c-ca70-4af6-9820-f11abf7f77db" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta P_{n}=P_{n}-P_{n-1}
 \end{equation}\]</div>
 <p>and boundary reflection (multipath)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f361219c-9b4b-42aa-b489-8bdf486f41e4">
-<span class="eqno">(188)<a class="headerlink" href="#equation-f361219c-9b4b-42aa-b489-8bdf486f41e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9b821518-07f3-4319-89f0-8db4b651e329">
+<span class="eqno">(188)<a class="headerlink" href="#equation-9b821518-07f3-4319-89f0-8db4b651e329" title="Permalink to this equation">#</a></span>\[\begin{equation}
 δτ_n=t_{r,n}-t_n
 \end{equation}\]</div>
 <p>While for each click train, there is only one <span class="math notranslate nohighlight">\((ICI)\)</span> and <span class="math notranslate nohighlight">\(P\)</span>, there can be multiple boundary reflections</p>
 <p>Assume variations in these quantities are stochastic processes that vary only randomly</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7cf2f497-9764-4655-8cfc-4213ebb97674">
-<span class="eqno">(189)<a class="headerlink" href="#equation-7cf2f497-9764-4655-8cfc-4213ebb97674" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-865fb065-7bd5-4f7c-8ad1-e33f0fa7192b">
+<span class="eqno">(189)<a class="headerlink" href="#equation-865fb065-7bd5-4f7c-8ad1-e33f0fa7192b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta (ICI)_n  = \Delta (ICI)_{n-1} + N(0,\sigma_C) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-1fd05446-f2c4-4ada-99ee-0b003a8f5e59">
-<span class="eqno">(190)<a class="headerlink" href="#equation-1fd05446-f2c4-4ada-99ee-0b003a8f5e59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53fcea98-7cd1-4f2b-ba47-772ad157c477">
+<span class="eqno">(190)<a class="headerlink" href="#equation-53fcea98-7cd1-4f2b-ba47-772ad157c477" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta (\Delta P_n)  = \Delta (\Delta P_{n-1}) + N(0,\sigma_P) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-191ae70a-3764-46f6-85f7-0b2170b25dba">
-<span class="eqno">(191)<a class="headerlink" href="#equation-191ae70a-3764-46f6-85f7-0b2170b25dba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e3a0656-eefb-4769-aa94-41faf068ee0c">
+<span class="eqno">(191)<a class="headerlink" href="#equation-9e3a0656-eefb-4769-aa94-41faf068ee0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta δτ_n  = \Delta \delta\tau_{n-1} + N(0,\sigma_\tau) 
 \end{equation}\]</div>
 <p>That is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02fc0942-da53-47a5-9756-8b0c8852a2f8">
-<span class="eqno">(192)<a class="headerlink" href="#equation-02fc0942-da53-47a5-9756-8b0c8852a2f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f3f97f5b-7db8-4fe9-9863-aec0fe6e4cfa">
+<span class="eqno">(192)<a class="headerlink" href="#equation-f3f97f5b-7db8-4fe9-9863-aec0fe6e4cfa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (ICI)_n  = 2 (ICI)_{n-1} - (ICI)_{n-2} + N(0,\sigma_C) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-5cdbe821-5b18-4a12-ac02-151918b31b14">
-<span class="eqno">(193)<a class="headerlink" href="#equation-5cdbe821-5b18-4a12-ac02-151918b31b14" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e995851a-efad-4386-8141-96141e39c2ef">
+<span class="eqno">(193)<a class="headerlink" href="#equation-e995851a-efad-4386-8141-96141e39c2ef" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta P_n  = 2\Delta P_{n-1} - \Delta P_{n-2} + N(0,\sigma_P) 
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-33a76c40-b2e2-4d04-89cf-015a851f4922">
-<span class="eqno">(194)<a class="headerlink" href="#equation-33a76c40-b2e2-4d04-89cf-015a851f4922" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ded7e943-f9f2-41a3-8b52-25968412799e">
+<span class="eqno">(194)<a class="headerlink" href="#equation-ded7e943-f9f2-41a3-8b52-25968412799e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 δτ_n  = 2\delta\tau_{n-1} -\delta\tau_{n-2}+ N(0,\sigma_\tau) 
 \end{equation}\]</div>
 </section>
@@ -483,12 +482,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="cVAS_stft_direction.html"
+       href="cVAS_direction.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">cVAS stft direction finding</p>
+        <p class="prev-next-title">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</p>
       </div>
     </a>
     <a class="right-next"

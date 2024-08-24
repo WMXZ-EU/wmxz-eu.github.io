@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -192,9 +192,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioacoustic_tools.html">bioacoustic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="nav bd-sidenav">
@@ -476,7 +475,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/21a45d6287e1f83fdb2e24c1272e0469991b2d25b6e5eb35675a60d8f42d2a1d.png" src="_images/21a45d6287e1f83fdb2e24c1272e0469991b2d25b6e5eb35675a60d8f42d2a1d.png" />
+<img alt="_images/830ef34f1141b0081643b8db0002cb8d32e6bccdf6595c71e18bb50e0c293c0d.png" src="_images/830ef34f1141b0081643b8db0002cb8d32e6bccdf6595c71e18bb50e0c293c0d.png" />
 </div>
 </div>
 </section>
@@ -493,7 +492,7 @@ For this one first considers the signal power (amplitude squared)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7974ba51387f9c87c0c4f0993536bb7537fbffdde115ca519746e60ceea89523.png" src="_images/7974ba51387f9c87c0c4f0993536bb7537fbffdde115ca519746e60ceea89523.png" />
+<img alt="_images/841a9c2a399028964c65402daeef31cb1fc4e22b75b7e728bf0232ea4dd27961.png" src="_images/841a9c2a399028964c65402daeef31cb1fc4e22b75b7e728bf0232ea4dd27961.png" />
 </div>
 </div>
 <p>From the figure, it seams obvious that there are multiple local maxima surrounding the global maximum of a signal (here around t=2 and t=6). These local maxima are then also seperated ba rather small values. A simple threshold detector would be very fragmented, requiring additional algrorithms to clean-up the detections.</p>
@@ -510,7 +509,7 @@ For this one first considers the signal power (amplitude squared)</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/181bd03fa545fea7658826f1047e079809e0d417f528b7d9c56ab98637d2c997.png" src="_images/181bd03fa545fea7658826f1047e079809e0d417f528b7d9c56ab98637d2c997.png" />
+<img alt="_images/0cec3170d7794eba057eba5fc1d8972d56f7f9c21c4d40c603073813c99143e4.png" src="_images/0cec3170d7794eba057eba5fc1d8972d56f7f9c21c4d40c603073813c99143e4.png" />
 </div>
 </div>
 <section id="leaky-peak-detector">
@@ -547,7 +546,7 @@ where <span class="math notranslate nohighlight">\(\alpha\)</span> is a factor <
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/96464a6151df96a2403418badaba3961c0b48bd9832a24aff28efffefc2f7840.png" src="_images/96464a6151df96a2403418badaba3961c0b48bd9832a24aff28efffefc2f7840.png" />
+<img alt="_images/51e1f48a6c8b74edeed7b895fa13e4a9ba9ff1733bc93d755d382b2032f6120e.png" src="_images/51e1f48a6c8b74edeed7b895fa13e4a9ba9ff1733bc93d755d382b2032f6120e.png" />
 </div>
 </div>
 </section>
@@ -636,7 +635,7 @@ where <span class="math notranslate nohighlight">\(\alpha\)</span> is a factor <
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6f65aa6e0fb2c196e65363e9f981482b9e3045d7e2b60ba79d9c75462f9df7f4.png" src="_images/6f65aa6e0fb2c196e65363e9f981482b9e3045d7e2b60ba79d9c75462f9df7f4.png" />
+<img alt="_images/78dce3ec8722d301db9698b6f29a16e11bbdaa0f5df35dc45afa2b441c3dae24.png" src="_images/78dce3ec8722d301db9698b6f29a16e11bbdaa0f5df35dc45afa2b441c3dae24.png" />
 </div>
 </div>
 <p>The overall detection performance is determined by five parameters</p>

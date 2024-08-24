@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -192,9 +192,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioacoustic_tools.html">bioacoustic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="nav bd-sidenav">
@@ -435,6 +434,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-array">Line array</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delay-estimation-from-angles">delay estimation from angles</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-beam-steering">General beam steering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-fft-based-direction-finding">General fft-based direction finding</a></li>
 </ul>
 </li>
 </ul>
@@ -454,73 +454,73 @@ document.write(`
 <section id="sound-source-distance">
 <h2>Sound source distance<a class="headerlink" href="#sound-source-distance" title="Link to this heading">#</a></h2>
 <p>Let the location of hydrophone <span class="math notranslate nohighlight">\(i\)</span> be <span class="math notranslate nohighlight">\(h_i = (x_i,y_i.z_i)\)</span> and the source location be <span class="math notranslate nohighlight">\(s=(s_x,s_y,s_z)\)</span> then the distance of the source from the hydrophone is related by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f95b84cc-76b4-4ebe-a87f-5242d4c44726">
-<span class="eqno">(101)<a class="headerlink" href="#equation-f95b84cc-76b4-4ebe-a87f-5242d4c44726" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
+<div class="amsmath math notranslate nohighlight" id="equation-0dfe4591-0418-4fee-9f20-b0e11703c84f">
+<span class="eqno">(101)<a class="headerlink" href="#equation-0dfe4591-0418-4fee-9f20-b0e11703c84f" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
 R_i^2=(s_x-x_i)^2+(s_y-y_i)^2+(s_z-z_i)^2
 \end{equation}\]</div>
 <p>which becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26d80a65-c920-4cf5-a45e-9eafac7c539f">
-<span class="eqno">(102)<a class="headerlink" href="#equation-26d80a65-c920-4cf5-a45e-9eafac7c539f" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
+<div class="amsmath math notranslate nohighlight" id="equation-f55c8ccb-3aa3-42cb-951d-77efb30f5932">
+<span class="eqno">(102)<a class="headerlink" href="#equation-f55c8ccb-3aa3-42cb-951d-77efb30f5932" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
 R_i^2=(s_x^2+s_y^2+s_z^2)+(x_i^2+y_i^2+z_i^2) -2s_x x_i -2s_y y_i -2s_z z_i
 \end{equation}\]</div>
 <p>or in short</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62092a59-6367-4354-bd98-b3134e948495">
-<span class="eqno">(103)<a class="headerlink" href="#equation-62092a59-6367-4354-bd98-b3134e948495" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-46448ab3-64ed-46e5-be71-e7478f155e47">
+<span class="eqno">(103)<a class="headerlink" href="#equation-46448ab3-64ed-46e5-be71-e7478f155e47" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_i^2=|s|^2+|h_i|^2-2h_i^Ts
 \end{equation}\]</div>
 <p>Having more then 1 hydrophone, then for any pair of hydrophones <span class="math notranslate nohighlight">\((h_i, h_j)\)</span> one can form the difference obtaining</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f62e337-711c-4004-b7ff-7eaabee32dae">
-<span class="eqno">(104)<a class="headerlink" href="#equation-4f62e337-711c-4004-b7ff-7eaabee32dae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7955f35e-6195-411e-be89-a52bcd6ffc02">
+<span class="eqno">(104)<a class="headerlink" href="#equation-7955f35e-6195-411e-be89-a52bcd6ffc02" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_i^2-R_j^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>Noting that <span class="math notranslate nohighlight">\(R_i^2-R_j^2=(R_j+(\delta R_{ij}))^2-R_j^2 = 2(\delta R_{ij})R_j+(\delta R_{ij})^2 \)</span></p>
 <p>one gets the linear equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e9fcb5c-9970-4078-a42d-8295c2418131">
-<span class="eqno">(105)<a class="headerlink" href="#equation-3e9fcb5c-9970-4078-a42d-8295c2418131" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-159f152b-04fc-489c-ad75-c10b4f9b6781">
+<span class="eqno">(105)<a class="headerlink" href="#equation-159f152b-04fc-489c-ad75-c10b4f9b6781" title="Permalink to this equation">#</a></span>\[\begin{equation}
 2(\delta R_{ij})R_j+(\delta R_{ij})^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>or, by putting the unknown source location to the left side and dividing by 2</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c660dc8a-cb1a-422e-95c4-6fcb50baf5ba">
-<span class="eqno">(106)<a class="headerlink" href="#equation-c660dc8a-cb1a-422e-95c4-6fcb50baf5ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1545e5d7-846c-4eeb-86a4-cb5c9082ee7c">
+<span class="eqno">(106)<a class="headerlink" href="#equation-1545e5d7-846c-4eeb-86a4-cb5c9082ee7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2}-(\delta R_{ij})R_j
 \end{equation}\]</div>
 </section>
 <section id="direction-finding">
 <h2>Direction finding<a class="headerlink" href="#direction-finding" title="Link to this heading">#</a></h2>
 <p>Given</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72dcbba5-61e1-4a2e-9936-d85b424d0efe">
-<span class="eqno">(107)<a class="headerlink" href="#equation-72dcbba5-61e1-4a2e-9936-d85b424d0efe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6315bc28-6a0d-4912-975f-d49a33f41afc">
+<span class="eqno">(107)<a class="headerlink" href="#equation-6315bc28-6a0d-4912-975f-d49a33f41afc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2}-(\delta R_{ij})R_j
 \end{equation}\]</div>
 <p>Assume that all phones are closely spaced compared to distance to source</p>
 <p>and noting that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9078c5af-ce08-4867-954c-5c5bd98c844a">
-<span class="eqno">(108)<a class="headerlink" href="#equation-9078c5af-ce08-4867-954c-5c5bd98c844a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-72393c18-82fd-4f0b-8841-514e6c4d2fcb">
+<span class="eqno">(108)<a class="headerlink" href="#equation-72393c18-82fd-4f0b-8841-514e6c4d2fcb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=|h_i-h_j||s|\cos{(\beta)}
 \end{equation}\]</div>
 <p>or equivalently with <span class="math notranslate nohighlight">\(s=|s|\hat{s}\)</span> and dividing by <span class="math notranslate nohighlight">\(|s|\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-444a71b3-f59c-4c00-8f66-786ee516166e">
-<span class="eqno">(109)<a class="headerlink" href="#equation-444a71b3-f59c-4c00-8f66-786ee516166e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47fdda46-b216-4954-a71f-9ca162486654">
+<span class="eqno">(109)<a class="headerlink" href="#equation-47fdda46-b216-4954-a71f-9ca162486654" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=|h_i-h_j|\cos{(\beta)}
 \end{equation}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c172b6e4-a20a-4c2a-9004-e4f5eb7b08ac">
-<span class="eqno">(110)<a class="headerlink" href="#equation-c172b6e4-a20a-4c2a-9004-e4f5eb7b08ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-46758ac9-6f44-4e56-b8a6-016d50cf9946">
+<span class="eqno">(110)<a class="headerlink" href="#equation-46758ac9-6f44-4e56-b8a6-016d50cf9946" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |h_i-h_j|\cos{(\beta)}=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2|s|}-(\delta R_{ij})\frac{R_j}{|s|}
 \end{equation}\]</div>
 <p>Let</p>
-<div class="amsmath math notranslate nohighlight" id="equation-135391ce-cdbe-4e97-af8a-f0fc508cbbc3">
-<span class="eqno">(111)<a class="headerlink" href="#equation-135391ce-cdbe-4e97-af8a-f0fc508cbbc3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0d61a955-4502-42e2-93c5-715fca11586e">
+<span class="eqno">(111)<a class="headerlink" href="#equation-0d61a955-4502-42e2-93c5-715fca11586e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_j=|s-h_j|
 \end{equation}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2dfec2f4-ee31-4fe3-9755-476ff2d5a63f">
-<span class="eqno">(112)<a class="headerlink" href="#equation-2dfec2f4-ee31-4fe3-9755-476ff2d5a63f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ee8eb21-9f64-48b8-9858-443ad7f623b8">
+<span class="eqno">(112)<a class="headerlink" href="#equation-2ee8eb21-9f64-48b8-9858-443ad7f623b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |h_i-h_j|\cos{(\beta)}=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2|s|}-(\delta R_{ij})\frac{|s-h_j|}{|s|}
 \end{equation}\]</div>
 <p>which for <span class="math notranslate nohighlight">\(|s| \to \infty\)</span> becomes an equation that may be used to estimate the direction <span class="math notranslate nohighlight">\(\beta\)</span> to a distant sound source.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2b7ec3c0-83e3-4c33-ae58-ab8e837da49f">
-<span class="eqno">(113)<a class="headerlink" href="#equation-2b7ec3c0-83e3-4c33-ae58-ab8e837da49f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-083f8251-d981-4794-84de-23404cde1dfd">
+<span class="eqno">(113)<a class="headerlink" href="#equation-083f8251-d981-4794-84de-23404cde1dfd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>This equation is the basis for all direction finding algorithms</p>
@@ -528,13 +528,13 @@ R_j=|s-h_j|
 <section id="multi-phone-direction-finding">
 <h2>Multi-phone direction finding<a class="headerlink" href="#multi-phone-direction-finding" title="Link to this heading">#</a></h2>
 <p>Let</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a66ffc11-0ecf-478a-a43a-463347428171">
-<span class="eqno">(114)<a class="headerlink" href="#equation-a66ffc11-0ecf-478a-a43a-463347428171" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-da8f3d3f-da1e-48a9-b49d-76e69bbbaa73">
+<span class="eqno">(114)<a class="headerlink" href="#equation-da8f3d3f-da1e-48a9-b49d-76e69bbbaa73" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>and assume an array of <span class="math notranslate nohighlight">\(n+1\)</span> phones then one can form  <span class="math notranslate nohighlight">\(npp=(n+1)n/2\)</span> different pairs of phones resulting to a system of <span class="math notranslate nohighlight">\(npp\)</span> equations</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e63acb7-8fc8-4de3-9095-6d240c9a88f0">
-<span class="eqno">(115)<a class="headerlink" href="#equation-0e63acb7-8fc8-4de3-9095-6d240c9a88f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-56a12179-4bb4-4857-bfae-f515e3f3b259">
+<span class="eqno">(115)<a class="headerlink" href="#equation-56a12179-4bb4-4857-bfae-f515e3f3b259" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\begin{matrix} (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         \vdots&amp;\vdots&amp;\vdots\\ 
@@ -544,8 +544,8 @@ R_j=|s-h_j|
                         \end{matrix}\right)                        
 \end{equation}\]</div>
 <p>With</p>
-<div class="amsmath math notranslate nohighlight" id="equation-43b3f6e0-fcf9-457d-bcaa-dc3fcef54ada">
-<span class="eqno">(116)<a class="headerlink" href="#equation-43b3f6e0-fcf9-457d-bcaa-dc3fcef54ada" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b95e2b59-2da3-4f6c-92ad-3078827752c4">
+<span class="eqno">(116)<a class="headerlink" href="#equation-b95e2b59-2da3-4f6c-92ad-3078827752c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A=
 \left(\begin{matrix} (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
@@ -553,23 +553,23 @@ A=
                         (x_n-x_{n-1})&amp;(y_n-y_{n-1})&amp;(z_n-z_{n-1})
                         \end{matrix}\right)                        
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2071cf69-0c94-4120-a86b-d7e3a792c291">
-<span class="eqno">(117)<a class="headerlink" href="#equation-2071cf69-0c94-4120-a86b-d7e3a792c291" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d67c41c-932a-4bb6-8684-096915245ad8">
+<span class="eqno">(117)<a class="headerlink" href="#equation-6d67c41c-932a-4bb6-8684-096915245ad8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_1=
 \left(\begin{matrix} \delta R_{10}\\\delta R_{20}\\\vdots\\\delta R_{n(n-1)}
                         \end{matrix}\right)                        
 \end{equation}\]</div>
 <p>the solution for the source direction vector <span class="math notranslate nohighlight">\(\hat{s}\)</span> becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-536c1687-ad35-4a2a-a777-8acd31824434">
-<span class="eqno">(118)<a class="headerlink" href="#equation-536c1687-ad35-4a2a-a777-8acd31824434" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-efcd2511-8573-4b05-aa67-94a66bec9cd9">
+<span class="eqno">(118)<a class="headerlink" href="#equation-efcd2511-8573-4b05-aa67-94a66bec9cd9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{s}=-A^+b_1
 \end{equation}\]</div>
 <p>It should be noted that the path difference <span class="math notranslate nohighlight">\(\delta R_{ij}=R_i-R_j\)</span>, where <span class="math notranslate nohighlight">\(R_j\)</span> is the path to the reference phone, is negative if the sound arrives first to phone at <span class="math notranslate nohighlight">\(h_i\)</span> and then to the one at <span class="math notranslate nohighlight">\(h_j\)</span>, as it would for <span class="math notranslate nohighlight">\(\cos{\beta}&gt;0\)</span>.</p>
 <section id="time-delay-based-direction-finding">
 <h3>Time delay based direction finding<a class="headerlink" href="#time-delay-based-direction-finding" title="Link to this heading">#</a></h3>
 <p>Assume that the travel path difference  <span class="math notranslate nohighlight">\((\delta R_{ij})\)</span> is based on time-delay estimation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dbb63eac-b894-46f8-8bd5-2c503759f5b5">
-<span class="eqno">(119)<a class="headerlink" href="#equation-dbb63eac-b894-46f8-8bd5-2c503759f5b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9fceb373-b103-47fb-a092-af6beecd1d75">
+<span class="eqno">(119)<a class="headerlink" href="#equation-9fceb373-b103-47fb-a092-af6beecd1d75" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta R_{ij} = c (\delta t_{ij})
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(c\)</span> being the sound speed and <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span> the measured time delay of the signal.</p>
@@ -577,29 +577,29 @@ b_1=
 <section id="phase-based-direction-finding">
 <h3>Phase based direction finding<a class="headerlink" href="#phase-based-direction-finding" title="Link to this heading">#</a></h3>
 <p>Assume that the measured time delay between two hydrophones <span class="math notranslate nohighlight">\(\delta t\)</span> is small enough that a sinusoidal signal</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a134fa3-83e2-40dc-9062-5a85c3977eeb">
-<span class="eqno">(120)<a class="headerlink" href="#equation-4a134fa3-83e2-40dc-9062-5a85c3977eeb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-af284e3c-af17-4d2e-bea2-571ba3c11811">
+<span class="eqno">(120)<a class="headerlink" href="#equation-af284e3c-af17-4d2e-bea2-571ba3c11811" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta t = \frac{1}{2\pi f_0}\sin^{-1}(\sin(2\pi f (\delta t)))
 \end{equation}\]</div>
 <p>As in inverse sinus results in values between <span class="math notranslate nohighlight">\(\pm \pi\)</span> we can conclude that phase processing is possible for</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3dc85c8-2970-4b75-9806-40c7f7dd3b82">
-<span class="eqno">(121)<a class="headerlink" href="#equation-b3dc85c8-2970-4b75-9806-40c7f7dd3b82" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5928141b-40a6-4188-9839-96504b915cdc">
+<span class="eqno">(121)<a class="headerlink" href="#equation-5928141b-40a6-4188-9839-96504b915cdc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\delta t| &lt; \frac{1}{2 f}
 \end{equation}\]</div>
 <p>The maximal delay between two hydrophones seperated by <span class="math notranslate nohighlight">\(d_{ij}\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bdfc94ca-2365-41db-bf24-2df4cc2e8eb8">
-<span class="eqno">(122)<a class="headerlink" href="#equation-bdfc94ca-2365-41db-bf24-2df4cc2e8eb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3114ea0b-d617-451f-9493-3bfb7c108f16">
+<span class="eqno">(122)<a class="headerlink" href="#equation-3114ea0b-d617-451f-9493-3bfb7c108f16" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\delta t|_{max} = \frac{|d_{ij}|}{c}
 \end{equation}\]</div>
 <p>so that phase processing is possible for all frequencies <span class="math notranslate nohighlight">\(f\)</span> for which</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c60332e7-fa64-415b-8508-21df2820712e">
-<span class="eqno">(123)<a class="headerlink" href="#equation-c60332e7-fa64-415b-8508-21df2820712e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd5fdfbf-449e-4d3f-aa4c-bbfe725a38ee">
+<span class="eqno">(123)<a class="headerlink" href="#equation-bd5fdfbf-449e-4d3f-aa4c-bbfe725a38ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f &lt; \frac{c}{2|d_{ij}|}
 \end{equation}\]</div>
 <p>and the time delay of a signal is equivalent to a phase shift of the signal.</p>
 <p>Given a time delay <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span>, the phase shift is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bb9a9536-deca-4b22-bcda-fee13449b019">
-<span class="eqno">(124)<a class="headerlink" href="#equation-bb9a9536-deca-4b22-bcda-fee13449b019" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-76f9ba7e-d3c3-4b99-bc7d-97ba05b61ab9">
+<span class="eqno">(124)<a class="headerlink" href="#equation-76f9ba7e-d3c3-4b99-bc7d-97ba05b61ab9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta \Phi_{ij} = 2\pi c\frac{(\delta t_{ij})}{d_{ij}}
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -651,7 +651,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 [5.17241379 5.17241379 5.17241379 5.17241379 5.17241379 5.17241379] kHz
 </pre></div>
 </div>
-<img alt="_images/01f8cec044fa32ac768e2382f08a4cb630225fdb27bb9a3e536f4c02613b0fe0.png" src="_images/01f8cec044fa32ac768e2382f08a4cb630225fdb27bb9a3e536f4c02613b0fe0.png" />
+<img alt="_images/a3075b519f79ce00eaa29b83f3fb8481fee41c076e69539934c270a3631aa77e.png" src="_images/a3075b519f79ce00eaa29b83f3fb8481fee41c076e69539934c270a3631aa77e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -749,8 +749,9 @@ f &lt; \frac{c}{2|d_{ij}|}
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">DS</span><span class="p">)):</span>
         <span class="n">ss</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">fft_filt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">kk</span><span class="o">+</span><span class="n">DS</span><span class="p">[</span><span class="n">ii</span><span class="p">]),</span><span class="n">yy</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">nn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">noise</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="n">ss</span> <span class="o">+=</span><span class="n">nn</span>
+    <span class="k">if</span> <span class="n">noise</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">nn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">noise</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">ss</span> <span class="o">+=</span><span class="n">nn</span>
     <span class="k">return</span> <span class="n">ss</span>
 </pre></div>
 </div>
@@ -765,8 +766,8 @@ f &lt; \frac{c}{2|d_{ij}|}
 <h2>Tonal<a class="headerlink" href="#tonal" title="Link to this heading">#</a></h2>
 <section id="fm-modulation">
 <h3>FM modulation<a class="headerlink" href="#fm-modulation" title="Link to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-b8c2804c-fc79-4d2e-b755-c83e09a637bf">
-<span class="eqno">(125)<a class="headerlink" href="#equation-b8c2804c-fc79-4d2e-b755-c83e09a637bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5fb09f94-28a8-444e-a2b8-03b8e6cfc2e1">
+<span class="eqno">(125)<a class="headerlink" href="#equation-5fb09f94-28a8-444e-a2b8-03b8e6cfc2e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{aligned}y(t)&amp;=A_{c}\cos \left(2\pi \int _{0}^{t}f(\tau )d\tau \right)\\
 &amp;=A_{c}\cos \left(2\pi \int _{0}^{t}\left[f_{c}+f_{\Delta }x_{m}(\tau )\right]d\tau \right)\\
 &amp;=A_{c}\cos \left(2\pi f_{c}t+2\pi f_{\Delta }\int _{0}^{t}x_{m}(\tau )d\tau \right)\\
@@ -828,14 +829,14 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0d4cf09d284f0d145a3976d9480f6fb7dacbc4c7ea0dad616be61132f9819e5f.png" src="_images/0d4cf09d284f0d145a3976d9480f6fb7dacbc4c7ea0dad616be61132f9819e5f.png" />
+<img alt="_images/3ecd81842fe5689a0297c963e25e719e6b9c9be019f716dd6b7c937b792440c0.png" src="_images/3ecd81842fe5689a0297c963e25e719e6b9c9be019f716dd6b7c937b792440c0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cosd</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">sind</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">array_delay</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">ho</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">array_delay</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">ho</span><span class="p">,</span><span class="n">fs</span><span class="p">):</span>
     <span class="n">DC</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ho</span><span class="o">*</span><span class="n">S</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">DT</span><span class="o">=</span><span class="n">DC</span><span class="o">/</span><span class="mf">1.500</span>         <span class="c1"># ms</span>
     <span class="n">DS</span><span class="o">=</span><span class="n">DT</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="mi">1000</span>
@@ -845,7 +846,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 <span class="n">azo</span><span class="o">=-</span><span class="mi">60</span>
 <span class="n">elo</span><span class="o">=+</span><span class="mi">60</span>
 <span class="n">S</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cosd</span><span class="p">(</span><span class="n">azo</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">elo</span><span class="p">),</span><span class="n">sind</span><span class="p">(</span><span class="n">azo</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">elo</span><span class="p">),</span> <span class="n">sind</span><span class="p">(</span><span class="n">elo</span><span class="p">)])</span>
-<span class="n">DS</span><span class="p">,</span><span class="n">DT</span><span class="o">=</span><span class="n">array_delay</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">ho</span><span class="p">)</span>
+<span class="n">DS</span><span class="p">,</span><span class="n">DT</span><span class="o">=</span><span class="n">array_delay</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">ho</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">DT</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">DS</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">)</span>
 </pre></div>
@@ -865,7 +866,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 <span class="n">ss</span><span class="o">=</span><span class="n">sim_array</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">noise</span><span class="p">)</span>
 <span class="n">ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">fs</span>
 <span class="c1">#</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="mf">0.4</span><span class="o">*</span><span class="n">ss</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">DT</span><span class="p">)));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="mf">0.4</span><span class="o">*</span><span class="n">ss</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">DS</span><span class="p">)));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">+</span><span class="mf">0.002</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
@@ -874,7 +875,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a006294123ae1eb2f5c0550e0284cab16c51f91963a6fa0f9b1220bd6c44716b.png" src="_images/a006294123ae1eb2f5c0550e0284cab16c51f91963a6fa0f9b1220bd6c44716b.png" />
+<img alt="_images/6ffc84967a8ba3b8c765fe125c51953c0fbba19b0e3a82a854537a72cf734bf6.png" src="_images/6ffc84967a8ba3b8c765fe125c51953c0fbba19b0e3a82a854537a72cf734bf6.png" />
 </div>
 </div>
 </section>
@@ -914,7 +915,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6ad64e301bb31c5fdd5d73d61b274cef7dde3ea334ac0ccc1177dee46c279ff0.png" src="_images/6ad64e301bb31c5fdd5d73d61b274cef7dde3ea334ac0ccc1177dee46c279ff0.png" />
+<img alt="_images/729ceaaed4a1ae40c590dd9c03fcf69ead121453b4ee2215745c324b8b2fa5f9.png" src="_images/729ceaaed4a1ae40c590dd9c03fcf69ead121453b4ee2215745c324b8b2fa5f9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -949,7 +950,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7f2f66c91a657eb544df6c452b566067ca15d206adb604c16f8a8b637fbe9a3b.png" src="_images/7f2f66c91a657eb544df6c452b566067ca15d206adb604c16f8a8b637fbe9a3b.png" />
+<img alt="_images/a47e6993939fd91b5cb10b4fd2fd9883d674d49c971eae076d31feafbb623a13.png" src="_images/a47e6993939fd91b5cb10b4fd2fd9883d674d49c971eae076d31feafbb623a13.png" />
 </div>
 </div>
 </section>
@@ -957,7 +958,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 <h3>Spectrogram method<a class="headerlink" href="#spectrogram-method" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getIntensity</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">nfft</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getIntensity</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">DI</span><span class="p">,</span><span class="n">hsel</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">nfft</span><span class="p">):</span>
     <span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">Q</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span><span class="n">nperseg</span><span class="o">=</span><span class="n">nw</span><span class="p">,</span><span class="n">noverlap</span><span class="o">=</span><span class="n">nw</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="n">nfft</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">Q</span><span class="o">=</span><span class="n">Q</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">C</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">Q</span><span class="p">[:,:,</span><span class="n">hsel</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">Q</span><span class="p">[:,:,</span><span class="n">hsel</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]]))</span>
@@ -966,7 +967,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 
 <span class="n">nw</span><span class="o">=</span><span class="mi">1024</span>
 <span class="n">nfft</span><span class="o">=</span><span class="n">nw</span><span class="o">*</span><span class="mi">4</span>
-<span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">I</span><span class="o">=</span><span class="n">getIntensity</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">I</span><span class="o">=</span><span class="n">getIntensity</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">DI</span><span class="p">,</span><span class="n">hsel</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
 <span class="c1">#</span>
 <span class="n">In</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">I</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">In</span><span class="p">[</span> <span class="mi">0</span><span class="p">,:]</span><span class="o">=</span><span class="n">In</span><span class="p">[</span> <span class="mi">1</span><span class="p">,:]</span>
@@ -991,7 +992,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/41490d6392fcc8ada26f0d7aff04e7bfaa0773e47025ee8f392715e1904da9ac.png" src="_images/41490d6392fcc8ada26f0d7aff04e7bfaa0773e47025ee8f392715e1904da9ac.png" />
+<img alt="_images/4bb3b7f2722c1e6a585536f46c3afd9c7b7dcc112f8cd997c0eaee9460a8dfc4.png" src="_images/4bb3b7f2722c1e6a585536f46c3afd9c7b7dcc112f8cd997c0eaee9460a8dfc4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1033,7 +1034,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cbfa1c5895de8e3bff4d075f5d9a0427690f9d297932744f6f496b495c2a920b.png" src="_images/cbfa1c5895de8e3bff4d075f5d9a0427690f9d297932744f6f496b495c2a920b.png" />
+<img alt="_images/052e506b5f072b03d9e550cc6cca91b4cc7c6291c89f29c8a7cf7a55ce8966fc.png" src="_images/052e506b5f072b03d9e550cc6cca91b4cc7c6291c89f29c8a7cf7a55ce8966fc.png" />
 </div>
 </div>
 </section>
@@ -1041,15 +1042,15 @@ f &lt; \frac{c}{2|d_{ij}|}
 <section id="broadband-ship-noise">
 <h2>Broadband (ship) noise<a class="headerlink" href="#broadband-ship-noise" title="Link to this heading">#</a></h2>
 <p>To simultate a colored, i.e. not white, noise sequence, white noise spectrum <span class="math notranslate nohighlight">\(Y(f)\)</span> is first modeled as having uniform random phase <span class="math notranslate nohighlight">\(U(N_f)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-cad55f81-f7e7-4c84-879b-d18ebebb8c0d">
-<span class="eqno">(126)<a class="headerlink" href="#equation-cad55f81-f7e7-4c84-879b-d18ebebb8c0d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-36a9654f-ed8c-441f-ab1c-27cab1919af4">
+<span class="eqno">(126)<a class="headerlink" href="#equation-36a9654f-ed8c-441f-ab1c-27cab1919af4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y(f)=\exp(2\pi i U(N_f))
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_f\)</span> is the number of (positive) frequenency bins.</p>
 <p>The white noise spectrum is then wheighted by the square-root of the desired colored power spectrum.</p>
 <p>The desired colored noise <span class="math notranslate nohighlight">\(n\)</span> is then obtained by the inverse Fourier Transform of the colored noise spectrum.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e5e8ad20-d86e-41ef-9cc4-cd7521dc2860">
-<span class="eqno">(127)<a class="headerlink" href="#equation-e5e8ad20-d86e-41ef-9cc4-cd7521dc2860" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a43a54ee-2c45-4a7e-afa7-ffe7d6db2b15">
+<span class="eqno">(127)<a class="headerlink" href="#equation-a43a54ee-2c45-4a7e-afa7-ffe7d6db2b15" title="Permalink to this equation">#</a></span>\[\begin{equation}
 n=\text{fft}^{-1}\Big(\frac{W(f)}{W(f)_{\text{RMS}}}Y(f)\Big)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(W(f)\)</span> is the amplitude weghting function and <span class="math notranslate nohighlight">\(W(f)_{\text{RMS}}\)</span> is the root-mean-square of the amplitude weighting function to obtain the same noise energy as the input white noise.</p>
@@ -1057,35 +1058,34 @@ n=\text{fft}^{-1}\Big(\frac{W(f)}{W(f)_{\text{RMS}}}Y(f)\Big)
 <h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
 <section id="pink-noise">
 <h4>pink noise<a class="headerlink" href="#pink-noise" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-b77937f2-4780-495d-bd17-a08ea4569b12">
-<span class="eqno">(128)<a class="headerlink" href="#equation-b77937f2-4780-495d-bd17-a08ea4569b12" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eb439fbb-e380-4287-8953-04516f206157">
+<span class="eqno">(128)<a class="headerlink" href="#equation-eb439fbb-e380-4287-8953-04516f206157" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{\sqrt{(f)}}
 \end{equation}\]</div>
 </section>
 <section id="brown-noise">
 <h4>brown noise<a class="headerlink" href="#brown-noise" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-f1e4c5fa-93c9-4618-b886-ae1cd73e549e">
-<span class="eqno">(129)<a class="headerlink" href="#equation-f1e4c5fa-93c9-4618-b886-ae1cd73e549e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-391d97e3-07e2-4f8e-ba1c-3deeefa52c5c">
+<span class="eqno">(129)<a class="headerlink" href="#equation-391d97e3-07e2-4f8e-ba1c-3deeefa52c5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{f}
 \end{equation}\]</div>
 </section>
 <section id="ship-noise">
 <h4>ship noise<a class="headerlink" href="#ship-noise" title="Link to this heading">#</a></h4>
 <p>Text book ship spectrum are described as constant below a certain frequency <span class="math notranslate nohighlight">\(fo\)</span> and then to fall off with frequency squared</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae86b9a9-c774-4146-82d2-15d0bedd4f86">
-<span class="eqno">(130)<a class="headerlink" href="#equation-ae86b9a9-c774-4146-82d2-15d0bedd4f86" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b0c83e58-40d1-487b-8c36-f7e345e02f26">
+<span class="eqno">(130)<a class="headerlink" href="#equation-b0c83e58-40d1-487b-8c36-f7e345e02f26" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{\text{max}(fo,f)}
 \end{equation}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">shipSpectrum</span><span class="p">(</span><span class="n">f</span><span class="p">):</span> 
-    <span class="n">fo</span><span class="o">=</span><span class="mi">150</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">shipSpectrum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">fo</span><span class="p">):</span> 
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">genNoise</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">method</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">genNoise</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">fo</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">method</span><span class="p">):</span>
     <span class="n">N2</span> <span class="o">=</span> <span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N2</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">N</span>
-    <span class="n">A2</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">A2</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">fo</span><span class="p">)</span>
     <span class="n">A2</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A2</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
     <span class="n">n2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N2</span><span class="p">)</span>
     <span class="n">p2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">n2</span>
@@ -1095,9 +1095,10 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 
 <span class="c1"># test </span>
 <span class="n">fs</span><span class="o">=</span><span class="mi">96000</span>
+<span class="n">fo</span><span class="o">=</span><span class="mi">150</span>
 <span class="n">xx</span><span class="o">=</span><span class="p">[]</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">xx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">genNoise</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">shipSpectrum</span><span class="p">))</span>
+    <span class="n">xx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">genNoise</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span><span class="n">fo</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">shipSpectrum</span><span class="p">))</span>
 <span class="n">xx</span> <span class="o">*=</span> <span class="mf">1e+9</span>
 <span class="n">f</span><span class="p">,</span><span class="n">P</span><span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
 <span class="c1">#</span>
@@ -1109,7 +1110,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ef1eff467b6dd2a0e5293a95ed6abbfd5017021d11228c85b695c7c69d23953f.png" src="_images/ef1eff467b6dd2a0e5293a95ed6abbfd5017021d11228c85b695c7c69d23953f.png" />
+<img alt="_images/cdc4932547b5b4ef5a7a3f900454a25bfd3c4b4f7b89c3056de827e3b8e5bb00.png" src="_images/cdc4932547b5b4ef5a7a3f900454a25bfd3c4b4f7b89c3056de827e3b8e5bb00.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1140,7 +1141,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/13cb8a23601f1bafc14ec2ee5c723a8e0944cdd29391bd381dc0588fd6febb53.png" src="_images/13cb8a23601f1bafc14ec2ee5c723a8e0944cdd29391bd381dc0588fd6febb53.png" />
+<img alt="_images/0a6b3d107e3f85ec2f7531e7fa14dae7c54127c5f127adf8b4e12bdcffdb72cc.png" src="_images/0a6b3d107e3f85ec2f7531e7fa14dae7c54127c5f127adf8b4e12bdcffdb72cc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1149,23 +1150,24 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <span class="n">nw</span><span class="o">=</span><span class="mi">256</span>
 <span class="n">nfft</span><span class="o">=</span><span class="n">nw</span>
 <span class="n">fs</span><span class="o">=</span><span class="mi">96000</span>
+<span class="n">fo</span><span class="o">=</span><span class="mi">150</span>
 <span class="n">M</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nfft</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">it</span><span class="p">),</span><span class="mi">3</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">nn</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">it</span><span class="p">)):</span>
     <span class="c1">#</span>
     <span class="n">xx</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">xx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">genNoise</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">shipSpectrum</span><span class="p">))</span>
+        <span class="n">xx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">genNoise</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span><span class="n">fo</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">shipSpectrum</span><span class="p">))</span>
     <span class="n">xx</span> <span class="o">*=</span> <span class="mf">1e+9</span><span class="o">/</span><span class="n">rr</span><span class="p">[</span><span class="n">nn</span><span class="p">]</span>
     <span class="c1">#</span>
     <span class="c1">## simulate delay</span>
     <span class="n">S</span><span class="o">=</span><span class="n">ss</span><span class="p">[</span><span class="n">nn</span><span class="p">,:]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">rr</span><span class="p">[</span><span class="n">nn</span><span class="p">])</span>
-    <span class="n">DS</span><span class="p">,</span><span class="n">DT</span><span class="o">=</span><span class="n">array_delay</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">ho</span><span class="p">)</span>
+    <span class="n">DS</span><span class="p">,</span><span class="n">DT</span><span class="o">=</span><span class="n">array_delay</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">ho</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">nn</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">DS</span><span class="p">)</span>
     <span class="c1">#</span>
     <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span>
     <span class="n">yy</span><span class="o">=</span><span class="n">sim_array</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">noise</span><span class="p">)[</span><span class="mi">100</span><span class="p">:</span><span class="n">fs</span><span class="o">+</span><span class="mi">100</span><span class="p">,:]</span>
 
-    <span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">I</span><span class="o">=</span><span class="n">getIntensity</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">I</span><span class="o">=</span><span class="n">getIntensity</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span><span class="n">DI</span><span class="p">,</span><span class="n">hsel</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
     <span class="c1">#</span>
     <span class="n">M</span><span class="p">[:,</span><span class="n">nn</span><span class="p">,:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="c1">#</span>
@@ -1218,7 +1220,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/961e2bebeebccf63cbed52568878dbe07fba72d36e3c969954454edaa7844645.png" src="_images/961e2bebeebccf63cbed52568878dbe07fba72d36e3c969954454edaa7844645.png" />
+<img alt="_images/72439f76a9d7629473bf9f5f9a04d31d5fef29c2c50146061aa6983b4893c9f9.png" src="_images/72439f76a9d7629473bf9f5f9a04d31d5fef29c2c50146061aa6983b4893c9f9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1239,7 +1241,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8f60b1869aa1c72b77250ba60ddfebae0e6dee5eda5c88481b04311bb62e2975.png" src="_images/8f60b1869aa1c72b77250ba60ddfebae0e6dee5eda5c88481b04311bb62e2975.png" />
+<img alt="_images/dee3ea735b9792c506eb80c6e852ec2c86ea24a0bc3d734039d254c27bd012ea.png" src="_images/dee3ea735b9792c506eb80c6e852ec2c86ea24a0bc3d734039d254c27bd012ea.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1281,7 +1283,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ac98d03022abe49a3cdfc0f34d8bd827ac89208086e1a231e01fb15b7acb7a1c.png" src="_images/ac98d03022abe49a3cdfc0f34d8bd827ac89208086e1a231e01fb15b7acb7a1c.png" />
+<img alt="_images/efdbc89406c154664d2ed703191324c216223eaef2ee8a7ad46d4c95b27df099.png" src="_images/efdbc89406c154664d2ed703191324c216223eaef2ee8a7ad46d4c95b27df099.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1308,7 +1310,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ea1c74b7c703c19fc5645f85733c440fc5a10011a1c6bfa3406bf4b9368d5e55.png" src="_images/ea1c74b7c703c19fc5645f85733c440fc5a10011a1c6bfa3406bf4b9368d5e55.png" />
+<img alt="_images/8d77847dfe63689adc0ab38264f54148e42483072d596847f32a062d354f2659.png" src="_images/8d77847dfe63689adc0ab38264f54148e42483072d596847f32a062d354f2659.png" />
 </div>
 </div>
 </section>
@@ -1317,13 +1319,13 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <section id="time-delay-direction-finding">
 <h2>Time delay direction finding<a class="headerlink" href="#time-delay-direction-finding" title="Link to this heading">#</a></h2>
 <p>Given</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21dc6658-8d30-4a55-b764-62e16bd3ace9">
-<span class="eqno">(131)<a class="headerlink" href="#equation-21dc6658-8d30-4a55-b764-62e16bd3ace9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-62ac1ce2-9451-490a-92a7-9b16ca0d44aa">
+<span class="eqno">(131)<a class="headerlink" href="#equation-62ac1ce2-9451-490a-92a7-9b16ca0d44aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>and assume that the travel path difference  <span class="math notranslate nohighlight">\((\delta R_{ij})\)</span> is based on time-delay estimation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3aa10d19-7a07-42dc-8a45-307f973f1817">
-<span class="eqno">(132)<a class="headerlink" href="#equation-3aa10d19-7a07-42dc-8a45-307f973f1817" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-07da8c5a-b409-484d-8d98-e640f3a24c52">
+<span class="eqno">(132)<a class="headerlink" href="#equation-07da8c5a-b409-484d-8d98-e640f3a24c52" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta R_{ij} = c (\delta t_{ij})
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(c\)</span> being the sound speed and <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span> the measured time delay of the signal.</p>
@@ -1333,7 +1335,8 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wav</span><span class="o">=</span><span class="n">wv</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;./Data/zc06_204a22410-24210.wav&quot;</span><span class="p">)</span>
 <span class="n">fs</span><span class="o">=</span><span class="n">wav</span><span class="o">.</span><span class="n">rate</span>
-<span class="n">data</span><span class="o">=</span><span class="n">wav</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">fs</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="mi">14</span><span class="o">*</span><span class="n">fs</span><span class="p">),:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fs=&#39;</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
+<span class="n">data</span><span class="o">=</span><span class="n">wav</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">fs</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="mi">14</span><span class="o">*</span><span class="n">fs</span><span class="p">),:]</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="mi">15</span>
 <span class="n">tt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">fs</span>
 <span class="c1">#</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -1344,24 +1347,27 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/86c9e687095b3499cbd784eab0b6727a1033893638270eb23d006dba1f25fbcb.png" src="_images/86c9e687095b3499cbd784eab0b6727a1033893638270eb23d006dba1f25fbcb.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fs= 192000
+</pre></div>
+</div>
+<img alt="_images/42d198f4dc9f12c51d14a45b56e851dd5af43eea6a22a0b778cf82d68e24bef1.png" src="_images/42d198f4dc9f12c51d14a45b56e851dd5af43eea6a22a0b778cf82d68e24bef1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## simulate delay</span>
-<span class="n">azo</span><span class="o">=-</span><span class="mi">60</span>
-<span class="n">elo</span><span class="o">=</span> <span class="mi">60</span>
+<span class="n">azo</span><span class="o">=</span><span class="mi">90</span><span class="c1">#-60</span>
+<span class="n">elo</span><span class="o">=</span><span class="mi">0</span><span class="c1"># 60</span>
 <span class="n">S</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cosd</span><span class="p">(</span><span class="n">azo</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">elo</span><span class="p">),</span><span class="n">sind</span><span class="p">(</span><span class="n">azo</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">elo</span><span class="p">),</span> <span class="n">sind</span><span class="p">(</span><span class="n">elo</span><span class="p">)])</span>
-<span class="n">DS</span><span class="p">,</span><span class="n">DT</span><span class="o">=</span><span class="n">array_delay</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">ho</span><span class="p">)</span>
+<span class="n">DS</span><span class="p">,</span><span class="n">DT</span><span class="o">=</span><span class="n">array_delay</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">ho</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">DT</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">DS</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.01751467 -0.04168133  0.05052695  0.00866905] ms
-[-3.3628162  -8.0028162   9.70117408  1.66445833] samples
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 2.95956310e-18 -2.95956310e-18 -4.83333333e-02  4.83333333e-02] ms
+[ 5.68236115e-16 -5.68236115e-16 -9.28000000e+00  9.28000000e+00] samples
 </pre></div>
 </div>
 </div>
@@ -1369,14 +1375,16 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#delay signal according to array geometry</span>
-<span class="n">noise</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">noise</span><span class="o">=</span><span class="mf">1e-2</span>
 <span class="n">ss</span><span class="o">=</span><span class="n">sim_array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">noise</span><span class="p">)</span>
 <span class="n">ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">fs</span>
 <span class="c1">#</span>
+<span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
 <span class="n">xl</span><span class="o">=</span><span class="p">[]</span>
 <span class="n">xl</span><span class="o">=</span><span class="p">[</span><span class="mf">2.97025</span><span class="p">,</span><span class="mf">2.97125</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="mf">0.4</span><span class="o">*</span><span class="n">ss</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">DT</span><span class="p">)));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">stack</span><span class="p">(</span><span class="mf">0.4</span><span class="o">*</span><span class="n">ss</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ss</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">xl</span> <span class="o">!=</span> <span class="p">[]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
@@ -1385,7 +1393,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bf9dbd2054c5596017871dcf04d510d11d1efb6105738a56559c465576d5894b.png" src="_images/bf9dbd2054c5596017871dcf04d510d11d1efb6105738a56559c465576d5894b.png" />
+<img alt="_images/451de8197ac6fecace11c459620ff06b4692935f5b2037e7ceb17e677f51de5c.png" src="_images/451de8197ac6fecace11c459620ff06b4692935f5b2037e7ceb17e677f51de5c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1403,14 +1411,14 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <span class="n">amx</span><span class="o">=</span> <span class="n">yy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">jmx</span><span class="o">=</span> <span class="n">yy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">),</span><span class="mf">0.9</span><span class="o">*</span><span class="n">yy</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">yy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">hsel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">),</span><span class="n">stack</span><span class="p">(</span><span class="mf">0.9</span><span class="o">*</span><span class="n">yy</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">yy</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e01334b796527350e23740dda37a71d646164b688f737c805507d796229775c2.png" src="_images/e01334b796527350e23740dda37a71d646164b688f737c805507d796229775c2.png" />
+<img alt="_images/b1e22f4107f196e73d8ee3222d35e9e5884496837ad062b0db643cfc7a7eb748.png" src="_images/b1e22f4107f196e73d8ee3222d35e9e5884496837ad062b0db643cfc7a7eb748.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1418,21 +1426,20 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
 <span class="k">def</span> <span class="nf">xcorr</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">hsel</span><span class="p">):</span>
     <span class="n">nx</span><span class="o">=</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">win</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hanning</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="n">win</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">vv</span><span class="o">=</span><span class="n">uu</span><span class="p">[:,</span><span class="n">hsel</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">uu</span><span class="p">[:,</span><span class="n">hsel</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]])</span>
-    <span class="n">vv</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span>
+<span class="c1">#    vv /= np.abs(vv)</span>
     <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">axes</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">amx</span><span class="o">=</span> <span class="n">yy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">jmx</span><span class="o">=</span> <span class="n">yy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">amx</span><span class="o">=</span> <span class="n">yy</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">jmx</span><span class="o">=</span> <span class="n">yy</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
     <span class="c1">#</span>
-    <span class="n">jmx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">jmx</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">jmx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">jmx</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">ux</span><span class="o">=</span><span class="n">quadInt</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span><span class="n">jmx</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">amx</span><span class="p">,</span><span class="n">jmx</span><span class="p">,</span><span class="n">ux</span>
 <span class="c1">#</span>
-<span class="k">def</span> <span class="nf">tdoa</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">hsel</span><span class="p">,</span><span class="n">DI</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">tdoa</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">DI</span><span class="p">,</span><span class="n">hsel</span><span class="p">):</span>
     <span class="c1"># process all data in small chunks</span>
-    <span class="n">offsets</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">256</span><span class="p">,</span><span class="mi">128</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">offsets</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">256</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">imx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">offsets</span><span class="p">),</span><span class="n">hsel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">amx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">offsets</span><span class="p">),</span><span class="n">hsel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
     <span class="n">ux</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">offsets</span><span class="p">),</span><span class="n">hsel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
@@ -1448,33 +1455,33 @@ W(f)=\frac{1}{\text{max}(fo,f)}
     <span class="n">V</span> <span class="o">*=</span> <span class="mi">1500</span><span class="o">/</span><span class="n">fs</span> 
     <span class="k">return</span> <span class="n">V</span><span class="p">,</span><span class="n">ux</span><span class="p">,</span><span class="n">offsets</span>
 <span class="c1">#</span>
-<span class="n">V</span><span class="p">,</span><span class="n">ux</span><span class="p">,</span><span class="n">offsets</span> <span class="o">=</span> <span class="n">tdoa</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">hsel</span><span class="p">,</span><span class="n">DI</span><span class="p">)</span>
-<span class="c1">#</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ux</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="p">,</span><span class="n">ux</span><span class="p">,</span><span class="n">offsets</span> <span class="o">=</span> <span class="n">tdoa</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">DI</span><span class="p">,</span><span class="n">hsel</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ux</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">imx1</span><span class="o">=</span><span class="n">ux</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">amx1</span><span class="o">=</span><span class="n">ux</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="n">xl</span><span class="o">=</span><span class="p">[]</span>
 <span class="c1">#</span>
 <span class="n">dn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="mi">1500</span><span class="o">*</span><span class="n">fs</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dn</span><span class="p">)</span>
 <span class="n">td</span><span class="o">=</span><span class="n">ts</span><span class="p">[</span><span class="n">offsets</span><span class="p">]</span>
 <span class="c1">#</span>
-<span class="n">thr</span><span class="o">=</span><span class="n">amx1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="n">amx1</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-<span class="n">idet</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">amx1</span><span class="o">&gt;</span><span class="n">thr</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#thr=amx1.mean()+1*amx1.std()</span>
+<span class="n">thr</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">idet</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">amx1</span><span class="o">&gt;</span><span class="n">thr</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">amx1</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">idet</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1">#</span>
+<span class="n">xl</span><span class="o">=</span><span class="p">[]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">td</span><span class="p">[</span><span class="n">idet</span><span class="p">],</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">amx1</span><span class="p">[</span><span class="n">idet</span><span class="p">,:]),</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">amx1</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span><span class="n">td</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">td</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">thr</span><span class="p">),</span><span class="n">td</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">td</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">amx1</span><span class="p">)),</span><span class="n">td</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">td</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">thr</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">amx1</span><span class="p">)),</span><span class="n">td</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">td</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">xl</span> <span class="o">!=</span><span class="p">[]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span>
 <span class="c1">#</span>
@@ -1496,12 +1503,12 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(14998, 6, 2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(29996, 6, 2)
 19.0
-(14998,)
+(29996,)
 </pre></div>
 </div>
-<img alt="_images/a0e45fa1ada53b4777170c5c9967532a41e8df17554fb71b4b24bbb223b0b6e9.png" src="_images/a0e45fa1ada53b4777170c5c9967532a41e8df17554fb71b4b24bbb223b0b6e9.png" />
+<img alt="_images/2468a2c614cc34388fd19abc3ebd5cd2811cdf45d17b73567a949a2e8989e0bb.png" src="_images/2468a2c614cc34388fd19abc3ebd5cd2811cdf45d17b73567a949a2e8989e0bb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1512,11 +1519,11 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <span class="n">el</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">V</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 <span class="c1">#</span>
 <span class="n">Vn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">V</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">jdet</span><span class="o">=</span><span class="n">idet</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Vn</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">jdet</span><span class="o">=</span><span class="n">idet</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Vn</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1">#</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">data</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;a)&#39;</span><span class="p">)</span>
 
@@ -1546,10 +1553,10 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(14998, 3)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(29996, 3)
 </pre></div>
 </div>
-<img alt="_images/a3ea40672f459de9755cfd32b01b479656e595b326d9ebc41444a29e049e7c03.png" src="_images/a3ea40672f459de9755cfd32b01b479656e595b326d9ebc41444a29e049e7c03.png" />
+<img alt="_images/13baef3707b205c02e40353501218a0d6427eeda439fcf6682ba3e8244c9d888.png" src="_images/13baef3707b205c02e40353501218a0d6427eeda439fcf6682ba3e8244c9d888.png" />
 </div>
 </div>
 </section>
@@ -1560,36 +1567,36 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <section id="basic-formulation-of-beamforming">
 <h2>Basic formulation of beamforming<a class="headerlink" href="#basic-formulation-of-beamforming" title="Link to this heading">#</a></h2>
 <p>Let the sound pressure measured an a single hydrophone be a signal <span class="math notranslate nohighlight">\(s\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-d94724b1-2a11-40a3-92ec-5ac70bd4f2a1">
-<span class="eqno">(133)<a class="headerlink" href="#equation-d94724b1-2a11-40a3-92ec-5ac70bd4f2a1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c97a0947-823d-45d7-a4bb-22caca020fdb">
+<span class="eqno">(133)<a class="headerlink" href="#equation-c97a0947-823d-45d7-a4bb-22caca020fdb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=s(t)
 \end{equation}\]</div>
 <p>then in an array of hydrophones the measurements become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-884f66e9-a317-4a3d-88bd-2c6532d380d7">
-<span class="eqno">(134)<a class="headerlink" href="#equation-884f66e9-a317-4a3d-88bd-2c6532d380d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1818e9de-3f7c-4851-9ce9-02e98fc257fc">
+<span class="eqno">(134)<a class="headerlink" href="#equation-1818e9de-3f7c-4851-9ce9-02e98fc257fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i(t)=s(t-\tau_i(\alpha,\beta))+n(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> is the delay of the signal at hydrophone <span class="math notranslate nohighlight">\(i\)</span> with respect to som reference hydrophone and <span class="math notranslate nohighlight">\(\alpha,\beta\)</span> are the angles of arrival</p>
 <section id="line-array">
 <h3>Line array<a class="headerlink" href="#line-array" title="Link to this heading">#</a></h3>
 <p>For a line array with equally spaced hydrophones the delay has a simple form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd908698-dd3b-4a9f-80db-9cd0a44e0cfc">
-<span class="eqno">(135)<a class="headerlink" href="#equation-fd908698-dd3b-4a9f-80db-9cd0a44e0cfc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-309da6b2-2f74-47f9-9da3-6ded2414e330">
+<span class="eqno">(135)<a class="headerlink" href="#equation-309da6b2-2f74-47f9-9da3-6ded2414e330" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tau_i(t)=i\frac{d}{c}\cos{\gamma}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(d\)</span> id the hydrophone spacing, <span class="math notranslate nohighlight">\(c\)</span> is the sound speed at the hydrophone, and <span class="math notranslate nohighlight">\(\gamma\)</span> is the relative angle of arrival, that for a line array is composed of the azimuth <span class="math notranslate nohighlight">\(\alpha\)</span> and elevation angle <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15adac4a-f7ad-4154-97ad-1ca80554d5e0">
-<span class="eqno">(136)<a class="headerlink" href="#equation-15adac4a-f7ad-4154-97ad-1ca80554d5e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-68e280a1-eafc-49fb-b00f-dab8b2251f5c">
+<span class="eqno">(136)<a class="headerlink" href="#equation-68e280a1-eafc-49fb-b00f-dab8b2251f5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos{\gamma}=\cos{\alpha}\cos{\beta}
 \end{equation}\]</div>
 <p>The beamforming algorithm simply speaking tries to undo the signal delays <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> by compensating with negative delays</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b2111cbe-7ae6-4d40-8b2d-b7ae28bf8794">
-<span class="eqno">(137)<a class="headerlink" href="#equation-b2111cbe-7ae6-4d40-8b2d-b7ae28bf8794" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3f78dadf-fd1c-4e4f-b0a4-423596660c75">
+<span class="eqno">(137)<a class="headerlink" href="#equation-3f78dadf-fd1c-4e4f-b0a4-423596660c75" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t)=\frac{1}{N}\sum_i (x(t+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>In cases, where <span class="math notranslate nohighlight">\(\delta_i(\gamma)=\tau_i(\alpha,\beta)\)</span> we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-efb8a635-9e12-41df-bdf3-c8a81114962f">
-<span class="eqno">(138)<a class="headerlink" href="#equation-efb8a635-9e12-41df-bdf3-c8a81114962f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e1a110a8-b146-4db8-aeb5-45ee27a6f062">
+<span class="eqno">(138)<a class="headerlink" href="#equation-e1a110a8-b146-4db8-aeb5-45ee27a6f062" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>indicating that the signal <span class="math notranslate nohighlight">\(s(t)\)</span> is completely reconstructed and that noise, that is assumed to be uncorrelated is attenuated.</p>
@@ -1599,13 +1606,13 @@ y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 <h3>delay estimation from angles<a class="headerlink" href="#delay-estimation-from-angles" title="Link to this heading">#</a></h3>
 <p>This operation is opposite to the simulation of measurements using azimuth and elevation angles.</p>
 <p>In particular, given a source direction <span class="math notranslate nohighlight">\(s\)</span> that is obtaind from azimuth and elevation angles</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2074b003-a593-467a-9f88-a218a6a6b8f8">
-<span class="eqno">(139)<a class="headerlink" href="#equation-2074b003-a593-467a-9f88-a218a6a6b8f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12135622-02c0-41f6-bb18-2dab4f4a0172">
+<span class="eqno">(139)<a class="headerlink" href="#equation-12135622-02c0-41f6-bb18-2dab4f4a0172" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=+(\delta R_{ij})
 \end{equation}\]</div>
 <p>then the number of fractional samples <span class="math notranslate nohighlight">\(\delta N_{ij}\)</span> needed to align the arriving time series is estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7feaa28b-211b-4a04-9a3f-a4f8ef8f35d6">
-<span class="eqno">(140)<a class="headerlink" href="#equation-7feaa28b-211b-4a04-9a3f-a4f8ef8f35d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-16944b1c-4b7c-4259-9923-773c5c476592">
+<span class="eqno">(140)<a class="headerlink" href="#equation-16944b1c-4b7c-4259-9923-773c5c476592" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta N_{ij}=\frac{fs}{c}(h_i-h_j)^T\hat{s}
 \end{equation}\]</div>
 </section>
@@ -1635,7 +1642,7 @@ y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 <span class="n">ele</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">el</span><span class="p">[</span><span class="n">jdet</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;az =&#39;</span><span class="p">,</span><span class="n">aze</span><span class="p">,</span> <span class="s1">&#39;  el =&#39;</span><span class="p">,</span><span class="n">ele</span><span class="p">)</span>
 <span class="n">Se</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cosd</span><span class="p">(</span><span class="n">aze</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">ele</span><span class="p">),</span><span class="n">sind</span><span class="p">(</span><span class="n">aze</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">ele</span><span class="p">),</span> <span class="n">sind</span><span class="p">(</span><span class="n">ele</span><span class="p">)])</span>
-<span class="n">DSe</span><span class="p">,</span><span class="n">DTe</span><span class="o">=</span><span class="n">array_delay</span><span class="p">(</span><span class="n">Se</span><span class="p">,</span><span class="n">ho</span><span class="p">)</span>
+<span class="n">DSe</span><span class="p">,</span><span class="n">DTe</span><span class="o">=</span><span class="n">array_delay</span><span class="p">(</span><span class="n">Se</span><span class="p">,</span><span class="n">ho</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
 <span class="n">zz</span><span class="o">=</span><span class="n">beamForm</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">DS</span><span class="p">)</span>
 
 <span class="n">xl</span><span class="o">=</span><span class="p">[]</span>
@@ -1656,10 +1663,237 @@ y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>az = -59.99901895688785   el = 59.913280763019486
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>az = 89.99977254127685   el = 0.4629404012004233
 </pre></div>
 </div>
-<img alt="_images/beed09121d7a80d3cfa88ab01e943141de02a8dada7353b53d975ab005fe4a79.png" src="_images/beed09121d7a80d3cfa88ab01e943141de02a8dada7353b53d975ab005fe4a79.png" />
+<img alt="_images/32e2fbd9626bb4c06e5d54895d00b07d07f9beacb08cf5574478e17bcd042dbc.png" src="_images/32e2fbd9626bb4c06e5d54895d00b07d07f9beacb08cf5574478e17bcd042dbc.png" />
+</div>
+</div>
+</section>
+<section id="general-fft-based-direction-finding">
+<h3>General fft-based direction finding<a class="headerlink" href="#general-fft-based-direction-finding" title="Link to this heading">#</a></h3>
+<p>Noting that power spectrum, cross correlation and intensity estimation are using ffts, it should be possible to combine the three operation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MC</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ho</span><span class="p">,</span><span class="n">hsel</span><span class="p">,</span><span class="n">sv</span><span class="p">):</span>
+        <span class="n">D</span><span class="o">=</span><span class="n">ho</span><span class="p">[</span><span class="n">hsel</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],:]</span><span class="o">-</span><span class="n">ho</span><span class="p">[</span><span class="n">hsel</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],:]</span>
+        <span class="n">DI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ho</span><span class="o">=</span><span class="n">ho</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hsel</span><span class="o">=</span><span class="n">hsel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sv</span><span class="o">=</span><span class="n">sv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="o">=</span><span class="n">D</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DI</span><span class="o">=</span><span class="n">DI</span>
+    <span class="c1">#</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Multi-Channel direction finding using fft&quot;</span>
+    <span class="c1">#</span>
+    <span class="k">def</span> <span class="nf">__quadInt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">uu</span><span class="p">,</span><span class="n">imx</span><span class="p">,</span><span class="n">nd1</span><span class="p">):</span>
+        <span class="c1"># three point quardatic interpolation </span>
+        <span class="c1"># to find location and value of interpolated maxima</span>
+        <span class="n">nc</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">imx</span><span class="p">)</span>
+        <span class="n">uo</span><span class="o">=</span><span class="n">uu</span><span class="p">[</span><span class="n">imx</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">)]</span>
+        <span class="n">um</span><span class="o">=</span><span class="n">uu</span><span class="p">[</span><span class="n">imx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">)]</span>
+        <span class="n">up</span><span class="o">=</span><span class="n">uu</span><span class="p">[</span><span class="n">imx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">)]</span>
+        <span class="c1">#</span>
+        <span class="n">b</span><span class="o">=</span><span class="p">(</span><span class="n">up</span><span class="o">+</span><span class="n">um</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">uo</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="c1">#</span>
+        <span class="n">xo</span><span class="o">=</span><span class="p">(</span><span class="n">um</span><span class="o">-</span><span class="n">up</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+        <span class="n">yo</span><span class="o">=</span><span class="n">uo</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">xo</span><span class="o">**</span><span class="mi">2</span><span class="p">;</span>
+        <span class="c1">#</span>
+        <span class="n">ux</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nc</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">ux</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">xo</span><span class="o">+</span><span class="n">imx</span><span class="o">-</span><span class="n">nd1</span>
+        <span class="n">ux</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">yo</span>
+        <span class="k">return</span> <span class="n">ux</span>
+    <span class="c1">#</span>
+    <span class="k">def</span> <span class="nf">__proc_fft__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="n">nfft</span><span class="p">):</span>
+        <span class="n">hsel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hsel</span>
+        <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">nfft</span><span class="p">)</span>
+        <span class="n">vv</span><span class="o">=</span><span class="n">uu</span><span class="p">[:,</span><span class="n">hsel</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">uu</span><span class="p">[:,</span><span class="n">hsel</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">vv</span> <span class="o">=</span> <span class="n">vv</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span>
+        <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">vv</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">axes</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">jmx</span><span class="o">=</span> <span class="n">yy</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">ux</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__quadInt__</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span><span class="n">jmx</span><span class="p">,</span><span class="n">nfft</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">uu</span><span class="p">,</span> <span class="o">-</span><span class="n">vv</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">ux</span>
+
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ss</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">step</span><span class="p">,</span><span class="n">nfft</span><span class="p">):</span>
+        <span class="n">nd</span><span class="p">,</span><span class="n">nch</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">offsets</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nd</span><span class="o">-</span><span class="n">nw</span><span class="p">,</span><span class="n">step</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">no</span> <span class="o">=</span> <span class="n">offsets</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">nh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hsel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">nfr</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="n">nfft</span><span class="o">//</span><span class="mi">2</span>
+        <span class="n">Q</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">no</span><span class="p">,</span><span class="n">nfr</span><span class="p">,</span><span class="n">nch</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;complex&#39;</span><span class="p">)</span>
+        <span class="n">C</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">no</span><span class="p">,</span><span class="n">nfr</span><span class="p">,</span><span class="n">nh</span><span class="p">))</span>
+        <span class="n">ux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">no</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hanning</span><span class="p">(</span><span class="n">nw</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#</span>
+        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">jj</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">offsets</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">no</span><span class="p">)):</span>
+            <span class="n">xx</span><span class="o">=</span><span class="n">ss</span><span class="p">[</span><span class="n">ii</span><span class="p">:</span><span class="n">ii</span><span class="o">+</span><span class="n">nw</span><span class="p">,:]</span>
+            <span class="n">Q</span><span class="p">[</span><span class="n">jj</span><span class="p">,:,:],</span><span class="n">C</span><span class="p">[</span><span class="n">jj</span><span class="p">,:,:],</span><span class="n">ux</span><span class="p">[</span><span class="n">jj</span><span class="p">,:,:]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__proc_fft__</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
+        <span class="c1">#</span>
+        <span class="c1"># accumulate 3-d components</span>
+        <span class="n">V</span><span class="o">=-</span><span class="n">ux</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="nd">@self</span><span class="o">.</span><span class="n">DI</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">I</span><span class="o">=-</span><span class="n">C</span><span class="nd">@self</span><span class="o">.</span><span class="n">DI</span><span class="o">.</span><span class="n">T</span>
+        <span class="c1">#</span>
+        <span class="n">t</span><span class="o">=</span><span class="p">(</span><span class="n">offsets</span><span class="o">+</span><span class="n">nw</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">fs</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nfr</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft</span>
+        <span class="k">return</span> <span class="n">Q</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">ux</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">t</span>
+    
+    <span class="k">def</span> <span class="nf">directions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ss</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">step</span><span class="p">,</span><span class="n">nfft</span><span class="p">):</span>
+        <span class="n">Q</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">ux</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">step</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
+        <span class="n">P</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+        <span class="c1">#</span>
+        <span class="n">In</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">I</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">In</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">In</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">In</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">In</span><span class="p">[:,</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">J</span><span class="o">=</span><span class="n">I</span><span class="o">/</span><span class="n">In</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">In</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">In</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">In</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">In</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+
+        <span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ux</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#</span>
+        <span class="n">AZ</span><span class="o">=</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">J</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span><span class="n">J</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">EL</span><span class="o">=</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">J</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">J</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">J</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">az</span><span class="o">=</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">V</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">el</span><span class="o">=</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">V</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">P</span><span class="p">,</span><span class="n">In</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">AZ</span><span class="p">,</span><span class="n">EL</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">el</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">ux</span>
+    
+    <span class="k">def</span> <span class="nf">beamform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ss</span><span class="p">,</span><span class="n">aze</span><span class="p">,</span><span class="n">ele</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">nd</span><span class="p">,</span><span class="n">nch</span><span class="o">=</span><span class="n">ss</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">Se</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cosd</span><span class="p">(</span><span class="n">aze</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">ele</span><span class="p">),</span><span class="n">sind</span><span class="p">(</span><span class="n">aze</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">ele</span><span class="p">),</span> <span class="n">sind</span><span class="p">(</span><span class="n">ele</span><span class="p">)])</span>
+        <span class="n">DS</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ho</span><span class="o">*</span><span class="n">Se</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">sv</span>
+        <span class="c1">#</span>
+        <span class="n">nt</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">DS</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+        <span class="n">kk</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">nt</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">nt</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">uu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">kk</span><span class="o">-</span><span class="n">DS</span><span class="p">)</span>
+        <span class="n">vv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1">#</span>
+        <span class="k">if</span> <span class="n">step</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
+            <span class="n">step</span><span class="o">=</span><span class="n">nfft</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">nt</span>
+            <span class="n">offsets</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nd</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+            <span class="n">zz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nd</span><span class="o">+</span><span class="n">nfft</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">nn</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">:</span>
+                <span class="n">xx</span><span class="o">=</span><span class="n">ss</span><span class="p">[</span><span class="n">nn</span><span class="p">:</span><span class="n">nn</span><span class="o">+</span><span class="n">nw</span><span class="p">,:]</span>
+                <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">xv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">yy</span><span class="o">*</span><span class="n">vv</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">zz</span><span class="p">[</span><span class="n">nn</span><span class="p">:</span><span class="n">nn</span><span class="o">+</span><span class="n">nfft</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">xv</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1">#</span>
+            <span class="k">return</span> <span class="n">zz</span><span class="p">[</span><span class="n">nt</span><span class="p">:</span><span class="n">nt</span><span class="o">+</span><span class="n">nd</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">step</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">offsets</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">offsets</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nd</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+            <span class="n">no</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">offsets</span><span class="p">)</span>
+            <span class="n">zz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nw</span><span class="p">,</span><span class="n">no</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">nn</span><span class="p">,</span><span class="n">jj</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">offsets</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">no</span><span class="p">)):</span>
+                <span class="n">xx</span><span class="o">=</span><span class="n">ss</span><span class="p">[</span><span class="n">nn</span><span class="p">:</span><span class="n">nn</span><span class="o">+</span><span class="n">nw</span><span class="p">,:]</span>
+                <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">nfft</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">xv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span><span class="n">yy</span><span class="o">*</span><span class="n">vv</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">zzo</span><span class="o">=</span><span class="n">xv</span><span class="p">[:</span><span class="n">nw</span><span class="p">,:]</span>
+                <span class="n">zz</span><span class="p">[:,</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">zzo</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">zz</span><span class="p">,</span><span class="n">zzo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tetraheder</span>
+<span class="n">ro</span><span class="o">=</span><span class="mf">0.0725</span>
+<span class="n">dz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ho</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">dz</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">dz</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">dz</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">dz</span><span class="p">]])</span><span class="o">*</span><span class="n">ro</span>
+<span class="n">hsel</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span> 
+<span class="c1">#</span>
+<span class="n">sv</span><span class="o">=</span><span class="mi">1500</span>
+<span class="n">mc</span><span class="o">=</span><span class="n">MC</span><span class="p">(</span><span class="n">ho</span><span class="p">,</span><span class="n">hsel</span><span class="p">,</span><span class="n">sv</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mc</span><span class="p">)</span>
+<span class="n">nw</span><span class="o">=</span><span class="mi">256</span>
+<span class="n">step</span><span class="o">=</span><span class="n">nw</span><span class="o">//</span><span class="mi">4</span>
+<span class="n">nfft</span><span class="o">=</span><span class="mi">512</span>
+<span class="n">P</span><span class="p">,</span><span class="n">In</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">AZ</span><span class="p">,</span><span class="n">EL</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="n">el</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">ux</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">directions</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">step</span><span class="p">,</span><span class="n">nfft</span><span class="p">)</span>
+<span class="c1">#print(I.shape,V.shape,P.shape,P.dtype)</span>
+
+<span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="n">f</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">]</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+    <span class="n">im</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">P</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">),</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span><span class="n">extent</span><span class="o">=</span><span class="n">ext</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">AZ</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span><span class="n">extent</span><span class="o">=</span><span class="n">ext</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">EL</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span><span class="n">extent</span><span class="o">=</span><span class="n">ext</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+    <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ss</span><span class="o">/</span><span class="n">ss</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;k.-&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">az</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">el</span><span class="p">,</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">azo</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">elo</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">2.97</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">2.97</span><span class="o">+</span><span class="mf">0.01</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency [kHz]&#39;</span><span class="p">)</span>
+
+    <span class="c1">#adjust axes</span>
+    <span class="n">ax0</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">x1</span><span class="o">=</span><span class="n">ax0</span><span class="o">.</span><span class="n">x1</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;power&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Azimuth&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Elevation&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;xcorr-peak&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;xcorr-components&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multi-Channel direction finding using fft
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="n">io</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">2.97</span><span class="o">*</span><span class="n">fs</span><span class="p">)</span>
+<span class="n">xx</span><span class="o">=</span><span class="n">ss</span><span class="p">[</span><span class="n">io</span><span class="p">:</span><span class="n">io</span><span class="o">+</span><span class="mi">256</span><span class="p">,:]</span>
+
+<span class="c1">#azo,elo</span>
+<span class="n">aze</span><span class="o">=</span><span class="n">azo</span>
+<span class="n">ele</span><span class="o">=</span><span class="n">elo</span>
+
+<span class="n">nw</span><span class="o">=</span><span class="mi">256</span>
+<span class="n">nstep</span><span class="o">=</span><span class="mi">256</span>
+<span class="n">nfft</span><span class="o">=</span><span class="mi">512</span>
+<span class="n">zz</span><span class="p">,</span><span class="n">zzo</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">beamform</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">aze</span><span class="p">,</span><span class="n">ele</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">nw</span><span class="p">,</span><span class="n">nfft</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">),</span><span class="n">stack</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">),</span><span class="n">stack</span><span class="p">(</span><span class="n">zzo</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">),</span><span class="n">zz</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1c27a386962553bed6af762036a1272184ffb60e74396cbc28cf3297a806cf9c.png" src="_images/1c27a386962553bed6af762036a1272184ffb60e74396cbc28cf3297a806cf9c.png" />
+<img alt="_images/a9a7eb804e9b5d4e910ec79596f6c3e76b7854976de470058c7ecc7c320f47dc.png" src="_images/a9a7eb804e9b5d4e910ec79596f6c3e76b7854976de470058c7ecc7c320f47dc.png" />
+<img alt="_images/2963eef73bc647c7680a6429bf20f6e265d99ca0c54dd0c3220120dabb3999d1.png" src="_images/2963eef73bc647c7680a6429bf20f6e265d99ca0c54dd0c3220120dabb3999d1.png" />
 </div>
 </div>
 </section>
@@ -1762,6 +1996,7 @@ y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-array">Line array</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delay-estimation-from-angles">delay estimation from angles</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-beam-steering">General beam steering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-fft-based-direction-finding">General fft-based direction finding</a></li>
 </ul>
 </li>
 </ul>

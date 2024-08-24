@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -192,9 +192,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioacoustic_tools.html">bioacoustic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="nav bd-sidenav">
@@ -408,20 +407,20 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="wave-equation">
 <h1>Wave equation<a class="headerlink" href="#wave-equation" title="Link to this heading">#</a></h1>
 <p>The standard form of the wave equation in spherical coordinates is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eb8e35f2-0854-4871-b807-e9edfa1aec23">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eb8e35f2-0854-4871-b807-e9edfa1aec23" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dfee509f-443b-47e3-b4e4-e4b2296d2ed8">
+<span class="eqno">(1)<a class="headerlink" href="#equation-dfee509f-443b-47e3-b4e4-e4b2296d2ed8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 (rP)}{\partial t^2}=c^2\frac{\partial^2(rP)}{\partial^2r}
 \end{equation}\]</div>
 <p>the solution of which is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13ec933f-c3a5-486f-b140-322ff8922dc1">
-<span class="eqno">(2)<a class="headerlink" href="#equation-13ec933f-c3a5-486f-b140-322ff8922dc1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-72bfe96e-be69-43a6-b345-2c2db040ab48">
+<span class="eqno">(2)<a class="headerlink" href="#equation-72bfe96e-be69-43a6-b345-2c2db040ab48" title="Permalink to this equation">#</a></span>\[\begin{equation}
 rP=f(ct\pm r)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(ct\pm r)\)</span> is any function that depends on <span class="math notranslate nohighlight">\((ct\pm r)\)</span></p>
 <p>The general solution includes both outgoing (minus sign) and incoming waves( plus sign)</p>
 <p>For periodic sound waves one can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8b7f5044-d648-48d9-a4ff-e6fb75318774">
-<span class="eqno">(3)<a class="headerlink" href="#equation-8b7f5044-d648-48d9-a4ff-e6fb75318774" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8024c7f9-1089-476e-b63a-f8bc37a8c04a">
+<span class="eqno">(3)<a class="headerlink" href="#equation-8024c7f9-1089-476e-b63a-f8bc37a8c04a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(ct\pm r) = A(ct\pm r)\cos\Biggl(\frac{2\pi}{\lambda}(ct\pm r)\Biggr)
 = A(ct\pm r)\cos(\omega t\pm kr)
 \end{equation}\]</div>

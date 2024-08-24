@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -192,9 +192,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioacoustic_tools.html">bioacoustic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="nav bd-sidenav">
@@ -419,13 +418,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="cuvier-s-beaked-whale-click">
 <h1>Cuvier’s beaked whale click<a class="headerlink" href="#cuvier-s-beaked-whale-click" title="Link to this heading">#</a></h1>
 <p>For applying a matched filter to Cuvier’s beaked whale (Zc) clicks, a synthetic beaked whale click could be constructed according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d47011d4-3798-4a52-b1f3-db667bc4bf93">
-<span class="eqno">(4)<a class="headerlink" href="#equation-d47011d4-3798-4a52-b1f3-db667bc4bf93" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9fc9a845-67b4-4e7e-b766-162c41e84f8d">
+<span class="eqno">(4)<a class="headerlink" href="#equation-9fc9a845-67b4-4e7e-b766-162c41e84f8d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     s(t)=A(t)\exp \{-2\pi i (f_0+f_m t)t\}
 \end{equation}\]</div>
 <p>where A(t) the signal amplitude is modeled according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-030d50bb-131d-4ce1-b47d-03d1f05de539">
-<span class="eqno">(5)<a class="headerlink" href="#equation-030d50bb-131d-4ce1-b47d-03d1f05de539" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8d905f6f-767a-4368-82ba-b2ee878e880e">
+<span class="eqno">(5)<a class="headerlink" href="#equation-8d905f6f-767a-4368-82ba-b2ee878e880e" title="Permalink to this equation">#</a></span>\[\begin{equation}
   A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
 \end{equation}\]</div>
 <p>and where f0 = 30 kHz, fm = 60 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span> and t denotes the time vector.</p>

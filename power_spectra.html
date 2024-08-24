@@ -192,9 +192,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioacoustic_tools.html">bioacoustic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="nav bd-sidenav">
@@ -437,59 +436,59 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="spectral-estimation">
 <h1>Spectral estimation<a class="headerlink" href="#spectral-estimation" title="Link to this heading">#</a></h1>
 <p>Given a time series</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a245016e-6376-4402-acfc-98e05a0712af">
-<span class="eqno">(6)<a class="headerlink" href="#equation-a245016e-6376-4402-acfc-98e05a0712af" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-05622bdd-64eb-467c-b8b7-70e0f6b0b17f">
+<span class="eqno">(6)<a class="headerlink" href="#equation-05622bdd-64eb-467c-b8b7-70e0f6b0b17f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x(n)
 \end{equation}\]</div>
 <p>with fft spectrum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-098a3a29-c144-40e8-8ce9-9079170100d6">
-<span class="eqno">(7)<a class="headerlink" href="#equation-098a3a29-c144-40e8-8ce9-9079170100d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b56f2da6-a0c6-4211-b71b-531af8733888">
+<span class="eqno">(7)<a class="headerlink" href="#equation-b56f2da6-a0c6-4211-b71b-531af8733888" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y(m) = \sum_{n=0}^{N-1}x(n) \exp\{-2\pi i\frac{nm}{N}\}
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da9ed101-c9ac-42b3-bc0d-2c866c586de6">
-<span class="eqno">(8)<a class="headerlink" href="#equation-da9ed101-c9ac-42b3-bc0d-2c866c586de6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-73571d3b-d073-4caf-b691-1f1f3540cb9f">
+<span class="eqno">(8)<a class="headerlink" href="#equation-73571d3b-d073-4caf-b691-1f1f3540cb9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y(m) = FFT(x(n))
 \end{equation}\]</div>
 <p>Power spectrum is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db892f65-1c18-4381-8fbe-f30518e46cab">
-<span class="eqno">(9)<a class="headerlink" href="#equation-db892f65-1c18-4381-8fbe-f30518e46cab" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-80dbcf08-a878-45d8-a042-6c3a15112a87">
+<span class="eqno">(9)<a class="headerlink" href="#equation-80dbcf08-a878-45d8-a042-6c3a15112a87" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(m) = |y(m)|^2
 \end{equation}\]</div>
 <p>Power spectral density (PSD) of a discrete-time noise signal is given by the FFT of its autocorrelation function, R(k)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37ef7910-6c5b-4dd7-8734-cccacacdfbaa">
-<span class="eqno">(10)<a class="headerlink" href="#equation-37ef7910-6c5b-4dd7-8734-cccacacdfbaa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6b24d2ff-3c8f-4b03-884c-6df15f981bfa">
+<span class="eqno">(10)<a class="headerlink" href="#equation-6b24d2ff-3c8f-4b03-884c-6df15f981bfa" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = FFT(R(k))
 \end{equation}\]</div>
 <p>where the autocorrelation function R(k) is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f24c2fc-ca53-423d-b7f5-d21ac0d548a3">
-<span class="eqno">(11)<a class="headerlink" href="#equation-9f24c2fc-ca53-423d-b7f5-d21ac0d548a3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c70822d3-39c2-4522-b25d-751b45631b8b">
+<span class="eqno">(11)<a class="headerlink" href="#equation-c70822d3-39c2-4522-b25d-751b45631b8b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     R(k)=\frac{1}{N}\sum_{n=0}^{N-1}x(n)x(n-k)
 \end{equation}\]</div>
 <p>that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e4ce5b56-dc2b-41db-a38d-b57ca83e19cb">
-<span class="eqno">(12)<a class="headerlink" href="#equation-e4ce5b56-dc2b-41db-a38d-b57ca83e19cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d195f028-bc74-4a52-a453-ce8d48ccaed9">
+<span class="eqno">(12)<a class="headerlink" href="#equation-d195f028-bc74-4a52-a453-ce8d48ccaed9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \sum_{k=0}^{N-1}\frac{1}{N}\sum_{n=0}^{N-1}x(n)x(n-k) \exp\{-2\pi i\frac{km}{N}\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-1ca909d5-d0b7-4fea-921b-a489353998c6">
-<span class="eqno">(13)<a class="headerlink" href="#equation-1ca909d5-d0b7-4fea-921b-a489353998c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7eed6423-1aaf-4817-a672-8d235f74fd8d">
+<span class="eqno">(13)<a class="headerlink" href="#equation-7eed6423-1aaf-4817-a672-8d235f74fd8d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N}\sum_{n=0}^{N-1}x(n)\exp\{-2\pi i\frac{nm}{N} \} \sum_{k=0}^{N-1}x(n-k) \exp\{2\pi i\frac{(n-k)m}{N}\}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9b527ba1-56d3-40bb-bef0-c30221ef4c31">
-<span class="eqno">(14)<a class="headerlink" href="#equation-9b527ba1-56d3-40bb-bef0-c30221ef4c31" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a5fc9fd2-5f0b-4d99-825a-d8db5ea92f99">
+<span class="eqno">(14)<a class="headerlink" href="#equation-a5fc9fd2-5f0b-4d99-825a-d8db5ea92f99" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N}|FFT(x(n))|^2
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-277bdb90-96da-4784-8a3e-cc51e28f1398">
-<span class="eqno">(15)<a class="headerlink" href="#equation-277bdb90-96da-4784-8a3e-cc51e28f1398" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dbe71a17-d2a5-49a2-a0e8-c7eec794229d">
+<span class="eqno">(15)<a class="headerlink" href="#equation-dbe71a17-d2a5-49a2-a0e8-c7eec794229d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{N} P(m)
 \end{equation}\]</div>
 <p>While the PSD is related to the Power Spectrum by dividing by length of FFT (i.e. length of signal window), the proper estimation of the Autocorrelation funtion <span class="math notranslate nohighlight">\(R(k)\)</span> requires a signal length that is typically longer than the FFT, which cannot be done for short signals (transients), even if mathematically possible, but estimate is not reliable.</p>
 <section id="hz-density-estimate">
 <h2>1/Hz density estimate<a class="headerlink" href="#hz-density-estimate" title="Link to this heading">#</a></h2>
 <p>Above PSD is on a per sample bases. Concerning the 1/Hz density estimate one has to scale the estimate by the number of samples per second.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c0b17488-b3c2-49e5-840a-c03cd71c0dba">
-<span class="eqno">(16)<a class="headerlink" href="#equation-c0b17488-b3c2-49e5-840a-c03cd71c0dba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-24c8cfe5-74db-4ddf-96b4-34cfdfe202fc">
+<span class="eqno">(16)<a class="headerlink" href="#equation-24c8cfe5-74db-4ddf-96b4-34cfdfe202fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{fs N} P(m)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(fs\)</span> is the sampling frequency</p>
@@ -497,8 +496,8 @@ document.write(`
 <section id="windowed-psd-estimates">
 <h2>Windowed PSD estimates<a class="headerlink" href="#windowed-psd-estimates" title="Link to this heading">#</a></h2>
 <p>When windowing the timeseries before PSD estimates</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf9b5365-d75e-4b7a-8dae-e32d5df200b5">
-<span class="eqno">(17)<a class="headerlink" href="#equation-bf9b5365-d75e-4b7a-8dae-e32d5df200b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8d29ad12-f4b5-4da5-9d83-1115e713b3c0">
+<span class="eqno">(17)<a class="headerlink" href="#equation-8d29ad12-f4b5-4da5-9d83-1115e713b3c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PSD(m) = \frac{1}{fs \sum{w(n)^2}} |FFT(w(n)x(n))|^2
 \end{equation}\]</div>
 <p>For a rectangular window we have <span class="math notranslate nohighlight">\(\sum{w(n)^2}=N\)</span></p>
@@ -506,8 +505,8 @@ document.write(`
 <section id="windowed-power-spectrum-estimates">
 <h2>Windowed power spectrum estimates<a class="headerlink" href="#windowed-power-spectrum-estimates" title="Link to this heading">#</a></h2>
 <p>Alternatively to the PSD we have the power spectrum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-406dab33-bc33-43d7-94f9-a2d4accea7b2">
-<span class="eqno">(18)<a class="headerlink" href="#equation-406dab33-bc33-43d7-94f9-a2d4accea7b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b2267704-168b-45e4-8416-f9939bd27aea">
+<span class="eqno">(18)<a class="headerlink" href="#equation-b2267704-168b-45e4-8416-f9939bd27aea" title="Permalink to this equation">#</a></span>\[\begin{equation}
     PS(m) = \frac{1}{(\sum{w(n)})^2} |FFT(w(n)x(n))|^2
 \end{equation}\]</div>
 <p>that allows the RMS spectral estimates of tonal signals, but provides wrong results for random signals</p>
@@ -635,11 +634,11 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal RMS : 10 ;  noise : 0.001
-&#39;PSD&#39; peak (RMS):       25.825066501932255 ;  Noise: 0.0009487755251385546
-&#39;Spectrum&#39; peak (RMS):  10.002005247668267 ;  Noise: 0.00014231632877078325
+&#39;PSD&#39; peak (RMS):       25.78624185281698 ;  Noise: 0.0009822312853819209
+&#39;Spectrum&#39; peak (RMS):  9.986968525723686 ;  Noise: 0.00014733469280728815
 </pre></div>
 </div>
-<img alt="_images/68be714da6bc96a302e2519037c8770bdecaf51df41d1ef213cb2f781f4d9a3d.png" src="_images/68be714da6bc96a302e2519037c8770bdecaf51df41d1ef213cb2f781f4d9a3d.png" />
+<img alt="_images/9cb5cb552785817692635c6da65801af19b48af98413032c72394ec4bea1aac8.png" src="_images/9cb5cb552785817692635c6da65801af19b48af98413032c72394ec4bea1aac8.png" />
 </div>
 </div>
 <section id="transient-noise">
@@ -690,11 +689,11 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal peak:  40.0
-&#39;PSD&#39; peak (RMS):       0.47255140907306237 ;  Noise: 0.0010524087274822727
-&#39;Spectrum&#39; peak (RMS):  0.4092415248514043 ;  Noise: 0.0007893065456117044
+&#39;PSD&#39; peak (RMS):       0.4865374833512813 ;  Noise: 0.0011052008843724917
+&#39;Spectrum&#39; peak (RMS):  0.42135382047555797 ;  Noise: 0.0008289006632793687
 </pre></div>
 </div>
-<img alt="_images/27be44557752d9065504e77cf5d2b6b7905b0b139ac581b2de3c45e328da6dff.png" src="_images/27be44557752d9065504e77cf5d2b6b7905b0b139ac581b2de3c45e328da6dff.png" />
+<img alt="_images/b898beca6162df340422d6cd5f0496f71c698ed7399d4ca12d00c1809b7a2bf7.png" src="_images/b898beca6162df340422d6cd5f0496f71c698ed7399d4ca12d00c1809b7a2bf7.png" />
 </div>
 </div>
 <p>This examples shows that when window or FFT length is much longer than signal, the contamination of noise is significant and does not allow a reliable spectral description of the the signal.</p>
@@ -704,76 +703,76 @@ document.write(`
 <p>After shown that both metrics V^2/Hz and RMS make no sense for tansients and therefore echolcation clicks, the question arizes how to scale the spectrum in order to obtain spectral peak values that correspond to the time series.</p>
 <p>First we note that the signal is smaller than the analysis window so we need to remove contributions from outside the signal from the spectrum. This can done by either a rectangular that is result of the signal detection. In the following a gaussian window is used.</p>
 <p>Assume signal with gaussian shape</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aebc22be-5284-4819-a22d-a041af798756">
-<span class="eqno">(19)<a class="headerlink" href="#equation-aebc22be-5284-4819-a22d-a041af798756" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9c22eae9-65ca-4e7f-a6d5-4c1ee1d29259">
+<span class="eqno">(19)<a class="headerlink" href="#equation-9c22eae9-65ca-4e7f-a6d5-4c1ee1d29259" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=\exp{(-at^2)}
 \end{equation}\]</div>
 <p>Fourier transform</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b483e47c-badd-4d76-b71f-125353d3adfe">
-<span class="eqno">(20)<a class="headerlink" href="#equation-b483e47c-badd-4d76-b71f-125353d3adfe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7a9315f8-a81c-4ec5-82b0-89f4a31a3769">
+<span class="eqno">(20)<a class="headerlink" href="#equation-7a9315f8-a81c-4ec5-82b0-89f4a31a3769" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X(\omega)=\int_{-\infty}^{\infty}{x(t) e^{-i\omega t} dt}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-4e35d68e-43f9-41eb-9329-a56791f6b362">
-<span class="eqno">(21)<a class="headerlink" href="#equation-4e35d68e-43f9-41eb-9329-a56791f6b362" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f895aae2-02f9-4323-affd-30668104d279">
+<span class="eqno">(21)<a class="headerlink" href="#equation-f895aae2-02f9-4323-affd-30668104d279" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X(\omega)=\int_{-\infty}^{\infty}{ \exp{-at^2-i\omega t} dt}=\int_{-\infty}^{\infty}{ \exp{-(at^2+i\omega t)} dt}
 \end{equation}\]</div>
 <p>With</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15be3ccb-02bc-4146-9b30-1d17331e380c">
-<span class="eqno">(22)<a class="headerlink" href="#equation-15be3ccb-02bc-4146-9b30-1d17331e380c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb1acc7d-28e6-4d26-a91e-8b2a0c195de9">
+<span class="eqno">(22)<a class="headerlink" href="#equation-bb1acc7d-28e6-4d26-a91e-8b2a0c195de9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (at^2+i\omega t)=at^2+2\sqrt{a} t \frac{i \omega}{2\sqrt{a}} +(\frac{i \omega}{2\sqrt{a}})^2-(\frac{i\omega}{2\sqrt{a}})^2
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c84c4554-24b4-4c7a-a843-3ddf9b1f6fcf">
-<span class="eqno">(23)<a class="headerlink" href="#equation-c84c4554-24b4-4c7a-a843-3ddf9b1f6fcf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-64a6ad45-6581-4643-84c6-6d848d967e08">
+<span class="eqno">(23)<a class="headerlink" href="#equation-64a6ad45-6581-4643-84c6-6d848d967e08" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (at^2+i\omega t)=\Big(\sqrt{a}t+\frac{i \omega}{2\sqrt{a}}\Big)^2+(\frac{\omega}{2\sqrt{a}})^2
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-ac1d1fae-d96a-4906-9c2d-f8d45a158b6a">
-<span class="eqno">(24)<a class="headerlink" href="#equation-ac1d1fae-d96a-4906-9c2d-f8d45a158b6a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-38dd916d-25db-4ef3-b4f4-427a77254f22">
+<span class="eqno">(24)<a class="headerlink" href="#equation-38dd916d-25db-4ef3-b4f4-427a77254f22" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X(\omega)=\exp{(-\frac{\omega^2}{4a})}\int_{-\infty}^{\infty}{ \exp{-\Big(\sqrt{a}t+(\frac{i\omega}{2\sqrt{a}} )\Big)^2} dt}
 \end{equation}\]</div>
 <p>with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d580ac2-5c20-4677-be6d-6ca0608f6185">
-<span class="eqno">(25)<a class="headerlink" href="#equation-9d580ac2-5c20-4677-be6d-6ca0608f6185" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-668b4ba3-b2a6-470f-a5c1-4dd766fdb967">
+<span class="eqno">(25)<a class="headerlink" href="#equation-668b4ba3-b2a6-470f-a5c1-4dd766fdb967" title="Permalink to this equation">#</a></span>\[\begin{equation}
  u(t)= \sqrt{a}t+(\frac{i\omega}{2\sqrt{a}} )
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d200eb44-4c25-4194-a514-5331e602b9dd">
-<span class="eqno">(26)<a class="headerlink" href="#equation-d200eb44-4c25-4194-a514-5331e602b9dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dbb695e3-9394-4a00-88db-0e3872f1a978">
+<span class="eqno">(26)<a class="headerlink" href="#equation-dbb695e3-9394-4a00-88db-0e3872f1a978" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dt=\frac{du}{\sqrt{a}}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-e2ea013c-3fcd-4b05-b56f-a92961144a59">
-<span class="eqno">(27)<a class="headerlink" href="#equation-e2ea013c-3fcd-4b05-b56f-a92961144a59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3d0daf70-c6c1-4674-906d-9b9c89a4f50b">
+<span class="eqno">(27)<a class="headerlink" href="#equation-3d0daf70-c6c1-4674-906d-9b9c89a4f50b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X(\omega)=\exp{(-\frac{\omega^2}{4a})}\int_{-\infty}^{\infty}{ \exp{\big[-u(t)^2]} \frac{du}{\sqrt{a}}}
 = \sqrt{\frac{\pi}{a}}\exp{(-\frac{\omega^2}{4a})}
 \end{equation}\]</div>
 </section>
 <section id="gaussian-modulated-signal">
 <h3>Gaussian modulated signal<a class="headerlink" href="#gaussian-modulated-signal" title="Link to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-8808c9bf-6085-43c7-8308-e5ca0870663b">
-<span class="eqno">(28)<a class="headerlink" href="#equation-8808c9bf-6085-43c7-8308-e5ca0870663b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-15061f6f-8000-4ebd-8771-cdb47e719d29">
+<span class="eqno">(28)<a class="headerlink" href="#equation-15061f6f-8000-4ebd-8771-cdb47e719d29" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=\exp{(-at^2)}\exp{(i\omega_0 t)}
 \end{equation}\]</div>
 <p>using frequency shifting property of fourirt transforms:</p>
 <p>if</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc8ae73f-7b0c-4cab-9f34-30dd110b12f8">
-<span class="eqno">(29)<a class="headerlink" href="#equation-bc8ae73f-7b0c-4cab-9f34-30dd110b12f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c5312a1e-04e7-438f-8aef-661a1f1c5ef8">
+<span class="eqno">(29)<a class="headerlink" href="#equation-c5312a1e-04e7-438f-8aef-661a1f1c5ef8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \text{FFT}\{x(t)\}=X(\omega)
 \end{equation}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5eaf6c3d-8ed7-4422-8d6b-9e1f1873a06a">
-<span class="eqno">(30)<a class="headerlink" href="#equation-5eaf6c3d-8ed7-4422-8d6b-9e1f1873a06a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ffaef5c5-d0b2-4b22-a216-da21978b0faf">
+<span class="eqno">(30)<a class="headerlink" href="#equation-ffaef5c5-d0b2-4b22-a216-da21978b0faf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \text{FFT}\{x(t)\exp(i\omega_0 t)\}=X(\omega-\omega_0)
 \end{equation}\]</div>
 </section>
 <section id="spectral-peak">
 <h3>Spectral peak<a class="headerlink" href="#spectral-peak" title="Link to this heading">#</a></h3>
 <p>spectral peak of a gaussian amplitude is with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fc70898a-97ef-4904-85ff-c42bbfd87b78">
-<span class="eqno">(31)<a class="headerlink" href="#equation-fc70898a-97ef-4904-85ff-c42bbfd87b78" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-64cd93cf-cbaf-4e03-9e56-f2135228250b">
+<span class="eqno">(31)<a class="headerlink" href="#equation-64cd93cf-cbaf-4e03-9e56-f2135228250b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 a=\frac{1}{2\sigma^2}
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-ec4aba74-7636-4e4d-9cd2-b6231c166a2f">
-<span class="eqno">(32)<a class="headerlink" href="#equation-ec4aba74-7636-4e4d-9cd2-b6231c166a2f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9de9969e-f215-48d1-b01a-c4d1066ae6f5">
+<span class="eqno">(32)<a class="headerlink" href="#equation-9de9969e-f215-48d1-b01a-c4d1066ae6f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sqrt{\frac{\pi}{a}}=\sqrt{2\pi}\sigma
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -811,10 +810,10 @@ a=\frac{1}{2\sigma^2}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.00000000000027
 </pre></div>
 </div>
-<img alt="_images/f4a5af73cdcced4edd2990f71df354a223d67e1bb74199827e976843587435d3.png" src="_images/f4a5af73cdcced4edd2990f71df354a223d67e1bb74199827e976843587435d3.png" />
+<img alt="_images/af9b4f5352dfda08d18e20fe96c13e1c83a4f04cabd609eaa0d78402f7c1a987.png" src="_images/af9b4f5352dfda08d18e20fe96c13e1c83a4f04cabd609eaa0d78402f7c1a987.png" />
 </div>
 </div>
-<p>We see that scaling the power spectrum by the peak value of the pulse spectrum normalizes the click spectrum so that spectral peak corrsponds to the time series peak anplitude.</p>
+<p>We see that scaling the power spectrum by the peak value of the spectrum of the pulse amplitude function normalizes the click spectrum so that spectral peak corrsponds to the time series peak anplitude.</p>
 </section>
 </section>
 <section id="summary">

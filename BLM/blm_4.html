@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -191,9 +191,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../cVAS_direction.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cVAS_phase_direction.html">cVAS phase direction finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bioacoustic_tools.html">bioacoustic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cVAS_direction.html">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="nav bd-sidenav">
@@ -496,10 +495,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal RMS :  2.0 2.0
-Noise  502.88982839617023
+Noise  503.6593868974355
 </pre></div>
 </div>
-<img alt="../_images/1c7968aaab57a15f91577b91ac10477ff82d7a1bafff57c861f413aa965f1630.png" src="../_images/1c7968aaab57a15f91577b91ac10477ff82d7a1bafff57c861f413aa965f1630.png" />
+<img alt="../_images/0ccbda5dd2ce3bec48f4d1c713b147473ac578ab63f354bdfcc7ea13177c4cde.png" src="../_images/0ccbda5dd2ce3bec48f4d1c713b147473ac578ab63f354bdfcc7ea13177c4cde.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -562,10 +561,10 @@ Noise  502.88982839617023
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal RMS :  2.0 1.9999533593066727
-Noise  520.6930563246295
+Noise  498.02056006554574
 </pre></div>
 </div>
-<img alt="../_images/e1087681ef7642499c733265d9a1a4962010b531247ce719bb53ccfe122f8045.png" src="../_images/e1087681ef7642499c733265d9a1a4962010b531247ce719bb53ccfe122f8045.png" />
+<img alt="../_images/b148feb98ed67fa04fb777634ee5168649fe8cfadfce55cff202546664e41f9f.png" src="../_images/b148feb98ed67fa04fb777634ee5168649fe8cfadfce55cff202546664e41f9f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -579,24 +578,24 @@ Noise  520.6930563246295
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cf8c36cfc7a0f3f543d19c02c33b4e7ca5e282f9634c0a688c9f65df14e3720e.png" src="../_images/cf8c36cfc7a0f3f543d19c02c33b4e7ca5e282f9634c0a688c9f65df14e3720e.png" />
+<img alt="../_images/749c41cef1f5dfcdbb0a5667ba63f9ffa8f75d6779bf9b8a6e17851917d3d482.png" src="../_images/749c41cef1f5dfcdbb0a5667ba63f9ffa8f75d6779bf9b8a6e17851917d3d482.png" />
 </div>
 </div>
 </section>
 <section id="lfm-sweep">
 <h2>LFM sweep<a class="headerlink" href="#lfm-sweep" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-6d971a29-9b21-4a45-b28a-171c9239366a">
-<span class="eqno">(230)<a class="headerlink" href="#equation-6d971a29-9b21-4a45-b28a-171c9239366a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e7883a71-1f24-4e5e-87b1-26ee47c52e89">
+<span class="eqno">(230)<a class="headerlink" href="#equation-e7883a71-1f24-4e5e-87b1-26ee47c52e89" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)= \sin{(2\pi f_0 t)}
 \end{equation}\]</div>
 <p>becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fcb2be4b-4938-418d-8479-e2d68df18548">
-<span class="eqno">(231)<a class="headerlink" href="#equation-fcb2be4b-4938-418d-8479-e2d68df18548" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cdece91b-e860-4129-9cb0-70826da5cd17">
+<span class="eqno">(231)<a class="headerlink" href="#equation-cdece91b-e860-4129-9cb0-70826da5cd17" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)= \sin{(2\pi(f_0+\frac{B}{2}t)t)}=\sin{(2\pi(f_0 t+\frac{B}{2}t^2))}=\sin{(\phi(t))}
 \end{equation}\]</div>
 <p>Frequency estimation from data</p>
-<div class="amsmath math notranslate nohighlight" id="equation-316697a2-552b-43e1-9251-9c5d073dd823">
-<span class="eqno">(232)<a class="headerlink" href="#equation-316697a2-552b-43e1-9251-9c5d073dd823" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7f3e5e90-30b0-45ed-9504-006f0f55e367">
+<span class="eqno">(232)<a class="headerlink" href="#equation-7f3e5e90-30b0-45ed-9504-006f0f55e367" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(t) = \frac{1}{2\pi}\frac{d}{dt} \phi(t) = f_0+Bt
 \end{equation}\]</div>
 </section>
@@ -730,7 +729,7 @@ f(t) = \frac{1}{2\pi}\frac{d}{dt} \phi(t) = f_0+Bt
 S=  (513, 1203)
 </pre></div>
 </div>
-<img alt="../_images/4302e69a241a915a785e5a4d5bc25f2bac9297f7dd73cbced49e5dbf5235de9d.png" src="../_images/4302e69a241a915a785e5a4d5bc25f2bac9297f7dd73cbced49e5dbf5235de9d.png" />
+<img alt="../_images/540b3c25098472b04b1a236b6e9c0e52d3a8735b78baa2a3606cd16d42554d6f.png" src="../_images/540b3c25098472b04b1a236b6e9c0e52d3a8735b78baa2a3606cd16d42554d6f.png" />
 </div>
 </div>
 </section>

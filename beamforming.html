@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -192,9 +192,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">cVAS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_phase_direction.html">cVAS phase direction finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cVAS_stft_direction.html">cVAS stft direction finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioacoustic_tools.html">bioacoustic tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cVAS_direction.html">Direction finding with compact Volumetric Acoustic Sensor (cVAS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Work in Progress</span></p>
 <ul class="nav bd-sidenav">
@@ -432,8 +431,8 @@ document.write(`
 <section id="basic-formulation-of-single-source-direction-finding">
 <h2>Basic formulation of single source direction finding<a class="headerlink" href="#basic-formulation-of-single-source-direction-finding" title="Link to this heading">#</a></h2>
 <p>Let the sound direction  <span class="math notranslate nohighlight">\(\hat S\)</span> be given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b2ddc0e3-e5d3-4025-9648-8d053a6efc11">
-<span class="eqno">(88)<a class="headerlink" href="#equation-b2ddc0e3-e5d3-4025-9648-8d053a6efc11" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-07424351-7208-4565-a3cb-8125bb112b29">
+<span class="eqno">(88)<a class="headerlink" href="#equation-07424351-7208-4565-a3cb-8125bb112b29" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat S = 
     \left(
         \begin{array}{c}
@@ -444,8 +443,8 @@ document.write(`
     \right)  
 \end{equation}\]</div>
 <p>and the hydrophone location matrix <span class="math notranslate nohighlight">\( H \)</span> be given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ee88bc8-22e7-4ad3-baf3-d5d57b568023">
-<span class="eqno">(89)<a class="headerlink" href="#equation-0ee88bc8-22e7-4ad3-baf3-d5d57b568023" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-42670bba-3a71-4b32-a432-3bf3a9f5427c">
+<span class="eqno">(89)<a class="headerlink" href="#equation-42670bba-3a71-4b32-a432-3bf3a9f5427c" title="Permalink to this equation">#</a></span>\[\begin{equation}
      H = 
     \left(
         \begin{array}{c c c c}
@@ -457,8 +456,8 @@ document.write(`
 \end{equation}\]</div>
 <p>where the elements <span class="math notranslate nohighlight">\((d_{ix},d_{iy},d_{iz}) \)</span> are the <span class="math notranslate nohighlight">\(x,y,z\)</span> components of the 3-D vector that locates the hydrophones.</p>
 <p>Let <span class="math notranslate nohighlight">\(D_0\)</span> be the hydrophone seperation matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-874aec66-9301-4af2-973c-638fb566ed6c">
-<span class="eqno">(90)<a class="headerlink" href="#equation-874aec66-9301-4af2-973c-638fb566ed6c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-addc8a68-5a49-45ba-9033-13e58dbcd63a">
+<span class="eqno">(90)<a class="headerlink" href="#equation-addc8a68-5a49-45ba-9033-13e58dbcd63a" title="Permalink to this equation">#</a></span>\[\begin{equation}
      D_0 = H-{h_0}=
     \left(
         \begin{array}{c c c c}
@@ -469,8 +468,8 @@ document.write(`
     \right)  
 \end{equation}\]</div>
 <p>then the vector of measurements <span class="math notranslate nohighlight">\( m\)</span> defined by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d12ef3c-6c42-4271-acd8-b1a6d3f96c84">
-<span class="eqno">(91)<a class="headerlink" href="#equation-9d12ef3c-6c42-4271-acd8-b1a6d3f96c84" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aae01602-4ed8-48c5-8805-c3488b86dca2">
+<span class="eqno">(91)<a class="headerlink" href="#equation-aae01602-4ed8-48c5-8805-c3488b86dca2" title="Permalink to this equation">#</a></span>\[\begin{equation}
      m = 
     \left(
         \begin{array}{c}
@@ -482,20 +481,20 @@ document.write(`
     \right)  
 \end{equation}\]</div>
 <p>is estimated by the projection of the sound source direction onto the different hydrophone pairs.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17f53d8e-9897-4146-ae74-217a82a5afd6">
-<span class="eqno">(92)<a class="headerlink" href="#equation-17f53d8e-9897-4146-ae74-217a82a5afd6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-11cc70c2-a1c2-4d01-87bf-2bea294e95a5">
+<span class="eqno">(92)<a class="headerlink" href="#equation-11cc70c2-a1c2-4d01-87bf-2bea294e95a5" title="Permalink to this equation">#</a></span>\[\begin{equation}
      m =  D_0^T  {\hat S}
 \end{equation}\]</div>
 <p>The sound direction is then estimated from the measurement vector by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07fb5abf-d8ce-4ef9-b06b-e99d66a8d7d5">
-<span class="eqno">(93)<a class="headerlink" href="#equation-07fb5abf-d8ce-4ef9-b06b-e99d66a8d7d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d0f4e42b-39e8-4c08-8efc-a25b0483bf91">
+<span class="eqno">(93)<a class="headerlink" href="#equation-d0f4e42b-39e8-4c08-8efc-a25b0483bf91" title="Permalink to this equation">#</a></span>\[\begin{equation}
     {\hat S} = \left( D_0^T  D_0 \right)^{-1}  D_0  m
 \end{equation}\]</div>
 <section id="line-array">
 <h3>Line array<a class="headerlink" href="#line-array" title="Link to this heading">#</a></h3>
 <p>In case where the array geometry is a line array then typically one assumes that <span class="math notranslate nohighlight">\((h_{iy},h_{iz})=(0,0)\)</span> and we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f7b6750e-2221-4e67-ae8f-683142f2dac7">
-<span class="eqno">(94)<a class="headerlink" href="#equation-f7b6750e-2221-4e67-ae8f-683142f2dac7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e16a23cc-4d69-49ce-bd07-6fac11a4f3f4">
+<span class="eqno">(94)<a class="headerlink" href="#equation-e16a23cc-4d69-49ce-bd07-6fac11a4f3f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat S_x = \frac{\sum_i(d_{ix}m_i)} {\sum_i(d_{ix}^2)}
 \end{equation}\]</div>
 </section>
@@ -503,34 +502,34 @@ document.write(`
 <section id="basic-formulation-of-beamforming">
 <h2>Basic formulation of beamforming<a class="headerlink" href="#basic-formulation-of-beamforming" title="Link to this heading">#</a></h2>
 <p>Let the sound pressure measured an a single hydrophone be a signal <span class="math notranslate nohighlight">\(s\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-e4057b06-4046-4deb-94a1-950a7acae084">
-<span class="eqno">(95)<a class="headerlink" href="#equation-e4057b06-4046-4deb-94a1-950a7acae084" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-92ef04e6-ef47-4650-8af8-c9475cdb10b9">
+<span class="eqno">(95)<a class="headerlink" href="#equation-92ef04e6-ef47-4650-8af8-c9475cdb10b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=s(t)
 \end{equation}\]</div>
 <p>then in an array of hydrophones the measurements become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01f55d67-3eb7-49e2-a137-f19d2d3c837e">
-<span class="eqno">(96)<a class="headerlink" href="#equation-01f55d67-3eb7-49e2-a137-f19d2d3c837e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f4e94503-2d73-417c-a5f3-8c16fb853689">
+<span class="eqno">(96)<a class="headerlink" href="#equation-f4e94503-2d73-417c-a5f3-8c16fb853689" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i(t)=s(t-\tau_i(\alpha,\beta))+n(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> is the delay of the signal at hydrophone <span class="math notranslate nohighlight">\(i\)</span> with respect to som reference hydrophone and <span class="math notranslate nohighlight">\(\alpha,\beta\)</span> are the angles of arrival</p>
 <p>For a line array with equally spaced hydrophones the delay has a simple form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db4c67c2-9094-45ad-8fe7-e65bd7b8bfd0">
-<span class="eqno">(97)<a class="headerlink" href="#equation-db4c67c2-9094-45ad-8fe7-e65bd7b8bfd0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8a707b1b-81cf-4bcb-9981-cb40e8dcd99c">
+<span class="eqno">(97)<a class="headerlink" href="#equation-8a707b1b-81cf-4bcb-9981-cb40e8dcd99c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tau_i(t)=i\frac{d}{c}\cos{\gamma}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(d\)</span> id the hydrophone spacing, <span class="math notranslate nohighlight">\(c\)</span> is the sound speed at the hydrophone, and <span class="math notranslate nohighlight">\(\gamma\)</span> is the relative angle of arrival, that for a line array is composed of the azimuth <span class="math notranslate nohighlight">\(\alpha\)</span> and elevation angle <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-035952ec-60d9-4312-8b03-46af43af4ac5">
-<span class="eqno">(98)<a class="headerlink" href="#equation-035952ec-60d9-4312-8b03-46af43af4ac5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0331ff30-dada-479e-b43d-d431e9f46ed1">
+<span class="eqno">(98)<a class="headerlink" href="#equation-0331ff30-dada-479e-b43d-d431e9f46ed1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos{\gamma}=\cos{\alpha}\cos{\beta}
 \end{equation}\]</div>
 <p>The beamforming algorithm simply speaking tries to undo the signal delays <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> by compensating with negative delays</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fcf09df4-d8bf-4eda-aee2-5dedb2125904">
-<span class="eqno">(99)<a class="headerlink" href="#equation-fcf09df4-d8bf-4eda-aee2-5dedb2125904" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-928f9c52-2473-47c7-836f-0394d0f3010d">
+<span class="eqno">(99)<a class="headerlink" href="#equation-928f9c52-2473-47c7-836f-0394d0f3010d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=\frac{1}{N}\sum_i (x_t(+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>In cases, where <span class="math notranslate nohighlight">\(\delta_i(\gamma)=\tau_i(\alpha,\beta)\)</span> we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f2117ee-ea86-488a-afca-e31413a423e3">
-<span class="eqno">(100)<a class="headerlink" href="#equation-4f2117ee-ea86-488a-afca-e31413a423e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c201e45e-0ab9-4120-ac9c-f5524a771920">
+<span class="eqno">(100)<a class="headerlink" href="#equation-c201e45e-0ab9-4120-ac9c-f5524a771920" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>indicating that the signal <span class="math notranslate nohighlight">\(s(t)\)</span> is completely reconstructed and that noise, that is assumed to be uncorrelated is attenuated.</p>
@@ -570,7 +569,7 @@ x(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a44bebb9ae1b730f714658d28cbc3a6c57349771169faaf174995160eaf058ca.png" src="_images/a44bebb9ae1b730f714658d28cbc3a6c57349771169faaf174995160eaf058ca.png" />
+<img alt="_images/5ec730c86a81f923afffe68f7e1b79d53f06fc81588445630380b4d15ee473e7.png" src="_images/5ec730c86a81f923afffe68f7e1b79d53f06fc81588445630380b4d15ee473e7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -711,7 +710,7 @@ x(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/57bb13c9df1f862dee482442fe5af0979ae65ea3b89a01d07df66d30389fee24.png" src="_images/57bb13c9df1f862dee482442fe5af0979ae65ea3b89a01d07df66d30389fee24.png" />
+<img alt="_images/307afd57d1a5fa7703f307e3b5dd6ee8cf576e924e14c8ede4e832434ee8f62d.png" src="_images/307afd57d1a5fa7703f307e3b5dd6ee8cf576e924e14c8ede4e832434ee8f62d.png" />
 </div>
 </div>
 </section>
@@ -732,7 +731,7 @@ x(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/49c618f6158cf9ef63922eeefeb7005486f0de95b4a33850417ad558f725faa8.png" src="_images/49c618f6158cf9ef63922eeefeb7005486f0de95b4a33850417ad558f725faa8.png" />
+<img alt="_images/1e3904b6decdd7b6b549615201037b59a10ab3a083b7d3671b7a300c4853d0be.png" src="_images/1e3904b6decdd7b6b549615201037b59a10ab3a083b7d3671b7a300c4853d0be.png" />
 </div>
 </div>
 </section>
@@ -814,10 +813,10 @@ x(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fb9e5ec75c02864342d662698b96808ed6707eed9cc72df6cb01d7fb4429c1f9.png" src="_images/fb9e5ec75c02864342d662698b96808ed6707eed9cc72df6cb01d7fb4429c1f9.png" />
-<img alt="_images/f7d33a899e797f1769f45f9df98cb2e2c17d9dc520c1f1d433cb9d792b79bf85.png" src="_images/f7d33a899e797f1769f45f9df98cb2e2c17d9dc520c1f1d433cb9d792b79bf85.png" />
-<img alt="_images/5da0177d77d2d1ee88bd337ea263c26b1b29d9cf50d76a6a5a6fe747f89dfc95.png" src="_images/5da0177d77d2d1ee88bd337ea263c26b1b29d9cf50d76a6a5a6fe747f89dfc95.png" />
-<img alt="_images/c7202a2e24b3a5c13a0d60e3a21f347cf57e777d9b0787d8ed2981191d67288c.png" src="_images/c7202a2e24b3a5c13a0d60e3a21f347cf57e777d9b0787d8ed2981191d67288c.png" />
+<img alt="_images/135b8e698d247b0b6be9076da3c038383056bf51009b6248254fe04fc257ddfd.png" src="_images/135b8e698d247b0b6be9076da3c038383056bf51009b6248254fe04fc257ddfd.png" />
+<img alt="_images/2a5450886c269358a779e77cbaced8d772c793b4e0550faef034d6e915093c1e.png" src="_images/2a5450886c269358a779e77cbaced8d772c793b4e0550faef034d6e915093c1e.png" />
+<img alt="_images/fc1cd668f7d92fb5a5a4ff5f1553888ba02f64e139b0c833ffd7c9320547156c.png" src="_images/fc1cd668f7d92fb5a5a4ff5f1553888ba02f64e139b0c833ffd7c9320547156c.png" />
+<img alt="_images/785199fbb3ec6a53df97cd02bac27f2e0c78201d8a521bf9b0746369d5706954.png" src="_images/785199fbb3ec6a53df97cd02bac27f2e0c78201d8a521bf9b0746369d5706954.png" />
 </div>
 </div>
 </section>
