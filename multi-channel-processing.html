@@ -454,73 +454,73 @@ document.write(`
 <section id="sound-source-distance">
 <h2>Sound source distance<a class="headerlink" href="#sound-source-distance" title="Link to this heading">#</a></h2>
 <p>Let the location of hydrophone <span class="math notranslate nohighlight">\(i\)</span> be <span class="math notranslate nohighlight">\(h_i = (x_i,y_i.z_i)\)</span> and the source location be <span class="math notranslate nohighlight">\(s=(s_x,s_y,s_z)\)</span> then the distance of the source from the hydrophone is related by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0dfe4591-0418-4fee-9f20-b0e11703c84f">
-<span class="eqno">(101)<a class="headerlink" href="#equation-0dfe4591-0418-4fee-9f20-b0e11703c84f" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
+<div class="amsmath math notranslate nohighlight" id="equation-8428f79b-dd92-4ab1-a586-707abd92bf73">
+<span class="eqno">(101)<a class="headerlink" href="#equation-8428f79b-dd92-4ab1-a586-707abd92bf73" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
 R_i^2=(s_x-x_i)^2+(s_y-y_i)^2+(s_z-z_i)^2
 \end{equation}\]</div>
 <p>which becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f55c8ccb-3aa3-42cb-951d-77efb30f5932">
-<span class="eqno">(102)<a class="headerlink" href="#equation-f55c8ccb-3aa3-42cb-951d-77efb30f5932" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
+<div class="amsmath math notranslate nohighlight" id="equation-d74027e8-42cf-4ba0-8d80-1c5c94598ab1">
+<span class="eqno">(102)<a class="headerlink" href="#equation-d74027e8-42cf-4ba0-8d80-1c5c94598ab1" title="Permalink to this equation">#</a></span>\[\begin{equation} \tag{*}
 R_i^2=(s_x^2+s_y^2+s_z^2)+(x_i^2+y_i^2+z_i^2) -2s_x x_i -2s_y y_i -2s_z z_i
 \end{equation}\]</div>
 <p>or in short</p>
-<div class="amsmath math notranslate nohighlight" id="equation-46448ab3-64ed-46e5-be71-e7478f155e47">
-<span class="eqno">(103)<a class="headerlink" href="#equation-46448ab3-64ed-46e5-be71-e7478f155e47" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-36845da7-ef0e-4c36-ae5e-b95f515db173">
+<span class="eqno">(103)<a class="headerlink" href="#equation-36845da7-ef0e-4c36-ae5e-b95f515db173" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_i^2=|s|^2+|h_i|^2-2h_i^Ts
 \end{equation}\]</div>
 <p>Having more then 1 hydrophone, then for any pair of hydrophones <span class="math notranslate nohighlight">\((h_i, h_j)\)</span> one can form the difference obtaining</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7955f35e-6195-411e-be89-a52bcd6ffc02">
-<span class="eqno">(104)<a class="headerlink" href="#equation-7955f35e-6195-411e-be89-a52bcd6ffc02" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1df87507-c77f-48ff-ba0a-cc49aadaceaa">
+<span class="eqno">(104)<a class="headerlink" href="#equation-1df87507-c77f-48ff-ba0a-cc49aadaceaa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_i^2-R_j^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>Noting that <span class="math notranslate nohighlight">\(R_i^2-R_j^2=(R_j+(\delta R_{ij}))^2-R_j^2 = 2(\delta R_{ij})R_j+(\delta R_{ij})^2 \)</span></p>
 <p>one gets the linear equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-159f152b-04fc-489c-ad75-c10b4f9b6781">
-<span class="eqno">(105)<a class="headerlink" href="#equation-159f152b-04fc-489c-ad75-c10b4f9b6781" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6cd0a183-7676-4892-a250-e7a120f598d5">
+<span class="eqno">(105)<a class="headerlink" href="#equation-6cd0a183-7676-4892-a250-e7a120f598d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 2(\delta R_{ij})R_j+(\delta R_{ij})^2=|h_i|^2-|h_j|^2-2(h_i-h_j)^Ts
 \end{equation}\]</div>
 <p>or, by putting the unknown source location to the left side and dividing by 2</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1545e5d7-846c-4eeb-86a4-cb5c9082ee7c">
-<span class="eqno">(106)<a class="headerlink" href="#equation-1545e5d7-846c-4eeb-86a4-cb5c9082ee7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eab20179-3a5c-4a3f-8ca3-a7a23b045fa6">
+<span class="eqno">(106)<a class="headerlink" href="#equation-eab20179-3a5c-4a3f-8ca3-a7a23b045fa6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2}-(\delta R_{ij})R_j
 \end{equation}\]</div>
 </section>
 <section id="direction-finding">
 <h2>Direction finding<a class="headerlink" href="#direction-finding" title="Link to this heading">#</a></h2>
 <p>Given</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6315bc28-6a0d-4912-975f-d49a33f41afc">
-<span class="eqno">(107)<a class="headerlink" href="#equation-6315bc28-6a0d-4912-975f-d49a33f41afc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8cf038f3-7eda-4bf1-9b9b-97830272a8c4">
+<span class="eqno">(107)<a class="headerlink" href="#equation-8cf038f3-7eda-4bf1-9b9b-97830272a8c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2}-(\delta R_{ij})R_j
 \end{equation}\]</div>
 <p>Assume that all phones are closely spaced compared to distance to source</p>
 <p>and noting that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72393c18-82fd-4f0b-8841-514e6c4d2fcb">
-<span class="eqno">(108)<a class="headerlink" href="#equation-72393c18-82fd-4f0b-8841-514e6c4d2fcb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aa417f21-53bb-4a1b-a9fc-7ce90c0b2e4c">
+<span class="eqno">(108)<a class="headerlink" href="#equation-aa417f21-53bb-4a1b-a9fc-7ce90c0b2e4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^Ts=|h_i-h_j||s|\cos{(\beta)}
 \end{equation}\]</div>
 <p>or equivalently with <span class="math notranslate nohighlight">\(s=|s|\hat{s}\)</span> and dividing by <span class="math notranslate nohighlight">\(|s|\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-47fdda46-b216-4954-a71f-9ca162486654">
-<span class="eqno">(109)<a class="headerlink" href="#equation-47fdda46-b216-4954-a71f-9ca162486654" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e0931db5-5046-4c51-9ca1-eecb37fc23bf">
+<span class="eqno">(109)<a class="headerlink" href="#equation-e0931db5-5046-4c51-9ca1-eecb37fc23bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=|h_i-h_j|\cos{(\beta)}
 \end{equation}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-46758ac9-6f44-4e56-b8a6-016d50cf9946">
-<span class="eqno">(110)<a class="headerlink" href="#equation-46758ac9-6f44-4e56-b8a6-016d50cf9946" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-49d074f5-bd00-4bd6-bdbd-0b4cf93ff52f">
+<span class="eqno">(110)<a class="headerlink" href="#equation-49d074f5-bd00-4bd6-bdbd-0b4cf93ff52f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |h_i-h_j|\cos{(\beta)}=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2|s|}-(\delta R_{ij})\frac{R_j}{|s|}
 \end{equation}\]</div>
 <p>Let</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0d61a955-4502-42e2-93c5-715fca11586e">
-<span class="eqno">(111)<a class="headerlink" href="#equation-0d61a955-4502-42e2-93c5-715fca11586e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-94630f79-c49a-49eb-b19b-cdd580465dce">
+<span class="eqno">(111)<a class="headerlink" href="#equation-94630f79-c49a-49eb-b19b-cdd580465dce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R_j=|s-h_j|
 \end{equation}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ee8eb21-9f64-48b8-9858-443ad7f623b8">
-<span class="eqno">(112)<a class="headerlink" href="#equation-2ee8eb21-9f64-48b8-9858-443ad7f623b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6e7f61c1-f37c-4c35-a263-7335aa98b2cf">
+<span class="eqno">(112)<a class="headerlink" href="#equation-6e7f61c1-f37c-4c35-a263-7335aa98b2cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |h_i-h_j|\cos{(\beta)}=\frac{|h_i|^2-|h_j|^2-(\delta R_{ij})^2}{2|s|}-(\delta R_{ij})\frac{|s-h_j|}{|s|}
 \end{equation}\]</div>
 <p>which for <span class="math notranslate nohighlight">\(|s| \to \infty\)</span> becomes an equation that may be used to estimate the direction <span class="math notranslate nohighlight">\(\beta\)</span> to a distant sound source.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-083f8251-d981-4794-84de-23404cde1dfd">
-<span class="eqno">(113)<a class="headerlink" href="#equation-083f8251-d981-4794-84de-23404cde1dfd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c872225a-7e16-4c77-9cf4-330f965869c8">
+<span class="eqno">(113)<a class="headerlink" href="#equation-c872225a-7e16-4c77-9cf4-330f965869c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>This equation is the basis for all direction finding algorithms</p>
@@ -528,13 +528,13 @@ R_j=|s-h_j|
 <section id="multi-phone-direction-finding">
 <h2>Multi-phone direction finding<a class="headerlink" href="#multi-phone-direction-finding" title="Link to this heading">#</a></h2>
 <p>Let</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da8f3d3f-da1e-48a9-b49d-76e69bbbaa73">
-<span class="eqno">(114)<a class="headerlink" href="#equation-da8f3d3f-da1e-48a9-b49d-76e69bbbaa73" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fb1f4c93-7e95-4da2-93b4-b9d1f9bf55b3">
+<span class="eqno">(114)<a class="headerlink" href="#equation-fb1f4c93-7e95-4da2-93b4-b9d1f9bf55b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>and assume an array of <span class="math notranslate nohighlight">\(n+1\)</span> phones then one can form  <span class="math notranslate nohighlight">\(npp=(n+1)n/2\)</span> different pairs of phones resulting to a system of <span class="math notranslate nohighlight">\(npp\)</span> equations</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56a12179-4bb4-4857-bfae-f515e3f3b259">
-<span class="eqno">(115)<a class="headerlink" href="#equation-56a12179-4bb4-4857-bfae-f515e3f3b259" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2996d474-1e79-4bcc-abfd-ef8e2b9d017a">
+<span class="eqno">(115)<a class="headerlink" href="#equation-2996d474-1e79-4bcc-abfd-ef8e2b9d017a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\begin{matrix} (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         \vdots&amp;\vdots&amp;\vdots\\ 
@@ -544,8 +544,8 @@ R_j=|s-h_j|
                         \end{matrix}\right)                        
 \end{equation}\]</div>
 <p>With</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b95e2b59-2da3-4f6c-92ad-3078827752c4">
-<span class="eqno">(116)<a class="headerlink" href="#equation-b95e2b59-2da3-4f6c-92ad-3078827752c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed2df498-d79b-44a3-95d5-40688c114486">
+<span class="eqno">(116)<a class="headerlink" href="#equation-ed2df498-d79b-44a3-95d5-40688c114486" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A=
 \left(\begin{matrix} (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
                         (x_1-x_0)&amp;(y_1-y_0)&amp;(z_1-z_0)\\
@@ -553,23 +553,23 @@ A=
                         (x_n-x_{n-1})&amp;(y_n-y_{n-1})&amp;(z_n-z_{n-1})
                         \end{matrix}\right)                        
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-6d67c41c-932a-4bb6-8684-096915245ad8">
-<span class="eqno">(117)<a class="headerlink" href="#equation-6d67c41c-932a-4bb6-8684-096915245ad8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d614753d-778c-42af-b3bd-5e0aaaa6b9cd">
+<span class="eqno">(117)<a class="headerlink" href="#equation-d614753d-778c-42af-b3bd-5e0aaaa6b9cd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_1=
 \left(\begin{matrix} \delta R_{10}\\\delta R_{20}\\\vdots\\\delta R_{n(n-1)}
                         \end{matrix}\right)                        
 \end{equation}\]</div>
 <p>the solution for the source direction vector <span class="math notranslate nohighlight">\(\hat{s}\)</span> becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-efcd2511-8573-4b05-aa67-94a66bec9cd9">
-<span class="eqno">(118)<a class="headerlink" href="#equation-efcd2511-8573-4b05-aa67-94a66bec9cd9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-79f0f2e7-9eed-46e3-ab0c-e288fbdc4163">
+<span class="eqno">(118)<a class="headerlink" href="#equation-79f0f2e7-9eed-46e3-ab0c-e288fbdc4163" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{s}=-A^+b_1
 \end{equation}\]</div>
 <p>It should be noted that the path difference <span class="math notranslate nohighlight">\(\delta R_{ij}=R_i-R_j\)</span>, where <span class="math notranslate nohighlight">\(R_j\)</span> is the path to the reference phone, is negative if the sound arrives first to phone at <span class="math notranslate nohighlight">\(h_i\)</span> and then to the one at <span class="math notranslate nohighlight">\(h_j\)</span>, as it would for <span class="math notranslate nohighlight">\(\cos{\beta}&gt;0\)</span>.</p>
 <section id="time-delay-based-direction-finding">
 <h3>Time delay based direction finding<a class="headerlink" href="#time-delay-based-direction-finding" title="Link to this heading">#</a></h3>
 <p>Assume that the travel path difference  <span class="math notranslate nohighlight">\((\delta R_{ij})\)</span> is based on time-delay estimation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9fceb373-b103-47fb-a092-af6beecd1d75">
-<span class="eqno">(119)<a class="headerlink" href="#equation-9fceb373-b103-47fb-a092-af6beecd1d75" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e350131e-dcca-4e14-a037-f226bfd5d7e7">
+<span class="eqno">(119)<a class="headerlink" href="#equation-e350131e-dcca-4e14-a037-f226bfd5d7e7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta R_{ij} = c (\delta t_{ij})
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(c\)</span> being the sound speed and <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span> the measured time delay of the signal.</p>
@@ -577,29 +577,29 @@ b_1=
 <section id="phase-based-direction-finding">
 <h3>Phase based direction finding<a class="headerlink" href="#phase-based-direction-finding" title="Link to this heading">#</a></h3>
 <p>Assume that the measured time delay between two hydrophones <span class="math notranslate nohighlight">\(\delta t\)</span> is small enough that a sinusoidal signal</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af284e3c-af17-4d2e-bea2-571ba3c11811">
-<span class="eqno">(120)<a class="headerlink" href="#equation-af284e3c-af17-4d2e-bea2-571ba3c11811" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e78b40e4-b9b6-4c8c-8928-e25a2f8347b7">
+<span class="eqno">(120)<a class="headerlink" href="#equation-e78b40e4-b9b6-4c8c-8928-e25a2f8347b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta t = \frac{1}{2\pi f_0}\sin^{-1}(\sin(2\pi f (\delta t)))
 \end{equation}\]</div>
 <p>As in inverse sinus results in values between <span class="math notranslate nohighlight">\(\pm \pi\)</span> we can conclude that phase processing is possible for</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5928141b-40a6-4188-9839-96504b915cdc">
-<span class="eqno">(121)<a class="headerlink" href="#equation-5928141b-40a6-4188-9839-96504b915cdc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d20b2740-ec70-4dd5-aeec-e98f5dab5d5d">
+<span class="eqno">(121)<a class="headerlink" href="#equation-d20b2740-ec70-4dd5-aeec-e98f5dab5d5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\delta t| &lt; \frac{1}{2 f}
 \end{equation}\]</div>
 <p>The maximal delay between two hydrophones seperated by <span class="math notranslate nohighlight">\(d_{ij}\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3114ea0b-d617-451f-9493-3bfb7c108f16">
-<span class="eqno">(122)<a class="headerlink" href="#equation-3114ea0b-d617-451f-9493-3bfb7c108f16" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5f937cdd-5540-487c-95be-4e713dfa752d">
+<span class="eqno">(122)<a class="headerlink" href="#equation-5f937cdd-5540-487c-95be-4e713dfa752d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\delta t|_{max} = \frac{|d_{ij}|}{c}
 \end{equation}\]</div>
 <p>so that phase processing is possible for all frequencies <span class="math notranslate nohighlight">\(f\)</span> for which</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd5fdfbf-449e-4d3f-aa4c-bbfe725a38ee">
-<span class="eqno">(123)<a class="headerlink" href="#equation-bd5fdfbf-449e-4d3f-aa4c-bbfe725a38ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-70a59255-e992-4aed-bb56-fe858d1d7206">
+<span class="eqno">(123)<a class="headerlink" href="#equation-70a59255-e992-4aed-bb56-fe858d1d7206" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f &lt; \frac{c}{2|d_{ij}|}
 \end{equation}\]</div>
 <p>and the time delay of a signal is equivalent to a phase shift of the signal.</p>
 <p>Given a time delay <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span>, the phase shift is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76f9ba7e-d3c3-4b99-bc7d-97ba05b61ab9">
-<span class="eqno">(124)<a class="headerlink" href="#equation-76f9ba7e-d3c3-4b99-bc7d-97ba05b61ab9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2e0b6600-b9d2-4cd8-a049-61ed7bb86bf0">
+<span class="eqno">(124)<a class="headerlink" href="#equation-2e0b6600-b9d2-4cd8-a049-61ed7bb86bf0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta \Phi_{ij} = 2\pi c\frac{(\delta t_{ij})}{d_{ij}}
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -744,7 +744,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 <span class="k">def</span> <span class="nf">sim_array</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">noise</span><span class="p">):</span>
     <span class="c1"># delay signal according to array geometry </span>
     <span class="c1"># (use fractional delay with sinc function)</span>
-    <span class="n">kk</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">kk</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">ss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">yy</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">DS</span><span class="p">)))</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">DS</span><span class="p">)):</span>
         <span class="n">ss</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span><span class="n">fft_filt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">kk</span><span class="o">+</span><span class="n">DS</span><span class="p">[</span><span class="n">ii</span><span class="p">]),</span><span class="n">yy</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">]</span>
@@ -766,8 +766,8 @@ f &lt; \frac{c}{2|d_{ij}|}
 <h2>Tonal<a class="headerlink" href="#tonal" title="Link to this heading">#</a></h2>
 <section id="fm-modulation">
 <h3>FM modulation<a class="headerlink" href="#fm-modulation" title="Link to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-5fb09f94-28a8-444e-a2b8-03b8e6cfc2e1">
-<span class="eqno">(125)<a class="headerlink" href="#equation-5fb09f94-28a8-444e-a2b8-03b8e6cfc2e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c1bb3533-48fc-4612-a3d5-f1eca6887227">
+<span class="eqno">(125)<a class="headerlink" href="#equation-c1bb3533-48fc-4612-a3d5-f1eca6887227" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{aligned}y(t)&amp;=A_{c}\cos \left(2\pi \int _{0}^{t}f(\tau )d\tau \right)\\
 &amp;=A_{c}\cos \left(2\pi \int _{0}^{t}\left[f_{c}+f_{\Delta }x_{m}(\tau )\right]d\tau \right)\\
 &amp;=A_{c}\cos \left(2\pi f_{c}t+2\pi f_{\Delta }\int _{0}^{t}x_{m}(\tau )d\tau \right)\\
@@ -781,7 +781,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 
 <span class="n">f_sig</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># base signal frequency</span>
 <span class="n">x_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f_sig</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span> <span class="c1"># base signal</span>
-<span class="c1">#y_m = -np.cos(2*np.pi*f_sig*tt) # integrated base signal</span>
+<span class="n">y_m</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f_sig</span><span class="o">*</span><span class="n">tt</span><span class="p">)</span> <span class="c1"># integrated base signal</span>
 <span class="n">z_m</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">x_m</span><span class="p">)</span><span class="o">/</span><span class="n">fs</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">f_sig</span><span class="p">)</span><span class="o">*</span><span class="n">f_sig</span> <span class="c1"># integrated base signal</span>
 
 <span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
@@ -875,7 +875,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6ffc84967a8ba3b8c765fe125c51953c0fbba19b0e3a82a854537a72cf734bf6.png" src="_images/6ffc84967a8ba3b8c765fe125c51953c0fbba19b0e3a82a854537a72cf734bf6.png" />
+<img alt="_images/ae907e6ef95293b179db4f262255f81bedd82c4011d765e9894e06458fb82018.png" src="_images/ae907e6ef95293b179db4f262255f81bedd82c4011d765e9894e06458fb82018.png" />
 </div>
 </div>
 </section>
@@ -915,7 +915,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/729ceaaed4a1ae40c590dd9c03fcf69ead121453b4ee2215745c324b8b2fa5f9.png" src="_images/729ceaaed4a1ae40c590dd9c03fcf69ead121453b4ee2215745c324b8b2fa5f9.png" />
+<img alt="_images/be2cb87c01fc7a1b8ea0d6c5f955a9040a4c374dc43d8a0fe598d79874001e6c.png" src="_images/be2cb87c01fc7a1b8ea0d6c5f955a9040a4c374dc43d8a0fe598d79874001e6c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -950,7 +950,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a47e6993939fd91b5cb10b4fd2fd9883d674d49c971eae076d31feafbb623a13.png" src="_images/a47e6993939fd91b5cb10b4fd2fd9883d674d49c971eae076d31feafbb623a13.png" />
+<img alt="_images/5375fd8bf068751850bb0a62002c5278e5e4267f37a1df35400e3bfb846d7a3e.png" src="_images/5375fd8bf068751850bb0a62002c5278e5e4267f37a1df35400e3bfb846d7a3e.png" />
 </div>
 </div>
 </section>
@@ -992,7 +992,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4bb3b7f2722c1e6a585536f46c3afd9c7b7dcc112f8cd997c0eaee9460a8dfc4.png" src="_images/4bb3b7f2722c1e6a585536f46c3afd9c7b7dcc112f8cd997c0eaee9460a8dfc4.png" />
+<img alt="_images/0986feb5052373afc89c8dd23f13bb7a62c80e5555905db8afe9972645504e20.png" src="_images/0986feb5052373afc89c8dd23f13bb7a62c80e5555905db8afe9972645504e20.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1034,7 +1034,7 @@ f &lt; \frac{c}{2|d_{ij}|}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/052e506b5f072b03d9e550cc6cca91b4cc7c6291c89f29c8a7cf7a55ce8966fc.png" src="_images/052e506b5f072b03d9e550cc6cca91b4cc7c6291c89f29c8a7cf7a55ce8966fc.png" />
+<img alt="_images/c158be023992d7d21d16ec7723463dccfc865ac6f46f5951763635fd30a9fbaa.png" src="_images/c158be023992d7d21d16ec7723463dccfc865ac6f46f5951763635fd30a9fbaa.png" />
 </div>
 </div>
 </section>
@@ -1042,15 +1042,15 @@ f &lt; \frac{c}{2|d_{ij}|}
 <section id="broadband-ship-noise">
 <h2>Broadband (ship) noise<a class="headerlink" href="#broadband-ship-noise" title="Link to this heading">#</a></h2>
 <p>To simultate a colored, i.e. not white, noise sequence, white noise spectrum <span class="math notranslate nohighlight">\(Y(f)\)</span> is first modeled as having uniform random phase <span class="math notranslate nohighlight">\(U(N_f)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-36a9654f-ed8c-441f-ab1c-27cab1919af4">
-<span class="eqno">(126)<a class="headerlink" href="#equation-36a9654f-ed8c-441f-ab1c-27cab1919af4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47df5566-2e04-46be-8975-28206f83308d">
+<span class="eqno">(126)<a class="headerlink" href="#equation-47df5566-2e04-46be-8975-28206f83308d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y(f)=\exp(2\pi i U(N_f))
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_f\)</span> is the number of (positive) frequenency bins.</p>
 <p>The white noise spectrum is then wheighted by the square-root of the desired colored power spectrum.</p>
 <p>The desired colored noise <span class="math notranslate nohighlight">\(n\)</span> is then obtained by the inverse Fourier Transform of the colored noise spectrum.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a43a54ee-2c45-4a7e-afa7-ffe7d6db2b15">
-<span class="eqno">(127)<a class="headerlink" href="#equation-a43a54ee-2c45-4a7e-afa7-ffe7d6db2b15" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-943fe670-b688-4beb-a0da-2ba1888c6c58">
+<span class="eqno">(127)<a class="headerlink" href="#equation-943fe670-b688-4beb-a0da-2ba1888c6c58" title="Permalink to this equation">#</a></span>\[\begin{equation}
 n=\text{fft}^{-1}\Big(\frac{W(f)}{W(f)_{\text{RMS}}}Y(f)\Big)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(W(f)\)</span> is the amplitude weghting function and <span class="math notranslate nohighlight">\(W(f)_{\text{RMS}}\)</span> is the root-mean-square of the amplitude weighting function to obtain the same noise energy as the input white noise.</p>
@@ -1058,23 +1058,23 @@ n=\text{fft}^{-1}\Big(\frac{W(f)}{W(f)_{\text{RMS}}}Y(f)\Big)
 <h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
 <section id="pink-noise">
 <h4>pink noise<a class="headerlink" href="#pink-noise" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-eb439fbb-e380-4287-8953-04516f206157">
-<span class="eqno">(128)<a class="headerlink" href="#equation-eb439fbb-e380-4287-8953-04516f206157" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8212afcf-2c4e-4649-9440-7dbcbd1bb6c8">
+<span class="eqno">(128)<a class="headerlink" href="#equation-8212afcf-2c4e-4649-9440-7dbcbd1bb6c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{\sqrt{(f)}}
 \end{equation}\]</div>
 </section>
 <section id="brown-noise">
 <h4>brown noise<a class="headerlink" href="#brown-noise" title="Link to this heading">#</a></h4>
-<div class="amsmath math notranslate nohighlight" id="equation-391d97e3-07e2-4f8e-ba1c-3deeefa52c5c">
-<span class="eqno">(129)<a class="headerlink" href="#equation-391d97e3-07e2-4f8e-ba1c-3deeefa52c5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-21cf3194-58c1-499c-a2ed-3f607c519daf">
+<span class="eqno">(129)<a class="headerlink" href="#equation-21cf3194-58c1-499c-a2ed-3f607c519daf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{f}
 \end{equation}\]</div>
 </section>
 <section id="ship-noise">
 <h4>ship noise<a class="headerlink" href="#ship-noise" title="Link to this heading">#</a></h4>
 <p>Text book ship spectrum are described as constant below a certain frequency <span class="math notranslate nohighlight">\(fo\)</span> and then to fall off with frequency squared</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0c83e58-40d1-487b-8c36-f7e345e02f26">
-<span class="eqno">(130)<a class="headerlink" href="#equation-b0c83e58-40d1-487b-8c36-f7e345e02f26" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b37343ab-512c-43e4-87a1-a1dc7383dfa9">
+<span class="eqno">(130)<a class="headerlink" href="#equation-b37343ab-512c-43e4-87a1-a1dc7383dfa9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W(f)=\frac{1}{\text{max}(fo,f)}
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -1220,7 +1220,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/72439f76a9d7629473bf9f5f9a04d31d5fef29c2c50146061aa6983b4893c9f9.png" src="_images/72439f76a9d7629473bf9f5f9a04d31d5fef29c2c50146061aa6983b4893c9f9.png" />
+<img alt="_images/1ed69f23d346b26cf44348a4b097f305431599a0417e5c29d1ffab83d20f7554.png" src="_images/1ed69f23d346b26cf44348a4b097f305431599a0417e5c29d1ffab83d20f7554.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1241,7 +1241,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dee3ea735b9792c506eb80c6e852ec2c86ea24a0bc3d734039d254c27bd012ea.png" src="_images/dee3ea735b9792c506eb80c6e852ec2c86ea24a0bc3d734039d254c27bd012ea.png" />
+<img alt="_images/1bfacaeadfbbe0a5a23808dc095b489b2c1747315ec394f34603fedb32cd1b9b.png" src="_images/1bfacaeadfbbe0a5a23808dc095b489b2c1747315ec394f34603fedb32cd1b9b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1283,7 +1283,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/efdbc89406c154664d2ed703191324c216223eaef2ee8a7ad46d4c95b27df099.png" src="_images/efdbc89406c154664d2ed703191324c216223eaef2ee8a7ad46d4c95b27df099.png" />
+<img alt="_images/374c8752a6a1abf8040840c4041f159a171eef8d07b4db5e958109b4ac714015.png" src="_images/374c8752a6a1abf8040840c4041f159a171eef8d07b4db5e958109b4ac714015.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1310,7 +1310,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8d77847dfe63689adc0ab38264f54148e42483072d596847f32a062d354f2659.png" src="_images/8d77847dfe63689adc0ab38264f54148e42483072d596847f32a062d354f2659.png" />
+<img alt="_images/1d839a6aa7651422856d71f01b13405d2d625e0c29abf532e2c2cf68f2b77226.png" src="_images/1d839a6aa7651422856d71f01b13405d2d625e0c29abf532e2c2cf68f2b77226.png" />
 </div>
 </div>
 </section>
@@ -1319,13 +1319,13 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <section id="time-delay-direction-finding">
 <h2>Time delay direction finding<a class="headerlink" href="#time-delay-direction-finding" title="Link to this heading">#</a></h2>
 <p>Given</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62ac1ce2-9451-490a-92a7-9b16ca0d44aa">
-<span class="eqno">(131)<a class="headerlink" href="#equation-62ac1ce2-9451-490a-92a7-9b16ca0d44aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d92d4f6-5fbd-4f8f-9f9f-bca62b2f747a">
+<span class="eqno">(131)<a class="headerlink" href="#equation-7d92d4f6-5fbd-4f8f-9f9f-bca62b2f747a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=-(\delta R_{ij})
 \end{equation}\]</div>
 <p>and assume that the travel path difference  <span class="math notranslate nohighlight">\((\delta R_{ij})\)</span> is based on time-delay estimation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07da8c5a-b409-484d-8d98-e640f3a24c52">
-<span class="eqno">(132)<a class="headerlink" href="#equation-07da8c5a-b409-484d-8d98-e640f3a24c52" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7c78b72d-4b1c-4c30-b81a-d91e316da4f0">
+<span class="eqno">(132)<a class="headerlink" href="#equation-7c78b72d-4b1c-4c30-b81a-d91e316da4f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta R_{ij} = c (\delta t_{ij})
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(c\)</span> being the sound speed and <span class="math notranslate nohighlight">\((\delta t_{ij})\)</span> the measured time delay of the signal.</p>
@@ -1393,7 +1393,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/451de8197ac6fecace11c459620ff06b4692935f5b2037e7ceb17e677f51de5c.png" src="_images/451de8197ac6fecace11c459620ff06b4692935f5b2037e7ceb17e677f51de5c.png" />
+<img alt="_images/9923c7ba6bddca4af527fc776a00b83014c48cedb6f2945f85e151df0ff9cd19.png" src="_images/9923c7ba6bddca4af527fc776a00b83014c48cedb6f2945f85e151df0ff9cd19.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1418,7 +1418,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b1e22f4107f196e73d8ee3222d35e9e5884496837ad062b0db643cfc7a7eb748.png" src="_images/b1e22f4107f196e73d8ee3222d35e9e5884496837ad062b0db643cfc7a7eb748.png" />
+<img alt="_images/340c16437520a191a03bad5b58b42165166e83f7ea08e8a80e7cb59267d6fcf7.png" src="_images/340c16437520a191a03bad5b58b42165166e83f7ea08e8a80e7cb59267d6fcf7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1508,7 +1508,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 (29996,)
 </pre></div>
 </div>
-<img alt="_images/2468a2c614cc34388fd19abc3ebd5cd2811cdf45d17b73567a949a2e8989e0bb.png" src="_images/2468a2c614cc34388fd19abc3ebd5cd2811cdf45d17b73567a949a2e8989e0bb.png" />
+<img alt="_images/37fb8ef9af468a45e56cec5aae38d907d6dc94c703085cc83a5497222241ba07.png" src="_images/37fb8ef9af468a45e56cec5aae38d907d6dc94c703085cc83a5497222241ba07.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1556,7 +1556,7 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(29996, 3)
 </pre></div>
 </div>
-<img alt="_images/13baef3707b205c02e40353501218a0d6427eeda439fcf6682ba3e8244c9d888.png" src="_images/13baef3707b205c02e40353501218a0d6427eeda439fcf6682ba3e8244c9d888.png" />
+<img alt="_images/d1629e23db82318bcc858a3cc096876b8752d432deb48ef9305a7fb4a4140b77.png" src="_images/d1629e23db82318bcc858a3cc096876b8752d432deb48ef9305a7fb4a4140b77.png" />
 </div>
 </div>
 </section>
@@ -1567,36 +1567,36 @@ W(f)=\frac{1}{\text{max}(fo,f)}
 <section id="basic-formulation-of-beamforming">
 <h2>Basic formulation of beamforming<a class="headerlink" href="#basic-formulation-of-beamforming" title="Link to this heading">#</a></h2>
 <p>Let the sound pressure measured an a single hydrophone be a signal <span class="math notranslate nohighlight">\(s\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-c97a0947-823d-45d7-a4bb-22caca020fdb">
-<span class="eqno">(133)<a class="headerlink" href="#equation-c97a0947-823d-45d7-a4bb-22caca020fdb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e3d32d33-ab98-44a6-a68b-240f16393e2a">
+<span class="eqno">(133)<a class="headerlink" href="#equation-e3d32d33-ab98-44a6-a68b-240f16393e2a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x(t)=s(t)
 \end{equation}\]</div>
 <p>then in an array of hydrophones the measurements become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1818e9de-3f7c-4851-9ce9-02e98fc257fc">
-<span class="eqno">(134)<a class="headerlink" href="#equation-1818e9de-3f7c-4851-9ce9-02e98fc257fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-40303ba7-19be-445b-9f49-c35850b9471b">
+<span class="eqno">(134)<a class="headerlink" href="#equation-40303ba7-19be-445b-9f49-c35850b9471b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i(t)=s(t-\tau_i(\alpha,\beta))+n(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> is the delay of the signal at hydrophone <span class="math notranslate nohighlight">\(i\)</span> with respect to som reference hydrophone and <span class="math notranslate nohighlight">\(\alpha,\beta\)</span> are the angles of arrival</p>
 <section id="line-array">
 <h3>Line array<a class="headerlink" href="#line-array" title="Link to this heading">#</a></h3>
 <p>For a line array with equally spaced hydrophones the delay has a simple form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-309da6b2-2f74-47f9-9da3-6ded2414e330">
-<span class="eqno">(135)<a class="headerlink" href="#equation-309da6b2-2f74-47f9-9da3-6ded2414e330" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-073a0358-4139-4b8f-8a55-35b40d12d84f">
+<span class="eqno">(135)<a class="headerlink" href="#equation-073a0358-4139-4b8f-8a55-35b40d12d84f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tau_i(t)=i\frac{d}{c}\cos{\gamma}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(d\)</span> id the hydrophone spacing, <span class="math notranslate nohighlight">\(c\)</span> is the sound speed at the hydrophone, and <span class="math notranslate nohighlight">\(\gamma\)</span> is the relative angle of arrival, that for a line array is composed of the azimuth <span class="math notranslate nohighlight">\(\alpha\)</span> and elevation angle <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68e280a1-eafc-49fb-b00f-dab8b2251f5c">
-<span class="eqno">(136)<a class="headerlink" href="#equation-68e280a1-eafc-49fb-b00f-dab8b2251f5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d855cd8-0469-42c4-87b5-7d5015f99e99">
+<span class="eqno">(136)<a class="headerlink" href="#equation-7d855cd8-0469-42c4-87b5-7d5015f99e99" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \cos{\gamma}=\cos{\alpha}\cos{\beta}
 \end{equation}\]</div>
 <p>The beamforming algorithm simply speaking tries to undo the signal delays <span class="math notranslate nohighlight">\(\tau_i(\alpha,\beta)\)</span> by compensating with negative delays</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3f78dadf-fd1c-4e4f-b0a4-423596660c75">
-<span class="eqno">(137)<a class="headerlink" href="#equation-3f78dadf-fd1c-4e4f-b0a4-423596660c75" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b8916ea7-2517-4461-8f54-7792ca082d5c">
+<span class="eqno">(137)<a class="headerlink" href="#equation-b8916ea7-2517-4461-8f54-7792ca082d5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t)=\frac{1}{N}\sum_i (x(t+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>In cases, where <span class="math notranslate nohighlight">\(\delta_i(\gamma)=\tau_i(\alpha,\beta)\)</span> we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e1a110a8-b146-4db8-aeb5-45ee27a6f062">
-<span class="eqno">(138)<a class="headerlink" href="#equation-e1a110a8-b146-4db8-aeb5-45ee27a6f062" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-02de2de1-e2b6-4545-a991-6627cdbbdef6">
+<span class="eqno">(138)<a class="headerlink" href="#equation-02de2de1-e2b6-4545-a991-6627cdbbdef6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 \end{equation}\]</div>
 <p>indicating that the signal <span class="math notranslate nohighlight">\(s(t)\)</span> is completely reconstructed and that noise, that is assumed to be uncorrelated is attenuated.</p>
@@ -1606,13 +1606,13 @@ y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 <h3>delay estimation from angles<a class="headerlink" href="#delay-estimation-from-angles" title="Link to this heading">#</a></h3>
 <p>This operation is opposite to the simulation of measurements using azimuth and elevation angles.</p>
 <p>In particular, given a source direction <span class="math notranslate nohighlight">\(s\)</span> that is obtaind from azimuth and elevation angles</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12135622-02c0-41f6-bb18-2dab4f4a0172">
-<span class="eqno">(139)<a class="headerlink" href="#equation-12135622-02c0-41f6-bb18-2dab4f4a0172" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0a7772cc-5703-47cd-8607-aab447051361">
+<span class="eqno">(139)<a class="headerlink" href="#equation-0a7772cc-5703-47cd-8607-aab447051361" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (h_i-h_j)^T\hat{s}=+(\delta R_{ij})
 \end{equation}\]</div>
 <p>then the number of fractional samples <span class="math notranslate nohighlight">\(\delta N_{ij}\)</span> needed to align the arriving time series is estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-16944b1c-4b7c-4259-9923-773c5c476592">
-<span class="eqno">(140)<a class="headerlink" href="#equation-16944b1c-4b7c-4259-9923-773c5c476592" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2f4d4a7d-ae30-475f-a840-936320a911c2">
+<span class="eqno">(140)<a class="headerlink" href="#equation-2f4d4a7d-ae30-475f-a840-936320a911c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta N_{ij}=\frac{fs}{c}(h_i-h_j)^T\hat{s}
 \end{equation}\]</div>
 </section>
@@ -1663,10 +1663,10 @@ y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>az = 89.99977254127685   el = 0.4629404012004233
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>az = 90.04560065380026   el = -0.1022210630355344
 </pre></div>
 </div>
-<img alt="_images/32e2fbd9626bb4c06e5d54895d00b07d07f9beacb08cf5574478e17bcd042dbc.png" src="_images/32e2fbd9626bb4c06e5d54895d00b07d07f9beacb08cf5574478e17bcd042dbc.png" />
+<img alt="_images/22045bf5eafa69b27fad376208ccd25b81bbb9f1f4638cf03fb24625fb208161.png" src="_images/22045bf5eafa69b27fad376208ccd25b81bbb9f1f4638cf03fb24625fb208161.png" />
 </div>
 </div>
 </section>
@@ -1891,9 +1891,9 @@ y(t)=s(t)+\frac{1}{N}\sum_i(n(t+\delta_i(\gamma)))
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1c27a386962553bed6af762036a1272184ffb60e74396cbc28cf3297a806cf9c.png" src="_images/1c27a386962553bed6af762036a1272184ffb60e74396cbc28cf3297a806cf9c.png" />
-<img alt="_images/a9a7eb804e9b5d4e910ec79596f6c3e76b7854976de470058c7ecc7c320f47dc.png" src="_images/a9a7eb804e9b5d4e910ec79596f6c3e76b7854976de470058c7ecc7c320f47dc.png" />
-<img alt="_images/2963eef73bc647c7680a6429bf20f6e265d99ca0c54dd0c3220120dabb3999d1.png" src="_images/2963eef73bc647c7680a6429bf20f6e265d99ca0c54dd0c3220120dabb3999d1.png" />
+<img alt="_images/023410075ca2facf361279ae8fcf8bb93a7ff1d32a8c0830abf9b14c226523f7.png" src="_images/023410075ca2facf361279ae8fcf8bb93a7ff1d32a8c0830abf9b14c226523f7.png" />
+<img alt="_images/4b398f73df37a529d9df988074bbf1cb8d354e0bfeeccce40fccbbbf762ba1d1.png" src="_images/4b398f73df37a529d9df988074bbf1cb8d354e0bfeeccce40fccbbbf762ba1d1.png" />
+<img alt="_images/91dfd7d059cfec387b62d504321f05a26f316eded22c2d26bdfc8b098d25008e.png" src="_images/91dfd7d059cfec387b62d504321f05a26f316eded22c2d26bdfc8b098d25008e.png" />
 </div>
 </div>
 </section>

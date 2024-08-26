@@ -418,13 +418,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="cuvier-s-beaked-whale-click">
 <h1>Cuvier’s beaked whale click<a class="headerlink" href="#cuvier-s-beaked-whale-click" title="Link to this heading">#</a></h1>
 <p>For applying a matched filter to Cuvier’s beaked whale (Zc) clicks, a synthetic beaked whale click could be constructed according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cbbfbc19-efdc-4ff3-8910-3c545346ed5e">
-<span class="eqno">(4)<a class="headerlink" href="#equation-cbbfbc19-efdc-4ff3-8910-3c545346ed5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e68e562-1ac7-456d-99d5-96eb578e15bf">
+<span class="eqno">(4)<a class="headerlink" href="#equation-3e68e562-1ac7-456d-99d5-96eb578e15bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
     s(t)=A(t)\exp \{-2\pi i (f_0+f_m t)t\}
 \end{equation}\]</div>
 <p>where A(t) the signal amplitude is modeled according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6317e477-5d6e-4943-a07b-0b0d80dcf160">
-<span class="eqno">(5)<a class="headerlink" href="#equation-6317e477-5d6e-4943-a07b-0b0d80dcf160" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7b037105-22da-47b5-b7f0-4041beef3e1b">
+<span class="eqno">(5)<a class="headerlink" href="#equation-7b037105-22da-47b5-b7f0-4041beef3e1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
   A(t)=(A_0 t)^\beta \exp \{- (A_0 t)^\gamma\}
 \end{equation}\]</div>
 <p>and where f0 = 30 kHz, fm = 60 kHz/ms, A0 = 13kHz, <span class="math notranslate nohighlight">\(\beta=1.5\)</span>, and  <span class="math notranslate nohighlight">\(\gamma=1.5\)</span> and t denotes the time vector.</p>
@@ -514,13 +514,12 @@ document.write(`
 <span class="c1">#see also http://www.labbookpages.co.uk/audio/beamforming/fractionalDelay.html#filter</span>
 <span class="k">def</span> <span class="nf">delay</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">tau</span><span class="p">):</span>
     <span class="c1">#tau = -4.5 # Fractional delay [samples].</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">N</span><span class="p">)</span>
-    
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span><span class="o">+</span><span class="n">N</span><span class="p">)</span>
     <span class="c1"># Compute sinc filter.</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span>
     
     <span class="c1"># Multiply sinc filter by window</span>
-    <span class="n">h</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">blackman</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">blackman</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
     
     <span class="c1"># Normalize to get unity gain.</span>
     <span class="n">h</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
@@ -549,10 +548,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/32e87278e9774557802920fd7e2b02c6e426afe73af46181369abc83ff20c87a.png" src="_images/32e87278e9774557802920fd7e2b02c6e426afe73af46181369abc83ff20c87a.png" />
+<img alt="_images/7b274d1d40c64bddab2d518b15378800e25353c32426e17aa866c75cb6949cce.png" src="_images/7b274d1d40c64bddab2d518b15378800e25353c32426e17aa866c75cb6949cce.png" />
+<img alt="_images/418e54458ac344e98a00edb75e76d71bb04503742e1f9a0d4bfd2991074a6530.png" src="_images/418e54458ac344e98a00edb75e76d71bb04503742e1f9a0d4bfd2991074a6530.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 0.35)
 </pre></div>
 </div>
-<img alt="_images/956ba9feaad205eb8517dd7797cd4b6b2a2acd7108ab91e8c94d737d34d60127.png" src="_images/956ba9feaad205eb8517dd7797cd4b6b2a2acd7108ab91e8c94d737d34d60127.png" />
+<img alt="_images/5d95e94476f7240ffc5b42288dc6354cbb171a0008375643f5d316750349032f.png" src="_images/5d95e94476f7240ffc5b42288dc6354cbb171a0008375643f5d316750349032f.png" />
 </div>
 </div>
 </section>
